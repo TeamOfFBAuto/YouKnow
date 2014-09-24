@@ -8,6 +8,17 @@
 
 #import "AppDelegate.h"
 
+#import "MainViewController.h"
+
+#import "HistoryViewController.h"
+
+#import "StartViewController.h"
+
+#import "FindViewController.h"
+
+#import "MineViewController.h"
+
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +28,67 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    MainViewController * mainVC = [[MainViewController alloc] init];
+    
+    HistoryViewController * microBBSVC = [[HistoryViewController alloc] init];
+    
+    StartViewController * messageVC = [[StartViewController alloc] init];
+    
+    FindViewController * foundVC = [[FindViewController alloc] init];
+    
+    MineViewController * mineVC = [[MineViewController alloc] init];
+    
+    UINavigationController * navc1 = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    
+    UINavigationController * navc2 = [[UINavigationController alloc] initWithRootViewController:microBBSVC];
+    
+    UINavigationController * navc3 = [[UINavigationController alloc] initWithRootViewController:messageVC];
+    
+    UINavigationController * navc4 = [[UINavigationController alloc] initWithRootViewController:foundVC];
+    
+    UINavigationController * navc5 = [[UINavigationController alloc] initWithRootViewController:mineVC];
+    
+    
+    navc1.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"运动" image:[UIImage imageNamed:@"unselected_fbcircle_image.png"] selectedImage:[UIImage imageNamed:@"selected_fbcircle_image.png"]];
+    
+    navc2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"历史" image:[UIImage imageNamed:@"unselected_small_bbs_icon.png"] selectedImage:[UIImage imageNamed:@"selected_small_bbs_icon_image.png"]];
+    
+    navc3.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"开始" image:[UIImage imageNamed:@"unselected_message_icon.png"] selectedImage:[UIImage imageNamed:@"selected_message_icon.png"]];
+    
+    navc4.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:[UIImage imageNamed:@"unselected_found_image.png"] selectedImage:[UIImage imageNamed:@"selected_found_image.png"]];
+    
+    navc5.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"unselected_mine_image.png"] selectedImage:[UIImage imageNamed:@"selected_mine_image.png"]];
+    
+    
+    UITabBarController * tabbarVC = [[UITabBarController alloc] init];
+    
+    tabbarVC.viewControllers = [NSArray arrayWithObjects:navc1,navc2,navc3,navc4,navc5,nil];
+    
+    tabbarVC.selectedIndex = 0;
+    
+      tabbarVC.tabBar.tintColor=[UIColor redColor];
+    
+    
+    tabbarVC.tabBar.backgroundImage = [UIImage imageNamed:@""];
+    
+    
+    
+    
+    
+//    [MobClick startWithAppkey:@"5368ab4256240b6925029e29"];
+    
+    //微信
+    
+    
+    self.window.rootViewController = tabbarVC;
+    
+    
+    
+    
+    
+    
+    
     return YES;
 }
 
