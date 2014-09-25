@@ -50,15 +50,15 @@
     UINavigationController * navc5 = [[UINavigationController alloc] initWithRootViewController:mineVC];
     
     
-    navc1.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"运动" image:[UIImage imageNamed:@"unselected_fbcircle_image.png"] selectedImage:[UIImage imageNamed:@"selected_fbcircle_image.png"]];
+    navc1.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"运动" image:[UIImage imageNamed:@"bike.png"] selectedImage:[UIImage imageNamed:@"bike.png"]];
     
-    navc2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"历史" image:[UIImage imageNamed:@"unselected_small_bbs_icon.png"] selectedImage:[UIImage imageNamed:@"selected_small_bbs_icon_image.png"]];
+    navc2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"历史" image:[UIImage imageNamed:@"history.png"] selectedImage:[UIImage imageNamed:@"history.png"]];
     
-    navc3.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"开始" image:[UIImage imageNamed:@"unselected_message_icon.png"] selectedImage:[UIImage imageNamed:@"selected_message_icon.png"]];
+    navc3.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"开始" image:[UIImage imageNamed:@"start.png"] selectedImage:[UIImage imageNamed:@"start.png"]];
     
-    navc4.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:[UIImage imageNamed:@"unselected_found_image.png"] selectedImage:[UIImage imageNamed:@"selected_found_image.png"]];
+    navc4.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:[UIImage imageNamed:@"find.png"] selectedImage:[UIImage imageNamed:@"find.png"]];
     
-    navc5.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"unselected_mine_image.png"] selectedImage:[UIImage imageNamed:@"selected_mine_image.png"]];
+    navc5.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"mine.png"] selectedImage:[UIImage imageNamed:@"mine.png"]];
     
     
     UITabBarController * tabbarVC = [[UITabBarController alloc] init];

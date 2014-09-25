@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1929B3B419D41C3A0045B6B5 /* bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3AE19D41C3A0045B6B5 /* bike@2x.png */; };
+		1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3AF19D41C3A0045B6B5 /* find@2x.png */; };
+		1929B3B619D41C3A0045B6B5 /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3B019D41C3A0045B6B5 /* history@2x.png */; };
+		1929B3B719D41C3A0045B6B5 /* mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3B119D41C3A0045B6B5 /* mine@2x.png */; };
+		1929B3B819D41C3A0045B6B5 /* qixinging@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3B219D41C3A0045B6B5 /* qixinging@2x.png */; };
+		1929B3B919D41C3A0045B6B5 /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3B319D41C3A0045B6B5 /* start@2x.png */; };
 		19DAE80419D30C2D00519D22 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DAE80319D30C2D00519D22 /* main.m */; };
 		19DAE80719D30C2D00519D22 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DAE80619D30C2D00519D22 /* AppDelegate.m */; };
 		19DAE80A19D30C2D00519D22 /* OneTheBike.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19DAE80819D30C2D00519D22 /* OneTheBike.xcdatamodeld */; };
@@ -299,6 +305,12 @@
 /* Begin PBXFileReference section */
 		0000D05220C54C84A575DCE7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		01D95CE1BE85487DBDF28F53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1929B3AE19D41C3A0045B6B5 /* bike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bike@2x.png"; sourceTree = "<group>"; };
+		1929B3AF19D41C3A0045B6B5 /* find@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find@2x.png"; sourceTree = "<group>"; };
+		1929B3B019D41C3A0045B6B5 /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
+		1929B3B119D41C3A0045B6B5 /* mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine@2x.png"; sourceTree = "<group>"; };
+		1929B3B219D41C3A0045B6B5 /* qixinging@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qixinging@2x.png"; sourceTree = "<group>"; };
+		1929B3B319D41C3A0045B6B5 /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
 		19DAE7FE19D30C2D00519D22 /* OneTheBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneTheBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19DAE80219D30C2D00519D22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19DAE80319D30C2D00519D22 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -609,6 +621,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1929B3AD19D41C0F0045B6B5 /* TabbarImages */ = {
+			isa = PBXGroup;
+			children = (
+				1929B3AE19D41C3A0045B6B5 /* bike@2x.png */,
+				1929B3AF19D41C3A0045B6B5 /* find@2x.png */,
+				1929B3B019D41C3A0045B6B5 /* history@2x.png */,
+				1929B3B119D41C3A0045B6B5 /* mine@2x.png */,
+				1929B3B219D41C3A0045B6B5 /* qixinging@2x.png */,
+				1929B3B319D41C3A0045B6B5 /* start@2x.png */,
+			);
+			path = TabbarImages;
+			sourceTree = "<group>";
+		};
 		19DAE7F519D30C2D00519D22 = {
 			isa = PBXGroup;
 			children = (
@@ -854,6 +879,7 @@
 		19DAE84E19D311D300519D22 /* PublicImages */ = {
 			isa = PBXGroup;
 			children = (
+				1929B3AD19D41C0F0045B6B5 /* TabbarImages */,
 				19DAE84F19D311D300519D22 /* FBAddImages */,
 				19DAE85C19D311D300519D22 /* FbMY */,
 				19DAE86319D311D300519D22 /* FBquanImages */,
@@ -1619,6 +1645,7 @@
 				19DAEA2819D311D300519D22 /* yulan-button-bukedian-100_58@2x.png in Resources */,
 				19DAE9F219D311D300519D22 /* paizhao-button-556_88@2x.png in Resources */,
 				19DAEA1519D311D300519D22 /* weixin-icon-94_94@2x.png in Resources */,
+				1929B3B919D41C3A0045B6B5 /* start@2x.png in Resources */,
 				19DAE9F119D311D300519D22 /* geren-jiantou16_28@2x.png in Resources */,
 				19DAEA5519D311D300519D22 /* tablecell_acessory_image@2x.png in Resources */,
 				19DAEA6619D311D300519D22 /* mirco_icon_18@2x.png in Resources */,
@@ -1668,6 +1695,7 @@
 				19DAEA7A19D311D300519D22 /* classification_big8@2x.png in Resources */,
 				19DAE9E319D311D300519D22 /* Expression_9@2x.png in Resources */,
 				19DAE98E19D311D300519D22 /* fbMefb@2x.png in Resources */,
+				1929B3B619D41C3A0045B6B5 /* history@2x.png in Resources */,
 				19DAE9D019D311D300519D22 /* Expression_14@2x.png in Resources */,
 				19DAEA1C19D311D300519D22 /* xiangqing-shurukuang-496_60@2x.png in Resources */,
 				19DAE9B219D311D300519D22 /* pinglun-bg2-up-216_76@2x.jpg in Resources */,
@@ -1682,6 +1710,7 @@
 				19DAE9B619D311D300519D22 /* pinglun-pinglun_up24_24@2x.png in Resources */,
 				19DAEA6A19D311D300519D22 /* mirco_icon_21@2x.png in Resources */,
 				19DAEA7519D311D300519D22 /* classification_big3@2x.png in Resources */,
+				1929B3B419D41C3A0045B6B5 /* bike@2x.png in Resources */,
 				19DAEA2519D311D300519D22 /* touming-bg-150_150@2x.png in Resources */,
 				19DAEA7819D311D300519D22 /* classification_big6@2x.png in Resources */,
 				19DAEA0319D311D300519D22 /* dibuxian-444_8@2x.png in Resources */,
@@ -1728,6 +1757,7 @@
 				19DAE9BE19D311D300519D22 /* shanchu40_40@2x.png in Resources */,
 				19DAEA8119D311D300519D22 /* unselected_fbcircle_image@2x.png in Resources */,
 				19DAEA5F19D311D300519D22 /* mirco_icon_11@2x.png in Resources */,
+				1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */,
 				19DAE98219D311D300519D22 /* add_jing@2x.png in Resources */,
 				19DAEA2019D311D300519D22 /* button2-down252_94@2x.png in Resources */,
 				19DAEA1619D311D300519D22 /* duihao-42_42@2x.png in Resources */,
@@ -1750,10 +1780,12 @@
 				19DAEA7B19D311D300519D22 /* selected_fbcircle_image@2x.png in Resources */,
 				19DAE98319D311D300519D22 /* add_login@2x.png in Resources */,
 				19DAEA7719D311D300519D22 /* classification_big5@2x.png in Resources */,
+				1929B3B819D41C3A0045B6B5 /* qixinging@2x.png in Resources */,
 				19DAE99519D311D300519D22 /* denglu_logo144_130@2x.png in Resources */,
 				19DAE9B019D311D300519D22 /* pinglun-bg1-up-212_76@2x.png in Resources */,
 				19DAEA3B19D311D300519D22 /* jignsai@2x.png in Resources */,
 				19DAE99019D311D300519D22 /* fbMeyijian@2x.png in Resources */,
+				1929B3B719D41C3A0045B6B5 /* mine@2x.png in Resources */,
 				19DAEA0219D311D300519D22 /* tuijianhaoyou-94_94@2x.png in Resources */,
 				19DAE9DB19D311D300519D22 /* Expression_24@2x.png in Resources */,
 				19DAEA2319D311D300519D22 /* bg-10_88@2x.png in Resources */,
