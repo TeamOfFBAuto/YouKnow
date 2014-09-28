@@ -18,6 +18,19 @@
 
 #import "MineViewController.h"
 
+/*
+ 
+ 第三方登录
+ Q Q 2765869240
+ 邮箱 2765869240@qq.com
+ 
+ */
+
+
+#define UMENG_KEY @"542506e4fd98c5ce1e00532f"
+
+//2765869240 123abc
+
 
 @interface AppDelegate ()
 
