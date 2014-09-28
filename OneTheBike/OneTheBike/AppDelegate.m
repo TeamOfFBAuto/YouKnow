@@ -19,17 +19,35 @@
 #import "MineViewController.h"
 
 /*
- 
  第三方登录
  Q Q 2765869240
  邮箱 2765869240@qq.com
- 
  */
+#import "UMSocial.h"
 
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialSinaHandler.h"
 
-#define UMENG_KEY @"542506e4fd98c5ce1e00532f"
+#define UmengAppkey @"5423e48cfd98c58eed00664f"
 
-//2765869240 123abc
+#define SinaAppKey @"2470821654"
+#define SinaAppSecret @"bea7d21c9647406a25960a617a8e40a8"
+
+//fbauto
+#define QQAPPID @"1101950003" //十六进制:41AE6C33; 生成方法:echo 'ibase=10;obase=16;1101950003'|bc
+#define QQAPPKEY @"JAtVGEGeQWk9icsK"
+
+//fbauto
+#define WXAPPID @"wx0ad0d507a8933b9d"
+#define WXAPPSECRET @"SADSDAS"
+
+#define RedirectUrl @"http://www.sina.com"
+
+//人人网
+#define REN_APPID @"272107"
+#define REN_APIKEY @"8399387c4fe34861b73585d5f99d93c4"
+#define REN_SecretKey @"1762208535a047e18bd0799b7a21b7ab"
 
 
 @interface AppDelegate ()
@@ -86,21 +104,15 @@
     tabbarVC.tabBar.backgroundImage = [UIImage imageNamed:@""];
     
     
-    
-    
-    
 //    [MobClick startWithAppkey:@"5368ab4256240b6925029e29"];
     
     //微信
     
+    //友盟第三方登录分享
+    [self umengShare];
+    
     
     self.window.rootViewController = tabbarVC;
-    
-    
-    
-    
-    
-    
     
     return YES;
 }
@@ -117,10 +129,6 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -207,6 +215,46 @@
             abort();
         }
     }
+}
+
+/**
+ 这里处理新浪微博SSO授权之后跳转回来，和微信分享完成之后跳转回来
+ */
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+}
+
+/**
+ 这里处理新浪微博SSO授权进入新浪微博客户端后进入后台，再返回原来应用
+ */
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [UMSocialSnsService  applicationDidBecomeActive];
+}
+
+
+#pragma mark - 友盟分享
+
+- (void)umengShare
+{
+    [UMSocialData setAppKey:UmengAppkey];
+    
+    //打开调试log的开关
+    [UMSocialData openLog:YES];
+    
+    //打开新浪微博的SSO开关
+    [UMSocialSinaHandler openSSOWithRedirectURL:RedirectUrl];
+    
+    //设置分享到QQ空间的应用Id，和分享url 链接
+    [UMSocialQQHandler setQQWithAppId:QQAPPID appKey:QQAPPKEY url:@"http://www.umeng.com/social"];
+    
+    //设置支持没有客户端情况下使用SSO授权
+    [UMSocialQQHandler setSupportWebView:YES];
+    
+    //设置微信AppId，设置分享url，默认使用友盟的网址
+    [UMSocialWechatHandler setWXAppId:WXAPPID appSecret:WXAPPSECRET url:@"http://www.umeng.com/social"];
+
 }
 
 @end
