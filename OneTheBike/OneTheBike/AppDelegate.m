@@ -31,8 +31,11 @@
 
 #define UmengAppkey @"5423e48cfd98c58eed00664f"
 
-#define SinaAppKey @"2470821654"
-#define SinaAppSecret @"bea7d21c9647406a25960a617a8e40a8"
+//#define SinaAppKey @"2470821654"
+//#define SinaAppSecret @"bea7d21c9647406a25960a617a8e40a8"
+
+#define SinaAppKey @"4197263606"
+#define SinaAppSecret @"7c43201436878420f8b5ee335062d549"
 
 //fbauto
 #define QQAPPID @"1101950003" //十六进制:41AE6C33; 生成方法:echo 'ibase=10;obase=16;1101950003'|bc
@@ -42,7 +45,7 @@
 #define WXAPPID @"wx0ad0d507a8933b9d"
 #define WXAPPSECRET @"SADSDAS"
 
-#define RedirectUrl @"http://www.sina.com"
+#define RedirectUrl @"http://sns.whalecloud.com/sina2/callback"
 
 //人人网
 #define REN_APPID @"272107"

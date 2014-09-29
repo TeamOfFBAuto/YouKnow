@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		134BA68F19D940AA00282D7D /* arrow_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134BA68D19D940AA00282D7D /* arrow_right@2x.png */; };
+		134BA69019D940AA00282D7D /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134BA68E19D940AA00282D7D /* backButton@2x.png */; };
+		134BA69A19D9462900282D7D /* MineCellOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 134BA69819D9462900282D7D /* MineCellOne.m */; };
+		134BA69B19D9462900282D7D /* MineCellOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134BA69919D9462900282D7D /* MineCellOne.xib */; };
+		134BA69F19D948E800282D7D /* MineCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 134BA69D19D948E800282D7D /* MineCellTwo.m */; };
+		134BA6A019D948E800282D7D /* MineCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134BA69E19D948E800282D7D /* MineCellTwo.xib */; };
+		134BA6A419D94D1A00282D7D /* UIColor+ConvertColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 134BA6A319D94D1A00282D7D /* UIColor+ConvertColor.m */; };
+		134BA6A919D9581200282D7D /* mine_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134BA6A519D9581200282D7D /* mine_map@2x.png */; };
+		134BA6AA19D9581200282D7D /* mine_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134BA6A619D9581200282D7D /* mine_more@2x.png */; };
+		134BA6AB19D9581200282D7D /* mine_road.png in Resources */ = {isa = PBXBuildFile; fileRef = 134BA6A719D9581200282D7D /* mine_road.png */; };
+		134BA6AC19D9581200282D7D /* mine_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134BA6A819D9581200282D7D /* mine_share@2x.png */; };
 		13A2AA4A19D7B946008D1B9F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4919D7B945008D1B9F /* libz.dylib */; };
 		13A2AA4C19D7B952008D1B9F /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4B19D7B952008D1B9F /* libstdc++.dylib */; };
 		13A2AA4E19D7B95B008D1B9F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4D19D7B95B008D1B9F /* CoreTelephony.framework */; };
@@ -331,6 +342,20 @@
 /* Begin PBXFileReference section */
 		0000D05220C54C84A575DCE7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		01D95CE1BE85487DBDF28F53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		134BA68D19D940AA00282D7D /* arrow_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_right@2x.png"; sourceTree = "<group>"; };
+		134BA68E19D940AA00282D7D /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
+		134BA69719D9462900282D7D /* MineCellOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCellOne.h; sourceTree = "<group>"; };
+		134BA69819D9462900282D7D /* MineCellOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCellOne.m; sourceTree = "<group>"; };
+		134BA69919D9462900282D7D /* MineCellOne.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineCellOne.xib; sourceTree = "<group>"; };
+		134BA69C19D948E800282D7D /* MineCellTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCellTwo.h; sourceTree = "<group>"; };
+		134BA69D19D948E800282D7D /* MineCellTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCellTwo.m; sourceTree = "<group>"; };
+		134BA69E19D948E800282D7D /* MineCellTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineCellTwo.xib; sourceTree = "<group>"; };
+		134BA6A219D94D1A00282D7D /* UIColor+ConvertColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ConvertColor.h"; sourceTree = "<group>"; };
+		134BA6A319D94D1A00282D7D /* UIColor+ConvertColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ConvertColor.m"; sourceTree = "<group>"; };
+		134BA6A519D9581200282D7D /* mine_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine_map@2x.png"; sourceTree = "<group>"; };
+		134BA6A619D9581200282D7D /* mine_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine_more@2x.png"; sourceTree = "<group>"; };
+		134BA6A719D9581200282D7D /* mine_road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine_road.png; sourceTree = "<group>"; };
+		134BA6A819D9581200282D7D /* mine_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine_share@2x.png"; sourceTree = "<group>"; };
 		13A2AA4919D7B945008D1B9F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		13A2AA4B19D7B952008D1B9F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		13A2AA4D19D7B95B008D1B9F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -704,9 +729,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		134BA68C19D940AA00282D7D /* MineImages */ = {
+			isa = PBXGroup;
+			children = (
+				134BA6A519D9581200282D7D /* mine_map@2x.png */,
+				134BA6A619D9581200282D7D /* mine_more@2x.png */,
+				134BA6A719D9581200282D7D /* mine_road.png */,
+				134BA6A819D9581200282D7D /* mine_share@2x.png */,
+				134BA68D19D940AA00282D7D /* arrow_right@2x.png */,
+				134BA68E19D940AA00282D7D /* backButton@2x.png */,
+			);
+			path = MineImages;
+			sourceTree = "<group>";
+		};
+		134BA69119D9454000282D7D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				134BA69719D9462900282D7D /* MineCellOne.h */,
+				134BA69819D9462900282D7D /* MineCellOne.m */,
+				134BA69919D9462900282D7D /* MineCellOne.xib */,
+				134BA69C19D948E800282D7D /* MineCellTwo.h */,
+				134BA69D19D948E800282D7D /* MineCellTwo.m */,
+				134BA69E19D948E800282D7D /* MineCellTwo.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		134BA6A119D94D1A00282D7D /* UIColor_ConvertColor */ = {
+			isa = PBXGroup;
+			children = (
+				134BA6A219D94D1A00282D7D /* UIColor+ConvertColor.h */,
+				134BA6A319D94D1A00282D7D /* UIColor+ConvertColor.m */,
+			);
+			path = UIColor_ConvertColor;
+			sourceTree = "<group>";
+		};
 		13A2AA1519D7B90B008D1B9F /* HelperTools */ = {
 			isa = PBXGroup;
 			children = (
+				134BA6A119D94D1A00282D7D /* UIColor_ConvertColor */,
 				13A2AA5919D7BAB3008D1B9F /* UMSocial_Sdk_4.1 */,
 				13A2AA7419D7BAB3008D1B9F /* UMSocial_Sdk_Extra_Frameworks */,
 			);
@@ -792,9 +853,9 @@
 		13A2AA9919D7BF18008D1B9F /* MyControl */ = {
 			isa = PBXGroup;
 			children = (
+				134BA69119D9454000282D7D /* view */,
 				13A2AA9A19D7BF18008D1B9F /* controllers */,
 				13A2AA9E19D7BF18008D1B9F /* model */,
-				13A2AA9F19D7BF18008D1B9F /* view */,
 			);
 			path = MyControl;
 			sourceTree = "<group>";
@@ -814,13 +875,6 @@
 			children = (
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		13A2AA9F19D7BF18008D1B9F /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		13AC6BA619D805D800E7FF7B /* TencentOpenAPI */ = {
@@ -1060,6 +1114,7 @@
 		19DAE84E19D311D300519D22 /* PublicImages */ = {
 			isa = PBXGroup;
 			children = (
+				134BA68C19D940AA00282D7D /* MineImages */,
 				1929B3AD19D41C0F0045B6B5 /* TabbarImages */,
 				19DAE84F19D311D300519D22 /* FBAddImages */,
 				19DAE85C19D311D300519D22 /* FbMY */,
@@ -1786,6 +1841,7 @@
 				19DAEA5D19D311D300519D22 /* daohanglan_bg_640_88@2x.png in Resources */,
 				19DAE99C19D311D300519D22 /* 20130502_selected.png in Resources */,
 				19DAEA4319D311D300519D22 /* qi@2x.png in Resources */,
+				134BA69019D940AA00282D7D /* backButton@2x.png in Resources */,
 				19DAEA8419D311D300519D22 /* unselected_mine_image@2x.png in Resources */,
 				19DAEA2619D311D300519D22 /* wnacheng-button-bukedian-100_58@2x.png in Resources */,
 				19DAEA6919D311D300519D22 /* mirco_icon_20@2x.png in Resources */,
@@ -1819,6 +1875,7 @@
 				19DAE9B719D311D300519D22 /* pinglun-xin-down-24_24@2x.png in Resources */,
 				19DAE9ED19D311D300519D22 /* touxiang-126_126@2x.png in Resources */,
 				19DAE9AE19D311D300519D22 /* pinglun-bg1-down212_76@2x.jpg in Resources */,
+				134BA6A919D9581200282D7D /* mine_map@2x.png in Resources */,
 				19DAE99B19D311D300519D22 /* 20130502_notselect.png in Resources */,
 				19DAEA6D19D311D300519D22 /* mirco_icon_4@2x.png in Resources */,
 				19DAEA1F19D311D300519D22 /* button1-up252_94@2x.png in Resources */,
@@ -1909,6 +1966,7 @@
 				19DAEA7519D311D300519D22 /* classification_big3@2x.png in Resources */,
 				1929B3B419D41C3A0045B6B5 /* bike@2x.png in Resources */,
 				19DAEA2519D311D300519D22 /* touming-bg-150_150@2x.png in Resources */,
+				134BA6AB19D9581200282D7D /* mine_road.png in Resources */,
 				19DAEA7819D311D300519D22 /* classification_big6@2x.png in Resources */,
 				19DAEA0319D311D300519D22 /* dibuxian-444_8@2x.png in Resources */,
 				19DAE9A719D311D300519D22 /* FBCircleNavBackGroundImage@2x.png in Resources */,
@@ -1926,6 +1984,7 @@
 				19DAEA6319D311D300519D22 /* mirco_icon_15@2x.png in Resources */,
 				19DAE9CB19D311D300519D22 /* Loginbutton_downs528_88@2x.png in Resources */,
 				19DAE9A619D311D300519D22 /* FBCircle_picture_default_new_image@2x.png in Resources */,
+				134BA6A019D948E800282D7D /* MineCellTwo.xib in Resources */,
 				19DAEA2219D311D300519D22 /* shuru-446_60@2x.png in Resources */,
 				19DAE9A519D311D300519D22 /* FBCircle_menu_background_image@2x.png in Resources */,
 				19DAE99219D311D300519D22 /* back1.png in Resources */,
@@ -1949,6 +2008,7 @@
 				19DAE9E619D311D300519D22 /* yaoqing-button-100_60@2x.png in Resources */,
 				19DAEA3619D311D300519D22 /* yiliao@2x.png in Resources */,
 				19DAE9F919D311D300519D22 /* tianjia_button-100_60@2x.png in Resources */,
+				134BA6AC19D9581200282D7D /* mine_share@2x.png in Resources */,
 				19DAE9AD19D311D300519D22 /* Picture_default_image@2x.png in Resources */,
 				13A2AAA119D7BF18008D1B9F /* MineViewController.xib in Resources */,
 				19DAEA2E19D311D300519D22 /* search@2x.png in Resources */,
@@ -1969,10 +2029,12 @@
 				19DAEA1219D311D300519D22 /* duanxin-icon-94_94@2x.png in Resources */,
 				19DAE81219D30C2D00519D22 /* Images.xcassets in Resources */,
 				19DAEA0119D311D300519D22 /* toujxiang-moren-94_94@2x.png in Resources */,
+				134BA6AA19D9581200282D7D /* mine_more@2x.png in Resources */,
 				19DAEA7F19D311D300519D22 /* selected_small_bbs_icon_image@2x.png in Resources */,
 				19DAEA4219D311D300519D22 /* jing@2x.png in Resources */,
 				19DAEA3119D311D300519D22 /* fly@2x.png in Resources */,
 				19DAE98019D311D300519D22 /* add_fenlei@2x.png in Resources */,
+				134BA68F19D940AA00282D7D /* arrow_right@2x.png in Resources */,
 				19DAE9F419D311D300519D22 /* biaoqing-icon-56_56@2x.png in Resources */,
 				19DAE9E919D311D300519D22 /* fankui-46_46-xy300_618@2x.png in Resources */,
 				19DAEA6B19D311D300519D22 /* mirco_icon_2@2x.png in Resources */,
@@ -1989,6 +2051,7 @@
 				19DAE9DB19D311D300519D22 /* Expression_24@2x.png in Resources */,
 				19DAEA2319D311D300519D22 /* bg-10_88@2x.png in Resources */,
 				19DAE9D819D311D300519D22 /* Expression_21@2x.png in Resources */,
+				134BA69B19D9462900282D7D /* MineCellOne.xib in Resources */,
 				19DAEA4619D311D300519D22 /* dele@2x.png in Resources */,
 				19DAE9C019D311D300519D22 /* tixiang-touxiang-44_44@2x.png in Resources */,
 				19DAE9F019D311D300519D22 /* geren-button532_80@2x.png in Resources */,
@@ -2098,13 +2161,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134BA69F19D948E800282D7D /* MineCellTwo.m in Sources */,
 				19DAE80A19D30C2D00519D22 /* OneTheBike.xcdatamodeld in Sources */,
 				19DAE80719D30C2D00519D22 /* AppDelegate.m in Sources */,
 				19DAE84119D30F3100519D22 /* FindViewController.m in Sources */,
 				13A2AAA019D7BF18008D1B9F /* MineViewController.m in Sources */,
 				19DAE84D19D30F8200519D22 /* StartViewController.m in Sources */,
+				134BA69A19D9462900282D7D /* MineCellOne.m in Sources */,
 				19DAE80D19D30C2D00519D22 /* ViewController.m in Sources */,
 				19DAE84719D30F6000519D22 /* MainViewController.m in Sources */,
+				134BA6A419D94D1A00282D7D /* UIColor+ConvertColor.m in Sources */,
 				19DAE80419D30C2D00519D22 /* main.m in Sources */,
 				19DAE84419D30F4E00519D22 /* HistoryViewController.m in Sources */,
 			);
