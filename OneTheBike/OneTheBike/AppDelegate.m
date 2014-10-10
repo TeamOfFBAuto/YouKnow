@@ -136,10 +136,12 @@
 
 - (void)configureAPIKey
 {
+    
+    
     if ([APIKey_MAP length] == 0)
     {
 #define kMALogTitle @"提示"
-#define kMALogContent @"b81188b09969228a697ef2a8d42677a6"
+#define kMALogContent @"0b92a81f23cc5905c30dcb4c39da609d"
         
         NSString *log = [NSString stringWithFormat:@"[MAMapKit] %@", kMALogContent];
         NSLog(@"%@", log);
@@ -152,6 +154,8 @@
     }
     
     [MAMapServices sharedServices].apiKey = (NSString *)APIKey_MAP;
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
