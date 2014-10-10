@@ -52,6 +52,10 @@
 #define REN_APIKEY @"8399387c4fe34861b73585d5f99d93c4"
 #define REN_SecretKey @"1762208535a047e18bd0799b7a21b7ab"
 
+//高德地图
+#import <MAMapKit/MAMapKit.h>
+
+
 
 @interface AppDelegate ()
 
@@ -115,9 +119,39 @@
     [self umengShare];
     
     
+    
+    
+    //高德地图
+    [self configureAPIKey];
+    
+    
+    
     self.window.rootViewController = tabbarVC;
     
     return YES;
+}
+
+
+
+
+- (void)configureAPIKey
+{
+    if ([APIKey_MAP length] == 0)
+    {
+#define kMALogTitle @"提示"
+#define kMALogContent @"b81188b09969228a697ef2a8d42677a6"
+        
+        NSString *log = [NSString stringWithFormat:@"[MAMapKit] %@", kMALogContent];
+        NSLog(@"%@", log);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kMALogTitle message:kMALogContent delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            
+            [alert show];
+        });
+    }
+    
+    [MAMapServices sharedServices].apiKey = (NSString *)APIKey_MAP;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
