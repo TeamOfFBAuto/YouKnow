@@ -57,11 +57,17 @@
 
 
 
-@interface AppDelegate ()
-
+@interface AppDelegate ()<CLLocationManagerDelegate>
+{
+    //IOS8 定位
+    UINavigationController *_navController;
+    CLLocationManager      *_locationmanager;
+}
 @end
 
 @implementation AppDelegate
+
+
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -123,7 +129,12 @@
     
     //高德地图
     [self configureAPIKey];
+    [UIApplication sharedApplication].idleTimerDisabled = TRUE;
     
+    _locationmanager = [[CLLocationManager alloc] init];
+    [_locationmanager requestAlwaysAuthorization];        //NSLocationAlwaysUsageDescription
+    [_locationmanager requestWhenInUseAuthorization];     //NSLocationWhenInUseDescription
+    _locationmanager.delegate = self;
     
     
     self.window.rootViewController = tabbarVC;
