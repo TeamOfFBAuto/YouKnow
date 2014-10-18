@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 /* 使用高德地图API，请注册Key，注册地址：http://lbs.amap.com/console/key
  */
 const static NSString *APIKey_MAP = @"0b92a81f23cc5905c30dcb4c39da609d";
@@ -19,6 +20,13 @@ const static NSString *APIKey_MAP = @"0b92a81f23cc5905c30dcb4c39da609d";
 
 ///根据定位返回的地磁场doule值 返回方位 东 西 南 北 东北 东南 西南 西北
 +(NSString *)switchMagneticHeadingWithDoubel:(double)theHeading;
+
+
+
+
+
+//向数据库里添加经纬度
+//-(void)addCllocationToSqlite:(CLLocationCoordinate2D*)theLocation;
 
 
 @end

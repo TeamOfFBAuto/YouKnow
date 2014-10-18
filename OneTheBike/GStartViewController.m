@@ -503,6 +503,9 @@ enum{
         
         
         
+        NSLog(@"  ------------------------------- %d",self.overlays.count);
+        
+        
         [UIView animateWithDuration:0.1 animations:^{
             
             double degree = userLocation.heading.trueHeading - self.mapView.rotationDegree;
