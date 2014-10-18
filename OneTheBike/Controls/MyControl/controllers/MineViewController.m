@@ -24,12 +24,14 @@
 
 @implementation MineViewController
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-//    if ([UMSocialAccountManager isOauthAndTokenNotExpired:<#(NSString *)#>]) {
-//        <#statements#>
-//    }
+    [super viewWillAppear:animated];
     
+    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
+    if (authKey.length > 0) {
+        return;
+    }
     [self login];
 }
 
@@ -91,6 +93,10 @@
         if (response.responseCode == UMSResponseCodeSuccess) {
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatName];
             NSLog(@"username is %@, uid is %@, token is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken);
+            
+            [LTools cache:snsAccount.iconURL ForKey:USER_HEAD_IMAGEURL];
+            [LTools cache:snsAccount.userName ForKey:USER_NAME];
+            [LTools cache:snsAccount.accessToken ForKey:USER_AUTHKEY_OHTER];
             
             [weakSelf userInfoWithImage:snsAccount.iconURL name:snsAccount.userName];
         }

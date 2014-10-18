@@ -34,10 +34,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>QQ</string>
+			<string>tencent</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>tencent1101950003</string>
+				<string>tencent1103196390</string>
 			</array>
 		</dict>
 		<dict>
@@ -48,6 +48,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wx0ad0d507a8933b9d</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>QQ</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>QQ41C170E6</string>
 			</array>
 		</dict>
 	</array>

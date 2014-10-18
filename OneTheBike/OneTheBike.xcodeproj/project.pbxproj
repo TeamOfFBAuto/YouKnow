@@ -18,6 +18,9 @@
 		134BA6AA19D9581200282D7D /* mine_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134BA6A619D9581200282D7D /* mine_more@2x.png */; };
 		134BA6AB19D9581200282D7D /* mine_road.png in Resources */ = {isa = PBXBuildFile; fileRef = 134BA6A719D9581200282D7D /* mine_road.png */; };
 		134BA6AC19D9581200282D7D /* mine_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134BA6A819D9581200282D7D /* mine_share@2x.png */; };
+		137D9F8919F2508200B31100 /* LTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9F8819F2508200B31100 /* LTools.m */; };
+		137D9F9019F250A900B31100 /* UIColor+ConvertColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9F8C19F250A900B31100 /* UIColor+ConvertColor.m */; };
+		137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9F8F19F250A900B31100 /* UIView+Frame.m */; };
 		13A2AA4A19D7B946008D1B9F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4919D7B945008D1B9F /* libz.dylib */; };
 		13A2AA4C19D7B952008D1B9F /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4B19D7B952008D1B9F /* libstdc++.dylib */; };
 		13A2AA4E19D7B95B008D1B9F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4D19D7B95B008D1B9F /* CoreTelephony.framework */; };
@@ -356,6 +359,12 @@
 		134BA6A619D9581200282D7D /* mine_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine_more@2x.png"; sourceTree = "<group>"; };
 		134BA6A719D9581200282D7D /* mine_road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine_road.png; sourceTree = "<group>"; };
 		134BA6A819D9581200282D7D /* mine_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine_share@2x.png"; sourceTree = "<group>"; };
+		137D9F8719F2508200B31100 /* LTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTools.h; sourceTree = "<group>"; };
+		137D9F8819F2508200B31100 /* LTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTools.m; sourceTree = "<group>"; };
+		137D9F8B19F250A900B31100 /* UIColor+ConvertColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ConvertColor.h"; sourceTree = "<group>"; };
+		137D9F8C19F250A900B31100 /* UIColor+ConvertColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ConvertColor.m"; sourceTree = "<group>"; };
+		137D9F8E19F250A900B31100 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		137D9F8F19F250A900B31100 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		13A2AA4919D7B945008D1B9F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		13A2AA4B19D7B952008D1B9F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		13A2AA4D19D7B95B008D1B9F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -764,6 +773,43 @@
 			path = UIColor_ConvertColor;
 			sourceTree = "<group>";
 		};
+		137D9F8519F2507900B31100 /* PersonalApi */ = {
+			isa = PBXGroup;
+			children = (
+				137D9F8619F2507900B31100 /* LApi */,
+			);
+			path = PersonalApi;
+			sourceTree = "<group>";
+		};
+		137D9F8619F2507900B31100 /* LApi */ = {
+			isa = PBXGroup;
+			children = (
+				137D9F8A19F250A900B31100 /* UIColor_ConvertColor */,
+				137D9F8D19F250A900B31100 /* UIView+Frame */,
+				137D9F8719F2508200B31100 /* LTools.h */,
+				137D9F8819F2508200B31100 /* LTools.m */,
+			);
+			path = LApi;
+			sourceTree = "<group>";
+		};
+		137D9F8A19F250A900B31100 /* UIColor_ConvertColor */ = {
+			isa = PBXGroup;
+			children = (
+				137D9F8B19F250A900B31100 /* UIColor+ConvertColor.h */,
+				137D9F8C19F250A900B31100 /* UIColor+ConvertColor.m */,
+			);
+			path = UIColor_ConvertColor;
+			sourceTree = "<group>";
+		};
+		137D9F8D19F250A900B31100 /* UIView+Frame */ = {
+			isa = PBXGroup;
+			children = (
+				137D9F8E19F250A900B31100 /* UIView+Frame.h */,
+				137D9F8F19F250A900B31100 /* UIView+Frame.m */,
+			);
+			path = "UIView+Frame";
+			sourceTree = "<group>";
+		};
 		13A2AA1519D7B90B008D1B9F /* HelperTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,6 +950,7 @@
 		19DAE7F519D30C2D00519D22 = {
 			isa = PBXGroup;
 			children = (
+				137D9F8519F2507900B31100 /* PersonalApi */,
 				13A2AA1519D7B90B008D1B9F /* HelperTools */,
 				19DAEA8619D3133600519D22 /* PublicAPI */,
 				19DAE84E19D311D300519D22 /* PublicImages */,
@@ -2164,6 +2211,9 @@
 				134BA69F19D948E800282D7D /* MineCellTwo.m in Sources */,
 				19DAE80A19D30C2D00519D22 /* OneTheBike.xcdatamodeld in Sources */,
 				19DAE80719D30C2D00519D22 /* AppDelegate.m in Sources */,
+				137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */,
+				137D9F9019F250A900B31100 /* UIColor+ConvertColor.m in Sources */,
+				137D9F8919F2508200B31100 /* LTools.m in Sources */,
 				19DAE84119D30F3100519D22 /* FindViewController.m in Sources */,
 				13A2AAA019D7BF18008D1B9F /* MineViewController.m in Sources */,
 				19DAE84D19D30F8200519D22 /* StartViewController.m in Sources */,
