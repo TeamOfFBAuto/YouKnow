@@ -133,8 +133,14 @@
     [UIApplication sharedApplication].idleTimerDisabled = TRUE;
     
     _locationmanager = [[CLLocationManager alloc] init];
-    [_locationmanager requestAlwaysAuthorization];        //NSLocationAlwaysUsageDescription
-    [_locationmanager requestWhenInUseAuthorization];     //NSLocationWhenInUseDescription
+    
+    
+    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=8.0)) {
+        [_locationmanager requestAlwaysAuthorization];        //NSLocationAlwaysUsageDescription
+        [_locationmanager requestWhenInUseAuthorization];     //NSLocationWhenInUseDescription
+    }
+    
+    
     _locationmanager.delegate = self;
     
     
