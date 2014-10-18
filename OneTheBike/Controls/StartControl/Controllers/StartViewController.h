@@ -6,20 +6,11 @@
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
+
+//地图页面
 #import <UIKit/UIKit.h>
 
-#import <MAMapKit/MAMapKit.h>
-#import <AMapSearchKit/AMapSearchAPI.h>
+@interface StartViewController :UIViewController
 
-
-@interface StartViewController :UIViewController<MAMapViewDelegate, AMapSearchDelegate>
-
-@property (nonatomic, strong) MAMapView *mapView;
-
-@property (nonatomic, strong) AMapSearchAPI *search;
-
-
-//清理 地图 搜索服务的相关代理
-- (void)returnAction;
 
 @end
