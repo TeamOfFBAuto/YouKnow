@@ -14,6 +14,10 @@
 
 #import "UIColor+ConvertColor.h"
 
+#import "UserInfoViewController.h"
+
+#import "MoreViewController.h"
+
 @interface MineViewController ()<UIActionSheetDelegate>
 {
     NSArray *titleArray;
@@ -39,11 +43,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    //适配ios7navigationbar高度
+    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    [self.navigationController.navigationBar setBackgroundImage:NAVIGATION_IMAGE forBarMetrics: UIBarMetricsDefault];
+    
+    UILabel *_titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 21)];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.textColor = [UIColor whiteColor];
+    _titleLabel.text = @"我的";
+    
+    self.navigationItem.titleView = _titleLabel;
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.table.backgroundColor = [UIColor colorWithHexString:@"e3e3e3"];
+    
     
     imagesArray = @[@"mine_road",@"mine_map",@"mine_share",@"mine_more"];
     titleArray = @[@"路书管理",@"离线地图",@"分享好友",@"更多"];
@@ -109,7 +128,7 @@
 {
     MineCellOne *cell = (MineCellOne *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
-    cell.headImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
+    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@""]];
     cell.nameLabel.text = name;
 }
 
@@ -135,7 +154,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.row == 0) {
+        
+        UserInfoViewController *userInfo = [[UserInfoViewController alloc]init];
+        userInfo.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userInfo animated:YES];
+        
+    }else if (indexPath.row == 4)
+    {
+        MoreViewController *userInfo = [[MoreViewController alloc]init];
+        userInfo.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userInfo animated:YES];
+
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -162,6 +193,22 @@
         }
         cell.separatorInset = UIEdgeInsetsMake(7, 10, 10, 10);
         cell.backgroundColor = [UIColor clearColor];
+        
+        NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
+        if (authKey.length > 0) {
+            
+            NSString *name = [LTools cacheForKey:USER_NAME];
+            NSString *imageUrl = [LTools cacheForKey:USER_HEAD_IMAGEURL];
+            
+            cell.nameLabel.text = name;
+            [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
+        }else
+        {
+            [self login];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         return cell;
 
     }
@@ -178,6 +225,7 @@
     
     cell.separatorInset = UIEdgeInsetsMake(7, 10, 10, 10);
     cell.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }

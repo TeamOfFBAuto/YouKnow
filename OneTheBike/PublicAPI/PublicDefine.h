@@ -26,4 +26,8 @@ alpha:(a)]
 #define USRR_AUTHKEY @"authkey"
 #define USER_HEAD_IMAGEURL @"head_image_url"//
 
+
+#define BACK_IMAGE [UIImage imageNamed:@"backButton"]
+#define NAVIGATION_IMAGE [UIImage imageNamed:@"navigationBack"]
+
 #endif
