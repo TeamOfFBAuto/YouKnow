@@ -12,11 +12,13 @@
 #import "MineCellOne.h"
 #import "MineCellTwo.h"
 
+#import "AppDelegate.h"
+
 #import "UIColor+ConvertColor.h"
 
 #import "UserInfoViewController.h"
-
 #import "MoreViewController.h"
+#import "RoadManagerController.h"
 
 @interface MineViewController ()<UIActionSheetDelegate>
 {
@@ -80,7 +82,7 @@
 {
     UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"登录" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"QQ登录",@"新浪微博", nil];
     
-    UITabBarController *tabbarVC = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    UITabBarController *tabbarVC =(UITabBarController *) ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
     
     [sheet showFromTabBar:tabbarVC.tabBar];
 }
@@ -157,6 +159,12 @@
     if (indexPath.row == 0) {
         
         UserInfoViewController *userInfo = [[UserInfoViewController alloc]init];
+        userInfo.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userInfo animated:YES];
+        
+    }else if (indexPath.row == 1)
+    {
+        RoadManagerController *userInfo = [[RoadManagerController alloc]init];
         userInfo.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:userInfo animated:YES];
         

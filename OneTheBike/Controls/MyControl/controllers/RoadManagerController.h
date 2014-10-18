@@ -1,14 +1,15 @@
 //
-//  MoreViewController.h
+//  RoadManagerController.h
 //  OneTheBike
 //
 //  Created by lichaowei on 14-10-18.
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
-//更多
+
+//路书
 #import <UIKit/UIKit.h>
 
-@interface MoreViewController : UITableViewController
+@interface RoadManagerController : UITableViewController
 
 @end

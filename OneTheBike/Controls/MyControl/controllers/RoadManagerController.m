@@ -1,15 +1,16 @@
 //
-//  MoreViewController.m
+//  RoadManagerController.m
 //  OneTheBike
 //
 //  Created by lichaowei on 14-10-18.
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
-#import "MoreViewController.h"
+#import "RoadManagerController.h"
+#import "RoadProduceController.h"
 #import "MineCellTwo.h"
 
-@interface MoreViewController ()
+@interface RoadManagerController ()
 {
     NSArray *titles_arr;
     NSArray *imagesArray;
@@ -17,7 +18,7 @@
 
 @end
 
-@implementation MoreViewController
+@implementation RoadManagerController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,16 +45,29 @@
     UILabel *_titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 21)];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = [UIColor whiteColor];
-    _titleLabel.text = @"更多";
+    _titleLabel.text = @"路书";
     
     self.navigationItem.titleView = _titleLabel;
+    
+    
+    
+    UIBarButtonItem *spaceButton1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton1.width = IOS7_OR_LATER ? - 7 : 7;
+    
+    UIButton *settings=[[UIButton alloc]initWithFrame:CGRectMake(20,8,40,44)];
+    [settings addTarget:self action:@selector(clickToAdd:) forControlEvents:UIControlEventTouchUpInside];
+    [settings setImage:[UIImage imageNamed:@"+"] forState:UIControlStateNormal];
+    [settings setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [settings setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    UIBarButtonItem *right =[[UIBarButtonItem alloc]initWithCustomView:settings];
+    self.navigationItem.rightBarButtonItems = @[spaceButton1,right];
     
     UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 16)];
     header.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = header;
     
-    titles_arr = @[@"给个好评",@"联系轨记",@"反馈意见",@"版本更新",@"帮助说明"];
-    imagesArray = @[@"more_good",@"more_contact",@"more_recommend",@"more_update",@"more_help"];
+    titles_arr = @[@"分享关联",@"给个好评",@"联系轨记",@"反馈意见",@"版本更新",@"帮助说明"];
+    imagesArray = @[@"mine_road",@"more_good",@"more_contact",@"more_recommend",@"more_update",@"more_help"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,7 +86,14 @@
 
 #pragma mark - 视图创建
 
+#pragma mark - 事件处理
 
+- (void)clickToAdd:(UIButton *)sender
+{
+    RoadProduceController *produce = [[RoadProduceController alloc]init];
+    produce.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:produce animated:YES];
+}
 
 #pragma mark - delegate
 

@@ -39,7 +39,7 @@
 		137D9FC019F25EC700B31100 /* more_good@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FAD19F25EC700B31100 /* more_good@2x.png */; };
 		137D9FC119F25EC700B31100 /* more_contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FAE19F25EC700B31100 /* more_contact@2x.png */; };
 		137D9FC219F25EC700B31100 /* 背景图片.png in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FAF19F25EC700B31100 /* 背景图片.png */; };
-		137D9FC319F25EC700B31100 /* 右上角添加路书.png in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FB119F25EC700B31100 /* 右上角添加路书.png */; };
+		137D9FC319F25EC700B31100 /* +@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FB119F25EC700B31100 /* +@2x.png */; };
 		137D9FC419F25EC700B31100 /* navigationBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FB219F25EC700B31100 /* navigationBack@2x.png */; };
 		137D9FC519F25EC700B31100 /* bottomBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FB319F25EC700B31100 /* bottomBack.png */; };
 		137D9FC919F25FF500B31100 /* UserInfoRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FC719F25FF500B31100 /* UserInfoRowCell.m */; };
@@ -48,6 +48,12 @@
 		137D9FCF19F261B500B31100 /* UserInfoHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FCD19F261B500B31100 /* UserInfoHeaderCell.xib */; };
 		137D9FD819F26E7000B31100 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FD619F26E7000B31100 /* MoreViewController.m */; };
 		137D9FD919F26E7000B31100 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FD719F26E7000B31100 /* MoreViewController.xib */; };
+		137D9FDD19F272E500B31100 /* RoadManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FDB19F272E500B31100 /* RoadManagerController.m */; };
+		137D9FDE19F272E500B31100 /* RoadManagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FDC19F272E500B31100 /* RoadManagerController.xib */; };
+		137D9FE219F27A6500B31100 /* RoadProduceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FE019F27A6500B31100 /* RoadProduceController.m */; };
+		137D9FE319F27A6500B31100 /* RoadProduceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FE119F27A6500B31100 /* RoadProduceController.xib */; };
+		137D9FE719F290F800B31100 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FE619F290F800B31100 /* CommonUtility.m */; };
+		137D9FEB19F2916600B31100 /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FEA19F2916600B31100 /* LineDashPolyline.m */; };
 		13A2AA4A19D7B946008D1B9F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4919D7B945008D1B9F /* libz.dylib */; };
 		13A2AA4C19D7B952008D1B9F /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4B19D7B952008D1B9F /* libstdc++.dylib */; };
 		13A2AA4E19D7B95B008D1B9F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4D19D7B95B008D1B9F /* CoreTelephony.framework */; };
@@ -423,7 +429,7 @@
 		137D9FAD19F25EC700B31100 /* more_good@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_good@2x.png"; sourceTree = "<group>"; };
 		137D9FAE19F25EC700B31100 /* more_contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_contact@2x.png"; sourceTree = "<group>"; };
 		137D9FAF19F25EC700B31100 /* 背景图片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景图片.png"; sourceTree = "<group>"; };
-		137D9FB119F25EC700B31100 /* 右上角添加路书.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "右上角添加路书.png"; sourceTree = "<group>"; };
+		137D9FB119F25EC700B31100 /* +@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+@2x.png"; sourceTree = "<group>"; };
 		137D9FB219F25EC700B31100 /* navigationBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBack@2x.png"; sourceTree = "<group>"; };
 		137D9FB319F25EC700B31100 /* bottomBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomBack.png; sourceTree = "<group>"; };
 		137D9FC619F25FF500B31100 /* UserInfoRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoRowCell.h; sourceTree = "<group>"; };
@@ -435,6 +441,16 @@
 		137D9FD519F26E7000B31100 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
 		137D9FD619F26E7000B31100 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		137D9FD719F26E7000B31100 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewController.xib; sourceTree = "<group>"; };
+		137D9FDA19F272E500B31100 /* RoadManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoadManagerController.h; sourceTree = "<group>"; };
+		137D9FDB19F272E500B31100 /* RoadManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoadManagerController.m; sourceTree = "<group>"; };
+		137D9FDC19F272E500B31100 /* RoadManagerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoadManagerController.xib; sourceTree = "<group>"; };
+		137D9FDF19F27A6500B31100 /* RoadProduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoadProduceController.h; sourceTree = "<group>"; };
+		137D9FE019F27A6500B31100 /* RoadProduceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoadProduceController.m; sourceTree = "<group>"; };
+		137D9FE119F27A6500B31100 /* RoadProduceController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoadProduceController.xib; sourceTree = "<group>"; };
+		137D9FE519F290F800B31100 /* CommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtility.h; sourceTree = "<group>"; };
+		137D9FE619F290F800B31100 /* CommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
+		137D9FE919F2916600B31100 /* LineDashPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDashPolyline.h; sourceTree = "<group>"; };
+		137D9FEA19F2916600B31100 /* LineDashPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
 		13A2AA4919D7B945008D1B9F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		13A2AA4B19D7B952008D1B9F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		13A2AA4D19D7B95B008D1B9F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -945,9 +961,27 @@
 		137D9FB019F25EC700B31100 /* 离线地图 */ = {
 			isa = PBXGroup;
 			children = (
-				137D9FB119F25EC700B31100 /* 右上角添加路书.png */,
+				137D9FB119F25EC700B31100 /* +@2x.png */,
 			);
 			path = "离线地图";
+			sourceTree = "<group>";
+		};
+		137D9FE419F290F800B31100 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				137D9FE519F290F800B31100 /* CommonUtility.h */,
+				137D9FE619F290F800B31100 /* CommonUtility.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		137D9FE819F2915100B31100 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				137D9FE919F2916600B31100 /* LineDashPolyline.h */,
+				137D9FEA19F2916600B31100 /* LineDashPolyline.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		13A2AA1519D7B90B008D1B9F /* HelperTools */ = {
@@ -1058,6 +1092,12 @@
 				137D9FD519F26E7000B31100 /* MoreViewController.h */,
 				137D9FD619F26E7000B31100 /* MoreViewController.m */,
 				137D9FD719F26E7000B31100 /* MoreViewController.xib */,
+				137D9FDA19F272E500B31100 /* RoadManagerController.h */,
+				137D9FDB19F272E500B31100 /* RoadManagerController.m */,
+				137D9FDC19F272E500B31100 /* RoadManagerController.xib */,
+				137D9FDF19F27A6500B31100 /* RoadProduceController.h */,
+				137D9FE019F27A6500B31100 /* RoadProduceController.m */,
+				137D9FE119F27A6500B31100 /* RoadProduceController.xib */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -1957,6 +1997,8 @@
 		E3BB362019E7C0B60096131D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				137D9FE819F2915100B31100 /* Models */,
+				137D9FE419F290F800B31100 /* Utility */,
 				E34451F219E7D6A400A3546A /* AMap.bundle */,
 				E34451EE19E7D67000A3546A /* MAMapKit.framework */,
 				E34451EF19E7D67000A3546A /* AMapSearchKit.framework */,
@@ -2117,6 +2159,7 @@
 				19DAE9B719D311D300519D22 /* pinglun-xin-down-24_24@2x.png in Resources */,
 				19DAE9ED19D311D300519D22 /* touxiang-126_126@2x.png in Resources */,
 				19DAE9AE19D311D300519D22 /* pinglun-bg1-down212_76@2x.jpg in Resources */,
+				137D9FDE19F272E500B31100 /* RoadManagerController.xib in Resources */,
 				134BA6A919D9581200282D7D /* mine_map@2x.png in Resources */,
 				19DAE99B19D311D300519D22 /* 20130502_notselect.png in Resources */,
 				19DAEA6D19D311D300519D22 /* mirco_icon_4@2x.png in Resources */,
@@ -2237,6 +2280,7 @@
 				19DAE9A619D311D300519D22 /* FBCircle_picture_default_new_image@2x.png in Resources */,
 				134BA6A019D948E800282D7D /* MineCellTwo.xib in Resources */,
 				19DAEA2219D311D300519D22 /* shuru-446_60@2x.png in Resources */,
+				137D9FE319F27A6500B31100 /* RoadProduceController.xib in Resources */,
 				19DAE9A519D311D300519D22 /* FBCircle_menu_background_image@2x.png in Resources */,
 				19DAE99219D311D300519D22 /* back1.png in Resources */,
 				137D9FBA19F25EC700B31100 /* 空间点击.png in Resources */,
@@ -2260,7 +2304,7 @@
 				19DAEA7E19D311D300519D22 /* selected_mine_image@2x.png in Resources */,
 				19DAE98D19D311D300519D22 /* fbMedi@2x.png in Resources */,
 				19DAEA5419D311D300519D22 /* bbs_add_member_xuanzhong@2x.png in Resources */,
-				137D9FC319F25EC700B31100 /* 右上角添加路书.png in Resources */,
+				137D9FC319F25EC700B31100 /* +@2x.png in Resources */,
 				19DAE9E619D311D300519D22 /* yaoqing-button-100_60@2x.png in Resources */,
 				19DAEA3619D311D300519D22 /* yiliao@2x.png in Resources */,
 				19DAE9F919D311D300519D22 /* tianjia_button-100_60@2x.png in Resources */,
@@ -2433,6 +2477,7 @@
 				137D9FCE19F261B500B31100 /* UserInfoHeaderCell.m in Sources */,
 				137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */,
 				137D9F9019F250A900B31100 /* UIColor+ConvertColor.m in Sources */,
+				137D9FDD19F272E500B31100 /* RoadManagerController.m in Sources */,
 				137D9F9D19F25E0600B31100 /* UserInfoViewController.m in Sources */,
 				137D9F8919F2508200B31100 /* LTools.m in Sources */,
 				19DAE84119D30F3100519D22 /* FindViewController.m in Sources */,
@@ -2440,6 +2485,7 @@
 				13A2AAA019D7BF18008D1B9F /* MineViewController.m in Sources */,
 				19DAE84D19D30F8200519D22 /* StartViewController.m in Sources */,
 				E32A591D19ED04CE00142E3A /* ReGeocodeAnnotation.m in Sources */,
+				137D9FE719F290F800B31100 /* CommonUtility.m in Sources */,
 				E3BB362319E7C0C20096131D /* GMAPI.m in Sources */,
 				134BA69A19D9462900282D7D /* MineCellOne.m in Sources */,
 				19DAE80D19D30C2D00519D22 /* ViewController.m in Sources */,
@@ -2449,6 +2495,8 @@
 				134BA6A419D94D1A00282D7D /* UIColor+ConvertColor.m in Sources */,
 				19DAE80419D30C2D00519D22 /* main.m in Sources */,
 				19DAE84419D30F4E00519D22 /* HistoryViewController.m in Sources */,
+				137D9FEB19F2916600B31100 /* LineDashPolyline.m in Sources */,
+				137D9FE219F27A6500B31100 /* RoadProduceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

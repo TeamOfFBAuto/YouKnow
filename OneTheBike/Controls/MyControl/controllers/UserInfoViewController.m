@@ -47,6 +47,18 @@
     
     self.navigationItem.titleView = _titleLabel;
     
+    UIBarButtonItem *spaceButton1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton1.width = IOS7_OR_LATER ? - 7 : 7;
+    
+    UIButton *settings=[[UIButton alloc]initWithFrame:CGRectMake(20,8,40,20)];
+    [settings addTarget:self action:@selector(clickToFinish:) forControlEvents:UIControlEventTouchUpInside];
+    [settings setTitle:@"完成" forState:UIControlStateNormal];
+    [settings.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    settings.layer.cornerRadius = 3.f;
+    [settings setBackgroundColor:[UIColor colorWithHexString:@"bebebe"]];
+    UIBarButtonItem *right =[[UIBarButtonItem alloc]initWithCustomView:settings];
+    self.navigationItem.rightBarButtonItems = @[spaceButton1,right];
+    
     titles_arr = @[@"头像",@"昵称",@"性别",@"签名",@"身高",@"体重"];
 }
 
@@ -66,7 +78,12 @@
 
 #pragma mark - 视图创建
 
+#pragma mark- 事件处理
 
+- (void)clickToFinish:(UIButton *)sender
+{
+    
+}
 
 #pragma mark - delegate
 
