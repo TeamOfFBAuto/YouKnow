@@ -6,8 +6,11 @@
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
+
+//地图页面
 #import <UIKit/UIKit.h>
 
-@interface StartViewController : UIViewController
+@interface StartViewController :UIViewController
+
 
 @end

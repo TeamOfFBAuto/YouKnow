@@ -53,12 +53,22 @@
 #define REN_APIKEY @"8399387c4fe34861b73585d5f99d93c4"
 #define REN_SecretKey @"1762208535a047e18bd0799b7a21b7ab"
 
+//高德地图
+#import <MAMapKit/MAMapKit.h>
 
-@interface AppDelegate ()
 
+
+@interface AppDelegate ()<CLLocationManagerDelegate>
+{
+    //IOS8 定位
+    UINavigationController *_navController;
+    CLLocationManager      *_locationmanager;
+}
 @end
 
 @implementation AppDelegate
+
+
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -116,9 +126,48 @@
     [self umengShare];
     
     
+    
+    
+    //高德地图
+    [self configureAPIKey];
+    [UIApplication sharedApplication].idleTimerDisabled = TRUE;
+    
+    _locationmanager = [[CLLocationManager alloc] init];
+    [_locationmanager requestAlwaysAuthorization];        //NSLocationAlwaysUsageDescription
+    [_locationmanager requestWhenInUseAuthorization];     //NSLocationWhenInUseDescription
+    _locationmanager.delegate = self;
+    
+    
     self.window.rootViewController = tabbarVC;
     
     return YES;
+}
+
+
+
+
+- (void)configureAPIKey
+{
+    
+    
+    if ([APIKey_MAP length] == 0)
+    {
+#define kMALogTitle @"提示"
+#define kMALogContent @"0b92a81f23cc5905c30dcb4c39da609d"
+        
+        NSString *log = [NSString stringWithFormat:@"[MAMapKit] %@", kMALogContent];
+        NSLog(@"%@", log);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kMALogTitle message:kMALogContent delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            
+            [alert show];
+        });
+    }
+    
+    [MAMapServices sharedServices].apiKey = (NSString *)APIKey_MAP;
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
