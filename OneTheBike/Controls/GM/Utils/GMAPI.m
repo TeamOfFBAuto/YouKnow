@@ -34,4 +34,42 @@
     return str;
     
 }
+
+
+
+
++(void)addCllocationToDataBase:(CLLocationCoordinate2D)theLocation{
+    
+    NSString *gLat = [NSString stringWithFormat:@"%f",theLocation.latitude];
+    NSString *gLon = [NSString stringWithFormat:@"%f",theLocation.longitude];
+    
+    sqlite3 *db = [DataBase openDB];
+    sqlite3_stmt *stmt = nil;
+    
+    int result = sqlite3_prepare(db, "insert into area(name,id) values(?,?)", -1, &stmt, nil);//?相当于%@格式
+    
+    sqlite3_bind_text(stmt, 2, [gLat UTF8String], -1, NULL);
+    sqlite3_bind_text(stmt, 3, [gLon UTF8String], -1, NULL);
+    
+    result = sqlite3_step(stmt);
+    
+    sqlite3_finalize(stmt);
+}
+
+
+
++(void)findNowAllLocation{
+    sqlite3 * db = [DataBase openDB];
+    sqlite3_stmt * stmt = nil;
+    int result = sqlite3_prepare_v2(db,"select * from Gzuji order by fb_deteline desc", -1,&stmt,nil);
+    NSLog(@"result ------   %d",result);
+    
+    if (result == SQLITE_OK) {
+        
+    }
+    
+}
+
+
+
 @end

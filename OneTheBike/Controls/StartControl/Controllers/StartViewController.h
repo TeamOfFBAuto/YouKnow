@@ -7,7 +7,6 @@
 //
 
 
-//地图页面
 #import <UIKit/UIKit.h>
 
 @interface StartViewController :UIViewController

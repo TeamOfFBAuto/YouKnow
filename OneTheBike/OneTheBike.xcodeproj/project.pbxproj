@@ -335,12 +335,17 @@
 		E34451F119E7D67000A3546A /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EF19E7D67000A3546A /* AMapSearchKit.framework */; };
 		E34451F319E7D6A400A3546A /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E34451F219E7D6A400A3546A /* AMap.bundle */; };
 		E34C791219E813A000A5F4DE /* userPosition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E34C791119E813A000A5F4DE /* userPosition@2x.png */; };
+		E385CC8519F45E0800D821B0 /* GgstarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E385CC8319F45E0800D821B0 /* GgstarViewController.m */; };
+		E385CC8619F45E0800D821B0 /* GgstarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E385CC8419F45E0800D821B0 /* GgstarViewController.xib */; };
 		E3BB362319E7C0C20096131D /* GMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BB362219E7C0C20096131D /* GMAPI.m */; };
 		E3BB362719E7C1B20096131D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362619E7C1B20096131D /* QuartzCore.framework */; };
 		E3BB362919E7C1BE0096131D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362819E7C1BE0096131D /* CoreLocation.framework */; };
 		E3BB362B19E7C1EE0096131D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362A19E7C1EE0096131D /* OpenGLES.framework */; };
 		E3BB362D19E7C1FC0096131D /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362C19E7C1FC0096131D /* libstdc++.6.0.9.dylib */; };
-		E3D9895019EBAB1E00EBD980 /* GStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D9894F19EBAB1E00EBD980 /* GStartViewController.m */; };
+		E3C3B8A219F25AB200C8AE5A /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C3B8A119F25AB200C8AE5A /* DataBase.m */; };
+		E3C3B8A419F25E6900C8AE5A /* GMLOCATION.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E3C3B8A319F25E6900C8AE5A /* GMLOCATION.sqlite */; };
+		E3C3B8B519F2802E00C8AE5A /* GStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C3B8B219F2802E00C8AE5A /* GStartViewController.m */; };
+		E3C3B8B919F2927E00C8AE5A /* GMapStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -720,14 +725,22 @@
 		E34451EF19E7D67000A3546A /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		E34451F219E7D6A400A3546A /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
 		E34C791119E813A000A5F4DE /* userPosition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userPosition@2x.png"; sourceTree = "<group>"; };
+		E385CC8219F45E0800D821B0 /* GgstarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GgstarViewController.h; sourceTree = "<group>"; };
+		E385CC8319F45E0800D821B0 /* GgstarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GgstarViewController.m; sourceTree = "<group>"; };
+		E385CC8419F45E0800D821B0 /* GgstarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GgstarViewController.xib; sourceTree = "<group>"; };
 		E3BB362119E7C0C20096131D /* GMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAPI.h; sourceTree = "<group>"; };
 		E3BB362219E7C0C20096131D /* GMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMAPI.m; sourceTree = "<group>"; };
 		E3BB362619E7C1B20096131D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E3BB362819E7C1BE0096131D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E3BB362A19E7C1EE0096131D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E3BB362C19E7C1FC0096131D /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		E3D9894E19EBAB1E00EBD980 /* GStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GStartViewController.h; sourceTree = SOURCE_ROOT; };
-		E3D9894F19EBAB1E00EBD980 /* GStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GStartViewController.m; sourceTree = SOURCE_ROOT; };
+		E3C3B8A019F25AB200C8AE5A /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
+		E3C3B8A119F25AB200C8AE5A /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
+		E3C3B8A319F25E6900C8AE5A /* GMLOCATION.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = GMLOCATION.sqlite; sourceTree = "<group>"; };
+		E3C3B8B119F2802E00C8AE5A /* GStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GStartViewController.h; sourceTree = "<group>"; };
+		E3C3B8B219F2802E00C8AE5A /* GStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GStartViewController.m; sourceTree = "<group>"; };
+		E3C3B8B719F2927E00C8AE5A /* GMapStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMapStarViewController.h; sourceTree = "<group>"; };
+		E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMapStarViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1832,8 +1845,8 @@
 		E3BB361F19E7C0700096131D /* GM */ = {
 			isa = PBXGroup;
 			children = (
+				E3C3B8B019F2802E00C8AE5A /* GControllers */,
 				E34C791019E813A000A5F4DE /* GModel */,
-				E3BB362E19E7C63A0096131D /* GControllers */,
 				E3BB362019E7C0B60096131D /* Utils */,
 			);
 			path = GM;
@@ -1842,20 +1855,28 @@
 		E3BB362019E7C0B60096131D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E3C3B8A319F25E6900C8AE5A /* GMLOCATION.sqlite */,
 				E34451F219E7D6A400A3546A /* AMap.bundle */,
 				E34451EE19E7D67000A3546A /* MAMapKit.framework */,
 				E34451EF19E7D67000A3546A /* AMapSearchKit.framework */,
 				E3BB362119E7C0C20096131D /* GMAPI.h */,
 				E3BB362219E7C0C20096131D /* GMAPI.m */,
+				E3C3B8A019F25AB200C8AE5A /* DataBase.h */,
+				E3C3B8A119F25AB200C8AE5A /* DataBase.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		E3BB362E19E7C63A0096131D /* GControllers */ = {
+		E3C3B8B019F2802E00C8AE5A /* GControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E3D9894E19EBAB1E00EBD980 /* GStartViewController.h */,
-				E3D9894F19EBAB1E00EBD980 /* GStartViewController.m */,
+				E3C3B8B119F2802E00C8AE5A /* GStartViewController.h */,
+				E3C3B8B219F2802E00C8AE5A /* GStartViewController.m */,
+				E3C3B8B719F2927E00C8AE5A /* GMapStarViewController.h */,
+				E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */,
+				E385CC8219F45E0800D821B0 /* GgstarViewController.h */,
+				E385CC8319F45E0800D821B0 /* GgstarViewController.m */,
+				E385CC8419F45E0800D821B0 /* GgstarViewController.xib */,
 			);
 			path = GControllers;
 			sourceTree = "<group>";
@@ -2140,6 +2161,7 @@
 				19DAEA2E19D311D300519D22 /* search@2x.png in Resources */,
 				19DAE9F719D311D300519D22 /* jianpan-icon-56_56@2x.png in Resources */,
 				19DAE9BE19D311D300519D22 /* shanchu40_40@2x.png in Resources */,
+				E3C3B8A419F25E6900C8AE5A /* GMLOCATION.sqlite in Resources */,
 				19DAEA8119D311D300519D22 /* unselected_fbcircle_image@2x.png in Resources */,
 				19DAEA5F19D311D300519D22 /* mirco_icon_11@2x.png in Resources */,
 				1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */,
@@ -2207,6 +2229,7 @@
 				19DAE99719D311D300519D22 /* shurukuang_shouji528_268@2x.png in Resources */,
 				19DAE9FB19D311D300519D22 /* yaoqing_button-100_60@2x.png in Resources */,
 				19DAE9CC19D311D300519D22 /* Expression_10@2x.png in Resources */,
+				E385CC8619F45E0800D821B0 /* GgstarViewController.xib in Resources */,
 				19DAE9DF19D311D300519D22 /* Expression_5@2x.png in Resources */,
 				19DAE9B419D311D300519D22 /* pinglun-icon-66_24@2x.png in Resources */,
 				19DAE99D19D311D300519D22 /* baocun40_48@2x.png in Resources */,
@@ -2289,6 +2312,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				134BA69F19D948E800282D7D /* MineCellTwo.m in Sources */,
+				E385CC8519F45E0800D821B0 /* GgstarViewController.m in Sources */,
+				E3C3B8B919F2927E00C8AE5A /* GMapStarViewController.m in Sources */,
 				19DAE80A19D30C2D00519D22 /* OneTheBike.xcdatamodeld in Sources */,
 				19DAE80719D30C2D00519D22 /* AppDelegate.m in Sources */,
 				137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */,
@@ -2300,9 +2325,10 @@
 				E32A591D19ED04CE00142E3A /* ReGeocodeAnnotation.m in Sources */,
 				E3BB362319E7C0C20096131D /* GMAPI.m in Sources */,
 				134BA69A19D9462900282D7D /* MineCellOne.m in Sources */,
+				E3C3B8B519F2802E00C8AE5A /* GStartViewController.m in Sources */,
 				19DAE80D19D30C2D00519D22 /* ViewController.m in Sources */,
-				E3D9895019EBAB1E00EBD980 /* GStartViewController.m in Sources */,
 				19DAE84719D30F6000519D22 /* MainViewController.m in Sources */,
+				E3C3B8A219F25AB200C8AE5A /* DataBase.m in Sources */,
 				134BA6A419D94D1A00282D7D /* UIColor+ConvertColor.m in Sources */,
 				19DAE80419D30C2D00519D22 /* main.m in Sources */,
 				19DAE84419D30F4E00519D22 /* HistoryViewController.m in Sources */,
