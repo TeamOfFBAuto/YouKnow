@@ -9,6 +9,7 @@
 #import "RoadProduceController.h"
 #import "CommonUtility.h"
 #import "LineDashPolyline.h"
+#import "ReGeocodeAnnotation.h"
 
 const NSString *NavigationViewControllerStartTitle       = @"起点";
 const NSString *NavigationViewControllerDestinationTitle = @"终点";
@@ -22,7 +23,18 @@ enum{
     
 };
 
+
+enum{
+    Point_Start = 1,//起点
+    Point_Middle,//途
+    Point_End //终点
+};
+
 @interface RoadProduceController ()
+{
+    int point_state;
+}
+
 @property (nonatomic, strong) AMapRoute *route;
 
 /* 当前路线方案索引值. */
@@ -32,6 +44,8 @@ enum{
 @property (nonatomic) CLLocationCoordinate2D startCoordinate;
 /* 终点经纬度. */
 @property (nonatomic) CLLocationCoordinate2D destinationCoordinate;
+
+@property (nonatomic, strong) MAAnnotationView *userLocationAnnotationView;
 
 
 @property (nonatomic, strong) NSMutableArray *overlays;
@@ -45,59 +59,6 @@ enum{
 @synthesize search  = _search;
 
 @synthesize overlays = _overlays;
-
-#pragma mark - Utility
-
-- (void)clearMapView
-{
-    self.mapView.showsUserLocation = NO;
-    
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    
-    [self.mapView removeOverlays:self.mapView.overlays];
-    
-    self.mapView.delegate = nil;
-}
-
-- (void)clearSearch
-{
-    self.search.delegate = nil;
-}
-
-#pragma mark - Handle Action
-
-- (void)returnAction
-{
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    [self clearMapView];
-    
-    [self clearSearch];
-}
-
-#pragma mark - Initialization
-
-- (void)initMapView
-{
-    self.mapView = [[MAMapView alloc]initWithFrame:self.view.bounds];
-    
-    self.mapView.delegate = self;
-    
-    [self.view addSubview:self.mapView];
-    
-    self.mapView.visibleMapRect = MAMapRectMake(220880104, 101476980, 272496, 466656);
-}
-
-- (void)initSearch
-{
-    
-    
-    self.search = [[AMapSearchAPI alloc] initWithSearchKey:@"0b92a81f23cc5905c30dcb4c39da609d" Delegate:nil];
-    self.search.delegate = self;
-}
-
-#pragma mark - Life Cycle
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -127,97 +88,52 @@ enum{
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - 地图
+
+#pragma mark - Initialization
+
+//地图
 
 - (void)initMap
 {
-    self.startCoordinate        = CLLocationCoordinate2DMake(39.910267, 116.370888);
-    self.destinationCoordinate  = CLLocationCoordinate2DMake(39.989872, 116.481956);
-
+//    self.startCoordinate        = CLLocationCoordinate2DMake(39.910267, 116.370888);
+//    self.destinationCoordinate  = CLLocationCoordinate2DMake(39.989872, 116.481956);
     
     [self initMapView];
     
     [self initSearch];
     
-    [self initOverlays];
+    [self initGestureRecognizer];
 }
 
-#pragma mark - Initialization
-
-- (void)initOverlays
+- (void)initMapView
 {
-    self.overlays = [NSMutableArray array];
+    self.mapView = [[MAMapView alloc]initWithFrame:self.view.bounds];
     
-    /* Circle. */
-    MACircle *circle = [MACircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(39.952136, 116.50095) radius:5000];
-    [self.overlays insertObject:circle atIndex:OverlayViewControllerOverlayTypeCircle];
+    self.mapView.delegate = self;
     
-    /* Polyline. */
-    CLLocationCoordinate2D commonPolylineCoords[5];
-    commonPolylineCoords[0].latitude = 39.832136;
-    commonPolylineCoords[0].longitude = 116.34095;
+    [self.view addSubview:self.mapView];
     
-    commonPolylineCoords[1].latitude = 39.832136;
-    commonPolylineCoords[1].longitude = 116.42095;
+    self.mapView.showsUserLocation = YES;//开启定位
+    self.mapView.customizeUserLocationAccuracyCircleRepresentation = YES;//自定义定位样式
+    self.mapView.userTrackingMode = MAUserTrackingModeNone;//定位模式
     
-    commonPolylineCoords[2].latitude = 39.902136;
-    commonPolylineCoords[2].longitude = 116.42095;
+    self.mapView.visibleMapRect = MAMapRectMake(220880104, 101476980, 272496, 466656);
+}
+
+- (void)initSearch
+{
+    self.search = [[AMapSearchAPI alloc] initWithSearchKey:@"0b92a81f23cc5905c30dcb4c39da609d" Delegate:nil];
+    self.search.delegate = self;
+}
+
+//==============长按手势start=============
+- (void)initGestureRecognizer//初始化长按手势
+{
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(handleLongPress:)];
+    longPress.minimumPressDuration = 0.5;
     
-    commonPolylineCoords[3].latitude = 39.902136;
-    commonPolylineCoords[3].longitude = 116.44095;
-    
-    commonPolylineCoords[4].latitude = 39.932136;
-    commonPolylineCoords[4].longitude = 116.44095;
-    
-    MAPolyline *commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:5];
-    [self.overlays insertObject:commonPolyline atIndex:OverlayViewControllerOverlayTypeCommonPolyline];
-    
-    /* Polygon. */
-    CLLocationCoordinate2D coordinates[4];
-    coordinates[0].latitude = 39.810892;
-    coordinates[0].longitude = 116.233413;
-    
-    coordinates[1].latitude = 39.816600;
-    coordinates[1].longitude = 116.331842;
-    
-    coordinates[2].latitude = 39.762187;
-    coordinates[2].longitude = 116.357932;
-    
-    coordinates[3].latitude = 39.733653;
-    coordinates[3].longitude = 116.278255;
-    
-    MAPolygon *polygon = [MAPolygon polygonWithCoordinates:coordinates count:4];
-    [self.overlays insertObject:polygon atIndex:OverlayViewControllerOverlayTypePolygon];
-    
-    /* Textured Polyline. */
-    CLLocationCoordinate2D texPolylineCoords[3];
-    texPolylineCoords[0].latitude = 39.932136;
-    texPolylineCoords[0].longitude = 116.44095;
-    
-    texPolylineCoords[1].latitude = 39.932136;
-    texPolylineCoords[1].longitude = 116.50095;
-    
-    texPolylineCoords[2].latitude = 39.952136;
-    texPolylineCoords[2].longitude = 116.50095;
-    
-    MAPolyline *texPolyline = [MAPolyline polylineWithCoordinates:texPolylineCoords count:3];
-    [self.overlays insertObject:texPolyline atIndex:OverlayViewControllerOverlayTypeTexturePolyline];
-    
-    /* Arrow Polyline. */
-    CLLocationCoordinate2D ArrowPolylineCoords[3];
-    ArrowPolylineCoords[0].latitude = 39.793765;
-    ArrowPolylineCoords[0].longitude = 116.294653;
-    
-    ArrowPolylineCoords[1].latitude = 39.831741;
-    ArrowPolylineCoords[1].longitude = 116.294653;
-    
-    ArrowPolylineCoords[2].latitude = 39.832136;
-    ArrowPolylineCoords[2].longitude = 116.34095;
-    
-    MAPolyline *arrowPolyline = [MAPolyline polylineWithCoordinates:ArrowPolylineCoords count:3];
-    [self.overlays insertObject:arrowPolyline atIndex:OverlayViewControllerOverlayTypeArrowPolyline];
-    
-    
+    [self.view addGestureRecognizer:longPress];
 }
 
 
@@ -231,15 +147,19 @@ enum{
 {
    CGSize screenSize = [UIScreen mainScreen].bounds.size;
     UIView *tools = [[UIView alloc]initWithFrame:CGRectMake(0, screenSize.height - 50 - 50 - 64, screenSize.width, 50)];
-    tools.backgroundColor = [UIColor redColor];
+    tools.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:tools];
     NSArray *titls_arr = @[@"取消",@"起",@"途",@"终",@"生成"];
     
     for (int i = 0; i < 5; i ++) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         btn.frame = CGRectMake((screenSize.width - 50 * 5)/2.f + 50 * i, 0, 50, 50);
         [btn setTitle:[titls_arr objectAtIndex:i] forState:UIControlStateNormal];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        
+        [btn setTitleShadowColor:[UIColor clearColor] forState:UIControlStateNormal];
+        [btn setTitleShadowColor:[UIColor redColor] forState:UIControlStateSelected];
+        
         btn.tag = 100 + i;
         [tools addSubview:btn];
         [btn addTarget:self action:@selector(clickToActionMap:) forControlEvents:UIControlEventTouchUpInside];
@@ -247,6 +167,22 @@ enum{
 }
 
 #pragma mark - 事件处理
+
+- (void)clearMapView
+{
+    self.mapView.showsUserLocation = NO;
+    
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    [self.mapView removeOverlays:self.mapView.overlays];
+    
+    self.mapView.delegate = nil;
+}
+
+- (void)clearSearch
+{
+    self.search.delegate = nil;
+}
 
 - (void)clickToSave:(UIButton *)sender
 {
@@ -264,16 +200,23 @@ enum{
         case 1:
         {
             NSLog(@"起");
+            point_state = Point_Start;
+            
+            [LTools showMBProgressWithText:@"长按选择起点" addToView:self.view];
         }
             break;
         case 2:
         {
             NSLog(@"途");
+            point_state = Point_Middle;
+            [LTools showMBProgressWithText:@"长按选择途经点" addToView:self.view];
         }
             break;
         case 3:
         {
             NSLog(@"终");
+            point_state = Point_End;
+            [LTools showMBProgressWithText:@"长按选择终点" addToView:self.view];
         }
             break;
         case 4:
@@ -287,6 +230,118 @@ enum{
         default:
             break;
     }
+    
+    for (int i = 0; i < 5; i ++) {
+        
+        UIButton *btn = (UIButton *)[self.view viewWithTag:100 + i];
+        
+        if (btn == sender) {
+            sender.selected = YES;
+        }else
+        {
+            sender.selected = NO;
+        }
+    }
+}
+
+- (void)returnAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self clearMapView];
+    
+    [self clearSearch];
+}
+
+
+//手势处理
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)longPress//长按弹出大头针=========
+{
+    
+    if (longPress.state == UIGestureRecognizerStateBegan)
+    {
+        CLLocationCoordinate2D coordinate = [self.mapView convertPoint:[longPress locationInView:self.view]
+                                                  toCoordinateFromView:self.mapView];
+        
+        [self searchReGeocodeWithCoordinate:coordinate];
+        
+        if (point_state == Point_Start) {
+            
+            self.startCoordinate = coordinate;
+            
+            [self addStartAnnotation];
+            
+        }else if (point_state == Point_End){
+            
+            self.destinationCoordinate = coordinate;
+            
+            [self addDestinationAnnotation];
+            
+        }else if (point_state == Point_Middle){
+            
+            NSLog(@"途经点");
+        }
+    }
+}
+
+- (void)searchReGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+    
+    regeo.location = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    regeo.requireExtension = YES;
+    
+    [self.search AMapReGoecodeSearch:regeo];
+}
+
+//导航搜索
+
+- (void)searchNaviWalk {
+    
+    if (self.startCoordinate.latitude == 0) {
+        
+        [LTools showMBProgressWithText:@"请选择起点" addToView:self.view];
+        return;
+    }
+    
+    if (self.destinationCoordinate.latitude == 0) {
+        
+        [LTools showMBProgressWithText:@"请选择终点" addToView:self.view];
+        return;
+    }
+    
+    AMapNavigationSearchRequest *navi = [[AMapNavigationSearchRequest alloc] init];
+    navi.searchType       = AMapSearchType_NaviWalking;
+    navi.requireExtension = YES;
+    /* 出发点. */
+    navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
+                                           longitude:self.startCoordinate.longitude];
+    /* 目的地. */
+    navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
+                                                longitude:self.destinationCoordinate.longitude];
+    
+    [self.search AMapNavigationSearch:navi];
+}
+
+- (void)addStartAnnotation
+{
+    MAPointAnnotation *startAnnotation = [[MAPointAnnotation alloc] init];
+    startAnnotation.coordinate = self.startCoordinate;
+    startAnnotation.title      = (NSString*)NavigationViewControllerStartTitle;
+    startAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.startCoordinate.latitude, self.startCoordinate.longitude];
+    [self.mapView addAnnotation:startAnnotation];
+}
+
+//添加
+- (void)addDestinationAnnotation
+{
+    MAPointAnnotation *destinationAnnotation = [[MAPointAnnotation alloc] init];
+    destinationAnnotation.coordinate = self.destinationCoordinate;
+    destinationAnnotation.title      = (NSString*)NavigationViewControllerDestinationTitle;
+    destinationAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.destinationCoordinate.latitude, self.destinationCoordinate.longitude];
+    
+    [self.mapView addAnnotation:destinationAnnotation];
 }
 
 #pragma mark - delegate
@@ -308,6 +363,23 @@ enum{
 - (void)search:(id)searchRequest error:(NSString *)errInfo __attribute__ ((deprecated("use -search:didFailWithError instead.")))
 {
     
+}
+
+#pragma mark - AMapSearchDelegate
+
+/* 逆地理编码回调. */
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    if (response.regeocode != nil)
+    {
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(request.location.latitude, request.location.longitude);
+        ReGeocodeAnnotation *reGeocodeAnnotation = [[ReGeocodeAnnotation alloc] initWithCoordinate:coordinate
+                                                                                         reGeocode:response.regeocode];
+        
+        [self.mapView addAnnotation:reGeocodeAnnotation];
+        [self.mapView selectAnnotation:reGeocodeAnnotation animated:YES];
+        
+    }
 }
 
 /*!
@@ -376,36 +448,102 @@ enum{
         /* 起点. */
         if ([[annotation title] isEqualToString:(NSString*)NavigationViewControllerStartTitle])
         {
-            poiAnnotationView.image = [UIImage imageNamed:@"startPoint"];
+            poiAnnotationView.image = [UIImage imageNamed:@"redPin"];
         }
         /* 终点. */
         else if([[annotation title] isEqualToString:(NSString*)NavigationViewControllerDestinationTitle])
         {
-            poiAnnotationView.image = [UIImage imageNamed:@"endPoint"];
+            poiAnnotationView.image = [UIImage imageNamed:@"greenPin"];
         }
         
         return poiAnnotationView;
+    }else if ([annotation isKindOfClass:[MAUserLocation class]])/* 自定义userLocation对应的annotationView. */
+    {
+        static NSString *userLocationStyleReuseIndetifier = @"userLocationStyleReuseIndetifier";
+        MAAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:userLocationStyleReuseIndetifier];
+        if (annotationView == nil)
+        {
+            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation
+                                                             reuseIdentifier:userLocationStyleReuseIndetifier];
+        }
+        
+        annotationView.image = [UIImage imageNamed:@"userPosition"];
+        
+        self.userLocationAnnotationView = annotationView;
+        
+        return annotationView;
+        
+        
+    }else if ([annotation isKindOfClass:[ReGeocodeAnnotation class]]){//长按弹出大头针上面的详细信息页面
+        
+        
+        static NSString *invertGeoIdentifier = @"invertGeoIdentifier";
+        MAPinAnnotationView *poiAnnotationView = (MAPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:invertGeoIdentifier];
+        if (poiAnnotationView == nil)
+        {
+            poiAnnotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation
+                                                                reuseIdentifier:invertGeoIdentifier];
+        }
+        
+        poiAnnotationView.animatesDrop              = YES;
+        poiAnnotationView.canShowCallout            = YES;
+        poiAnnotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        
+        return poiAnnotationView;
+        
     }
+
+    
     
     return nil;
 }
 
+//定位=============================
+#pragma mark - MAMapViewDelegate
 
-#pragma mark - 地图处理
+- (void)mapView:(MAMapView *)mapView didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated{
+    
+}
 
-- (void)searchNaviWalk {
-    AMapNavigationSearchRequest *navi = [[AMapNavigationSearchRequest alloc] init];
-    navi.searchType       = AMapSearchType_NaviWalking;
-    navi.requireExtension = YES;
+
+-(void)mapView:(MAMapView*)mapView didFailToLocateUserWithError:(NSError*)error{
+    NSLog(@"定位失败");
+}
+
+//定位的回调方法
+- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+{
+    //方向
+    NSString *headingStr = @"";
+    if (userLocation) {
+        NSLog(@"userLocation ---- %@",userLocation);
+        NSLog(@"userLocation.heading----%@",userLocation.heading);
+        //地磁场方向
+        double heading = userLocation.heading.magneticHeading;
+        if (heading > 0) {
+            headingStr = [GMAPI switchMagneticHeadingWithDoubel:heading];
+        }
+        NSLog(@"%@",headingStr);
+    }
     
-    /* 出发点. */
-    navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
-                                           longitude:self.startCoordinate.longitude];
-    /* 目的地. */
-    navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
-                                                longitude:self.destinationCoordinate.longitude];
+    //海拔
+    CLLocation *currentLocation = userLocation.location;
+    if (currentLocation) {
+        NSLog(@"海拔---%f",currentLocation.altitude);
+    }
     
-    [self.search AMapNavigationSearch:navi];
+    //自定义定位箭头方向
+    if (!updatingLocation && self.userLocationAnnotationView != nil)
+    {
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            
+            double degree = userLocation.heading.trueHeading - self.mapView.rotationDegree;
+            self.userLocationAnnotationView.transform = CGAffineTransformMakeRotation(degree * M_PI / 180.f );
+            
+        }];
+    }
+    
 }
 
 
