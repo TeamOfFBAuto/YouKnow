@@ -33,6 +33,17 @@ enum{
 @interface RoadProduceController ()
 {
     int point_state;
+    
+    NSMutableArray *middle_points_arr;
+    
+    NSMutableArray *polines_arr;//存储线
+    
+    UILongPressGestureRecognizer *longPress;
+    
+    int middle_sum;//中间点总数
+    int middle_index;//中间点得index
+    
+    int point_index;
 }
 
 @property (nonatomic, strong) AMapRoute *route;
@@ -48,17 +59,12 @@ enum{
 @property (nonatomic, strong) MAAnnotationView *userLocationAnnotationView;
 
 
-@property (nonatomic, strong) NSMutableArray *overlays;
-
-
 @end
 
 @implementation RoadProduceController
 
 @synthesize mapView = _mapView;
 @synthesize search  = _search;
-
-@synthesize overlays = _overlays;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,6 +87,12 @@ enum{
     [self initMap];
     
     [self createTools];
+    
+    middle_points_arr = [NSMutableArray array];
+    polines_arr = [NSMutableArray array];
+    middle_index = 0;
+    
+    point_index = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,9 +141,11 @@ enum{
 //==============长按手势start=============
 - (void)initGestureRecognizer//初始化长按手势
 {
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+    longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
                                                                                             action:@selector(handleLongPress:)];
     longPress.minimumPressDuration = 0.5;
+    
+    longPress.enabled = NO;//默认关闭
     
     [self.view addGestureRecognizer:longPress];
 }
@@ -195,6 +209,8 @@ enum{
         case 0:
         {
             NSLog(@"取消");
+            
+            longPress.enabled = NO;
         }
             break;
         case 1:
@@ -203,6 +219,8 @@ enum{
             point_state = Point_Start;
             
             [LTools showMBProgressWithText:@"长按选择起点" addToView:self.view];
+            
+            longPress.enabled = YES;
         }
             break;
         case 2:
@@ -210,6 +228,7 @@ enum{
             NSLog(@"途");
             point_state = Point_Middle;
             [LTools showMBProgressWithText:@"长按选择途经点" addToView:self.view];
+            longPress.enabled = YES;
         }
             break;
         case 3:
@@ -217,6 +236,7 @@ enum{
             NSLog(@"终");
             point_state = Point_End;
             [LTools showMBProgressWithText:@"长按选择终点" addToView:self.view];
+            longPress.enabled = YES;
         }
             break;
         case 4:
@@ -224,6 +244,8 @@ enum{
             NSLog(@"生成");
             
             [self searchNaviWalk];
+            
+            longPress.enabled = NO;
         }
             break;
             
@@ -256,10 +278,10 @@ enum{
 
 //手势处理
 
-- (void)handleLongPress:(UILongPressGestureRecognizer *)longPress//长按弹出大头针=========
+- (void)handleLongPress:(UILongPressGestureRecognizer *)longPresss//长按弹出大头针=========
 {
     
-    if (longPress.state == UIGestureRecognizerStateBegan)
+    if (longPresss.state == UIGestureRecognizerStateBegan)
     {
         CLLocationCoordinate2D coordinate = [self.mapView convertPoint:[longPress locationInView:self.view]
                                                   toCoordinateFromView:self.mapView];
@@ -281,6 +303,11 @@ enum{
         }else if (point_state == Point_Middle){
             
             NSLog(@"途经点");
+            
+            [middle_points_arr addObject:[AMapGeoPoint locationWithLatitude:coordinate.latitude
+                                     longitude:coordinate.longitude]];
+            NSLog(@"tttttttt %@ %d",middle_points_arr,middle_points_arr.count);
+            
         }
     }
 }
@@ -295,31 +322,118 @@ enum{
     [self.search AMapReGoecodeSearch:regeo];
 }
 
-//导航搜索
-
 - (void)searchNaviWalk {
-    
+
     if (self.startCoordinate.latitude == 0) {
-        
+
         [LTools showMBProgressWithText:@"请选择起点" addToView:self.view];
         return;
     }
-    
+
     if (self.destinationCoordinate.latitude == 0) {
-        
+
         [LTools showMBProgressWithText:@"请选择终点" addToView:self.view];
         return;
     }
     
+    NSLog(@"--->searchNaviWalk");
+    
+    int middleCount = middle_points_arr.count;
+    
+    //没有途经点,直接导航
+    if (middleCount == 0) {
+        
+//        AMapNavigationSearchRequest *navi = [[AMapNavigationSearchRequest alloc] init];
+//        navi.searchType       = AMapSearchType_NaviDrive;
+//        navi.requireExtension = YES;
+//        /* 出发点. */
+//        navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
+//                                               longitude:self.startCoordinate.longitude];
+//        /* 目的地. */
+//        navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
+//                                                    longitude:self.destinationCoordinate.longitude];
+//        
+//        [self.search AMapNavigationSearch:navi];
+        
+        AMapGeoPoint *origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
+                                                        longitude:self.startCoordinate.longitude];
+        
+        AMapGeoPoint *destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
+                                                             longitude:self.destinationCoordinate.longitude];
+        
+        
+        [self searchWithOrigin:origin destination:destination];
+        
+    }else
+    {
+        
+        AMapGeoPoint *origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
+                                                        longitude:self.startCoordinate.longitude];
+        [middle_points_arr insertObject:origin atIndex:0];
+        
+        AMapGeoPoint *destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
+                                                        longitude:self.destinationCoordinate.longitude];
+        
+        [middle_points_arr addObject:destination];
+        
+        
+        point_index = 0;
+        
+        AMapGeoPoint *des = [middle_points_arr objectAtIndex:1];
+        
+        
+        [self searchWithOrigin:origin destination:des];
+        
+        
+//        AMapNavigationSearchRequest *navi = [[AMapNavigationSearchRequest alloc] init];
+//        navi.searchType       = AMapSearchType_NaviDrive;
+//        navi.requireExtension = YES;
+//        /* 出发点. */
+//        
+//        if (point_index == 0) {
+//            
+//            navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
+//                                                   longitude:self.startCoordinate.longitude];
+//            
+//            AMapGeoPoint *destination = [middle_points_arr objectAtIndex:0];
+//            navi.destination = destination;
+//            
+//            point_index = 1;
+//            
+//        }else
+//        {
+//         
+//            NSLog(@"middle_index -->%@  %d",middle_points_arr,middle_index);
+//            
+//            AMapGeoPoint *origin = [middle_points_arr objectAtIndex:0];
+//            navi.origin = origin;
+//            
+//            if (middle_index == middle_points_arr.count) {
+//                navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
+//                                                            longitude:self.destinationCoordinate.longitude];
+//            }else
+//            {
+//                AMapGeoPoint *destination = [middle_points_arr objectAtIndex:0];
+//                navi.destination = destination;
+//            }
+//        }
+//        
+//        NSLog(@"---->%d origin:%@ des:%@",middle_index,navi.origin,navi.destination);
+//        
+//        [self.search AMapNavigationSearch:navi];
+        
+    }
+}
+
+- (void)searchWithOrigin:(AMapGeoPoint *)origin destination:(AMapGeoPoint *)destination
+{
     AMapNavigationSearchRequest *navi = [[AMapNavigationSearchRequest alloc] init];
-    navi.searchType       = AMapSearchType_NaviWalking;
+    navi.searchType       = AMapSearchType_NaviDrive;
     navi.requireExtension = YES;
     /* 出发点. */
-    navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
-                                           longitude:self.startCoordinate.longitude];
+    navi.origin = origin;
     /* 目的地. */
-    navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
-                                                longitude:self.destinationCoordinate.longitude];
+    navi.destination = destination;
     
     [self.search AMapNavigationSearch:navi];
 }
@@ -389,18 +503,42 @@ enum{
  */
 - (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response
 {
+    NSLog(@"--->onNavigationSearchDone");
     
-    NSLog(@"response %@",response);
+//    NSLog(@"------》response %@",response);
     self.route = response.route;
     
-    self.currentCourse = 0;
-    
-    NSArray *polylines = [CommonUtility polylinesForPath:self.route.paths[self.currentCourse]];
-    
-    [self.mapView addOverlays:polylines];
-    
-    /* 缩放地图使其适应polylines的展示. */
-    self.mapView.visibleMapRect = [CommonUtility mapRectForOverlays:polylines];
+    NSArray *polylines = [CommonUtility polylinesForPath:self.route.paths[0]];
+
+    if (middle_points_arr.count == 0) {
+        
+        [self.mapView addOverlays:polylines];
+        /* 缩放地图使其适应polylines的展示. */
+        self.mapView.visibleMapRect = [CommonUtility mapRectForOverlays:polylines];
+    }else
+    {
+        
+        [self.mapView addOverlays:polylines];
+        
+        [polines_arr addObjectsFromArray:polylines];
+        
+        self.mapView.visibleMapRect = [CommonUtility mapRectForOverlays:polines_arr];
+        
+        point_index ++;
+        NSLog(@"point_index %d",point_index);
+        
+        if (point_index < middle_points_arr.count - 1) {
+            
+            AMapGeoPoint *origin = [middle_points_arr objectAtIndex:point_index];
+            AMapGeoPoint *detin = [middle_points_arr objectAtIndex:point_index + 1];
+            
+            [self searchWithOrigin:origin destination:detin];
+        }else
+        {
+            
+        }
+        
+    }
 }
 
 #pragma mark - MAMapViewDelegate
@@ -411,8 +549,8 @@ enum{
     {
         MAPolylineView *overlayView = [[MAPolylineView alloc] initWithPolyline:((LineDashPolyline *)overlay).polyline];
         
-        overlayView.lineWidth    = 1;
-        overlayView.strokeColor  = [UIColor magentaColor];
+        overlayView.lineWidth    = 5.f;
+        overlayView.strokeColor  = [UIColor redColor];
         overlayView.lineDash     = YES;
         
         return overlayView;
@@ -516,20 +654,20 @@ enum{
     //方向
     NSString *headingStr = @"";
     if (userLocation) {
-        NSLog(@"userLocation ---- %@",userLocation);
-        NSLog(@"userLocation.heading----%@",userLocation.heading);
+//        NSLog(@"userLocation ---- %@",userLocation);
+//        NSLog(@"userLocation.heading----%@",userLocation.heading);
         //地磁场方向
         double heading = userLocation.heading.magneticHeading;
         if (heading > 0) {
             headingStr = [GMAPI switchMagneticHeadingWithDoubel:heading];
         }
-        NSLog(@"%@",headingStr);
+//        NSLog(@"%@",headingStr);
     }
     
     //海拔
     CLLocation *currentLocation = userLocation.location;
     if (currentLocation) {
-        NSLog(@"海拔---%f",currentLocation.altitude);
+//        NSLog(@"海拔---%f",currentLocation.altitude);
     }
     
     //自定义定位箭头方向
@@ -544,6 +682,50 @@ enum{
         }];
     }
     
+}
+
+
+//测试导航途经点
+- (void)test
+{
+    AMapNavigationSearchRequest *navi = [[AMapNavigationSearchRequest alloc] init];
+    navi.searchType       = AMapSearchType_NaviDrive;
+    navi.requireExtension = YES;
+    /* 出发点. */
+    navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
+                                           longitude:self.startCoordinate.longitude];
+    /* 目的地. */
+    navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
+                                                longitude:self.destinationCoordinate.longitude];
+    
+    //天安门东 116.401005,39.908024
+    //王府井 116.412163,39.908156
+    //崇文门 116.417484,39.901309
+    //前门  116.398773,39.900255
+    //宣武门 116.373882,39.899202
+    //陶然亭 116.374741,39.878259
+    //天坛东门 116.420918,39.882606
+    
+    NSArray *data = @[@"116.401005,39.908024",@"116.412163,39.908156",@"116.417484,39.901309",@"116.398773,39.900255",@"116.373882,39.899202",@"116.374741,39.878259",@"116.420918,39.882606"];
+    
+    NSMutableArray *ways = [NSMutableArray array];
+    for (int i = 0; i <ways.count; i ++) {
+        
+        NSString *des = [data objectAtIndex:i];
+        NSArray *ll = [des componentsSeparatedByString:@","];
+        
+        CGFloat la = [[ll objectAtIndex:1] floatValue];
+        CGFloat lon = [[ll objectAtIndex:0] floatValue];
+        
+        AMapGeoPoint *point = [AMapGeoPoint locationWithLatitude:la
+                                                       longitude:lon];
+        
+        [ways addObject:point];
+    }
+    
+    navi.waypoints = [NSArray arrayWithArray:ways];
+    
+    [self.search AMapNavigationSearch:navi];
 }
 
 
