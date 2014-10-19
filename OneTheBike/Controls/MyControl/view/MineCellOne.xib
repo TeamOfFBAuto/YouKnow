@@ -20,7 +20,7 @@
                                 <rect key="frame" x="25" y="5" width="57" height="57"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow_right.png" translatesAutoresizingMaskIntoConstraints="NO" id="RZX-PS-xJP">
-                                <rect key="frame" x="258" y="14" width="40" height="40"/>
+                                <rect key="frame" x="275" y="14" width="40" height="40"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKg-kh-yoq">
                                 <rect key="frame" x="107" y="10" width="157" height="21"/>

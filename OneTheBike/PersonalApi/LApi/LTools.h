@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "UIColor+ConvertColor.h"
+#import "MBProgressHUD.h"
 
+//判断系统版本
+#define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
+//判断iPhone5
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
 #define COLOR_VIEW_BACKGROUND [UIColor colorWithRed:246/255.F green:247/255.F blue:249/255.F alpha:1.0]//视图背景颜色
 
@@ -124,7 +129,7 @@ typedef void(^versionBlock)(BOOL isNewVersion,NSString *updateUrl,NSString *upda
 
 + (void)showMBProgressWithText:(NSString *)text addToView:(UIView *)aView;
 
-//+ (MBProgressHUD *)MBProgressWithText:(NSString *)text addToView:(UIView *)aView;
++ (MBProgressHUD *)MBProgressWithText:(NSString *)text addToView:(UIView *)aView;
 
 #pragma mark - 字符串的处理
 

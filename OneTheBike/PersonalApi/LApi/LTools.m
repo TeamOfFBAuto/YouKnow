@@ -630,28 +630,28 @@
 }
 
 
-//+ (void)showMBProgressWithText:(NSString *)text addToView:(UIView *)aView
-//{
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:aView animated:YES];
++ (void)showMBProgressWithText:(NSString *)text addToView:(UIView *)aView
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:aView animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = text;
+    hud.margin = 15.f;
+    hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:1.5];
+}
+
++ (MBProgressHUD *)MBProgressWithText:(NSString *)text addToView:(UIView *)aView
+{
+    MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:aView];
 //    hud.mode = MBProgressHUDModeText;
-//    hud.labelText = text;
+    hud.labelText = text;
 //    hud.margin = 15.f;
-//    hud.yOffset = 150.f;
-//    hud.removeFromSuperViewOnHide = YES;
-//    [hud hide:YES afterDelay:1.5];
-//}
-//
-//+ (MBProgressHUD *)MBProgressWithText:(NSString *)text addToView:(UIView *)aView
-//{
-//    MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:aView];
-////    hud.mode = MBProgressHUDModeText;
-//    hud.labelText = text;
-////    hud.margin = 15.f;
-////    hud.yOffset = 0.0f;
-//    [aView addSubview:hud];
-//    hud.removeFromSuperViewOnHide = YES;
-//    return hud;
-//}
+//    hud.yOffset = 0.0f;
+    [aView addSubview:hud];
+    hud.removeFromSuperViewOnHide = YES;
+    return hud;
+}
 
 #pragma - mark 非空字符串
 
