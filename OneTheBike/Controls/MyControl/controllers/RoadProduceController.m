@@ -13,6 +13,7 @@
 
 const NSString *NavigationViewControllerStartTitle       = @"起点";
 const NSString *NavigationViewControllerDestinationTitle = @"终点";
+const NSString *NavigationViewControllerMiddleTitle      = @"途经点";
 
 enum{
     OverlayViewControllerOverlayTypeCircle = 0,
@@ -40,16 +41,14 @@ enum{
     
     UILongPressGestureRecognizer *longPress;
     
-    int middle_sum;//中间点总数
-    int middle_index;//中间点得index
-    
     int point_index;
+    
+    MAPointAnnotation *startAnnotation;//起点
+    MAPointAnnotation *detinationAnnotation;//终点
+    NSMutableArray *middleAnntations;//途经点
 }
 
 @property (nonatomic, strong) AMapRoute *route;
-
-/* 当前路线方案索引值. */
-@property (nonatomic) NSInteger currentCourse;
 
 /* 起始点经纬度. */
 @property (nonatomic) CLLocationCoordinate2D startCoordinate;
@@ -88,10 +87,9 @@ enum{
     
     [self createTools];
     
-    middle_points_arr = [NSMutableArray array];
-    polines_arr = [NSMutableArray array];
-    middle_index = 0;
-    
+    middle_points_arr = [NSMutableArray array];//途经点 AMapGeoPoint
+    polines_arr = [NSMutableArray array];//所有的规划线
+    middleAnntations = [NSMutableArray array];//途经点 Annotation
     point_index = 0;
 }
 
@@ -107,9 +105,6 @@ enum{
 
 - (void)initMap
 {
-//    self.startCoordinate        = CLLocationCoordinate2DMake(39.910267, 116.370888);
-//    self.destinationCoordinate  = CLLocationCoordinate2DMake(39.989872, 116.481956);
-    
     [self initMapView];
     
     [self initSearch];
@@ -211,6 +206,17 @@ enum{
             NSLog(@"取消");
             
             longPress.enabled = NO;
+            
+            
+            if (self.destinationCoordinate.latitude != 0) {
+                [self removeDestinationAnnotation];
+            }else if (middleAnntations.count > 0)
+            {
+                [self removeLastMiddleAnnotation];
+            }else if(self.startCoordinate.latitude != 0){
+                [self removeStartAnnotation];
+                point_state = Point_Start;
+            }
         }
             break;
         case 1:
@@ -306,7 +312,8 @@ enum{
             
             [middle_points_arr addObject:[AMapGeoPoint locationWithLatitude:coordinate.latitude
                                      longitude:coordinate.longitude]];
-            NSLog(@"tttttttt %@ %d",middle_points_arr,middle_points_arr.count);
+            
+            [self addMiddleAnnotation:coordinate];
             
         }
     }
@@ -438,24 +445,90 @@ enum{
     [self.search AMapNavigationSearch:navi];
 }
 
+#pragma mark 添加\取消 标志
+
+//起点
 - (void)addStartAnnotation
 {
-    MAPointAnnotation *startAnnotation = [[MAPointAnnotation alloc] init];
+    if (startAnnotation) {
+        
+        [self.mapView removeAnnotation:startAnnotation];
+    }
+    
+    startAnnotation = [[MAPointAnnotation alloc] init];
     startAnnotation.coordinate = self.startCoordinate;
     startAnnotation.title      = (NSString*)NavigationViewControllerStartTitle;
     startAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.startCoordinate.latitude, self.startCoordinate.longitude];
     [self.mapView addAnnotation:startAnnotation];
 }
+- (void)removeStartAnnotation
+{
+    [self.mapView removeAnnotation:startAnnotation];
+    
+    self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
+    
+    [self removeAllPolines];
+}
 
-//添加
+//终点
 - (void)addDestinationAnnotation
 {
-    MAPointAnnotation *destinationAnnotation = [[MAPointAnnotation alloc] init];
-    destinationAnnotation.coordinate = self.destinationCoordinate;
-    destinationAnnotation.title      = (NSString*)NavigationViewControllerDestinationTitle;
-    destinationAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.destinationCoordinate.latitude, self.destinationCoordinate.longitude];
+    if (detinationAnnotation) {
+        [self.mapView removeAnnotation:detinationAnnotation];
+    }
     
-    [self.mapView addAnnotation:destinationAnnotation];
+    detinationAnnotation = [[MAPointAnnotation alloc] init];
+    detinationAnnotation.coordinate = self.destinationCoordinate;
+    detinationAnnotation.title      = (NSString*)NavigationViewControllerDestinationTitle;
+    detinationAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.destinationCoordinate.latitude, self.destinationCoordinate.longitude];
+    
+    [self.mapView addAnnotation:detinationAnnotation];
+}
+
+- (void)removeDestinationAnnotation
+{
+    [self.mapView removeAnnotation:detinationAnnotation];
+    
+    self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
+    
+    [self removeAllPolines];
+}
+
+//中间点
+- (void)addMiddleAnnotation:(CLLocationCoordinate2D)midCoordinate
+{
+    MAPointAnnotation *midAnnotation = [[MAPointAnnotation alloc] init];
+    midAnnotation.coordinate = midCoordinate;
+    midAnnotation.title      = (NSString*)NavigationViewControllerMiddleTitle;
+    midAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", midCoordinate.latitude, midCoordinate.longitude];
+    [self.mapView addAnnotation:midAnnotation];
+    
+    [middleAnntations addObject:midAnnotation];
+}
+
+- (void)removeLastMiddleAnnotation
+{
+    if (middleAnntations.count == 0) {
+        [LTools showMBProgressWithText:@"没有添加途经点" addToView:self.view];
+        return;
+    }
+    MAPointAnnotation *last = [middleAnntations lastObject];
+    [self.mapView removeAnnotation:last];
+    [middleAnntations removeLastObject];
+
+    [middle_points_arr removeLastObject];
+    
+    [self removeAllPolines];
+}
+
+- (void)removeAllPolines
+{
+    if (middleAnntations.count == 0 && self.startCoordinate.latitude == 0 && self.destinationCoordinate.latitude == 0){
+        
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        
+        [self.mapView removeOverlays:self.mapView.overlays];
+    }
 }
 
 #pragma mark - delegate
@@ -481,20 +554,20 @@ enum{
 
 #pragma mark - AMapSearchDelegate
 
-/* 逆地理编码回调. */
-- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
-{
-    if (response.regeocode != nil)
-    {
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(request.location.latitude, request.location.longitude);
-        ReGeocodeAnnotation *reGeocodeAnnotation = [[ReGeocodeAnnotation alloc] initWithCoordinate:coordinate
-                                                                                         reGeocode:response.regeocode];
-        
-        [self.mapView addAnnotation:reGeocodeAnnotation];
-        [self.mapView selectAnnotation:reGeocodeAnnotation animated:YES];
-        
-    }
-}
+///* 逆地理编码回调. */
+//- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+//{
+//    if (response.regeocode != nil)
+//    {
+//        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(request.location.latitude, request.location.longitude);
+//        ReGeocodeAnnotation *reGeocodeAnnotation = [[ReGeocodeAnnotation alloc] initWithCoordinate:coordinate
+//                                                                                         reGeocode:response.regeocode];
+//        
+//        [self.mapView addAnnotation:reGeocodeAnnotation];
+//        [self.mapView selectAnnotation:reGeocodeAnnotation animated:YES];
+//        
+//    }
+//}
 
 /*!
  @brief 路径规划查询回调函数
@@ -586,12 +659,17 @@ enum{
         /* 起点. */
         if ([[annotation title] isEqualToString:(NSString*)NavigationViewControllerStartTitle])
         {
-            poiAnnotationView.image = [UIImage imageNamed:@"redPin"];
+            poiAnnotationView.image = [UIImage imageNamed:@"map_start"];
         }
         /* 终点. */
         else if([[annotation title] isEqualToString:(NSString*)NavigationViewControllerDestinationTitle])
         {
-            poiAnnotationView.image = [UIImage imageNamed:@"greenPin"];
+            poiAnnotationView.image = [UIImage imageNamed:@"map_end"];
+        }
+        /* 途经点. */
+        else if([[annotation title] isEqualToString:(NSString*)NavigationViewControllerMiddleTitle])
+        {
+            poiAnnotationView.image = [UIImage imageNamed:@"tuoluo"];
         }
         
         return poiAnnotationView;

@@ -81,6 +81,33 @@
 		13AC6BAB19D805D800E7FF7B /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13AC6BA719D805D800E7FF7B /* libSocialQQ.a */; };
 		13AC6BAC19D805D800E7FF7B /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13AC6BA819D805D800E7FF7B /* TencentOpenAPI.framework */; };
 		13AC6BAD19D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13AC6BA919D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle */; };
+		13D21C8C19F4095C0015AAF2 /* gps图标1格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7119F4095C0015AAF2 /* gps图标1格.png */; };
+		13D21C8D19F4095C0015AAF2 /* gps图标2格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7219F4095C0015AAF2 /* gps图标2格.png */; };
+		13D21C8E19F4095C0015AAF2 /* gps图标3格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7319F4095C0015AAF2 /* gps图标3格.png */; };
+		13D21C8F19F4095C0015AAF2 /* gps图标4格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7419F4095C0015AAF2 /* gps图标4格.png */; };
+		13D21C9019F4095C0015AAF2 /* 公里.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7519F4095C0015AAF2 /* 公里.png */; };
+		13D21C9119F4095C0015AAF2 /* 卡路里.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7619F4095C0015AAF2 /* 卡路里.png */; };
+		13D21C9219F4095C0015AAF2 /* 右上角指南针.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7719F4095C0015AAF2 /* 右上角指南针.png */; };
+		13D21C9319F4095C0015AAF2 /* 向上收缩.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7819F4095C0015AAF2 /* 向上收缩.png */; };
+		13D21C9419F4095C0015AAF2 /* 向下收缩.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7919F4095C0015AAF2 /* 向下收缩.png */; };
+		13D21C9519F4095C0015AAF2 /* 地图位置图标.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7A19F4095C0015AAF2 /* 地图位置图标.png */; };
+		13D21C9619F4095C0015AAF2 /* map_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7B19F4095C0015AAF2 /* map_start@2x.png */; };
+		13D21C9719F4095C0015AAF2 /* map_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7C19F4095C0015AAF2 /* map_end@2x.png */; };
+		13D21C9819F4095C0015AAF2 /* 地图路书关闭.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7D19F4095C0015AAF2 /* 地图路书关闭.png */; };
+		13D21C9919F4095C0015AAF2 /* 地图路书导入.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7E19F4095C0015AAF2 /* 地图路书导入.png */; };
+		13D21C9A19F4095C0015AAF2 /* tuoluo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7F19F4095C0015AAF2 /* tuoluo@2x.png */; };
+		13D21C9B19F4095C0015AAF2 /* 地图陀螺仪点击图标.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8019F4095C0015AAF2 /* 地图陀螺仪点击图标.png */; };
+		13D21C9C19F4095C0015AAF2 /* 坡度.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8119F4095C0015AAF2 /* 坡度.png */; };
+		13D21C9D19F4095C0015AAF2 /* 平均配速.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8219F4095C0015AAF2 /* 平均配速.png */; };
+		13D21C9E19F4095C0015AAF2 /* 开始时间.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8319F4095C0015AAF2 /* 开始时间.png */; };
+		13D21C9F19F4095C0015AAF2 /* 时速.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8419F4095C0015AAF2 /* 时速.png */; };
+		13D21CA019F4095C0015AAF2 /* 时间.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8519F4095C0015AAF2 /* 时间.png */; };
+		13D21CA119F4095C0015AAF2 /* 最高时速.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8619F4095C0015AAF2 /* 最高时速.png */; };
+		13D21CA219F4095C0015AAF2 /* 海拔.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8719F4095C0015AAF2 /* 海拔.png */; };
+		13D21CA319F4095C0015AAF2 /* 海拔上升.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8819F4095C0015AAF2 /* 海拔上升.png */; };
+		13D21CA419F4095C0015AAF2 /* 海拔下降.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8919F4095C0015AAF2 /* 海拔下降.png */; };
+		13D21CA519F4095C0015AAF2 /* 爬升率.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8A19F4095C0015AAF2 /* 爬升率.png */; };
+		13D21CA619F4095C0015AAF2 /* 配速.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8B19F4095C0015AAF2 /* 配速.png */; };
 		1929B3B419D41C3A0045B6B5 /* bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3AE19D41C3A0045B6B5 /* bike@2x.png */; };
 		1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3AF19D41C3A0045B6B5 /* find@2x.png */; };
 		1929B3B619D41C3A0045B6B5 /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3B019D41C3A0045B6B5 /* history@2x.png */; };
@@ -496,6 +523,33 @@
 		13AC6BA819D805D800E7FF7B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		13AC6BA919D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		13AC6BAA19D805D800E7FF7B /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		13D21C7119F4095C0015AAF2 /* gps图标1格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标1格.png"; sourceTree = "<group>"; };
+		13D21C7219F4095C0015AAF2 /* gps图标2格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标2格.png"; sourceTree = "<group>"; };
+		13D21C7319F4095C0015AAF2 /* gps图标3格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标3格.png"; sourceTree = "<group>"; };
+		13D21C7419F4095C0015AAF2 /* gps图标4格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标4格.png"; sourceTree = "<group>"; };
+		13D21C7519F4095C0015AAF2 /* 公里.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公里.png"; sourceTree = "<group>"; };
+		13D21C7619F4095C0015AAF2 /* 卡路里.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "卡路里.png"; sourceTree = "<group>"; };
+		13D21C7719F4095C0015AAF2 /* 右上角指南针.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "右上角指南针.png"; sourceTree = "<group>"; };
+		13D21C7819F4095C0015AAF2 /* 向上收缩.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "向上收缩.png"; sourceTree = "<group>"; };
+		13D21C7919F4095C0015AAF2 /* 向下收缩.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "向下收缩.png"; sourceTree = "<group>"; };
+		13D21C7A19F4095C0015AAF2 /* 地图位置图标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图位置图标.png"; sourceTree = "<group>"; };
+		13D21C7B19F4095C0015AAF2 /* map_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_start@2x.png"; sourceTree = "<group>"; };
+		13D21C7C19F4095C0015AAF2 /* map_end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_end@2x.png"; sourceTree = "<group>"; };
+		13D21C7D19F4095C0015AAF2 /* 地图路书关闭.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图路书关闭.png"; sourceTree = "<group>"; };
+		13D21C7E19F4095C0015AAF2 /* 地图路书导入.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图路书导入.png"; sourceTree = "<group>"; };
+		13D21C7F19F4095C0015AAF2 /* tuoluo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuoluo@2x.png"; sourceTree = "<group>"; };
+		13D21C8019F4095C0015AAF2 /* 地图陀螺仪点击图标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地图陀螺仪点击图标.png"; sourceTree = "<group>"; };
+		13D21C8119F4095C0015AAF2 /* 坡度.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "坡度.png"; sourceTree = "<group>"; };
+		13D21C8219F4095C0015AAF2 /* 平均配速.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "平均配速.png"; sourceTree = "<group>"; };
+		13D21C8319F4095C0015AAF2 /* 开始时间.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "开始时间.png"; sourceTree = "<group>"; };
+		13D21C8419F4095C0015AAF2 /* 时速.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时速.png"; sourceTree = "<group>"; };
+		13D21C8519F4095C0015AAF2 /* 时间.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间.png"; sourceTree = "<group>"; };
+		13D21C8619F4095C0015AAF2 /* 最高时速.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "最高时速.png"; sourceTree = "<group>"; };
+		13D21C8719F4095C0015AAF2 /* 海拔.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "海拔.png"; sourceTree = "<group>"; };
+		13D21C8819F4095C0015AAF2 /* 海拔上升.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "海拔上升.png"; sourceTree = "<group>"; };
+		13D21C8919F4095C0015AAF2 /* 海拔下降.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "海拔下降.png"; sourceTree = "<group>"; };
+		13D21C8A19F4095C0015AAF2 /* 爬升率.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "爬升率.png"; sourceTree = "<group>"; };
+		13D21C8B19F4095C0015AAF2 /* 配速.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "配速.png"; sourceTree = "<group>"; };
 		1929B3AE19D41C3A0045B6B5 /* bike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bike@2x.png"; sourceTree = "<group>"; };
 		1929B3AF19D41C3A0045B6B5 /* find@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find@2x.png"; sourceTree = "<group>"; };
 		1929B3B019D41C3A0045B6B5 /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
@@ -847,6 +901,7 @@
 		134BA68C19D940AA00282D7D /* MineImages */ = {
 			isa = PBXGroup;
 			children = (
+				13D21C7019F4095C0015AAF2 /* 1.运动图标 */,
 				137D9F9F19F25EC700B31100 /* 背景图片.png */,
 				137D9FA019F25EC700B31100 /* 分享好友 */,
 				137D9FA819F25EC700B31100 /* 更多页图标 */,
@@ -1118,6 +1173,40 @@
 				13AC6BAA19D805D800E7FF7B /* UMSocialQQHandler.h */,
 			);
 			path = TencentOpenAPI;
+			sourceTree = "<group>";
+		};
+		13D21C7019F4095C0015AAF2 /* 1.运动图标 */ = {
+			isa = PBXGroup;
+			children = (
+				13D21C7119F4095C0015AAF2 /* gps图标1格.png */,
+				13D21C7219F4095C0015AAF2 /* gps图标2格.png */,
+				13D21C7319F4095C0015AAF2 /* gps图标3格.png */,
+				13D21C7419F4095C0015AAF2 /* gps图标4格.png */,
+				13D21C7519F4095C0015AAF2 /* 公里.png */,
+				13D21C7619F4095C0015AAF2 /* 卡路里.png */,
+				13D21C7719F4095C0015AAF2 /* 右上角指南针.png */,
+				13D21C7819F4095C0015AAF2 /* 向上收缩.png */,
+				13D21C7919F4095C0015AAF2 /* 向下收缩.png */,
+				13D21C7A19F4095C0015AAF2 /* 地图位置图标.png */,
+				13D21C7B19F4095C0015AAF2 /* map_start@2x.png */,
+				13D21C7C19F4095C0015AAF2 /* map_end@2x.png */,
+				13D21C7D19F4095C0015AAF2 /* 地图路书关闭.png */,
+				13D21C7E19F4095C0015AAF2 /* 地图路书导入.png */,
+				13D21C7F19F4095C0015AAF2 /* tuoluo@2x.png */,
+				13D21C8019F4095C0015AAF2 /* 地图陀螺仪点击图标.png */,
+				13D21C8119F4095C0015AAF2 /* 坡度.png */,
+				13D21C8219F4095C0015AAF2 /* 平均配速.png */,
+				13D21C8319F4095C0015AAF2 /* 开始时间.png */,
+				13D21C8419F4095C0015AAF2 /* 时速.png */,
+				13D21C8519F4095C0015AAF2 /* 时间.png */,
+				13D21C8619F4095C0015AAF2 /* 最高时速.png */,
+				13D21C8719F4095C0015AAF2 /* 海拔.png */,
+				13D21C8819F4095C0015AAF2 /* 海拔上升.png */,
+				13D21C8919F4095C0015AAF2 /* 海拔下降.png */,
+				13D21C8A19F4095C0015AAF2 /* 爬升率.png */,
+				13D21C8B19F4095C0015AAF2 /* 配速.png */,
+			);
+			path = "1.运动图标";
 			sourceTree = "<group>";
 		};
 		1929B3AD19D41C0F0045B6B5 /* TabbarImages */ = {
@@ -2125,16 +2214,19 @@
 				19DAE99C19D311D300519D22 /* 20130502_selected.png in Resources */,
 				19DAEA4319D311D300519D22 /* qi@2x.png in Resources */,
 				134BA69019D940AA00282D7D /* backButton@2x.png in Resources */,
+				13D21C8F19F4095C0015AAF2 /* gps图标4格.png in Resources */,
 				19DAEA8419D311D300519D22 /* unselected_mine_image@2x.png in Resources */,
 				19DAEA2619D311D300519D22 /* wnacheng-button-bukedian-100_58@2x.png in Resources */,
 				19DAEA6919D311D300519D22 /* mirco_icon_20@2x.png in Resources */,
 				19DAE9CD19D311D300519D22 /* Expression_11@2x.png in Resources */,
 				19DAE9B919D311D300519D22 /* pinglun-zhuanfa-down-24_24@2x.png in Resources */,
 				19DAE99919D311D300519D22 /* duihao-doun-46_46@2x.png in Resources */,
+				13D21C9119F4095C0015AAF2 /* 卡路里.png in Resources */,
 				19DAE99819D311D300519D22 /* shurukuang_yonghumingi528_268@2x.png in Resources */,
 				19DAEA7219D311D300519D22 /* mirco_icon_9@2x.png in Resources */,
 				137D9FCA19F25FF500B31100 /* UserInfoRowCell.xib in Resources */,
 				19DAE9F819D311D300519D22 /* jieshou_button-100_60@2x.png in Resources */,
+				13D21C9C19F4095C0015AAF2 /* 坡度.png in Resources */,
 				19DAE9E419D311D300519D22 /* wancheng88_52@2x.png in Resources */,
 				19DAEA3E19D311D300519D22 /* traval@2x.png in Resources */,
 				19DAEA0719D311D300519D22 /* 06注册@.png in Resources */,
@@ -2151,6 +2243,7 @@
 				19DAEA4719D311D300519D22 /* tankuang@2x.png in Resources */,
 				19DAE98A19D311D300519D22 /* add_zan@2x.png in Resources */,
 				19DAEA1E19D311D300519D22 /* button1-down252_94@2x.png in Resources */,
+				13D21C9F19F4095C0015AAF2 /* 时速.png in Resources */,
 				19DAEA1D19D311D300519D22 /* xiangqing-xin-icon-24_24@2x.png in Resources */,
 				19DAEA8219D311D300519D22 /* unselected_found_image@2x.png in Resources */,
 				19DAE9C919D311D300519D22 /* loading640_1136@2x.png in Resources */,
@@ -2158,6 +2251,7 @@
 				19DAE98F19D311D300519D22 /* fbMetongxunlu@2x.png in Resources */,
 				19DAE9B719D311D300519D22 /* pinglun-xin-down-24_24@2x.png in Resources */,
 				19DAE9ED19D311D300519D22 /* touxiang-126_126@2x.png in Resources */,
+				13D21CA619F4095C0015AAF2 /* 配速.png in Resources */,
 				19DAE9AE19D311D300519D22 /* pinglun-bg1-down212_76@2x.jpg in Resources */,
 				137D9FDE19F272E500B31100 /* RoadManagerController.xib in Resources */,
 				134BA6A919D9581200282D7D /* mine_map@2x.png in Resources */,
@@ -2239,6 +2333,7 @@
 				19DAEA3D19D311D300519D22 /* shuxian@2x.png in Resources */,
 				19DAEA7A19D311D300519D22 /* classification_big8@2x.png in Resources */,
 				19DAE9E319D311D300519D22 /* Expression_9@2x.png in Resources */,
+				13D21C9519F4095C0015AAF2 /* 地图位置图标.png in Resources */,
 				19DAE98E19D311D300519D22 /* fbMefb@2x.png in Resources */,
 				1929B3B619D41C3A0045B6B5 /* history@2x.png in Resources */,
 				19DAE9D019D311D300519D22 /* Expression_14@2x.png in Resources */,
@@ -2251,6 +2346,7 @@
 				19DAE9D519D311D300519D22 /* Expression_19@2x.png in Resources */,
 				19DAEA2B19D311D300519D22 /* jiantou@2x.png in Resources */,
 				19DAE9B819D311D300519D22 /* pinglun-xin_up-24_24@2x.png in Resources */,
+				13D21C8E19F4095C0015AAF2 /* gps图标3格.png in Resources */,
 				19DAE98C19D311D300519D22 /* fbMeclock@2x.png in Resources */,
 				19DAEA5119D311D300519D22 /* take_photo_view_finder_image@2x.png in Resources */,
 				19DAE9B619D311D300519D22 /* pinglun-pinglun_up24_24@2x.png in Resources */,
@@ -2268,12 +2364,14 @@
 				19DAE9E719D311D300519D22 /* bg-212_216@2x.png in Resources */,
 				19DAEA4819D311D300519D22 /* zhiding@2x.png in Resources */,
 				19DAE9B519D311D300519D22 /* pinglun-pinglun-down-24_24@2x.png in Resources */,
+				13D21CA519F4095C0015AAF2 /* 爬升率.png in Resources */,
 				19DAEA4419D311D300519D22 /* new@2x.png in Resources */,
 				137D9FBC19F25EC700B31100 /* more_recommend@2x.png in Resources */,
 				E34451F319E7D6A400A3546A /* AMap.bundle in Resources */,
 				19DAEA3319D311D300519D22 /* jiazai@2x.png in Resources */,
 				19DAE81519D30C2D00519D22 /* LaunchScreen.xib in Resources */,
 				19DAE9A219D311D300519D22 /* fanhui-daohanglan-20_38@2x.png in Resources */,
+				13D21C9D19F4095C0015AAF2 /* 平均配速.png in Resources */,
 				19DAEA5C19D311D300519D22 /* chuangjian@2x.png in Resources */,
 				19DAEA6319D311D300519D22 /* mirco_icon_15@2x.png in Resources */,
 				19DAE9CB19D311D300519D22 /* Loginbutton_downs528_88@2x.png in Resources */,
@@ -2289,15 +2387,19 @@
 				19DAE98119D311D300519D22 /* add_flag@2x.png in Resources */,
 				19DAE9C119D311D300519D22 /* touxiang-150_150@2x.png in Resources */,
 				19DAEA6119D311D300519D22 /* mirco_icon_13@2x.png in Resources */,
+				13D21C8D19F4095C0015AAF2 /* gps图标2格.png in Resources */,
 				19DAEA0019D311D300519D22 /* tianjiahaoyou-36_36@2x.png in Resources */,
 				137D9FBE19F25EC700B31100 /* more_help@2x.png in Resources */,
 				137D9FB819F25EC700B31100 /* 朋友圈点击.png in Resources */,
 				19DAEA2A19D311D300519D22 /* +@2x.png in Resources */,
 				19DAE9CA19D311D300519D22 /* loading640_960@2x.png in Resources */,
+				13D21C9919F4095C0015AAF2 /* 地图路书导入.png in Resources */,
 				19DAE9FF19D311D300519D22 /* shortSearch486_60@2x.png in Resources */,
 				19DAEA3919D311D300519D22 /* gongyi@2x.png in Resources */,
 				19DAE9BD19D311D300519D22 /* pinglunkuang-640_208@2x.png in Resources */,
+				13D21C9019F4095C0015AAF2 /* 公里.png in Resources */,
 				137D9FB719F25EC700B31100 /* 新浪微博点击.png in Resources */,
+				13D21C9719F4095C0015AAF2 /* map_end@2x.png in Resources */,
 				19DAE9EB19D311D300519D22 /* haoyou--48_44-xy298_404@2x.png in Resources */,
 				13A2AA8919D7BAB3008D1B9F /* UMShareEditViewControlleriPad.xib in Resources */,
 				19DAEA7019D311D300519D22 /* mirco_icon_7@2x.png in Resources */,
@@ -2307,6 +2409,7 @@
 				137D9FC319F25EC700B31100 /* +@2x.png in Resources */,
 				19DAE9E619D311D300519D22 /* yaoqing-button-100_60@2x.png in Resources */,
 				19DAEA3619D311D300519D22 /* yiliao@2x.png in Resources */,
+				13D21C9219F4095C0015AAF2 /* 右上角指南针.png in Resources */,
 				19DAE9F919D311D300519D22 /* tianjia_button-100_60@2x.png in Resources */,
 				134BA6AC19D9581200282D7D /* mine_share@2x.png in Resources */,
 				19DAE9AD19D311D300519D22 /* Picture_default_image@2x.png in Resources */,
@@ -2337,10 +2440,13 @@
 				19DAE98019D311D300519D22 /* add_fenlei@2x.png in Resources */,
 				134BA68F19D940AA00282D7D /* arrow_right@2x.png in Resources */,
 				19DAE9F419D311D300519D22 /* biaoqing-icon-56_56@2x.png in Resources */,
+				13D21C9619F4095C0015AAF2 /* map_start@2x.png in Resources */,
+				13D21C9A19F4095C0015AAF2 /* tuoluo@2x.png in Resources */,
 				19DAE9E919D311D300519D22 /* fankui-46_46-xy300_618@2x.png in Resources */,
 				19DAEA6B19D311D300519D22 /* mirco_icon_2@2x.png in Resources */,
 				19DAEA7B19D311D300519D22 /* selected_fbcircle_image@2x.png in Resources */,
 				19DAE98319D311D300519D22 /* add_login@2x.png in Resources */,
+				13D21C9319F4095C0015AAF2 /* 向上收缩.png in Resources */,
 				19DAEA7719D311D300519D22 /* classification_big5@2x.png in Resources */,
 				1929B3B819D41C3A0045B6B5 /* qixinging@2x.png in Resources */,
 				19DAE99519D311D300519D22 /* denglu_logo144_130@2x.png in Resources */,
@@ -2351,6 +2457,7 @@
 				1929B3B719D41C3A0045B6B5 /* mine@2x.png in Resources */,
 				19DAEA0219D311D300519D22 /* tuijianhaoyou-94_94@2x.png in Resources */,
 				19DAE9DB19D311D300519D22 /* Expression_24@2x.png in Resources */,
+				13D21C9B19F4095C0015AAF2 /* 地图陀螺仪点击图标.png in Resources */,
 				19DAEA2319D311D300519D22 /* bg-10_88@2x.png in Resources */,
 				137D9FCF19F261B500B31100 /* UserInfoHeaderCell.xib in Resources */,
 				19DAE9D819D311D300519D22 /* Expression_21@2x.png in Resources */,
@@ -2366,6 +2473,7 @@
 				19DAE97F19D311D300519D22 /* add_beijing@2x.png in Resources */,
 				137D9FB419F25EC700B31100 /* 背景图片.png in Resources */,
 				19DAEA4C19D311D300519D22 /* sendPosts_camera@2x.png in Resources */,
+				13D21CA119F4095C0015AAF2 /* 最高时速.png in Resources */,
 				19DAEA0519D311D300519D22 /* shurukuang-504_164@2x.png in Resources */,
 				19DAEA5E19D311D300519D22 /* mirco_icon_10@2x.png in Resources */,
 				19DAE9CE19D311D300519D22 /* Expression_12@2x.png in Resources */,
@@ -2391,7 +2499,9 @@
 				19DAE99D19D311D300519D22 /* baocun40_48@2x.png in Resources */,
 				E34C791219E813A000A5F4DE /* userPosition@2x.png in Resources */,
 				19DAE99619D311D300519D22 /* Loginbutton528_88@2x.png in Resources */,
+				13D21CA419F4095C0015AAF2 /* 海拔下降.png in Resources */,
 				19DAEA7D19D311D300519D22 /* selected_message_icon@2x.png in Resources */,
+				13D21C9E19F4095C0015AAF2 /* 开始时间.png in Resources */,
 				137D9FBD19F25EC700B31100 /* 右侧向右箭头.png in Resources */,
 				19DAE9CF19D311D300519D22 /* Expression_13@2x.png in Resources */,
 				13AC6BAD19D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -2407,19 +2517,25 @@
 				13A2AA8B19D7BAB3008D1B9F /* UMSnsAccountViewController.xib in Resources */,
 				19DAE9E219D311D300519D22 /* Expression_8@2x.png in Resources */,
 				19DAE98B19D311D300519D22 /* fbMeclear@2x.png in Resources */,
+				13D21C9419F4095C0015AAF2 /* 向下收缩.png in Resources */,
+				13D21C9819F4095C0015AAF2 /* 地图路书关闭.png in Resources */,
 				19DAEA3819D311D300519D22 /* gaizhuang@2x.png in Resources */,
+				13D21CA019F4095C0015AAF2 /* 时间.png in Resources */,
 				19DAEA5619D311D300519D22 /* BBS-kuang-up@2x.png in Resources */,
 				19DAEA6519D311D300519D22 /* mirco_icon_17@2x.png in Resources */,
 				19DAE9A119D311D300519D22 /* fabu-40_40@2x.png in Resources */,
 				19DAE9F519D311D300519D22 /* dingwei-icon-30_36@2x.png in Resources */,
 				137D9FBF19F25EC700B31100 /* more_update@2x.png in Resources */,
 				19DAE9C519D311D300519D22 /* xiangqing-pinglun-icon-24_24@2x.png in Resources */,
+				13D21CA219F4095C0015AAF2 /* 海拔.png in Resources */,
 				19DAEA4019D311D300519D22 /* join@2x.png in Resources */,
 				19DAEA7C19D311D300519D22 /* selected_found_image@2x.png in Resources */,
+				13D21C8C19F4095C0015AAF2 /* gps图标1格.png in Resources */,
 				19DAEA3419D311D300519D22 /* photo@2x.png in Resources */,
 				19DAEA7319D311D300519D22 /* classification_big1@2x.png in Resources */,
 				19DAE98419D311D300519D22 /* add_quxiao@2x.png in Resources */,
 				19DAEA3A19D311D300519D22 /* huwai@2x.png in Resources */,
+				13D21CA319F4095C0015AAF2 /* 海拔上升.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
