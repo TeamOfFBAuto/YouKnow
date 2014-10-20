@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+
+#import "DataBase.h"
+
 
 
 /* 使用高德地图API，请注册Key，注册地址：http://lbs.amap.com/console/key
@@ -23,10 +27,15 @@ const static NSString *APIKey_MAP = @"0b92a81f23cc5905c30dcb4c39da609d";
 
 
 
+///把经纬度添加到本地数据库里
++(void)addCllocationToDataBase:(CLLocationCoordinate2D)theLocation;
 
 
-//向数据库里添加经纬度
-//-(void)addCllocationToSqlite:(CLLocationCoordinate2D*)theLocation;
+
+///从数据库里查找数据
++(void)findNowAllLocation;
+
+
 
 
 @end
