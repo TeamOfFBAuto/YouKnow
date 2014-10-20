@@ -129,6 +129,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.aTitleLabel.text = [titles_arr objectAtIndex:indexPath.row];
         
+        NSString *head = [LTools cacheForKey:USER_HEAD_IMAGEURL];
+        [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:nil];
+        
         return cell;
         
     }
@@ -144,7 +147,10 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.aTitleLabel.text = [titles_arr objectAtIndex:indexPath.row];
-    
+    if (indexPath.row == 1) {
+        NSString *nick = [LTools cacheForKey:USER_NAME];
+        cell.aDetailLabel.text = nick;
+    }
     return cell;
     
 }

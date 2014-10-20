@@ -20,8 +20,6 @@
 
 #import "AppDelegate.h"
 
-#define POLYLINE_CACHE @"MAPolyline"
-
 const NSString *NavigationViewControllerStartTitle       = @"起点";
 const NSString *NavigationViewControllerDestinationTitle = @"终点";
 const NSString *NavigationViewControllerMiddleTitle      = @"途经点";
@@ -57,6 +55,12 @@ enum{
     MAPointAnnotation *startAnnotation;//起点
     MAPointAnnotation *detinationAnnotation;//终点
     NSMutableArray *middleAnntations;//途经点
+    
+    BOOL save_finish;//是否保存成功
+    BOOL nav_walk_finish;//生成是否成功
+    
+    NSString *startName;//起点名字
+    NSString *endName;//终点名字
 }
 
 @property (nonatomic, strong) AMapRoute *route;
@@ -102,11 +106,40 @@ enum{
     polines_arr = [NSMutableArray array];//所有的规划线
     middleAnntations = [NSMutableArray array];//途经点 Annotation
     point_index = 0;
+    save_finish = NO;
+    nav_walk_finish = NO;
     
-    NSArray *arr = [LTools cacheForKey:POLYLINE_CACHE];
+    [self initHistoryMap];
+    
+    UIImageView *centerImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"road_select"]];
+    centerImage.center = self.view.center;
+    [self.view addSubview:centerImage];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 历史轨迹
+
+- (void)initHistoryMap
+{
+    
+//    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
+//    int index = [road_ids intValue];
+//    
+//    NSString *key = [NSString stringWithFormat:@"road_%d",index + 1];
+//    [LTools cache:dic_arr ForKey:key];
+
+    NSString *key = [NSString stringWithFormat:@"road_%d",self.road_index];
+    
+    
+    NSArray *arr = [LTools cacheForKey:key];
     
     NSMutableArray *pp = [NSMutableArray array];//所有的规划线
-
+    
     double start_x = 0.0;
     double start_y = 0.0;
     double end_x = 0.0;
@@ -166,20 +199,13 @@ enum{
         
         [self.mapView addOverlays:pp];
         /* 缩放地图使其适应polylines的展示. */
-//        self.mapView.visibleMapRect = [CommonUtility mapRectForOverlays:pp];
+        //        self.mapView.visibleMapRect = [CommonUtility mapRectForOverlays:pp];
         
         [self.mapView setCenterCoordinate:self.startCoordinate animated:YES];
-         
+        
     }
 
-    
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - Initialization
 
@@ -280,6 +306,18 @@ enum{
 //    LineDashPolyline
 //    MAPolyline
     
+    if (nav_walk_finish == NO) {
+        
+        [LTools showMBProgressWithText:@"请先制作路书" addToView:self.view];
+        return;
+    }
+    
+    if (save_finish == YES) {
+        
+        [LTools showMBProgressWithText:@"路书保存成功" addToView:self.view];
+        return;
+    }
+    
     ((AppDelegate *)[UIApplication sharedApplication].delegate).mapLines = polines_arr;
     
     NSMutableArray *polyline_arr = [NSMutableArray array];
@@ -333,9 +371,17 @@ enum{
     
     NSArray *dic_arr = [MapCacheDashClass keyValuesArrayWithObjectArray:polyline_arr];
     
-    NSLog(@"dic_arr %@",dic_arr);
+    save_finish = YES;
     
-    [LTools cache:dic_arr ForKey:POLYLINE_CACHE];
+    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
+    int index = [road_ids intValue];
+    
+    NSString *key = [NSString stringWithFormat:@"road_%d",index + 1];
+    [LTools cache:dic_arr ForKey:key];
+    
+    [LTools cache:[NSString stringWithFormat:@"%d",index + 1] ForKey:ROAD_IDS];
+    
+    [LTools showMBProgressWithText:@"路书保存成功" addToView:self.view];
     
 }
 
@@ -345,6 +391,8 @@ enum{
         case 0:
         {
             NSLog(@"取消");
+            
+            nav_walk_finish = NO;
             
             longPress.enabled = NO;
             
@@ -531,45 +579,6 @@ enum{
         
         
         [self searchWithOrigin:origin destination:des];
-        
-        
-//        AMapNavigationSearchRequest *navi = [[AMapNavigationSearchRequest alloc] init];
-//        navi.searchType       = AMapSearchType_NaviDrive;
-//        navi.requireExtension = YES;
-//        /* 出发点. */
-//        
-//        if (point_index == 0) {
-//            
-//            navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
-//                                                   longitude:self.startCoordinate.longitude];
-//            
-//            AMapGeoPoint *destination = [middle_points_arr objectAtIndex:0];
-//            navi.destination = destination;
-//            
-//            point_index = 1;
-//            
-//        }else
-//        {
-//         
-//            NSLog(@"middle_index -->%@  %d",middle_points_arr,middle_index);
-//            
-//            AMapGeoPoint *origin = [middle_points_arr objectAtIndex:0];
-//            navi.origin = origin;
-//            
-//            if (middle_index == middle_points_arr.count) {
-//                navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
-//                                                            longitude:self.destinationCoordinate.longitude];
-//            }else
-//            {
-//                AMapGeoPoint *destination = [middle_points_arr objectAtIndex:0];
-//                navi.destination = destination;
-//            }
-//        }
-//        
-//        NSLog(@"---->%d origin:%@ des:%@",middle_index,navi.origin,navi.destination);
-//        
-//        [self.search AMapNavigationSearch:navi];
-        
     }
 }
 
@@ -695,20 +704,22 @@ enum{
 
 #pragma mark - AMapSearchDelegate
 
-///* 逆地理编码回调. */
-//- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
-//{
-//    if (response.regeocode != nil)
-//    {
+/* 逆地理编码回调. */
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    if (response.regeocode != nil)
+    {
 //        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(request.location.latitude, request.location.longitude);
 //        ReGeocodeAnnotation *reGeocodeAnnotation = [[ReGeocodeAnnotation alloc] initWithCoordinate:coordinate
 //                                                                                         reGeocode:response.regeocode];
 //        
 //        [self.mapView addAnnotation:reGeocodeAnnotation];
 //        [self.mapView selectAnnotation:reGeocodeAnnotation animated:YES];
-//        
-//    }
-//}
+        
+        
+        
+    }
+}
 
 /*!
  @brief 路径规划查询回调函数
@@ -748,11 +759,8 @@ enum{
             [self searchWithOrigin:origin destination:detin];
         }else
         {
-            
+            nav_walk_finish = YES;
         }
-        
-        MAMapRect rect =  self.mapView.visibleMapRect;
-        NSLog(@" self.mapView.visibleMapRect %f %f %f %f", rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
         
     }
 }
