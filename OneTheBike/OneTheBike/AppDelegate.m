@@ -69,8 +69,14 @@
     
     //开始按钮的tabbarItem
     NSString *_star_p_str;
+    
+    //定位开始画线点击返回 修改开始的按钮为停止
+    UINavigationController * _navc3;
+    //是否正在定位画线
+    BOOL _isStart;
 }
 @end
+
 
 @implementation AppDelegate
 
@@ -94,9 +100,9 @@
     
     UINavigationController * navc2 = [[UINavigationController alloc] initWithRootViewController:microBBSVC];
     
-    UINavigationController * navc3 = [[UINavigationController alloc] initWithRootViewController:messageVC];
+    _navc3 = [[UINavigationController alloc] initWithRootViewController:messageVC];
     
-    _star_p_str = [NSString stringWithFormat:@"%@",navc3];
+    _star_p_str = [NSString stringWithFormat:@"%@",_navc3];
     
     NSLog(@"%@",_star_p_str);
     
@@ -109,7 +115,7 @@
     
     navc2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"历史" image:[UIImage imageNamed:@"history.png"] selectedImage:[UIImage imageNamed:@"history.png"]];
     
-    navc3.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"开始" image:[UIImage imageNamed:@"start.png"] selectedImage:[UIImage imageNamed:@"start.png"]];
+    _navc3.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"开始" image:[UIImage imageNamed:@"start.png"] selectedImage:[UIImage imageNamed:@"start.png"]];
     
     navc4.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:[UIImage imageNamed:@"find.png"] selectedImage:[UIImage imageNamed:@"find.png"]];
     
@@ -118,7 +124,7 @@
     
     UITabBarController * tabbarVC = [[UITabBarController alloc] init];
     
-    tabbarVC.viewControllers = [NSArray arrayWithObjects:navc1,navc2,navc3,navc4,navc5,nil];
+    tabbarVC.viewControllers = [NSArray arrayWithObjects:navc1,navc2,_navc3,navc4,navc5,nil];
     tabbarVC.delegate = self;
     
     tabbarVC.selectedIndex = 0;
@@ -157,10 +163,28 @@
     
     self.window.rootViewController = tabbarVC;
     
+    
+    
+    
+    //开始定位画线点击返回按钮 tabbar的开始按钮变成停止
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(startOrStop) name:@"gkeepstarting" object:nil];
+    
+    _isStart = NO;
+    
     return YES;
 }
 
 
+
+
+#pragma mark - 开始/停止
+-(void)startOrStop{
+    
+    [_navc3.tabBarItem setImage:nil];
+    [_navc3.tabBarItem setTitle:@"骑行中"];
+    _isStart = YES;
+    
+}
 
 #pragma mark - tabar按钮即将点击的代理方法 返回no不会跳转vc
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
@@ -168,9 +192,14 @@
     NSString *_vc_p_str = [NSString stringWithFormat:@"%@",viewController];
     if ([_vc_p_str isEqualToString:_star_p_str]) {
         tabBarController.selectedIndex = 0;
-        UIAlertView *al  = [[UIAlertView alloc]initWithTitle:@"是否开始运动" message:nil delegate:self cancelButtonTitle:@"撤销" otherButtonTitles:@"确定", nil];
-        al.tag = 3;
-        [al show];
+        if (!_isStart) {
+            UIAlertView *al  = [[UIAlertView alloc]initWithTitle:@"是否开始运动" message:nil delegate:self cancelButtonTitle:@"撤销" otherButtonTitles:@"确定", nil];
+            al.tag = 3;
+            [al show];
+        }else{
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"GToGstar" object:nil];
+        }
+        
         
         return NO;
     }
@@ -183,15 +212,18 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSLog(@"%d",buttonIndex);
-    
-    if (alertView.tag == 3) {//开始按钮的alert
-        if (buttonIndex == 1) {//点击的是确定
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"GToGstar" object:nil];
-        }else if (buttonIndex == 0){//取消
+    if (!_isStart) {//还没有开始运动
+        if (alertView.tag == 3) {//开始按钮的alert
+            if (buttonIndex == 1) {//点击的是确定
+                _isStart = YES;
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"GToGstar" object:nil];
+            }else if (buttonIndex == 0){//取消
+                
+            }
             
         }
-        
     }
+    
 }
 
 

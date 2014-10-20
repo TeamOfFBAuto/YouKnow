@@ -15,12 +15,19 @@
 #define FRAME_IPHONE5_UPVIEW_UP CGRectMake(0, -200, 320, 260)
 #define FRAME_IPHONE5_UPVIEW_DOWN CGRectMake(0, 20, 320, 260)
 
-@interface GStartViewController ()
+@interface GStartViewController ()<UIActionSheetDelegate>
 {
     UIView *_upview;//上面的运动信息view
     BOOL _isUpViewShow;//当前是否显示运动信息view
     UIButton *_upOrDownBtn;//上下收放btn
     UIView *_downView;//运动开始时下方的view
+    
+    UILabel *_fangxiangLabel;//方向
+    UILabel *_gspeedLabel;//速度
+    UILabel *_gstartimeLabel;//时间
+    UILabel *_gongliLabel;//公里
+    UILabel *_ghaibaLabel;//海拔
+    UILabel *_gbpmLabel;//bpm
 }
 @property (nonatomic,strong)NSMutableArray *cllocation2dsArray;
 @property (nonatomic, strong) NSMutableArray *overlays;
@@ -46,60 +53,13 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    //接受通知隐藏tabbar
+#pragma mark - 接受通知隐藏tabbar
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(iWantToStart) name:@"GToGstar" object:nil];
-    
-    
-    //地图上面的view
-    _isUpViewShow = YES;
-    _upview = [[UIView alloc]initWithFrame:FRAME_IPHONE5_UPVIEW_DOWN];
-    _upview.backgroundColor = [UIColor whiteColor];
-    
-    //上下按钮
-    _upOrDownBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _upOrDownBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [_upOrDownBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_upOrDownBtn setTitle:@"up" forState:UIControlStateNormal];
-    [_upOrDownBtn setFrame:CGRectMake(140, 230, 40, 42)];
-    [_upOrDownBtn setBackgroundColor:[UIColor orangeColor]];
-    [_upOrDownBtn addTarget:self action:@selector(gShou) forControlEvents:UIControlEventTouchUpInside];
-    
-    for (int i = 0; i<6; i++) {
-        UIView *view = [[UIView alloc]init];
-        if (i == 0) {//上面灰条
-            view.frame = CGRectMake(0, 0, 320, 35);
-            view.backgroundColor = RGBCOLOR(105, 105, 105);
-        }else if (i == 1){//公里/时
-            view.frame = CGRectMake(0, 35, 320, 75);
-            view.backgroundColor = [UIColor orangeColor];
-            
-        }else if (i == 2){//计时
-            view.frame = CGRectMake(0, 110, 160, 75);
-            view.backgroundColor = [UIColor blueColor];
-        }else if (i == 3){//公里
-            view.frame = CGRectMake(160, 110, 160, 75);
-            view.backgroundColor = [UIColor redColor];
-        }else if (i == 4){//海拔
-            view.frame = CGRectMake(0, 185, 160, 75);
-            view.backgroundColor = [UIColor greenColor];
-        }else if (i == 5){//bpm
-            view.frame = CGRectMake(160, 185, 160, 75);
-            view.backgroundColor = [UIColor yellowColor];
-        }
-        
-        
-        [_upview addSubview:view];
-    }
-    
-    [_upview addSubview:_upOrDownBtn];
-    [self.view addSubview:_upview];
-    
     
     
     
     //地图相关初始化
-    [self initMapViewWithFrame:CGRectMake(0, CGRectGetMaxY(_upview.frame), 320, 568 - _upview.frame.size.height)];
+    [self initMapViewWithFrame:FRAME_IPHONE5_MAP_DOWN];
 //    [self initObservers];
     [self initSearch];
 //    [self modeAction];
@@ -120,31 +80,191 @@
     [self configureRoutes];//划线
     
     
+
+    
+    //地图上面的view
+    _isUpViewShow = YES;
+    _upview = [[UIView alloc]initWithFrame:FRAME_IPHONE5_UPVIEW_DOWN];
+    _upview.backgroundColor = [UIColor whiteColor];
+    
+    //上下按钮
+    _upOrDownBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _upOrDownBtn.layer.cornerRadius = 15;
+    _upOrDownBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_upOrDownBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_upOrDownBtn setTitle:@"up" forState:UIControlStateNormal];
+    [_upOrDownBtn setFrame:CGRectMake(145, 240, 30, 30)];
+    //    [_upOrDownBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [_upOrDownBtn setImage:[UIImage imageNamed:@"gbtnup.png"] forState:UIControlStateNormal];
+    [_upOrDownBtn addTarget:self action:@selector(gShou) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    //图标数组
+    NSArray *titleImageArr = @[[UIImage imageNamed:@"gspeed.png"],[UIImage imageNamed:@"gstartime.png"],[UIImage imageNamed:@"gongli.png"],[UIImage imageNamed:@"ghaiba.png"],[UIImage imageNamed:@"gbpm.png"]];
+    
+    for (int i = 0; i<6; i++) {
+        //自定义view
+        UIView *customView = [[UIView alloc]initWithFrame:CGRectZero];
+        customView.backgroundColor = [UIColor whiteColor];
+        //分割线
+        UIView *line = [[UIView alloc]initWithFrame:CGRectZero];
+        UIView *line1 = [[UIView alloc]initWithFrame:CGRectZero];
+        line.backgroundColor = RGBCOLOR(222, 222, 222);
+        line1.backgroundColor = RGBCOLOR(222, 222, 222);
+        //图标
+        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectZero];
+        if (i>0) {
+            [imv setImage:titleImageArr[i-1]];
+        }
+        
+        //内容label
+        
+        
+        //添加视图
+        [customView addSubview:line];
+        [customView addSubview:line1];
+        [customView addSubview:imv];
+        
+        if (i == 0) {//上面灰条
+            customView.frame = CGRectMake(0, 0, 320, 35);
+            customView.backgroundColor = RGBCOLOR(105, 105, 105);
+            _fangxiangLabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 5, 50, 30)];
+            _fangxiangLabel.font = [UIFont systemFontOfSize:20];
+            _fangxiangLabel.textColor = [UIColor whiteColor];
+            _fangxiangLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_fangxiangLabel];
+        }else if (i == 1){//公里/时
+            customView.frame = CGRectMake(0, 35, 320, 75);
+            line.frame = CGRectMake(0, 74, 320, 1);
+            imv.frame = CGRectMake(80, 25, 30, 30);
+            
+            //内容label
+            _gspeedLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 90, 35)];
+            _gspeedLabel.font = [UIFont systemFontOfSize:25];
+//            _gspeedLabel.backgroundColor = [UIColor orangeColor];
+            _gspeedLabel.text = @"0.00";
+            _gspeedLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_gspeedLabel];
+            
+            //计量单位
+            UILabel *danweiLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_gspeedLabel.frame)+5, _gspeedLabel.frame.origin.y+5, 70, 30)];
+            danweiLabel.text = @"公里/时";
+            [customView addSubview:danweiLabel];
+            
+        }else if (i == 2){//计时
+            customView.frame = CGRectMake(0, 110, 160, 75);
+            line.frame = CGRectMake(0, 74, 160, 1);
+            line1.frame = CGRectMake(159, 0, 1, 75);
+            imv.frame = CGRectMake(10, 25, 30, 30);
+            
+            //内容label
+            _gstartimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 100, 35)];
+            _gstartimeLabel.text = @"00:00:00";
+            _gstartimeLabel.font = [UIFont systemFontOfSize:25];
+            _gstartimeLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_gstartimeLabel];
+            
+            
+            
+        }else if (i == 3){//公里
+            customView.frame = CGRectMake(160, 110, 160, 75);
+            line.frame = CGRectMake(0, 74, 160, 1);
+            imv.frame = CGRectMake(10, 25, 30, 30);
+            
+            //内容label
+            _gongliLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 70, 35)];
+            _gongliLabel.font = [UIFont systemFontOfSize:25];
+            _gongliLabel.textAlignment = NSTextAlignmentCenter;
+            _gongliLabel.text = @"0.00";
+            [customView addSubview:_gongliLabel];
+            
+            //计量单位
+            UILabel *danweiLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_gongliLabel.frame)+5, imv.frame.origin.y, 40, 30)];
+            danweiLabel.text = @"公里";
+            [customView addSubview:danweiLabel];
+            
+        }else if (i == 4){//海拔
+            customView.frame = CGRectMake(0, 185, 160, 75);
+            line.frame = CGRectMake(0, 74, 160, 1);
+            line1.frame = CGRectMake(159, 0, 1, 75);
+            imv.frame = CGRectMake(10, 25, 30, 30);
+            
+            _ghaibaLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 50, 35)];
+            _ghaibaLabel.text = @"00";
+            _ghaibaLabel.font = [UIFont systemFontOfSize:25];
+            _ghaibaLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_ghaibaLabel];
+            
+            UILabel *danweiLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_ghaibaLabel.frame)+5, imv.frame.origin.y, 40, 30)];
+            danweiLabel.text = @"米";
+            [customView addSubview:danweiLabel];
+            
+            
+        }else if (i == 5){//bpm
+            customView.frame = CGRectMake(160, 185, 160, 75);
+            line.frame = CGRectMake(0, 74, 160, 1);
+            imv.frame = CGRectMake(10, 25, 30, 30);
+            
+            _gbpmLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 50, 35)];
+            _gbpmLabel.text = @"00";
+            _gbpmLabel.font = [UIFont systemFontOfSize:25];
+            _gbpmLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_gbpmLabel];
+            
+            UILabel *danweiLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_gbpmLabel.frame)+5, imv.frame.origin.y, 40, 30)];
+            danweiLabel.text = @"bpm";
+            [customView addSubview:danweiLabel];
+        }
+        
+        
+        [_upview addSubview:customView];
+    }
+    
+    [_upview addSubview:_upOrDownBtn];
+    [self.view addSubview:_upview];
+    
+    
+    
     
     
     //开始运动时下方view
     _downView = [[UIView alloc]initWithFrame:CGRectMake(0, 568-50, 320, 50)];
-    _downView.backgroundColor = [UIColor purpleColor];
+    _downView.backgroundColor = [UIColor whiteColor];
     _downView.hidden = YES;
     
+    
+    //返回按钮
+    UIButton *returnBackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [returnBackBtn setFrame:CGRectMake(0, 0, 80, 50)];
+    [returnBackBtn setImage:[UIImage imageNamed:@"gback160x98.png"] forState:UIControlStateNormal];
+    [returnBackBtn addTarget:self action:@selector(gGoBack) forControlEvents:UIControlEventTouchUpInside];
+    [_downView addSubview:returnBackBtn];
+    
     //完成按钮
-    UIButton *redFinishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 130, 50)];
-    redFinishBtn.backgroundColor = RGBCOLOR(220, 134, 127);
-    [redFinishBtn setTitle:@"完成" forState:UIControlStateNormal];
+    UIButton *redFinishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [redFinishBtn setFrame:CGRectMake(80, 0, 80, 50)];
+
+    [redFinishBtn setImage:[UIImage imageNamed:@"gfinish.png"] forState:UIControlStateNormal];
+    
     [redFinishBtn addTarget:self action:@selector(gFinish) forControlEvents:UIControlEventTouchUpInside];
     [_downView addSubview:redFinishBtn];
     
     //暂停按钮
-    UIButton *greenTimeOutBtn = [[UIButton alloc]initWithFrame:CGRectMake(130, 0, 140, 50)];
-    greenTimeOutBtn.backgroundColor = RGBCOLOR(174, 221, 177);
-    [greenTimeOutBtn setTitle:@"暂停" forState:UIControlStateNormal];
-    [greenTimeOutBtn addTarget:self action:@selector(goToOffLineMapTable) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *greenTimeOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [greenTimeOutBtn setFrame:CGRectMake(160, 0, 80, 50)];
+    
+    [greenTimeOutBtn setImage:[UIImage imageNamed:@"gtimeout.png"] forState:UIControlStateNormal];
+//    [greenTimeOutBtn addTarget:self action:@selector(goToOffLineMapTable) forControlEvents:UIControlEventTouchUpInside];
     [_downView addSubview:greenTimeOutBtn];
     
     //拍照按钮
-    UIView *takePhotoView = [[UIView alloc]initWithFrame:CGRectMake(260, 0, 60, 50)];
-    takePhotoView.backgroundColor = [UIColor grayColor];
-    [_downView addSubview:takePhotoView];
+    UIButton *takePhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [takePhotoBtn setFrame:CGRectMake(240, 0, 80, 50)];
+    [takePhotoBtn setImage:[UIImage imageNamed:@"gtakephoto.png"] forState:UIControlStateNormal];
+    [takePhotoBtn addTarget:self action:@selector(goToOffLineMapTable) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_downView addSubview:takePhotoBtn];
     
     [self.view addSubview:_downView];
     
@@ -154,6 +274,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - 返回按钮
+-(void)gGoBack{
+    _downView.hidden = YES;
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"gkeepstarting" object:nil];
+    [self hideTabBar:NO];
 }
 
 
@@ -173,8 +301,8 @@
 
 -(void)gFinish{
     self.mapView.showsUserLocation = NO;
-    _downView.hidden = YES;
-    [self hideTabBar:NO];
+    UIActionSheet *actionsheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"放弃记录" otherButtonTitles:@"保存分享", nil];
+    [actionsheet showInView:self.view];
 }
 
 
@@ -183,7 +311,7 @@
     
     if (_isUpViewShow) {
         _isUpViewShow = NO;
-        [_upOrDownBtn setTitle:@"down" forState:UIControlStateNormal];
+        [_upOrDownBtn setImage:[UIImage imageNamed:@"gbtndown.png"] forState:UIControlStateNormal];
         [UIView animateWithDuration:0.2 animations:^{
             _upview.frame = FRAME_IPHONE5_UPVIEW_UP;
             [self.mapView setFrame:FRAME_IPHONE5_MAP_UP];
@@ -192,7 +320,7 @@
         }];
     }else{
         _isUpViewShow = YES;
-        [_upOrDownBtn setTitle:@"up" forState:UIControlStateNormal];
+        [_upOrDownBtn setImage:[UIImage imageNamed:@"gbtnup.png"] forState:UIControlStateNormal];
         [UIView animateWithDuration:0.2 animations:^{
             _upview.frame = FRAME_IPHONE5_UPVIEW_DOWN;
             [self.mapView setFrame:FRAME_IPHONE5_MAP_DOWN];
@@ -463,12 +591,15 @@
             headingStr = [GMAPI switchMagneticHeadingWithDoubel:heading];
         }
         NSLog(@"%@",headingStr);
+        _fangxiangLabel.text = headingStr;
     }
     
     //海拔
     CLLocation *currentLocation = userLocation.location;
     if (currentLocation) {
         NSLog(@"海拔---%f",currentLocation.altitude);
+        int alti = (int)currentLocation.altitude;
+        _ghaibaLabel.text = [NSString stringWithFormat:@"%d",alti];
     }
     
     //自定义定位箭头方向
@@ -500,8 +631,9 @@
     // check the move distance
     if (_points.count > 0) {
         CLLocationDistance distance = [location distanceFromLocation:_currentLocation];
-        if (distance < 5)
+        if (distance < 5 || distance > 10){
             return;
+        }
     }
     
     if (_points == nil) {
@@ -525,7 +657,7 @@
     
 }
 
-
+#pragma mark - 画线
 - (void)configureRoutes
 {
     
