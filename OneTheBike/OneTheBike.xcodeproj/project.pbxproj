@@ -390,6 +390,21 @@
 		19DAEA8419D311D300519D22 /* unselected_mine_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DAE97D19D311D300519D22 /* unselected_mine_image@2x.png */; };
 		19DAEA8519D311D300519D22 /* unselected_small_bbs_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DAE97E19D311D300519D22 /* unselected_small_bbs_icon@2x.png */; };
 		4105558E38114451B6944629 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D95CE1BE85487DBDF28F53 /* libPods.a */; };
+		56442DF419F5468B00BAE678 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56442DF119F5468B00BAE678 /* CycleScrollView.m */; };
+		56442DF519F5468B00BAE678 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56442DF319F5468B00BAE678 /* NSTimer+Addition.m */; };
+		56442DF819F5497200BAE678 /* 2222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56442DF619F5497200BAE678 /* 2222.jpg */; };
+		56442DF919F5497200BAE678 /* 1111.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56442DF719F5497200BAE678 /* 1111.jpg */; };
+		56442DFC19F552BB00BAE678 /* right_jiantou_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56442DFB19F552BB00BAE678 /* right_jiantou_image@2x.png */; };
+		56442DFF19F5533500BAE678 /* find_huodong_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56442DFD19F5533500BAE678 /* find_huodong_image@2x.png */; };
+		56442E0019F5533500BAE678 /* find_paihang_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56442DFE19F5533500BAE678 /* find_paihang_image@2x.png */; };
+		56442E0319F5557100BAE678 /* FindActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56442E0219F5557100BAE678 /* FindActivityViewController.m */; };
+		56442E0719F5567300BAE678 /* ActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56442E0519F5567300BAE678 /* ActivityTableViewCell.m */; };
+		56442E0819F5567300BAE678 /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56442E0619F5567300BAE678 /* ActivityTableViewCell.xib */; };
+		56442E0B19F55A7200BAE678 /* FindRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56442E0A19F55A7200BAE678 /* FindRankingViewController.m */; };
+		56442E0E19F55AD300BAE678 /* RankingFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56442E0D19F55AD300BAE678 /* RankingFunctionView.m */; };
+		56442E1019F55B1E00BAE678 /* RankingFunctionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56442E0F19F55B1E00BAE678 /* RankingFunctionView.xib */; };
+		56442E1419F5621700BAE678 /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56442E1219F5621700BAE678 /* RankingTableViewCell.m */; };
+		56442E1519F5621700BAE678 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56442E1319F5621700BAE678 /* RankingTableViewCell.xib */; };
 		E32A591D19ED04CE00142E3A /* ReGeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */; };
 		E34451F019E7D67000A3546A /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EE19E7D67000A3546A /* MAMapKit.framework */; };
 		E34451F119E7D67000A3546A /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EF19E7D67000A3546A /* AMapSearchKit.framework */; };
@@ -848,6 +863,28 @@
 		19DAE97E19D311D300519D22 /* unselected_small_bbs_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselected_small_bbs_icon@2x.png"; sourceTree = "<group>"; };
 		19DAEA8719D313F500519D22 /* PublicDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicDefine.h; sourceTree = "<group>"; };
 		19DAEA8819D3151100519D22 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		56442DF019F5468B00BAE678 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
+		56442DF119F5468B00BAE678 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
+		56442DF219F5468B00BAE678 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
+		56442DF319F5468B00BAE678 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
+		56442DF619F5497200BAE678 /* 2222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2222.jpg; sourceTree = "<group>"; };
+		56442DF719F5497200BAE678 /* 1111.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1111.jpg; sourceTree = "<group>"; };
+		56442DFB19F552BB00BAE678 /* right_jiantou_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_jiantou_image@2x.png"; sourceTree = "<group>"; };
+		56442DFD19F5533500BAE678 /* find_huodong_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find_huodong_image@2x.png"; sourceTree = "<group>"; };
+		56442DFE19F5533500BAE678 /* find_paihang_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find_paihang_image@2x.png"; sourceTree = "<group>"; };
+		56442E0119F5557100BAE678 /* FindActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindActivityViewController.h; sourceTree = "<group>"; };
+		56442E0219F5557100BAE678 /* FindActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindActivityViewController.m; sourceTree = "<group>"; };
+		56442E0419F5567300BAE678 /* ActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewCell.h; sourceTree = "<group>"; };
+		56442E0519F5567300BAE678 /* ActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewCell.m; sourceTree = "<group>"; };
+		56442E0619F5567300BAE678 /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
+		56442E0919F55A7200BAE678 /* FindRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindRankingViewController.h; sourceTree = "<group>"; };
+		56442E0A19F55A7200BAE678 /* FindRankingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindRankingViewController.m; sourceTree = "<group>"; };
+		56442E0C19F55AD300BAE678 /* RankingFunctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingFunctionView.h; sourceTree = "<group>"; };
+		56442E0D19F55AD300BAE678 /* RankingFunctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingFunctionView.m; sourceTree = "<group>"; };
+		56442E0F19F55B1E00BAE678 /* RankingFunctionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingFunctionView.xib; sourceTree = "<group>"; };
+		56442E1119F5621700BAE678 /* RankingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingTableViewCell.h; sourceTree = "<group>"; };
+		56442E1219F5621700BAE678 /* RankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingTableViewCell.m; sourceTree = "<group>"; };
+		56442E1319F5621700BAE678 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		E32A591B19ED04CE00142E3A /* ReGeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReGeocodeAnnotation.h; sourceTree = "<group>"; };
 		E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReGeocodeAnnotation.m; sourceTree = "<group>"; };
 		E34451EE19E7D67000A3546A /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
@@ -1239,6 +1276,8 @@
 		19DAE7F519D30C2D00519D22 = {
 			isa = PBXGroup;
 			children = (
+				56442DF619F5497200BAE678 /* 2222.jpg */,
+				56442DF719F5497200BAE678 /* 1111.jpg */,
 				137D9F8519F2507900B31100 /* PersonalApi */,
 				13A2AA1519D7B90B008D1B9F /* HelperTools */,
 				19DAEA8619D3133600519D22 /* PublicAPI */,
@@ -1331,6 +1370,10 @@
 			children = (
 				19DAE83F19D30F3100519D22 /* FindViewController.h */,
 				19DAE84019D30F3100519D22 /* FindViewController.m */,
+				56442E0119F5557100BAE678 /* FindActivityViewController.h */,
+				56442E0219F5557100BAE678 /* FindActivityViewController.m */,
+				56442E0919F55A7200BAE678 /* FindRankingViewController.h */,
+				56442E0A19F55A7200BAE678 /* FindRankingViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1345,6 +1388,15 @@
 		19DAE82E19D30EEE00519D22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				56442E0419F5567300BAE678 /* ActivityTableViewCell.h */,
+				56442E0519F5567300BAE678 /* ActivityTableViewCell.m */,
+				56442E0619F5567300BAE678 /* ActivityTableViewCell.xib */,
+				56442E0C19F55AD300BAE678 /* RankingFunctionView.h */,
+				56442E0D19F55AD300BAE678 /* RankingFunctionView.m */,
+				56442E0F19F55B1E00BAE678 /* RankingFunctionView.xib */,
+				56442E1119F5621700BAE678 /* RankingTableViewCell.h */,
+				56442E1219F5621700BAE678 /* RankingTableViewCell.m */,
+				56442E1319F5621700BAE678 /* RankingTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1451,6 +1503,7 @@
 		19DAE84E19D311D300519D22 /* PublicImages */ = {
 			isa = PBXGroup;
 			children = (
+				56442DFA19F5528700BAE678 /* BikeFindImages */,
 				134BA68C19D940AA00282D7D /* MineImages */,
 				1929B3AD19D41C0F0045B6B5 /* TabbarImages */,
 				19DAE84F19D311D300519D22 /* FBAddImages */,
@@ -2051,10 +2104,32 @@
 		19DAEA8619D3133600519D22 /* PublicAPI */ = {
 			isa = PBXGroup;
 			children = (
+				56442DEF19F5467500BAE678 /* 滚动视图 */,
 				19DAEA8719D313F500519D22 /* PublicDefine.h */,
 				19DAEA8819D3151100519D22 /* PrefixHeader.pch */,
 			);
 			path = PublicAPI;
+			sourceTree = "<group>";
+		};
+		56442DEF19F5467500BAE678 /* 滚动视图 */ = {
+			isa = PBXGroup;
+			children = (
+				56442DF019F5468B00BAE678 /* CycleScrollView.h */,
+				56442DF119F5468B00BAE678 /* CycleScrollView.m */,
+				56442DF219F5468B00BAE678 /* NSTimer+Addition.h */,
+				56442DF319F5468B00BAE678 /* NSTimer+Addition.m */,
+			);
+			path = "滚动视图";
+			sourceTree = "<group>";
+		};
+		56442DFA19F5528700BAE678 /* BikeFindImages */ = {
+			isa = PBXGroup;
+			children = (
+				56442DFB19F552BB00BAE678 /* right_jiantou_image@2x.png */,
+				56442DFD19F5533500BAE678 /* find_huodong_image@2x.png */,
+				56442DFE19F5533500BAE678 /* find_paihang_image@2x.png */,
+			);
+			path = BikeFindImages;
 			sourceTree = "<group>";
 		};
 		DE494CBACDAA40678A4AE966 /* Frameworks */ = {
@@ -2237,6 +2312,7 @@
 				19DAE99C19D311D300519D22 /* 20130502_selected.png in Resources */,
 				19DAEA4319D311D300519D22 /* qi@2x.png in Resources */,
 				134BA69019D940AA00282D7D /* backButton@2x.png in Resources */,
+				56442DF919F5497200BAE678 /* 1111.jpg in Resources */,
 				13D21C8F19F4095C0015AAF2 /* gps图标4格.png in Resources */,
 				19DAEA8419D311D300519D22 /* unselected_mine_image@2x.png in Resources */,
 				19DAEA2619D311D300519D22 /* wnacheng-button-bukedian-100_58@2x.png in Resources */,
@@ -2339,6 +2415,7 @@
 				19DAEA1A19D311D300519D22 /* xiangqing-biaoqing-icon-56_56@2x.png in Resources */,
 				19DAE98519D311D300519D22 /* add_sanjiao@2x.png in Resources */,
 				19DAEA2419D311D300519D22 /* duihao-doun-46_46@2x.png in Resources */,
+				56442E1019F55B1E00BAE678 /* RankingFunctionView.xib in Resources */,
 				19DAEA6719D311D300519D22 /* mirco_icon_19@2x.png in Resources */,
 				19DAE99F19D311D300519D22 /* biaoqing-56_56@2x.png in Resources */,
 				19DAE9B319D311D300519D22 /* pinglun-bg2-up-216_76@2x.png in Resources */,
@@ -2421,6 +2498,7 @@
 				19DAEA3919D311D300519D22 /* gongyi@2x.png in Resources */,
 				19DAE9BD19D311D300519D22 /* pinglunkuang-640_208@2x.png in Resources */,
 				13D21C9019F4095C0015AAF2 /* 公里.png in Resources */,
+				56442DFF19F5533500BAE678 /* find_huodong_image@2x.png in Resources */,
 				137D9FB719F25EC700B31100 /* 新浪微博点击.png in Resources */,
 				13D21C9719F4095C0015AAF2 /* map_end@2x.png in Resources */,
 				19DAE9EB19D311D300519D22 /* haoyou--48_44-xy298_404@2x.png in Resources */,
@@ -2462,12 +2540,15 @@
 				19DAEA4219D311D300519D22 /* jing@2x.png in Resources */,
 				19DAEA3119D311D300519D22 /* fly@2x.png in Resources */,
 				19DAE98019D311D300519D22 /* add_fenlei@2x.png in Resources */,
+				56442E0819F5567300BAE678 /* ActivityTableViewCell.xib in Resources */,
 				134BA68F19D940AA00282D7D /* arrow_right@2x.png in Resources */,
 				19DAE9F419D311D300519D22 /* biaoqing-icon-56_56@2x.png in Resources */,
+				56442E0019F5533500BAE678 /* find_paihang_image@2x.png in Resources */,
 				13D21C9619F4095C0015AAF2 /* map_start@2x.png in Resources */,
 				13D21C9A19F4095C0015AAF2 /* tuoluo@2x.png in Resources */,
 				19DAE9E919D311D300519D22 /* fankui-46_46-xy300_618@2x.png in Resources */,
 				19DAEA6B19D311D300519D22 /* mirco_icon_2@2x.png in Resources */,
+				56442DF819F5497200BAE678 /* 2222.jpg in Resources */,
 				19DAEA7B19D311D300519D22 /* selected_fbcircle_image@2x.png in Resources */,
 				19DAE98319D311D300519D22 /* add_login@2x.png in Resources */,
 				13D21C9319F4095C0015AAF2 /* 向上收缩.png in Resources */,
@@ -2488,6 +2569,7 @@
 				134BA69B19D9462900282D7D /* MineCellOne.xib in Resources */,
 				19DAEA4619D311D300519D22 /* dele@2x.png in Resources */,
 				19DAE9C019D311D300519D22 /* tixiang-touxiang-44_44@2x.png in Resources */,
+				56442E1519F5621700BAE678 /* RankingTableViewCell.xib in Resources */,
 				137D9FB519F25EC700B31100 /* 分享QQ好友.png in Resources */,
 				19DAE9F019D311D300519D22 /* geren-button532_80@2x.png in Resources */,
 				19DAEA2C19D311D300519D22 /* jiantou_down@2x.png in Resources */,
@@ -2546,6 +2628,7 @@
 				19DAEA3819D311D300519D22 /* gaizhuang@2x.png in Resources */,
 				13D21CA019F4095C0015AAF2 /* 时间.png in Resources */,
 				19DAEA5619D311D300519D22 /* BBS-kuang-up@2x.png in Resources */,
+				56442DFC19F552BB00BAE678 /* right_jiantou_image@2x.png in Resources */,
 				19DAEA6519D311D300519D22 /* mirco_icon_17@2x.png in Resources */,
 				19DAE9A119D311D300519D22 /* fabu-40_40@2x.png in Resources */,
 				19DAE9F519D311D300519D22 /* dingwei-icon-30_36@2x.png in Resources */,
@@ -2612,10 +2695,12 @@
 			files = (
 				134BA69F19D948E800282D7D /* MineCellTwo.m in Sources */,
 				E3C3B8B919F2927E00C8AE5A /* GMapStarViewController.m in Sources */,
+				56442E0E19F55AD300BAE678 /* RankingFunctionView.m in Sources */,
 				19DAE80A19D30C2D00519D22 /* OneTheBike.xcdatamodeld in Sources */,
 				137D9FD819F26E7000B31100 /* MoreViewController.m in Sources */,
 				19DAE80719D30C2D00519D22 /* AppDelegate.m in Sources */,
 				137D9FCE19F261B500B31100 /* UserInfoHeaderCell.m in Sources */,
+				56442DF419F5468B00BAE678 /* CycleScrollView.m in Sources */,
 				137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */,
 				137D9F9019F250A900B31100 /* UIColor+ConvertColor.m in Sources */,
 				137D9FDD19F272E500B31100 /* RoadManagerController.m in Sources */,
@@ -2625,8 +2710,11 @@
 				19DAE84119D30F3100519D22 /* FindViewController.m in Sources */,
 				137D9FC919F25FF500B31100 /* UserInfoRowCell.m in Sources */,
 				13A2AAA019D7BF18008D1B9F /* MineViewController.m in Sources */,
+				56442E0319F5557100BAE678 /* FindActivityViewController.m in Sources */,
 				19DAE84D19D30F8200519D22 /* StartViewController.m in Sources */,
 				E32A591D19ED04CE00142E3A /* ReGeocodeAnnotation.m in Sources */,
+				56442E1419F5621700BAE678 /* RankingTableViewCell.m in Sources */,
+				56442E0719F5567300BAE678 /* ActivityTableViewCell.m in Sources */,
 				137D9FE719F290F800B31100 /* CommonUtility.m in Sources */,
 				E3BB362319E7C0C20096131D /* GMAPI.m in Sources */,
 				134BA69A19D9462900282D7D /* MineCellOne.m in Sources */,
@@ -2635,7 +2723,9 @@
 				137D9F9419F25BB800B31100 /* FBBaseViewController.m in Sources */,
 				19DAE84719D30F6000519D22 /* MainViewController.m in Sources */,
 				E3C3B8A219F25AB200C8AE5A /* DataBase.m in Sources */,
+				56442E0B19F55A7200BAE678 /* FindRankingViewController.m in Sources */,
 				134BA6A419D94D1A00282D7D /* UIColor+ConvertColor.m in Sources */,
+				56442DF519F5468B00BAE678 /* NSTimer+Addition.m in Sources */,
 				19DAE80419D30C2D00519D22 /* main.m in Sources */,
 				19DAE84419D30F4E00519D22 /* HistoryViewController.m in Sources */,
 				137D9FEB19F2916600B31100 /* LineDashPolyline.m in Sources */,
@@ -2729,7 +2819,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2765,7 +2855,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2799,7 +2889,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 			};
@@ -2833,7 +2923,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 			};
