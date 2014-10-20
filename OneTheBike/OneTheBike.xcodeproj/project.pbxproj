@@ -395,8 +395,6 @@
 		E34451F119E7D67000A3546A /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EF19E7D67000A3546A /* AMapSearchKit.framework */; };
 		E34451F319E7D6A400A3546A /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E34451F219E7D6A400A3546A /* AMap.bundle */; };
 		E34C791219E813A000A5F4DE /* userPosition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E34C791119E813A000A5F4DE /* userPosition@2x.png */; };
-		E385CC8519F45E0800D821B0 /* GgstarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E385CC8319F45E0800D821B0 /* GgstarViewController.m */; };
-		E385CC8619F45E0800D821B0 /* GgstarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E385CC8419F45E0800D821B0 /* GgstarViewController.xib */; };
 		E3BB362319E7C0C20096131D /* GMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BB362219E7C0C20096131D /* GMAPI.m */; };
 		E3BB362719E7C1B20096131D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362619E7C1B20096131D /* QuartzCore.framework */; };
 		E3BB362919E7C1BE0096131D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362819E7C1BE0096131D /* CoreLocation.framework */; };
@@ -406,6 +404,8 @@
 		E3C3B8A419F25E6900C8AE5A /* GMLOCATION.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E3C3B8A319F25E6900C8AE5A /* GMLOCATION.sqlite */; };
 		E3C3B8B519F2802E00C8AE5A /* GStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C3B8B219F2802E00C8AE5A /* GStartViewController.m */; };
 		E3C3B8B919F2927E00C8AE5A /* GMapStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */; };
+		E3DD35C019F4850800FCB51F /* GOffLineMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DD35BF19F4850800FCB51F /* GOffLineMapViewController.m */; };
+		E3DD35C319F485C400FCB51F /* MAHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DD35C219F485C400FCB51F /* MAHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -854,9 +854,6 @@
 		E34451EF19E7D67000A3546A /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		E34451F219E7D6A400A3546A /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
 		E34C791119E813A000A5F4DE /* userPosition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userPosition@2x.png"; sourceTree = "<group>"; };
-		E385CC8219F45E0800D821B0 /* GgstarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GgstarViewController.h; sourceTree = "<group>"; };
-		E385CC8319F45E0800D821B0 /* GgstarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GgstarViewController.m; sourceTree = "<group>"; };
-		E385CC8419F45E0800D821B0 /* GgstarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GgstarViewController.xib; sourceTree = "<group>"; };
 		E3BB362119E7C0C20096131D /* GMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAPI.h; sourceTree = "<group>"; };
 		E3BB362219E7C0C20096131D /* GMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMAPI.m; sourceTree = "<group>"; };
 		E3BB362619E7C1B20096131D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -870,6 +867,10 @@
 		E3C3B8B219F2802E00C8AE5A /* GStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GStartViewController.m; sourceTree = "<group>"; };
 		E3C3B8B719F2927E00C8AE5A /* GMapStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMapStarViewController.h; sourceTree = "<group>"; };
 		E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMapStarViewController.m; sourceTree = "<group>"; };
+		E3DD35BE19F4850800FCB51F /* GOffLineMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOffLineMapViewController.h; sourceTree = "<group>"; };
+		E3DD35BF19F4850800FCB51F /* GOffLineMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOffLineMapViewController.m; sourceTree = "<group>"; };
+		E3DD35C119F485C400FCB51F /* MAHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAHeaderView.h; sourceTree = "<group>"; };
+		E3DD35C219F485C400FCB51F /* MAHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2079,6 +2080,8 @@
 		E34C791019E813A000A5F4DE /* GModel */ = {
 			isa = PBXGroup;
 			children = (
+				E3DD35C119F485C400FCB51F /* MAHeaderView.h */,
+				E3DD35C219F485C400FCB51F /* MAHeaderView.m */,
 				E32A591B19ED04CE00142E3A /* ReGeocodeAnnotation.h */,
 				E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */,
 				E34C791119E813A000A5F4DE /* userPosition@2x.png */,
@@ -2099,12 +2102,9 @@
 		E3BB362019E7C0B60096131D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-
 				E3C3B8A319F25E6900C8AE5A /* GMLOCATION.sqlite */,
-
 				137D9FE819F2915100B31100 /* Models */,
 				137D9FE419F290F800B31100 /* Utility */,
-
 				E34451F219E7D6A400A3546A /* AMap.bundle */,
 				E34451EE19E7D67000A3546A /* MAMapKit.framework */,
 				E34451EF19E7D67000A3546A /* AMapSearchKit.framework */,
@@ -2123,9 +2123,8 @@
 				E3C3B8B219F2802E00C8AE5A /* GStartViewController.m */,
 				E3C3B8B719F2927E00C8AE5A /* GMapStarViewController.h */,
 				E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */,
-				E385CC8219F45E0800D821B0 /* GgstarViewController.h */,
-				E385CC8319F45E0800D821B0 /* GgstarViewController.m */,
-				E385CC8419F45E0800D821B0 /* GgstarViewController.xib */,
+				E3DD35BE19F4850800FCB51F /* GOffLineMapViewController.h */,
+				E3DD35BF19F4850800FCB51F /* GOffLineMapViewController.m */,
 			);
 			path = GControllers;
 			sourceTree = "<group>";
@@ -2519,7 +2518,6 @@
 				19DAE99719D311D300519D22 /* shurukuang_shouji528_268@2x.png in Resources */,
 				19DAE9FB19D311D300519D22 /* yaoqing_button-100_60@2x.png in Resources */,
 				19DAE9CC19D311D300519D22 /* Expression_10@2x.png in Resources */,
-				E385CC8619F45E0800D821B0 /* GgstarViewController.xib in Resources */,
 				19DAE9DF19D311D300519D22 /* Expression_5@2x.png in Resources */,
 				19DAE9B419D311D300519D22 /* pinglun-icon-66_24@2x.png in Resources */,
 				19DAE99D19D311D300519D22 /* baocun40_48@2x.png in Resources */,
@@ -2613,7 +2611,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				134BA69F19D948E800282D7D /* MineCellTwo.m in Sources */,
-				E385CC8519F45E0800D821B0 /* GgstarViewController.m in Sources */,
 				E3C3B8B919F2927E00C8AE5A /* GMapStarViewController.m in Sources */,
 				19DAE80A19D30C2D00519D22 /* OneTheBike.xcdatamodeld in Sources */,
 				137D9FD819F26E7000B31100 /* MoreViewController.m in Sources */,
@@ -2622,6 +2619,7 @@
 				137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */,
 				137D9F9019F250A900B31100 /* UIColor+ConvertColor.m in Sources */,
 				137D9FDD19F272E500B31100 /* RoadManagerController.m in Sources */,
+				E3DD35C319F485C400FCB51F /* MAHeaderView.m in Sources */,
 				137D9F9D19F25E0600B31100 /* UserInfoViewController.m in Sources */,
 				137D9F8919F2508200B31100 /* LTools.m in Sources */,
 				19DAE84119D30F3100519D22 /* FindViewController.m in Sources */,
@@ -2634,11 +2632,7 @@
 				134BA69A19D9462900282D7D /* MineCellOne.m in Sources */,
 				E3C3B8B519F2802E00C8AE5A /* GStartViewController.m in Sources */,
 				19DAE80D19D30C2D00519D22 /* ViewController.m in Sources */,
-
-
-				E3D9895019EBAB1E00EBD980 /* GStartViewController.m in Sources */,
 				137D9F9419F25BB800B31100 /* FBBaseViewController.m in Sources */,
-
 				19DAE84719D30F6000519D22 /* MainViewController.m in Sources */,
 				E3C3B8A219F25AB200C8AE5A /* DataBase.m in Sources */,
 				134BA6A419D94D1A00282D7D /* UIColor+ConvertColor.m in Sources */,
@@ -2646,6 +2640,7 @@
 				19DAE84419D30F4E00519D22 /* HistoryViewController.m in Sources */,
 				137D9FEB19F2916600B31100 /* LineDashPolyline.m in Sources */,
 				137D9FE219F27A6500B31100 /* RoadProduceController.m in Sources */,
+				E3DD35C019F4850800FCB51F /* GOffLineMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2784,8 +2779,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HelperTools/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
@@ -2804,7 +2799,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 			};
@@ -2818,8 +2813,8 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HelperTools/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
@@ -2838,7 +2833,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 			};

@@ -8,6 +8,7 @@
 
 #import "GStartViewController.h"
 #import "ReGeocodeAnnotation.h"
+#import "GOffLineMapViewController.h"
 
 #define FRAME_IPHONE5_MAP_UP CGRectMake(0, 60, 320, 568-60-20)
 #define FRAME_IPHONE5_MAP_DOWN CGRectMake(0, 260+20, 320, 568-260-20)
@@ -137,7 +138,7 @@
     UIButton *greenTimeOutBtn = [[UIButton alloc]initWithFrame:CGRectMake(130, 0, 140, 50)];
     greenTimeOutBtn.backgroundColor = RGBCOLOR(174, 221, 177);
     [greenTimeOutBtn setTitle:@"暂停" forState:UIControlStateNormal];
-    
+    [greenTimeOutBtn addTarget:self action:@selector(goToOffLineMapTable) forControlEvents:UIControlEventTouchUpInside];
     [_downView addSubview:greenTimeOutBtn];
     
     //拍照按钮
@@ -156,6 +157,19 @@
 }
 
 
+#pragma mark - 跳转到离线地图下载
+-(void)goToOffLineMapTable{
+    GOffLineMapViewController *detailViewController = [[GOffLineMapViewController alloc] init];
+    detailViewController.mapView = self.mapView;
+    
+    detailViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    
+    [self presentModalViewController:navi animated:YES];
+}
+
+#pragma mark - 行走完成
 
 -(void)gFinish{
     self.mapView.showsUserLocation = NO;
@@ -164,7 +178,7 @@
 }
 
 
-//地图变大 upview上移动
+#pragma mark - 地图变大 upview上移动
 -(void)gShou{
     
     if (_isUpViewShow) {
@@ -193,7 +207,7 @@
 
 
 
-//返回按钮
+#pragma mark - 地图相关内存管理 点击返回按钮vc释放的时候走
 - (void)returnAction
 {
     [self clearMapView];
@@ -251,7 +265,7 @@
 
 
 
-//==============长按手势start=============
+#pragma mark - ==============长按手势start=============
 - (void)initGestureRecognizer//初始化长按手势
 {
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
@@ -308,18 +322,14 @@
 
 
 
-
-
-
-
-//==============长按手势end=============
+#pragma mark - //==============长按手势end=============
 
 
 
 
 
 
-//定位=============================
+#pragma mark - 定位=============================
 #pragma mark - MAMapViewDelegate
 
 - (void)mapView:(MAMapView *)mapView didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated{
@@ -433,7 +443,7 @@
 
 
 
-//定位的回调方法
+#pragma mark - 定位的回调方法
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
 {
     
@@ -493,7 +503,7 @@
     
     
     
-    //划线=======================
+#pragma mark -  划线=======================
     
     NSLog(@"lat ====== %f",userLocation.location.coordinate.latitude);
     NSLog(@"lon ====== %f",userLocation.location.coordinate.longitude);
@@ -603,7 +613,6 @@
 
 
 #pragma mark - 隐藏或显示tabbar
-
 - (void)hideTabBar:(BOOL) hidden{
     
     [UIView beginAnimations:nil context:NULL];
