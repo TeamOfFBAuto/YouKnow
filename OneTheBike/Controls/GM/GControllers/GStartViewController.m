@@ -366,17 +366,18 @@
     MAOverlayPathView* overlayView = nil;
     
     
-    if (overlay == mapView.userLocationAccuracyCircle)// 自定义定位精度对应的MACircleView
-    {
-        MACircleView *accuracyCircleView = [[MACircleView alloc] initWithCircle:overlay];
-        
-        accuracyCircleView.lineWidth    = 2.f;
-        accuracyCircleView.strokeColor  = [UIColor lightGrayColor];
-        accuracyCircleView.fillColor    = [UIColor colorWithRed:1 green:0 blue:0 alpha:.3];
-        
-        return accuracyCircleView;
-        
-    }else if ([overlay isKindOfClass:[MAPolylineView class]]){
+//    if (overlay == mapView.userLocationAccuracyCircle)// 自定义定位精度对应的MACircleView
+//    {
+//        MACircleView *accuracyCircleView = [[MACircleView alloc] initWithCircle:overlay];
+//        
+//        accuracyCircleView.lineWidth    = 2.f;
+//        accuracyCircleView.strokeColor  = [UIColor lightGrayColor];
+//        accuracyCircleView.fillColor    = [UIColor colorWithRed:1 green:0 blue:0 alpha:.3];
+//        
+//        return accuracyCircleView;
+//        
+//    }
+    if (overlay == self.routeLine){
         
         //if we have not yet created an overlay view for this overlay, create it now.
         if (self.routeLineView) {
@@ -482,27 +483,6 @@
     }
     
     
-    
-    
-    
-    
-//    _time_s++;//每5秒记录一下
-//    NSInteger cllCount = _time_s/5;
-//    
-//    if (_time_s %5 == 0) {
-//        
-//        //把经纬度存到数据库里
-//        [GMAPI addCllocationToDataBase:userLocation.location.coordinate];
-//        
-//    }
-    
-    
-    //        MAPolyline *arrowPolyline = [MAPolyline polylineWithCoordinates:dian count:cllCount];
-    //        [self.overlays insertObject:arrowPolyline atIndex:OverlayViewControllerOverlayTypeArrowPolyline];
-    
-    
-    
-    
 #pragma mark -  划线=======================
     
     NSLog(@"lat ====== %f",userLocation.location.coordinate.latitude);
@@ -550,9 +530,8 @@
 {
     
     
-    
-    MAMapPoint northEastPoint = MAMapPointMake(0, 0);
-    MAMapPoint southWestPoint = MAMapPointMake(0, 0);
+    MAMapPoint northEastPoint = MAMapPointMake(0.0f, 0.0f);
+    MAMapPoint southWestPoint = MAMapPointMake(0.0f, 0.0f);
     
     MAMapPoint* pointArray = malloc(sizeof(CLLocationCoordinate2D) * _points.count);
     
@@ -564,7 +543,8 @@
 
         // create our coordinate and add it to the correct spot in the array
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-        MAMapPoint point = MAMapPointMake(coordinate.latitude, coordinate.longitude);
+//        MAMapPoint point = MAMapPointMake(coordinate.latitude, coordinate.longitude);
+        MAMapPoint point = MAMapPointForCoordinate(coordinate);
 
         // if it is the first point, just use them, since we have nothing to compare to yet.
         if (idx == 0) {
