@@ -21,5 +21,8 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 
+@property(nonatomic,retain)NSArray *mapLines;
+
+
 @end
 

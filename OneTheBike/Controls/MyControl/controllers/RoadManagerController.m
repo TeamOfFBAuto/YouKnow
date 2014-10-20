@@ -65,9 +65,6 @@
     UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 16)];
     header.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = header;
-    
-    titles_arr = @[@"分享关联",@"给个好评",@"联系轨记",@"反馈意见",@"版本更新",@"帮助说明"];
-    imagesArray = @[@"mine_road",@"more_good",@"more_contact",@"more_recommend",@"more_update",@"more_help"];
 }
 
 - (void)didReceiveMemoryWarning {

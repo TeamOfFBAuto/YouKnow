@@ -19,6 +19,7 @@
 #import "UserInfoViewController.h"
 #import "MoreViewController.h"
 #import "RoadManagerController.h"
+#import "UMSocialLoginViewController.h"
 
 @interface MineViewController ()<UIActionSheetDelegate>
 {
@@ -165,6 +166,17 @@
     }else if (indexPath.row == 1)
     {
         RoadManagerController *userInfo = [[RoadManagerController alloc]init];
+        userInfo.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userInfo animated:YES];
+        
+    }else if (indexPath.row == 2)
+    {
+        NSLog(@"离线地图");
+        
+    }else if (indexPath.row == 3)
+    {
+        NSLog(@"分享好友");
+        UMSocialLoginViewController *userInfo = [[UMSocialLoginViewController alloc]init];
         userInfo.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:userInfo animated:YES];
         

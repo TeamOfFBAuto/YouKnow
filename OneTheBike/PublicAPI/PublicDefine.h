@@ -27,6 +27,8 @@ alpha:(a)]
 #define USER_HEAD_IMAGEURL @"head_image_url"//
 
 
+#define APP_ID @"605673005"
+
 #define BACK_IMAGE [UIImage imageNamed:@"backButton"]
 #define NAVIGATION_IMAGE [UIImage imageNamed:@"navigationBack"]
 

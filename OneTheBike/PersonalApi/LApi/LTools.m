@@ -92,11 +92,11 @@
 
 #pragma mark - 版本更新信息
 
-+ (void)versionForAppid:(NSString *)appid Block:(void(^)(BOOL isNewVersion,NSString *updateUrl,NSString *updateContent))version//是否有新版本、新版本更新下地址
+- (void)versionForAppid:(NSString *)appid Block:(void(^)(BOOL isNewVersion,NSString *updateUrl,NSString *updateContent))version//是否有新版本、新版本更新下地址
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    //test FBLife 605673005
+    //test FBLife 605673005 fbauto 904576362
     NSString *url = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",appid];
     
     NSString *newStr = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -112,21 +112,40 @@
         if (data.length > 0) {
             
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:Nil];
+            
+            NSArray *results = [dic objectForKey:@"results"];
+            
+            if (results.count == 0) {
+                version(NO,@"no",@"没有更新");
+                return ;
+            }
+            
             //appStore 版本
-            NSString *newVersion = [[[dic objectForKey:@"results"] objectAtIndex:0]objectForKey:@"version"];
-            NSString *updateContent = [[[dic objectForKey:@"results"] objectAtIndex:0]objectForKey:@"releaseNotes"];
+            NSString *newVersion = [[results objectAtIndex:0]objectForKey:@"version"];
+            
+            NSString *updateContent = [[results objectAtIndex:0]objectForKey:@"releaseNotes"];
             //本地版本
             NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
             NSString *currentVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-            NSString *downUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/us/app/id%@?mt=8",appid];
+            _downUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/us/app/id%@?mt=8",appid];
+            
+            //            _downUrl = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/crash-drive-2/id765099329?mt=12"];
             BOOL isNew = NO;
             if (newVersion && ([newVersion compare:currentVersion] == 1)) {
                 isNew = YES;
             }
-            version(isNew,downUrl,updateContent);
+            version(isNew,_downUrl,updateContent);
+            
+            if (isNew) {
+                
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"版本更新" message:updateContent delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"立即更新", nil];
+                [alert show];
+            }
             
         }else
         {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
             NSLog(@"data 为空 connectionError %@",connectionError);
             
             NSString *errInfo = @"网络有问题,请检查网络";
@@ -151,6 +170,15 @@
         
     }];
 
+}
+#pragma mark - UIAlertDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:_downUrl]];
+    }
 }
 
 #pragma mark - NSURLConnectionDataDelegate
