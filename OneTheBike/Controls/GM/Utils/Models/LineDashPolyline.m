@@ -36,5 +36,4 @@
     return [_polyline boundingMapRect];
 }
 
-
 @end

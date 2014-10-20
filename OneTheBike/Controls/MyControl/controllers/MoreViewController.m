@@ -72,7 +72,34 @@
 
 #pragma mark - 视图创建
 
+#pragma mark - 事件处理
 
+//去app页面评价
+
+- (void)gotoAppStorePageRaisal{
+    
+    NSString *str = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",APP_ID];
+    
+    str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/us/app/id%@?mt=8",APP_ID];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
+
+- (void)gotoTelephone
+{
+    NSString *num = [[NSString alloc] initWithFormat:@"tel://%@",@"18612389982"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]];
+}
+
+- (void)gotoCheckVersion
+{
+    //版本更新
+    
+    [[LTools shareInstance]versionForAppid:APP_ID Block:^(BOOL isNewVersion, NSString *updateUrl, NSString *updateContent) {
+        
+        NSLog(@"updateContent %@ %@",updateUrl,updateContent);
+        
+    }];
+}
 
 #pragma mark - delegate
 
@@ -85,7 +112,36 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    switch (indexPath.row) {
+        case 0:
+        {
+            [self gotoAppStorePageRaisal];
+        }
+            break;
+        case 1:
+        {
+            [self gotoTelephone];
+        }
+            break;
+        case 2:
+        {
+            NSLog(@"反馈意见");
+        }
+            break;
+        case 3:
+        {
+            [self gotoCheckVersion];
+        }
+            break;
+        case 4:
+        {
+            NSLog(@"帮助说明");
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - UITableViewDataSource

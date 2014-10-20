@@ -57,6 +57,8 @@ typedef void(^versionBlock)(BOOL isNewVersion,NSString *updateUrl,NSString *upda
     NSURLConnection *connection;
     
     NSString *_appid;
+    
+    NSString *_downUrl;//更新地址
 }
 
 + (id)shareInstance;
@@ -75,7 +77,7 @@ typedef void(^versionBlock)(BOOL isNewVersion,NSString *updateUrl,NSString *upda
 /**
  *  版本更新
  */
-+ (void)versionForAppid:(NSString *)appid Block:(void(^)(BOOL isNewVersion,NSString *updateUrl,NSString *updateContent))version;//是否有新版本、新版本更新下地址
+- (void)versionForAppid:(NSString *)appid Block:(void(^)(BOOL isNewVersion,NSString *updateUrl,NSString *updateContent))version;//是否有新版本、新版本更新下地址
 
 
 /**
