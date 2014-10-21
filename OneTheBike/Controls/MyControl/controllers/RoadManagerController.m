@@ -122,16 +122,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    RoadProduceController *produce = [[RoadProduceController alloc]init];
-//    produce.hidesBottomBarWhenPushed = YES;
-//    produce.road_index = indexPath.row + 1;
-//    [self.navigationController pushViewController:produce animated:YES];
+    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",indexPath.row]};
+    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROAD_LINES object:nil userInfo:dic];
     
-//    [NSNotificationCenter defaultCenter]postNotificationName:<#(NSString *)#> object:<#(id)#> userInfo:<#(NSDictionary *)#>
-//    
-//    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-//    
-//    tabarVC.selectedIndex = 0;
+    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+    
+    tabarVC.selectedIndex = 0;
 }
 
 #pragma mark - UITableViewDataSource
