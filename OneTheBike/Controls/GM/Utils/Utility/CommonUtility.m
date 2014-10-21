@@ -384,66 +384,66 @@
     return mapRect;
 }
 
-//+ (MAMapRect)minMapRectForMapPoints:(MAMapPoint *)mapPoints count:(NSUInteger)count
-//{
-//    if (mapPoints == NULL || count <= 1)
-//    {
-//        NSLog(@"%s: 无效的参数.", __func__);
-//        return MAMapRectZero;
-//    }
-//    
-//    CGFloat minX = mapPoints[0].x, minY = mapPoints[0].y;
-//    CGFloat maxX = minX, maxY = minY;
-//    
-//    /* Traverse and find the min, max. */
-//    for (int i = 1; i < count; i++)
-//    {
-//        MAMapPoint point = mapPoints[i];
-//        
-//        if (point.x < minX)
-//        {
-//            minX = point.x;
-//        }
-//        
-//        if (point.x > maxX)
-//        {
-//            maxX = point.x;
-//        }
-//        
-//        if (point.y < minY)
-//        {
-//            minY = point.y;
-//        }
-//        
-//        if (point.y > maxY)
-//        {
-//            maxY = point.y;
-//        }
-//    }
-//    
-//    /* Construct outside min rectangle. */
-//    return MAMapRectMake(minX, minY, fabs(maxX - minX), fabs(maxY - minY));
-//}
++ (MAMapRect)minMapRectForMapPoints:(MAMapPoint *)mapPoints count:(NSUInteger)count
+{
+    if (mapPoints == NULL || count <= 1)
+    {
+        NSLog(@"%s: 无效的参数.", __func__);
+        return MAMapRectMake(0, 0,0,0);
+    }
+    
+    CGFloat minX = mapPoints[0].x, minY = mapPoints[0].y;
+    CGFloat maxX = minX, maxY = minY;
+    
+    /* Traverse and find the min, max. */
+    for (int i = 1; i < count; i++)
+    {
+        MAMapPoint point = mapPoints[i];
+        
+        if (point.x < minX)
+        {
+            minX = point.x;
+        }
+        
+        if (point.x > maxX)
+        {
+            maxX = point.x;
+        }
+        
+        if (point.y < minY)
+        {
+            minY = point.y;
+        }
+        
+        if (point.y > maxY)
+        {
+            maxY = point.y;
+        }
+    }
+    
+    /* Construct outside min rectangle. */
+    return MAMapRectMake(minX, minY, fabs(maxX - minX), fabs(maxY - minY));
+}
 
-//+ (MAMapRect)minMapRectForAnnotations:(NSArray *)annotations
-//{
-//    if (annotations.count <= 1)
-//    {
-//        NSLog(@"%s: 无效的参数.", __func__);
-//        return MAMapRectZero;
-//    }
-//    
-//    MAMapPoint *mapPoints = (MAMapPoint*)malloc(annotations.count * sizeof(MAMapPoint));
-//    
-//    [annotations enumerateObjectsUsingBlock:^(id<MAAnnotation> obj, NSUInteger idx, BOOL *stop) {
-//        mapPoints[idx] = MAMapPointForCoordinate([obj coordinate]);
-//    }];
-//    
-//    MAMapRect minMapRect = [self minMapRectForMapPoints:mapPoints count:annotations.count];
-//    
-//    free(mapPoints), mapPoints = NULL;
-//    
-//    return minMapRect;
-//}
++ (MAMapRect)minMapRectForAnnotations:(NSArray *)annotations
+{
+    if (annotations.count <= 1)
+    {
+        NSLog(@"%s: 无效的参数.", __func__);
+        return MAMapRectMake(0, 0,0,0);
+    }
+    
+    MAMapPoint *mapPoints = (MAMapPoint*)malloc(annotations.count * sizeof(MAMapPoint));
+    
+    [annotations enumerateObjectsUsingBlock:^(id<MAAnnotation> obj, NSUInteger idx, BOOL *stop) {
+        mapPoints[idx] = MAMapPointForCoordinate([obj coordinate]);
+    }];
+    
+    MAMapRect minMapRect = [self minMapRectForMapPoints:mapPoints count:annotations.count];
+    
+    free(mapPoints), mapPoints = NULL;
+    
+    return minMapRect;
+}
 
 @end

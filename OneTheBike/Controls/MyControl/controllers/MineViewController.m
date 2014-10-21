@@ -19,6 +19,7 @@
 #import "UserInfoViewController.h"
 #import "MoreViewController.h"
 #import "RoadManagerController.h"
+#import "UMSocialLoginViewController.h"
 
 @interface MineViewController ()<UIActionSheetDelegate>
 {
@@ -34,11 +35,17 @@
 {
     [super viewWillAppear:animated];
     
-    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
-    if (authKey.length > 0) {
-        return;
-    }
-    [self login];
+//    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
+//    if (authKey.length > 0) {
+//        return;
+//    }
+//    if (sheet) {
+//        
+//        [sheet dismissWithClickedButtonIndex:0 animated:YES];
+//        return;
+//    }
+//    
+//    [self login];
 }
 
 - (void)viewDidLoad {
@@ -69,6 +76,14 @@
     imagesArray = @[@"mine_road",@"mine_map",@"mine_share",@"mine_more"];
     titleArray = @[@"路书管理",@"离线地图",@"分享好友",@"更多"];
     
+    
+    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
+    if (authKey.length > 0) {
+        return;
+    }else
+    {
+        [self login];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,6 +104,13 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+//    [actionSheet dismissWithClickedButtonIndex:actionSheet.cancelButtonIndex animated:YES];
+    
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
     if (buttonIndex == 0) {
         
         [self loginToPlat:UMShareToQQ];
@@ -97,7 +119,6 @@
         
         [self loginToPlat:UMShareToSina];
     }
-
 }
 
 - (void)loginToPlat:(NSString *)snsPlatName
@@ -120,7 +141,8 @@
             [LTools cache:snsAccount.accessToken ForKey:USER_AUTHKEY_OHTER];
             
             [weakSelf userInfoWithImage:snsAccount.iconURL name:snsAccount.userName];
-        }
+            
+            }
     });
 }
 
@@ -168,6 +190,17 @@
         userInfo.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:userInfo animated:YES];
         
+    }else if (indexPath.row == 2)
+    {
+        NSLog(@"离线地图");
+        
+    }else if (indexPath.row == 3)
+    {
+        NSLog(@"分享好友");
+        UMSocialLoginViewController *userInfo = [[UMSocialLoginViewController alloc]init];
+        userInfo.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userInfo animated:YES];
+        
     }else if (indexPath.row == 4)
     {
         MoreViewController *userInfo = [[MoreViewController alloc]init];
@@ -212,7 +245,7 @@
             [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
         }else
         {
-            [self login];
+//            [self login];
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

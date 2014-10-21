@@ -16,4 +16,6 @@
 
 #import "GMAPI.h"
 
+#import "MAPolyline+UN.h"
+
 #endif

@@ -9,16 +9,28 @@
 #import "RoadManagerController.h"
 #import "RoadProduceController.h"
 #import "MineCellTwo.h"
+#import "RoadProduceController.h"
 
 @interface RoadManagerController ()
 {
     NSArray *titles_arr;
     NSArray *imagesArray;
+    int road_count;
 }
 
 @end
 
 @implementation RoadManagerController
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
+    road_count = [road_ids intValue];
+    
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,8 +78,10 @@
     header.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = header;
     
-    titles_arr = @[@"分享关联",@"给个好评",@"联系轨记",@"反馈意见",@"版本更新",@"帮助说明"];
-    imagesArray = @[@"mine_road",@"more_good",@"more_contact",@"more_recommend",@"more_update",@"more_help"];
+    
+//    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
+//    road_count = [road_ids intValue];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,7 +120,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    RoadProduceController *produce = [[RoadProduceController alloc]init];
+    produce.hidesBottomBarWhenPushed = YES;
+    produce.road_index = indexPath.row + 1;
+    [self.navigationController pushViewController:produce animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -118,7 +135,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return titles_arr.count;
+    return road_count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -133,8 +150,10 @@
     cell.separatorInset = UIEdgeInsetsMake(7, 10, 10, 10);
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.aTitleLabel.text = [titles_arr objectAtIndex:indexPath.row];
-    cell.iconImageView.image = [UIImage imageNamed:[imagesArray objectAtIndex:indexPath.row]];
+    
+    NSString *title = [NSString stringWithFormat:@"路书 %d",indexPath.row + 1];
+    cell.aTitleLabel.text = title;
+    cell.iconImageView.image = [UIImage imageNamed:@"mine_road"];
     
     return cell;
     

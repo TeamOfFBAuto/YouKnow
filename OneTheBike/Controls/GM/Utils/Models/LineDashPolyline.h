@@ -12,9 +12,9 @@
 
 @interface LineDashPolyline :NSObject <MAOverlay>
 
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
-@property (nonatomic, readonly) MAMapRect boundingMapRect;
+@property (nonatomic, assign) MAMapRect boundingMapRect;
 
 @property (nonatomic, retain)  MAPolyline *polyline;
 

@@ -25,7 +25,14 @@ alpha:(a)]
 #define USER_AUTHKEY_OHTER @"otherKey"//第三方key
 #define USRR_AUTHKEY @"authkey"
 #define USER_HEAD_IMAGEURL @"head_image_url"//
+#define USER_GENDER @"gender" //性别
+#define USER_QIANMIN @"qianming"//签名
+#define USER_HIGHT @"height" //身高
+#define USER_WEIGHT @"weight"//体重
 
+#define ROAD_IDS @"road_ids"//路书id
+
+#define APP_ID @"605673005"
 
 #define BACK_IMAGE [UIImage imageNamed:@"backButton"]
 #define NAVIGATION_IMAGE [UIImage imageNamed:@"navigationBack"]

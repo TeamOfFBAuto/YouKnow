@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) AMapSearchAPI *search;
 
+@property (nonatomic,assign)int road_index;
+
 - (void)returnAction;
 
 @end
