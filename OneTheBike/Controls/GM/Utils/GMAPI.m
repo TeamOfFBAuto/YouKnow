@@ -7,6 +7,7 @@
 //
 
 #import "GMAPI.h"
+#import "LRoadClass.h"
 
 @implementation GMAPI
 
@@ -71,5 +72,141 @@
 }
 
 
++ (void)addRoadLinesJsonString:(NSString *)jsonstr
+                     startName:(NSString *)startName
+                       endName:(NSString *)endName
+                      distance:(NSString *)distance
+                          type:(HistoryType)type
+                  startCoorStr:(NSString *)startCoorString
+                    endCoorStr:(NSString *)endCoorString
+{
+    sqlite3 *db = [DataBase openDB];
+    sqlite3_stmt *stmt = nil;
+    
+    int result = sqlite3_prepare(db, "insert into RoadLines(startName,endName,distance,lineString,date,type,startCoordinate,endCoordinate) values(?,?,?,?,?,?,?,?)", -1, &stmt, nil);//?相当于%@格式
+    
+    sqlite3_bind_text(stmt, 1, [startName UTF8String], -1, NULL);
+    sqlite3_bind_text(stmt, 2, [endName UTF8String], -1, NULL);
+    sqlite3_bind_text(stmt, 3, [distance UTF8String], -1, NULL);
+    sqlite3_bind_text(stmt, 4, [jsonstr UTF8String], -1, NULL);
+    sqlite3_bind_text(stmt, 5, [[LTools timechangeToDateline] UTF8String], -1, NULL);
+    sqlite3_bind_int(stmt, 6, type);
+    
+    sqlite3_bind_text(stmt, 7, [startCoorString UTF8String], -1, NULL);
+    sqlite3_bind_text(stmt, 8, [endCoorString UTF8String], -1, NULL);
+    
+    result = sqlite3_step(stmt);
+    
+    NSLog(@"save brand %@ brandResult:%d",startName,result);
+    
+    sqlite3_finalize(stmt);
+}
+
++ (NSString *)getRoadLinesJSonStringForRoadId:(int)roadId
+{
+    //打开数据库
+    sqlite3 *db = [DataBase openDB];
+    //创建操作指针
+    sqlite3_stmt *stmt = nil;
+    //执行SQL语句
+    int result = sqlite3_prepare_v2(db, "select * from RoadLines where roadId = ?", -1, &stmt, nil);
+    
+    NSLog(@"RoadLinesJSonString %d %d",result,roadId);
+    
+    if (result == SQLITE_OK) {
+        
+        sqlite3_bind_int(stmt, 1, roadId);
+        
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            
+            const unsigned char *cityName = sqlite3_column_text(stmt, 4);
+            
+            return [NSString stringWithUTF8String:(const char *)cityName];
+        }
+    }
+    sqlite3_finalize(stmt);
+    return @"";
+}
+
++ (NSDictionary *)getRoadLinesForRoadId:(int)roadId
+{
+    //打开数据库
+    sqlite3 *db = [DataBase openDB];
+    //创建操作指针
+    sqlite3_stmt *stmt = nil;
+    //执行SQL语句
+    int result = sqlite3_prepare_v2(db, "select * from RoadLines where roadId = ?", -1, &stmt, nil);
+    
+    if (result == SQLITE_OK) {
+        
+        sqlite3_bind_int(stmt, 1, roadId);
+        
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            
+            const unsigned char *lineString = sqlite3_column_text(stmt, 4);
+            const unsigned char *startString = sqlite3_column_text(stmt, 7);
+            const unsigned char *endString = sqlite3_column_text(stmt, 8);
+            
+            
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            [dic setObject:[NSString stringWithUTF8String:(const char *)lineString] forKey:LINE_JSONSTRING];
+            [dic setObject:[NSString stringWithUTF8String:(const char *)startString] forKey:START_COOR_STRING];
+            [dic setObject:[NSString stringWithUTF8String:(const char *)endString] forKey:END_COOR_STRING];
+            
+            return dic;
+        }
+    }
+    sqlite3_finalize(stmt);
+    return nil;
+}
+
+
+
++ (NSArray *)getRoadLinesForType:(HistoryType)type
+{
+    //打开数据库
+    sqlite3 *db = [DataBase openDB];
+    //创建操作指针
+    sqlite3_stmt *stmt = nil;
+    //执行SQL语句
+    int result = sqlite3_prepare_v2(db, "select * from RoadLines where type = ?", -1, &stmt, nil);
+    
+    NSMutableArray *arr = [NSMutableArray array];
+    
+    if (result == SQLITE_OK) {
+        
+        sqlite3_bind_int(stmt, 1, type);
+        
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            
+            int roadid = sqlite3_column_int(stmt, 0);
+            NSString *startName = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            NSString *endName = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            NSString *distance = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            NSString *lineString = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
+            NSString *date = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 5)];
+            NSString *startStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 7)];
+            NSString *endStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 8)];
+            
+            NSArray *start_arr = [startStr componentsSeparatedByString:@","];
+            
+            CLLocationCoordinate2D start;
+            if (start_arr.count == 2) {
+                start = CLLocationCoordinate2DMake([[start_arr objectAtIndex:0]floatValue], [[start_arr objectAtIndex:1]floatValue]);
+            }
+            
+            NSArray *end_arr = [endStr componentsSeparatedByString:@","];
+            CLLocationCoordinate2D end;
+            if (end_arr.count == 2) {
+                end = CLLocationCoordinate2DMake([[end_arr objectAtIndex:0]floatValue], [[end_arr objectAtIndex:1]floatValue]);
+            }
+            
+            LRoadClass *road = [[LRoadClass alloc]initWithRoadId:roadid startName:startName endName:endName distance:distance lineString:lineString dateline:date startCoor:start endCoor:end];
+            [arr addObject:road];
+        }
+    }
+    sqlite3_finalize(stmt);
+    return arr;
+}
 
 @end

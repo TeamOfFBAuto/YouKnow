@@ -13,11 +13,15 @@
 
 #import "AppDelegate.h"
 
+#import "LRoadClass.h"
+
 @interface RoadManagerController ()
 {
     NSArray *titles_arr;
     NSArray *imagesArray;
     int road_count;
+    
+    NSArray *roads_arr;
 }
 
 @end
@@ -28,8 +32,10 @@
 {
     [super viewWillAppear:animated];
     
-    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
-    road_count = [road_ids intValue];
+//    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
+//    road_count = [road_ids intValue];
+    
+    roads_arr = [GMAPI getRoadLinesForType:Type_Road];
     
     [self.tableView reloadData];
 }
@@ -122,20 +128,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",indexPath.row + 1]};
-    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROAD_LINES object:nil userInfo:dic];
-    
-    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-    
-    tabarVC.selectedIndex = 0;
-    
-//    RoadProduceController *produce = [[RoadProduceController alloc]init];
+//    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",indexPath.row + 1]};
+//    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROAD_LINES object:nil userInfo:dic];
 //    
-//    produce.hidesBottomBarWhenPushed = YES;
+//    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
 //    
-//    produce.road_index = indexPath.row + 1;
-//    
-//    [self.navigationController pushViewController:produce animated:YES];
+//    tabarVC.selectedIndex = 0;
+    
+    RoadProduceController *produce = [[RoadProduceController alloc]init];
+    
+    produce.hidesBottomBarWhenPushed = YES;
+    
+    LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
+    produce.road_index = road.roadId;
+    
+    [self.navigationController pushViewController:produce animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -147,7 +154,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return road_count;
+    return roads_arr.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -163,9 +170,11 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    NSString *title = [NSString stringWithFormat:@"路书 %d",indexPath.row + 1];
-    cell.aTitleLabel.text = title;
     cell.iconImageView.image = [UIImage imageNamed:@"mine_road"];
+    
+    LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
+    NSString *title = [NSString stringWithFormat:@"%@ - %@",road.startName,road.endName];
+    cell.aTitleLabel.text = title;
     
     return cell;
     

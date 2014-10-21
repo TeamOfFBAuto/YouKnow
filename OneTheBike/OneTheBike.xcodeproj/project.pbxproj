@@ -104,6 +104,9 @@
 		13AC6BAC19D805D800E7FF7B /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13AC6BA819D805D800E7FF7B /* TencentOpenAPI.framework */; };
 		13AC6BAD19D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13AC6BA919D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle */; };
 		13CFBACD19F6AEB0006B9684 /* GeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CFBACC19F6AEB0006B9684 /* GeocodeAnnotation.m */; };
+		13CFBAD219F6B887006B9684 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CFBAD019F6B887006B9684 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		13CFBAD319F6B887006B9684 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 13CFBAD119F6B887006B9684 /* README.md */; };
+		13CFBAD619F6C36D006B9684 /* LRoadClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CFBAD519F6C36D006B9684 /* LRoadClass.m */; };
 		13D21C8C19F4095C0015AAF2 /* gps图标1格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7119F4095C0015AAF2 /* gps图标1格.png */; };
 		13D21C8D19F4095C0015AAF2 /* gps图标2格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7219F4095C0015AAF2 /* gps图标2格.png */; };
 		13D21C8E19F4095C0015AAF2 /* gps图标3格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7319F4095C0015AAF2 /* gps图标3格.png */; };
@@ -624,6 +627,11 @@
 		13AC6BAA19D805D800E7FF7B /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
 		13CFBACB19F6AEB0006B9684 /* GeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocodeAnnotation.h; sourceTree = "<group>"; };
 		13CFBACC19F6AEB0006B9684 /* GeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocodeAnnotation.m; sourceTree = "<group>"; };
+		13CFBACF19F6B887006B9684 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		13CFBAD019F6B887006B9684 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		13CFBAD119F6B887006B9684 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		13CFBAD419F6C36D006B9684 /* LRoadClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRoadClass.h; sourceTree = "<group>"; };
+		13CFBAD519F6C36D006B9684 /* LRoadClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRoadClass.m; sourceTree = "<group>"; };
 		13D21C7119F4095C0015AAF2 /* gps图标1格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标1格.png"; sourceTree = "<group>"; };
 		13D21C7219F4095C0015AAF2 /* gps图标2格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标2格.png"; sourceTree = "<group>"; };
 		13D21C7319F4095C0015AAF2 /* gps图标3格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标3格.png"; sourceTree = "<group>"; };
@@ -1258,6 +1266,8 @@
 				137D9FEA19F2916600B31100 /* LineDashPolyline.m */,
 				137D76EF19F4BD9500DD29D7 /* MAPolyline+UN.h */,
 				137D76F019F4BD9500DD29D7 /* MAPolyline+UN.m */,
+				13CFBAD419F6C36D006B9684 /* LRoadClass.h */,
+				13CFBAD519F6C36D006B9684 /* LRoadClass.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1265,6 +1275,7 @@
 		13A2AA1519D7B90B008D1B9F /* HelperTools */ = {
 			isa = PBXGroup;
 			children = (
+				13CFBACE19F6B887006B9684 /* JSONKit */,
 				134BA6A119D94D1A00282D7D /* UIColor_ConvertColor */,
 				13A2AA5919D7BAB3008D1B9F /* UMSocial_Sdk_4.1 */,
 				13A2AA7419D7BAB3008D1B9F /* UMSocial_Sdk_Extra_Frameworks */,
@@ -1392,6 +1403,16 @@
 				13AC6BAA19D805D800E7FF7B /* UMSocialQQHandler.h */,
 			);
 			path = TencentOpenAPI;
+			sourceTree = "<group>";
+		};
+		13CFBACE19F6B887006B9684 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				13CFBACF19F6B887006B9684 /* JSONKit.h */,
+				13CFBAD019F6B887006B9684 /* JSONKit.m */,
+				13CFBAD119F6B887006B9684 /* README.md */,
+			);
+			path = JSONKit;
 			sourceTree = "<group>";
 		};
 		13D21C7019F4095C0015AAF2 /* 1.运动图标 */ = {
@@ -2902,6 +2923,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13CFBAD219F6B887006B9684 /* JSONKit.m in Sources */,
 				56DE2E8019F5711B0042C2A5 /* ReGeocodeAnnotation.m in Sources */,
 				134BA69F19D948E800282D7D /* MineCellTwo.m in Sources */,
 				E3C3B8B919F2927E00C8AE5A /* GMapStarViewController.m in Sources */,
@@ -2925,6 +2947,7 @@
 				137D76E719F4BB5B00DD29D7 /* MJIvar.m in Sources */,
 				19DAE84119D30F3100519D22 /* FindViewController.m in Sources */,
 				137D9FC919F25FF500B31100 /* UserInfoRowCell.m in Sources */,
+				13CFBAD319F6B887006B9684 /* README.md in Sources */,
 				13A2AAA019D7BF18008D1B9F /* MineViewController.m in Sources */,
 				56442E0319F5557100BAE678 /* FindActivityViewController.m in Sources */,
 				56442E1419F5621700BAE678 /* RankingTableViewCell.m in Sources */,
@@ -2939,6 +2962,7 @@
 				137D76EE19F4BB5B00DD29D7 /* NSObject+MJMember.m in Sources */,
 				137D9FE719F290F800B31100 /* CommonUtility.m in Sources */,
 				137D76E419F4BB5B00DD29D7 /* MJArgument.m in Sources */,
+				13CFBAD619F6C36D006B9684 /* LRoadClass.m in Sources */,
 				13E8EE1319F60C04006FA5CE /* LMapTools.m in Sources */,
 				E31F584919F638450064959E /* StartViewController.m in Sources */,
 				E3BB362319E7C0C20096131D /* GMAPI.m in Sources */,

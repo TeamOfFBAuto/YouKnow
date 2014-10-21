@@ -20,6 +20,12 @@
 #define ROAD_INDEX @"road_index"//路书id
 #define NOTIFICATION_ROAD_LINES @"road_lines"//选择路书通知
 
+#define ROAD_PARAMES @"road_params"//路线参数
+#define ROAD_START_LAT @"start_latitude"//起点latitude
+#define ROAD_START_LON @"start_longitude"//起点longitude
+#define ROAD_START_LAT @"start_latitude"//起点latitude
+#define ROAD_START_LON @"start_longitude"//起点longitude
+
 @interface LMapTools : NSObject
 
 + (NSArray *)saveMaplines:(NSArray *)polines_arr;//保存line对象

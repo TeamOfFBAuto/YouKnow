@@ -11,7 +11,14 @@
 
 #import "DataBase.h"
 
+#define START_COOR_STRING @"startCoorString" //起点坐标
+#define END_COOR_STRING @"endCoorString"
+#define LINE_JSONSTRING @"lineJsonString"//线的jsonString
 
+typedef enum{
+    Type_Road = 1,//路书
+    Type_GUIJI //轨迹
+}HistoryType;
 
 /* 使用高德地图API，请注册Key，注册地址：http://lbs.amap.com/console/key
  */
@@ -36,6 +43,20 @@ const static NSString *APIKey_MAP = @"0b92a81f23cc5905c30dcb4c39da609d";
 +(void)findNowAllLocation;
 
 
+//存储路线数据 type 1为路书 2为轨迹
++ (void)addRoadLinesJsonString:(NSString *)jsonstr
+                     startName:(NSString *)startName
+                       endName:(NSString *)endName
+                      distance:(NSString *)distance
+                          type:(HistoryType)type
+                  startCoorStr:(NSString *)startCoorString
+                    endCoorStr:(NSString *)endCoorString;
 
++ (NSString *)getRoadLinesJSonStringForRoadId:(int)roadId;//根据id获取roadline的json数据
+
++ (NSDictionary *)getRoadLinesForRoadId:(int)roadId;//根据id获取json 以及起点终点
+
+
++ (NSArray *)getRoadLinesForType:(HistoryType)type;//LRoadClass对象
 
 @end

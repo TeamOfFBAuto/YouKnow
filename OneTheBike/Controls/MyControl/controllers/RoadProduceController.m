@@ -174,9 +174,26 @@ enum{
 
 - (void)initHistoryMap
 {
-    NSString *key = [NSString stringWithFormat:@"road_%d",self.road_index];
+//    NSString *key = [NSString stringWithFormat:@"road_%d",self.road_index];
     
-    NSArray *arr = [LTools cacheForKey:key];
+//    NSArray *arr = [LTools cacheForKey:key];
+    
+    NSDictionary *dic = [GMAPI getRoadLinesForRoadId:self.road_index];
+    NSString *jsonString = [dic objectForKey:LINE_JSONSTRING];
+    NSArray *arr = [jsonString objectFromJSONString];
+    
+    NSArray *start_arr = [[dic objectForKey:START_COOR_STRING] componentsSeparatedByString:@","];
+    
+    CLLocationCoordinate2D start;
+    if (start_arr.count == 2) {
+        start = CLLocationCoordinate2DMake([[start_arr objectAtIndex:0]floatValue], [[start_arr objectAtIndex:1]floatValue]);
+    }
+    
+    NSArray *end_arr = [[dic objectForKey:END_COOR_STRING] componentsSeparatedByString:@","];
+    CLLocationCoordinate2D end;
+    if (end_arr.count == 2) {
+        end = CLLocationCoordinate2DMake([[end_arr objectAtIndex:0]floatValue], [[end_arr objectAtIndex:1]floatValue]);
+    }
     
     if (arr.count == 0) {
         return;
@@ -185,13 +202,11 @@ enum{
     NSDictionary *history_dic = [LMapTools parseMapHistoryMap:arr];
     
     NSArray *lines = [history_dic objectForKey:L_POLINES];
-    NSArray *start_arr = [history_dic objectForKey:L_START_POINT_COORDINATE];
-    NSArray *end_arr = [history_dic objectForKey:L_END_POINT_COORDINATE];
     
-    self.startCoordinate = CLLocationCoordinate2DMake([[start_arr objectAtIndex:0] floatValue], [[start_arr objectAtIndex:1] floatValue]);
+    self.startCoordinate = start;
     [self addStartAnnotation];
     
-    self.destinationCoordinate = CLLocationCoordinate2DMake([[end_arr objectAtIndex:0] floatValue], [[end_arr objectAtIndex:1] floatValue]);
+    self.destinationCoordinate = end;
     [self addDestinationAnnotation];
     
     [self.mapView addOverlays:lines];
@@ -346,15 +361,26 @@ enum{
     
     NSArray *dic_arr = [LMapTools saveMaplines:polines_arr];
     
+//    NSDictionary *ddd = @{};
+    
+    NSString *jsonStr = [dic_arr JSONString];
+    
+//    NSLog(@"hhahahahh-->%@",jsonStr);
+    
     save_finish = YES;
     
-    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
-    int index = [road_ids intValue];
+    NSString *startString = [NSString stringWithFormat:@"%@,%@",[NSString stringWithFormat:@"%f",self.startCoordinate.latitude],[NSString stringWithFormat:@"%f",self.startCoordinate.longitude]];
+    NSString *endString = [NSString stringWithFormat:@"%@,%@",[NSString stringWithFormat:@"%f",self.destinationCoordinate.latitude],[NSString stringWithFormat:@"%f",self.destinationCoordinate.longitude]];
     
-    NSString *key = [NSString stringWithFormat:@"road_%d",index + 1];
-    [LTools cache:dic_arr ForKey:key];
+    [GMAPI addRoadLinesJsonString:jsonStr startName:@"起点" endName:@"终点" distance:@"11km" type:Type_Road startCoorStr:startString endCoorStr:endString];
     
-    [LTools cache:[NSString stringWithFormat:@"%d",index + 1] ForKey:ROAD_IDS];
+//    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
+//    int index = [road_ids intValue];
+//    
+//    NSString *key = [NSString stringWithFormat:@"road_%d",index + 1];
+//    [LTools cache:dic_arr ForKey:key];
+//    
+//    [LTools cache:[NSString stringWithFormat:@"%d",index + 1] ForKey:ROAD_IDS];
     
     [LTools showMBProgressWithText:@"路书保存成功" addToView:self.view];
     
