@@ -70,6 +70,10 @@
 #pragma mark - 接受通知隐藏tabbar
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(iWantToStart) name:@"GToGstar" object:nil];
     
+#pragma mark - 从路书跳转过来的通知
+    
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newBilityXiaoPang:) name:NOTIFICATION_ROAD_LINES object:nil];
+    
     _isTimeOutClicked = NO;
     _distance = 0.0f;
     
@@ -243,7 +247,7 @@
     
     
     //开始运动时下方view
-    _downView = [[UIView alloc]initWithFrame:CGRectMake(0, 568-50, 320, 50)];
+    _downView = [[UIView alloc]initWithFrame:CGRectMake(0, iPhone5?(568-50):(480-50), 320, 50)];
     _downView.backgroundColor = [UIColor whiteColor];
     _downView.hidden = YES;
     
@@ -297,7 +301,15 @@
     
     
     
-    [self initHistoryMap];
+//    [self initHistoryMap];
+    
+}
+
+//路书跳转过来的通知
+-(void)newBilityXiaoPang:(NSNotification*)thenotification{
+    NSDictionary *notiInfo = thenotification.userInfo;
+    
+    NSLog(@"%@",notiInfo);
     
 }
 
@@ -996,9 +1008,9 @@
         if([view isKindOfClass:[UITabBar class]])
         {
             if (hidden) {
-                [view setFrame:CGRectMake(view.frame.origin.x, 568, view.frame.size.width, view.frame.size.height)];
+                [view setFrame:CGRectMake(view.frame.origin.x, iPhone5 ? 568 : 480 , view.frame.size.width, view.frame.size.height)];
             } else {
-                [view setFrame:CGRectMake(view.frame.origin.x, 568-49, view.frame.size.width, view.frame.size.height)];
+                [view setFrame:CGRectMake(view.frame.origin.x, iPhone5 ? (568-49):(480-49), view.frame.size.width, view.frame.size.height)];
             }
         }
         else
