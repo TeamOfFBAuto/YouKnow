@@ -28,7 +28,8 @@
 - (instancetype)initLineDashPolylineWithCoordinate:(CLLocationCoordinate2D)coordinate
                                               rect:(MAMapRect)rect
                                           polyline:(MAPolyline*)line
-                                              type:(NSString *)type;
+                                              type:(NSString *)type
+                                 coordinatesString:(NSString *)coordinatesStr;
 
 //    MAPolyline
 

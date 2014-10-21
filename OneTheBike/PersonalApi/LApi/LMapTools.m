@@ -28,20 +28,20 @@
             
             MAPolyline *temp = (MAPolyline *)pp;
             
-            CLLocationCoordinate2D tempCoor[temp.pointCount];
+//            CLLocationCoordinate2D tempCoor[temp.pointCount];
+//            
+//            NSMutableArray *point_cor_arr = [NSMutableArray arrayWithCapacity:temp.pointCount * 2];
+//            
+//            [temp getCoordinates:tempCoor range:NSMakeRange(0, temp.pointCount)];
+//            
+//            for (int i = 0; i < temp.pointCount; i ++) {
+//                CLLocationCoordinate2D temp = tempCoor[i];
+//                
+//                [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.longitude]];
+//                [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.latitude]];
+//            }
             
-            NSMutableArray *point_cor_arr = [NSMutableArray arrayWithCapacity:temp.pointCount * 2];
-            
-            [temp getCoordinates:tempCoor range:NSMakeRange(0, temp.pointCount)];
-            
-            for (int i = 0; i < temp.pointCount; i ++) {
-                CLLocationCoordinate2D temp = tempCoor[i];
-                
-                [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.longitude]];
-                [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.latitude]];
-            }
-            
-            NSString *coordinatesString = [point_cor_arr componentsJoinedByString:@","];
+            NSString *coordinatesString = [self coordinateStringPolyline:temp];
             
             LMaplineClass *polyLine = [[LMaplineClass alloc]initMAPolylineWithMapPointX:temp.points->x pointY:temp.points->y pointCount:temp.pointCount type:TYPE_MAPolyline coordinatesString:coordinatesString];
             
@@ -59,7 +59,9 @@
             
             LineDashPolyline *temp = (LineDashPolyline *)pp;
             
-            LMaplineClass *dashLine = [[LMaplineClass alloc]initLineDashPolylineWithCoordinate:temp.coordinate rect:temp.boundingMapRect polyline:temp.polyline type:TYPE_LineDashPolyline];
+            NSString *coordinatesString = [self coordinateStringPolyline:temp.polyline];
+            
+            LMaplineClass *dashLine = [[LMaplineClass alloc]initLineDashPolylineWithCoordinate:temp.coordinate rect:temp.boundingMapRect polyline:temp.polyline type:TYPE_LineDashPolyline coordinatesString:coordinatesString];
             
             [polyline_arr addObject:dashLine];
         }
@@ -113,9 +115,13 @@
             }else if ([type isEqualToString:TYPE_LineDashPolyline]){
                 
                 NSDictionary *polyline = cache.polyline;
-                MAMapPoint point = MAMapPointMake([[polyline valueForKey:@"pointX"] doubleValue], [[polyline valueForKey:@"pointY"] doubleValue]);
+
+                NSUInteger count = [[polyline objectForKey:@"pointCount"] unsignedIntegerValue];
+                NSString *coordinateString = [polyline objectForKey:@"coordinatesString"];
                 
-                MAPolyline *line = [MAPolyline polylineWithPoints:&point count:cache.pointCount];
+                CLLocationCoordinate2D *temp = [CommonUtility coordinatesForString:coordinateString coordinateCount:&count parseToken:@","];
+                MAPolyline *line = [MAPolyline polylineWithCoordinates:temp count:count];
+                            
                 LineDashPolyline *line_Dash = [[LineDashPolyline alloc]initWithPolyline:line];
                 
                 line_Dash.coordinate = CLLocationCoordinate2DMake(cache.latitude, cache.longitude);
@@ -134,6 +140,26 @@
     [dic setObject:lines forKey:L_POLINES];
     
     return dic;
+}
+
+//获取所有坐标的组成的字符串
+
++ (NSString *)coordinateStringPolyline:(MAPolyline *)temp
+{
+    CLLocationCoordinate2D tempCoor[temp.pointCount];
+    
+    NSMutableArray *point_cor_arr = [NSMutableArray arrayWithCapacity:temp.pointCount * 2];
+    
+    [temp getCoordinates:tempCoor range:NSMakeRange(0, temp.pointCount)];
+    
+    for (int i = 0; i < temp.pointCount; i ++) {
+        CLLocationCoordinate2D temp = tempCoor[i];
+        
+        [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.longitude]];
+        [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.latitude]];
+    }
+    
+    return [point_cor_arr componentsJoinedByString:@","];
 }
 
 

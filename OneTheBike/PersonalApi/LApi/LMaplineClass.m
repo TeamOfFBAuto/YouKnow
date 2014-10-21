@@ -14,6 +14,7 @@
                               rect:(MAMapRect)rect
                           polyline:(MAPolyline*)line
                               type:(NSString *)type
+                coordinatesString:(NSString *)coordinatesStr
 {
     self = [super init];
     if (self) {
@@ -26,7 +27,7 @@
         self.rect_height = rect.size.height;
         self.classType = type;
         
-        LMaplineClass *cache = [[LMaplineClass alloc]initMAPolylineWithMapPointX:line.points->x pointY:line.points->y pointCount:line.pointCount type:TYPE_MAPolyline coordinatesString:nil];
+        LMaplineClass *cache = [[LMaplineClass alloc]initMAPolylineWithMapPointX:line.points->x pointY:line.points->y pointCount:line.pointCount type:TYPE_MAPolyline coordinatesString:coordinatesStr];
         
         self.polyline = [cache keyValues];
     }

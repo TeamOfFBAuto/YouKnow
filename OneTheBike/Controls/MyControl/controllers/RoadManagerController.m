@@ -128,6 +128,14 @@
     UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
     
     tabarVC.selectedIndex = 0;
+    
+//    RoadProduceController *produce = [[RoadProduceController alloc]init];
+//    
+//    produce.hidesBottomBarWhenPushed = YES;
+//    
+//    produce.road_index = indexPath.row + 1;
+//    
+//    [self.navigationController pushViewController:produce animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
