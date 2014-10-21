@@ -11,6 +11,8 @@
 #import "MineCellTwo.h"
 #import "RoadProduceController.h"
 
+#import "AppDelegate.h"
+
 @interface RoadManagerController ()
 {
     NSArray *titles_arr;
@@ -120,10 +122,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RoadProduceController *produce = [[RoadProduceController alloc]init];
-    produce.hidesBottomBarWhenPushed = YES;
-    produce.road_index = indexPath.row + 1;
-    [self.navigationController pushViewController:produce animated:YES];
+//    RoadProduceController *produce = [[RoadProduceController alloc]init];
+//    produce.hidesBottomBarWhenPushed = YES;
+//    produce.road_index = indexPath.row + 1;
+//    [self.navigationController pushViewController:produce animated:YES];
+    
+//    [NSNotificationCenter defaultCenter]postNotificationName:<#(NSString *)#> object:<#(id)#> userInfo:<#(NSDictionary *)#>
+//    
+//    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+//    
+//    tabarVC.selectedIndex = 0;
 }
 
 #pragma mark - UITableViewDataSource
