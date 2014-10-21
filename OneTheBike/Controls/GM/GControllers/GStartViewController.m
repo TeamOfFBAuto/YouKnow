@@ -42,6 +42,7 @@
     MAPointAnnotation *startAnnotation;//起点
     MAPointAnnotation *detinationAnnotation;//终点
     NSMutableArray *middleAnntations;//途经点
+    NSArray *_lines;//路书数组
 }
 @property (nonatomic,strong)NSMutableArray *cllocation2dsArray;
 @property (nonatomic, strong) NSMutableArray *overlays;
@@ -72,7 +73,7 @@
     
 #pragma mark - 从路书跳转过来的通知
     
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newBilityXiaoPang:) name:NOTIFICATION_ROAD_LINES object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newBilityXiaoPang:) name:NOTIFICATION_ROAD_LINES object:nil];
     
     _isTimeOutClicked = NO;
     _distance = 0.0f;
@@ -305,11 +306,17 @@
     
 }
 
-//路书跳转过来的通知
+//路书跳转过来的通知方法
 -(void)newBilityXiaoPang:(NSNotification*)thenotification{
     NSDictionary *notiInfo = thenotification.userInfo;
     
     NSLog(@"%@",notiInfo);
+    
+     [self.mapView removeOverlays:_lines];
+    [self.mapView removeAnnotation:startAnnotation];
+    [self.mapView removeAnnotation:detinationAnnotation];
+    
+    [self initHistoryMapWithDic:notiInfo];
     
 }
 
@@ -1034,9 +1041,12 @@
 
 
 //牛逼的小胖===============
-- (void)initHistoryMap
+- (void)initHistoryMapWithDic:(NSDictionary*)dic
 {
-    NSString *key = [NSString stringWithFormat:@"road_%d",1];
+    
+    NSString *index = [dic objectForKey:@"road_index"];
+    int indexx = [index intValue];
+    NSString *key = [NSString stringWithFormat:@"road_%d",indexx];
     
     NSArray *arr = [LTools cacheForKey:key];
     
@@ -1046,7 +1056,7 @@
     
     NSDictionary *history_dic = [LMapTools parseMapHistoryMap:arr];
     
-    NSArray *lines = [history_dic objectForKey:L_POLINES];
+    _lines = [history_dic objectForKey:L_POLINES];
     NSArray *start_arr = [history_dic objectForKey:L_START_POINT_COORDINATE];
     NSArray *end_arr = [history_dic objectForKey:L_END_POINT_COORDINATE];
     
@@ -1056,7 +1066,7 @@
     self.destinationCoordinate = CLLocationCoordinate2DMake([[end_arr objectAtIndex:0] floatValue], [[end_arr objectAtIndex:1] floatValue]);
     [self addDestinationAnnotation];
     
-    [self.mapView addOverlays:lines];
+    [self.mapView addOverlays:_lines];
     
     [self.mapView setCenterCoordinate:self.startCoordinate animated:YES];
     

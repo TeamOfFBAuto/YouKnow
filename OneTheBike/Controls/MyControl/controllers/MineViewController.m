@@ -21,6 +21,8 @@
 #import "RoadManagerController.h"
 #import "UMSocialLoginViewController.h"
 
+#import "GOffLineMapViewController.h"
+
 @interface MineViewController ()<UIActionSheetDelegate>
 {
     NSArray *titleArray;
@@ -193,6 +195,17 @@
     }else if (indexPath.row == 2)
     {
         NSLog(@"离线地图");
+        
+        GOffLineMapViewController *detailViewController = [[GOffLineMapViewController alloc] init];
+//        detailViewController.mapView = self.mapView;
+        
+        detailViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+        
+        [self presentModalViewController:navi animated:YES];
+        
+        
         
     }else if (indexPath.row == 3)
     {
