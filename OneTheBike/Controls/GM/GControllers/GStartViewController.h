@@ -29,6 +29,15 @@
     //折线view
     MAPolylineView* _routeLineView;
     
+    //时间跑起来
+    Boolean started;
+    NSInteger totalTakt;
+    NSInteger lapTakt;
+    Boolean splitted;
+    Boolean reset;
+    NSInteger splitTimes;
+    NSTimer *timer;
+    
 }
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) AMapSearchAPI *search;

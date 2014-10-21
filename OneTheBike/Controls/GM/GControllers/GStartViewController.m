@@ -28,6 +28,12 @@
     UILabel *_gongliLabel;//公里
     UILabel *_ghaibaLabel;//海拔
     UILabel *_gbpmLabel;//bpm
+    
+    
+    BOOL _isTimeOutClicked;//暂停按钮点击
+    UIButton *_greenTimeOutBtn;//暂停按钮
+    
+    double _distance;//距离
 }
 @property (nonatomic,strong)NSMutableArray *cllocation2dsArray;
 @property (nonatomic, strong) NSMutableArray *overlays;
@@ -56,7 +62,8 @@
 #pragma mark - 接受通知隐藏tabbar
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(iWantToStart) name:@"GToGstar" object:nil];
     
-    
+    _isTimeOutClicked = NO;
+    _distance = 0.0f;
     
     //地图相关初始化
     [self initMapViewWithFrame:FRAME_IPHONE5_MAP_DOWN];
@@ -73,7 +80,7 @@
     self.mapView.showsScale= NO; //关闭比例尺
     self.mapView.scaleOrigin = CGPointMake(10, 70);
     
-    [self initGestureRecognizer];//长按手势
+//    [self initGestureRecognizer];//长按手势
     
     [self.mapView addOverlays:self.overlays];//把线条添加到地图上
     
@@ -250,12 +257,12 @@
     [_downView addSubview:redFinishBtn];
     
     //暂停按钮
-    UIButton *greenTimeOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [greenTimeOutBtn setFrame:CGRectMake(160, 0, 80, 50)];
+    _greenTimeOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_greenTimeOutBtn setFrame:CGRectMake(160, 0, 80, 50)];
     
-    [greenTimeOutBtn setImage:[UIImage imageNamed:@"gtimeout.png"] forState:UIControlStateNormal];
-//    [greenTimeOutBtn addTarget:self action:@selector(goToOffLineMapTable) forControlEvents:UIControlEventTouchUpInside];
-    [_downView addSubview:greenTimeOutBtn];
+    [_greenTimeOutBtn setImage:[UIImage imageNamed:@"gtimeout.png"] forState:UIControlStateNormal];
+    [_greenTimeOutBtn addTarget:self action:@selector(gTimeOut) forControlEvents:UIControlEventTouchUpInside];
+    [_downView addSubview:_greenTimeOutBtn];
     
     //拍照按钮
     UIButton *takePhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -269,11 +276,136 @@
     [self.view addSubview:_downView];
     
     
+    
+    //计时器
+    timer = [NSTimer scheduledTimerWithTimeInterval:(0.01)
+                                             target:self
+                                           selector:@selector(taktCounter)
+                                           userInfo:nil
+                                            repeats:TRUE];
+    NSRunLoop *main = [NSRunLoop currentRunLoop];
+    [main addTimer:timer forMode:NSRunLoopCommonModes];
+    
+    
+    
 }
+
+//计时器
+- (void) taktCounter
+{
+    //    NSLog(@"taktCounter is called");
+    NSInteger timerMin = 0;
+    NSInteger timerSecond = 0;
+    NSInteger timerMSecond = 0;
+    NSInteger timerMMSecond = 0;
+    
+    NSInteger splitTimerMin = 0;
+    NSInteger splitTimerSecond = 0;
+    NSInteger splitTimerMSecond = 0;
+    NSInteger splitTimerMMSecond = 0;
+    
+    if (started)
+    {
+        totalTakt++;
+        lapTakt++;
+        
+        if (totalTakt == 594000) {
+            totalTakt = 0;
+        }
+        if (lapTakt == 594000) {
+            lapTakt = 0;
+        }
+        
+        if(splitted)
+        {
+            lapTakt = 0;
+            [_gstartimeLabel setText:@"00:00.00"];
+            splitted = NO;
+        }
+        
+        timerMMSecond = totalTakt % 10;
+        timerMSecond = totalTakt / 10 % 10;
+        timerSecond = totalTakt / 100;
+        timerMin = totalTakt / 6000;
+        
+        splitTimerMMSecond = lapTakt % 10;
+        splitTimerMSecond = lapTakt / 10 % 10;
+        splitTimerSecond = lapTakt / 100;
+        splitTimerMin = lapTakt / 6000;
+        
+        if (timerSecond < 10) {
+            if (timerMin < 10) {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"0%d:0%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
+            }
+            else {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"%d:0%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
+            }
+        }
+        else {
+            if (timerMin < 10) {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"0%d:%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
+            }
+            else {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"%d:%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
+            }
+        }
+        
+        if (splitTimerSecond < 10) {
+            if (splitTimerMin < 10) {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"0%d:0%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
+            }
+            else {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"%d:0%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
+            }
+        }
+        else {
+            if (splitTimerMin < 10) {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"0%d:%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
+            }
+            else {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"%d:%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
+            }
+        }
+        
+    }
+    else{
+        if (reset == YES) {
+            [_gstartimeLabel setText:@"00:00.00"];
+            started = NO;
+            splitted = NO;
+            totalTakt = 0;
+            lapTakt = 0;
+            splitTimes = 0;
+            reset = NO;
+        }
+    }
+    
+}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+#pragma mark - 暂停按钮
+-(void)gTimeOut{
+    _isTimeOutClicked = !_isTimeOutClicked;
+    if (_isTimeOutClicked) {
+        self.mapView.showsUserLocation = NO;
+        started = NO;
+        [_greenTimeOutBtn setImage:[UIImage imageNamed:@"ghuifu.png"] forState:UIControlStateNormal];
+    }else{
+        self.mapView.showsUserLocation = YES;
+        started = YES;
+        [_greenTimeOutBtn setImage:[UIImage imageNamed:@"gtimeout.png"] forState:UIControlStateNormal];
+        
+    }
+    
 }
 
 
@@ -300,10 +432,40 @@
 #pragma mark - 行走完成
 
 -(void)gFinish{
-    self.mapView.showsUserLocation = NO;
+    started = NO;
     UIActionSheet *actionsheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"放弃记录" otherButtonTitles:@"保存分享", nil];
+    actionsheet.tag = 101;
     [actionsheet showInView:self.view];
 }
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (actionSheet.tag == 101) {
+        if (buttonIndex == 1) {//保存记录
+            self.mapView.showsUserLocation = NO;
+            _distance = 0.0f;
+            reset = YES;//停止计时器
+            _downView.hidden = YES;
+            [self hideTabBar:NO];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"gstopandsave" object:nil];
+        }else if (buttonIndex == 0){//放弃保存
+            _distance = 0.0f;
+            self.mapView.showsUserLocation = NO;
+            reset = YES;//停止计时器
+            _downView.hidden = YES;
+            [self hideTabBar:NO];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"gstopandnosave" object:nil];
+        }else if (buttonIndex == 2){//取消按钮
+            if (_isTimeOutClicked) {
+                started = NO;
+            }else{
+                started = YES;
+            }
+            
+        }
+    }
+    
+}
+
 
 
 #pragma mark - 地图变大 upview上移动
@@ -634,6 +796,9 @@
         if (distance < 5 || distance > 10){
             return;
         }
+        _distance += distance;
+        NSString *str = [NSString stringWithFormat:@"公里----%f",_distance/1000];
+        _gongliLabel.text = str;
     }
     
     if (_points == nil) {
@@ -720,6 +885,7 @@
     [self hideTabBar:YES];
     _downView.hidden = NO;
     self.mapView.showsUserLocation = YES;//开启定位
+    started = YES;
 }
 
 

@@ -391,6 +391,7 @@
 		19DAEA8519D311D300519D22 /* unselected_small_bbs_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DAE97E19D311D300519D22 /* unselected_small_bbs_icon@2x.png */; };
 		4105558E38114451B6944629 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D95CE1BE85487DBDF28F53 /* libPods.a */; };
 		E32A591D19ED04CE00142E3A /* ReGeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */; };
+		E32B927C19F60609007536D0 /* ghuifu.png in Resources */ = {isa = PBXBuildFile; fileRef = E32B927B19F60609007536D0 /* ghuifu.png */; };
 		E34451F019E7D67000A3546A /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EE19E7D67000A3546A /* MAMapKit.framework */; };
 		E34451F119E7D67000A3546A /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EF19E7D67000A3546A /* AMapSearchKit.framework */; };
 		E34451F319E7D6A400A3546A /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E34451F219E7D6A400A3546A /* AMap.bundle */; };
@@ -862,6 +863,7 @@
 		19DAEA8819D3151100519D22 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		E32A591B19ED04CE00142E3A /* ReGeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReGeocodeAnnotation.h; sourceTree = "<group>"; };
 		E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReGeocodeAnnotation.m; sourceTree = "<group>"; };
+		E32B927B19F60609007536D0 /* ghuifu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghuifu.png; sourceTree = "<group>"; };
 		E34451EE19E7D67000A3546A /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
 		E34451EF19E7D67000A3546A /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		E34451F219E7D6A400A3546A /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
@@ -2104,6 +2106,7 @@
 		E34C791019E813A000A5F4DE /* GModel */ = {
 			isa = PBXGroup;
 			children = (
+				E32B927B19F60609007536D0 /* ghuifu.png */,
 				E36DE09B19F51588007585AF /* gstarting.png */,
 				E36DE09919F4FCCC007585AF /* gbpm.png */,
 				E36DE09519F4FC26007585AF /* gbtnup.png */,
@@ -2489,6 +2492,7 @@
 				19DAEA5F19D311D300519D22 /* mirco_icon_11@2x.png in Resources */,
 				1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */,
 				19DAE98219D311D300519D22 /* add_jing@2x.png in Resources */,
+				E32B927C19F60609007536D0 /* ghuifu.png in Resources */,
 				19DAEA2019D311D300519D22 /* button2-down252_94@2x.png in Resources */,
 				19DAEA1619D311D300519D22 /* duihao-42_42@2x.png in Resources */,
 				137D9FC019F25EC700B31100 /* more_good@2x.png in Resources */,

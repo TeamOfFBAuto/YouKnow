@@ -73,7 +73,10 @@
     //定位开始画线点击返回 修改开始的按钮为停止
     UINavigationController * _navc3;
     //是否正在定位画线
-    BOOL _isStart;
+    BOOL _isStart;//用于判断是否点击开始弹出alertview  开始定位后点击返回的时候值为yes 点击完成按钮后值为no
+    
+    //骑行完成后tabbar调到历史标签
+    UITabBarController * _tabbarVC;
 }
 @end
 
@@ -122,17 +125,17 @@
     navc5.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"mine.png"] selectedImage:[UIImage imageNamed:@"mine.png"]];
     
     
-    UITabBarController * tabbarVC = [[UITabBarController alloc] init];
+    _tabbarVC = [[UITabBarController alloc] init];
     
-    tabbarVC.viewControllers = [NSArray arrayWithObjects:navc1,navc2,_navc3,navc4,navc5,nil];
-    tabbarVC.delegate = self;
+    _tabbarVC.viewControllers = [NSArray arrayWithObjects:navc1,navc2,_navc3,navc4,navc5,nil];
+    _tabbarVC.delegate = self;
     
-    tabbarVC.selectedIndex = 0;
+    _tabbarVC.selectedIndex = 0;
     
-      tabbarVC.tabBar.tintColor=[UIColor redColor];
+      _tabbarVC.tabBar.tintColor=[UIColor redColor];
     
     
-    tabbarVC.tabBar.backgroundImage = [UIImage imageNamed:@""];
+    _tabbarVC.tabBar.backgroundImage = [UIImage imageNamed:@""];
     
     
 //    [MobClick startWithAppkey:@"5368ab4256240b6925029e29"];
@@ -161,24 +164,46 @@
     _locationmanager.delegate = self;
     
     
-    self.window.rootViewController = tabbarVC;
+    self.window.rootViewController = _tabbarVC;
     
     
     
     
     //开始定位画线点击返回按钮 tabbar的开始按钮变成停止
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(startOrStop) name:@"gkeepstarting" object:nil];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gKeepStart) name:@"gkeepstarting" object:nil];
     _isStart = NO;
+    
+    //停止并保存
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gStopAndSave) name:@"gstopandsave" object:nil];
+    
+    //停止不保存
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(gStopAndNoSave) name:@"gstopandnosave" object:nil];
+    
     
     return YES;
 }
 
 
 
+#pragma mark - 停止并保存
+-(void)gStopAndSave{
+    _isStart = NO;
+    [_navc3.tabBarItem setImage:[UIImage imageNamed:@"start.png"]];
+    [_navc3.tabBarItem setTitle:@"开始"];
+    _tabbarVC.selectedIndex = 1;
+    
+}
 
-#pragma mark - 开始/停止
--(void)startOrStop{
+#pragma mark - 停止不保存
+-(void)gStopAndNoSave{
+    _isStart = NO;
+    [_navc3.tabBarItem setImage:[UIImage imageNamed:@"start.png"]];
+    [_navc3.tabBarItem setTitle:@"开始"];
+}
+
+
+#pragma mark - 开始后点击返回按钮
+-(void)gKeepStart{
     
     [_navc3.tabBarItem setImage:nil];
     [_navc3.tabBarItem setTitle:@"骑行中"];
