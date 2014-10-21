@@ -21,8 +21,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.title = @"排行";
+    UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton.width = -5;
+    
+    UIButton *_button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,0,40,44)];
+    [_button_back addTarget:self action:@selector(clickToBack:) forControlEvents:UIControlEventTouchUpInside];
+    [_button_back setImage:BACK_IMAGE forState:UIControlStateNormal];
+    _button_back.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:_button_back];
+    self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
+    
+    UILabel *_titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 21)];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.textColor = [UIColor whiteColor];
+    _titleLabel.text = @"排行";
+    
+    self.navigationItem.titleView = _titleLabel;
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -31,13 +45,17 @@
     [self.view addSubview:fView];
     
     
-    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,64+30,320,(iPhone5?568:480)-30) style:UITableViewStylePlain];
+    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,64+30,320,(iPhone5?568:480)-30-64) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.separatorInset = UIEdgeInsetsZero;
     [self.view addSubview:myTableView];
 }
 
+-(void)clickToBack:(UIButton*)button
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

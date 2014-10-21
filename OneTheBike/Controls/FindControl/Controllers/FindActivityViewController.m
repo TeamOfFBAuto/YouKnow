@@ -22,7 +22,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"活动";
+    
+    UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton.width = -5;
+    
+    UIButton *_button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,0,40,44)];
+    [_button_back addTarget:self action:@selector(clickToBack:) forControlEvents:UIControlEventTouchUpInside];
+    [_button_back setImage:BACK_IMAGE forState:UIControlStateNormal];
+    _button_back.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:_button_back];
+    self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
+    
+    UILabel *_titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 21)];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.textColor = [UIColor whiteColor];
+    _titleLabel.text = @"活动";
+    
+    self.navigationItem.titleView = _titleLabel;
     
     data_array = [NSMutableArray array];
     
@@ -32,6 +48,11 @@
     myTableView.dataSource = self;
     myTableView.separatorInset = UIEdgeInsetsZero;
     [self.view addSubview:myTableView];
+}
+
+-(void)clickToBack:(UIButton*)button
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
