@@ -776,6 +776,20 @@
     }
     
     
+    //给速度lable赋值
+    
+    NSString *hourStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(0, 1)];//00.00.00
+    NSString *minStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(3, 2)];
+    NSString *seStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(6, 2)];
+    
+    double hour = [hourStr intValue]+([minStr floatValue]/60)+([seStr floatValue]/3600);
+    
+    _gspeedLabel.text =  [NSString stringWithFormat:@"%f",hour];
+    
+    
+    
+    
+    
 #pragma mark -  划线=======================
     
     NSLog(@"lat ====== %f",userLocation.location.coordinate.latitude);
@@ -798,7 +812,7 @@
         }
         _distance += distance;
         NSString *str = [NSString stringWithFormat:@"公里----%f",_distance/1000];
-        _gongliLabel.text = str;
+        _gongliLabel.text = str;//给距离label赋值 单位是公里
     }
     
     if (_points == nil) {
@@ -885,7 +899,15 @@
     [self hideTabBar:YES];
     _downView.hidden = NO;
     self.mapView.showsUserLocation = YES;//开启定位
-    started = YES;
+    
+    
+    //接收到appdelegate通知 开始骑行 下面这个是判断 是否为暂停后点击返回然后再点击开始骑行进入的
+    if (_isTimeOutClicked) {
+        
+    }else{
+        started = YES;
+    }
+    
 }
 
 
