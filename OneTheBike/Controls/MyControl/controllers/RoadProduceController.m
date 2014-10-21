@@ -81,6 +81,12 @@ enum{
 @synthesize mapView = _mapView;
 @synthesize search  = _search;
 
+- (void)dealloc
+{
+    [self clearMapView];
+    [self clearSearch];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
