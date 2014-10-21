@@ -34,6 +34,14 @@
     UIButton *_greenTimeOutBtn;//暂停按钮
     
     double _distance;//距离
+    
+    
+    
+    
+    //路书
+    MAPointAnnotation *startAnnotation;//起点
+    MAPointAnnotation *detinationAnnotation;//终点
+    NSMutableArray *middleAnntations;//途经点
 }
 @property (nonatomic,strong)NSMutableArray *cllocation2dsArray;
 @property (nonatomic, strong) NSMutableArray *overlays;
@@ -287,6 +295,9 @@
     [main addTimer:timer forMode:NSRunLoopCommonModes];
     
     
+    
+    
+    [self initHistoryMap];
     
 }
 
@@ -682,6 +693,30 @@
         overlayView = self.routeLineView;
     }
     
+    
+#pragma 路书================
+    if ([overlay isKindOfClass:[LineDashPolyline class]])
+    {
+        MAPolylineView *overlayView = [[MAPolylineView alloc] initWithPolyline:((LineDashPolyline *)overlay).polyline];
+        
+        overlayView.lineWidth    = 5.f;
+        overlayView.strokeColor  = [UIColor greenColor];
+        overlayView.lineDash     = YES;
+        
+        return overlayView;
+    }
+    if ([overlay isKindOfClass:[MAPolyline class]])
+    {
+        MAPolylineView *overlayView = [[MAPolylineView alloc] initWithPolyline:(MAPolyline *)overlay];
+        
+        overlayView.lineWidth    = 5.f;
+        overlayView.strokeColor  = [UIColor blueColor];
+        
+        return overlayView;
+    }
+    
+    
+    
     return overlayView;
     
     
@@ -726,6 +761,44 @@
         return poiAnnotationView;
         
     }
+    
+    
+#pragma - mark - 路书===============
+    
+    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+    {
+        static NSString *navigationCellIdentifier = @"navigationCellIdentifier";
+        
+        MAAnnotationView *poiAnnotationView = (MAAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:navigationCellIdentifier];
+        if (poiAnnotationView == nil)
+        {
+            poiAnnotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
+                                                             reuseIdentifier:navigationCellIdentifier];
+        }
+        
+        poiAnnotationView.canShowCallout = YES;
+        
+        /* 起点. */
+        if ([[annotation title] isEqualToString:NavigationViewControllerStartTitle])
+        {
+            poiAnnotationView.image = [UIImage imageNamed:@"road_start"];
+        }
+        /* 终点. */
+        else if([[annotation title] isEqualToString:NavigationViewControllerDestinationTitle])
+        {
+            poiAnnotationView.image = [UIImage imageNamed:@"road_end"];
+        }
+        /* 途经点. */
+        else if([[annotation title] isEqualToString:NavigationViewControllerMiddleTitle])
+        {
+            poiAnnotationView.image = [UIImage imageNamed:@"road_middle"];
+        }
+        
+        return poiAnnotationView;
+    }
+    
+    
+    
    
     return nil;
 }
@@ -783,8 +856,8 @@
     NSString *seStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(6, 2)];
     
     double hour = [hourStr intValue]+([minStr floatValue]/60)+([seStr floatValue]/3600);
-    
-    _gspeedLabel.text =  [NSString stringWithFormat:@"%f",hour];
+    NSString *speedStr = [NSString stringWithFormat:@"%.2f",_distance/hour];
+    _gspeedLabel.text =  speedStr;
     
     
     
@@ -940,6 +1013,117 @@
     
     [UIView commitAnimations];
 }
+
+
+
+
+
+
+
+
+//牛逼的小胖===============
+- (void)initHistoryMap
+{
+    NSString *key = [NSString stringWithFormat:@"road_%d",1];
+    
+    NSArray *arr = [LTools cacheForKey:key];
+    
+    if (arr.count == 0) {
+        return;
+    }
+    
+    NSDictionary *history_dic = [LMapTools parseMapHistoryMap:arr];
+    
+    NSArray *lines = [history_dic objectForKey:L_POLINES];
+    NSArray *start_arr = [history_dic objectForKey:L_START_POINT_COORDINATE];
+    NSArray *end_arr = [history_dic objectForKey:L_END_POINT_COORDINATE];
+    
+    self.startCoordinate = CLLocationCoordinate2DMake([[start_arr objectAtIndex:0] floatValue], [[start_arr objectAtIndex:1] floatValue]);
+    [self addStartAnnotation];
+    
+    self.destinationCoordinate = CLLocationCoordinate2DMake([[end_arr objectAtIndex:0] floatValue], [[end_arr objectAtIndex:1] floatValue]);
+    [self addDestinationAnnotation];
+    
+    [self.mapView addOverlays:lines];
+    
+    [self.mapView setCenterCoordinate:self.startCoordinate animated:YES];
+    
+    
+}
+
+
+
+#pragma mark 添加\取消 标志
+
+//起点
+- (void)addStartAnnotation
+{
+    if (startAnnotation) {
+        
+        [self.mapView removeAnnotation:startAnnotation];
+    }
+    
+    startAnnotation = [[MAPointAnnotation alloc] init];
+    startAnnotation.coordinate = self.startCoordinate;
+    startAnnotation.title      = NavigationViewControllerStartTitle;
+    startAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.startCoordinate.latitude, self.startCoordinate.longitude];
+    [self.mapView addAnnotation:startAnnotation];
+}
+- (void)removeStartAnnotation
+{
+    [self.mapView removeAnnotation:startAnnotation];
+    
+    self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
+    
+    [self removeAllPolines];
+}
+
+- (void)removeAllPolines
+{
+    if (middleAnntations.count == 0 && self.startCoordinate.latitude == 0 && self.destinationCoordinate.latitude == 0){
+        
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        
+        [self.mapView removeOverlays:self.mapView.overlays];
+    }
+}
+
+//终点
+- (void)addDestinationAnnotation
+{
+    if (detinationAnnotation) {
+        [self.mapView removeAnnotation:detinationAnnotation];
+    }
+    
+    detinationAnnotation = [[MAPointAnnotation alloc] init];
+    detinationAnnotation.coordinate = self.destinationCoordinate;
+    detinationAnnotation.title      = (NSString*)NavigationViewControllerDestinationTitle;
+    detinationAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.destinationCoordinate.latitude, self.destinationCoordinate.longitude];
+    
+    [self.mapView addAnnotation:detinationAnnotation];
+}
+
+- (void)removeDestinationAnnotation
+{
+    [self.mapView removeAnnotation:detinationAnnotation];
+    
+    self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
+    
+    [self removeAllPolines];
+}
+
+//中间点
+- (void)addMiddleAnnotation:(CLLocationCoordinate2D)midCoordinate
+{
+    MAPointAnnotation *midAnnotation = [[MAPointAnnotation alloc] init];
+    midAnnotation.coordinate = midCoordinate;
+    midAnnotation.title      = (NSString*)NavigationViewControllerMiddleTitle;
+    midAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", midCoordinate.latitude, midCoordinate.longitude];
+    [self.mapView addAnnotation:midAnnotation];
+    
+    [middleAnntations addObject:midAnnotation];
+}
+
 
 
 

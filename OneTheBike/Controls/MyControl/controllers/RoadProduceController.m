@@ -19,9 +19,6 @@
 
 #import "AppDelegate.h"
 
-const NSString *NavigationViewControllerStartTitle       = @"起点";
-const NSString *NavigationViewControllerDestinationTitle = @"终点";
-const NSString *NavigationViewControllerMiddleTitle      = @"途经点";
 
 enum{
     OverlayViewControllerOverlayTypeCircle = 0,

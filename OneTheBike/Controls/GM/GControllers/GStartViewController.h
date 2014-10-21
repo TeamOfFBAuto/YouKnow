@@ -14,6 +14,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapSearchKit/AMapSearchAPI.h>
 
+#import "LineDashPolyline.h"
 
 @interface GStartViewController : UIViewController<MAMapViewDelegate, AMapSearchDelegate>
 {
@@ -46,6 +47,13 @@
 //划线
 @property (nonatomic, retain) MAPolyline* routeLine;
 @property (nonatomic, retain) MAPolylineView* routeLineView;
+
+
+//路书=================
+/* 起始点经纬度. */
+@property (nonatomic) CLLocationCoordinate2D startCoordinate;
+/* 终点经纬度. */
+@property (nonatomic) CLLocationCoordinate2D destinationCoordinate;
 
 
 //清理 地图 搜索服务的相关代理
