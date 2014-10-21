@@ -430,6 +430,7 @@
 		56442E1519F5621700BAE678 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56442E1319F5621700BAE678 /* RankingTableViewCell.xib */; };
 		56DE2E8019F5711B0042C2A5 /* ReGeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */; };
 		E31F584919F638450064959E /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F584819F638450064959E /* StartViewController.m */; };
+		E31F584C19F64EF60064959E /* Gmap.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F584B19F64EF60064959E /* Gmap.m */; };
 		E32B927C19F60609007536D0 /* ghuifu.png in Resources */ = {isa = PBXBuildFile; fileRef = E32B927B19F60609007536D0 /* ghuifu.png */; };
 		E34451F019E7D67000A3546A /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EE19E7D67000A3546A /* MAMapKit.framework */; };
 		E34451F119E7D67000A3546A /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EF19E7D67000A3546A /* AMapSearchKit.framework */; };
@@ -964,6 +965,8 @@
 		56442E1319F5621700BAE678 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		E31F584719F638450064959E /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		E31F584819F638450064959E /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		E31F584A19F64EF60064959E /* Gmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gmap.h; sourceTree = "<group>"; };
+		E31F584B19F64EF60064959E /* Gmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gmap.m; sourceTree = "<group>"; };
 		E32A591B19ED04CE00142E3A /* ReGeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReGeocodeAnnotation.h; sourceTree = "<group>"; };
 		E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReGeocodeAnnotation.m; sourceTree = "<group>"; };
 		E32B927B19F60609007536D0 /* ghuifu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghuifu.png; sourceTree = "<group>"; };
@@ -2331,6 +2334,8 @@
 				E32A591B19ED04CE00142E3A /* ReGeocodeAnnotation.h */,
 				E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */,
 				E34C791119E813A000A5F4DE /* userPosition@2x.png */,
+				E31F584A19F64EF60064959E /* Gmap.h */,
+				E31F584B19F64EF60064959E /* Gmap.m */,
 			);
 			path = GModel;
 			sourceTree = "<group>";
@@ -2930,6 +2935,7 @@
 				19DAE84719D30F6000519D22 /* MainViewController.m in Sources */,
 				E3C3B8A219F25AB200C8AE5A /* DataBase.m in Sources */,
 				56442E0B19F55A7200BAE678 /* FindRankingViewController.m in Sources */,
+				E31F584C19F64EF60064959E /* Gmap.m in Sources */,
 				134BA6A419D94D1A00282D7D /* UIColor+ConvertColor.m in Sources */,
 				56442DF519F5468B00BAE678 /* NSTimer+Addition.m in Sources */,
 				139467E019F4F80D001DAEA9 /* MapCacheDashClass.m in Sources */,

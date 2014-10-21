@@ -9,6 +9,7 @@
 #import "GStartViewController.h"
 #import "ReGeocodeAnnotation.h"
 #import "GOffLineMapViewController.h"
+#import "Gmap.h"
 
 #define FRAME_IPHONE5_MAP_UP CGRectMake(0, 60, 320, 568-60-20)
 #define FRAME_IPHONE5_MAP_DOWN CGRectMake(0, 260+20, 320, 568-260-20)
@@ -449,14 +450,7 @@
 
 #pragma mark - 跳转到离线地图下载
 -(void)goToOffLineMapTable{
-    GOffLineMapViewController *detailViewController = [[GOffLineMapViewController alloc] init];
-    detailViewController.mapView = self.mapView;
     
-    detailViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:detailViewController];
-    
-    [self presentModalViewController:navi animated:YES];
 }
 
 #pragma mark - 行走完成
@@ -567,7 +561,9 @@
 //初始化地图
 - (void)initMapViewWithFrame:(CGRect)theFrame
 {
-    self.mapView = [[MAMapView alloc]initWithFrame:theFrame];
+    
+    self.mapView = [Gmap sharedMap];
+    [self.mapView setFrame:theFrame];
     self.mapView.delegate = self;
     [self.view addSubview:self.mapView];
 }
