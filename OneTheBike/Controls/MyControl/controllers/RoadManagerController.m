@@ -122,7 +122,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",indexPath.row]};
+    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",indexPath.row + 1]};
     [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROAD_LINES object:nil userInfo:dic];
     
     UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;

@@ -566,6 +566,8 @@
     [self.mapView setFrame:theFrame];
     self.mapView.delegate = self;
     [self.view addSubview:self.mapView];
+    
+    self.mapView.visibleMapRect = MAMapRectMake(220880104, 101476980, 272496, 466656);
 }
 
 //初始化搜索服务

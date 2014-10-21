@@ -11,6 +11,8 @@
 #import "LineDashPolyline.h"
 #import "ReGeocodeAnnotation.h"
 
+#import "GeocodeAnnotation.h"
+
 #import "NSObject+MJKeyValue.h"
 
 #import "MAPolyline+UN.h"
@@ -19,6 +21,9 @@
 
 #import "AppDelegate.h"
 
+#import "Gmap.h"
+
+#define PLACEGOLD @"搜索地址"
 
 enum{
     OverlayViewControllerOverlayTypeCircle = 0,
@@ -36,7 +41,7 @@ enum{
     Point_End //终点
 };
 
-@interface RoadProduceController ()
+@interface RoadProduceController ()<UITextFieldDelegate>
 {
     int point_state;
     
@@ -59,6 +64,12 @@ enum{
     NSString *endName;//终点名字
     
     UIImageView *centerImage;//中间点
+    
+    UITextField *_searchField;//搜索
+    
+    UITableView *tips_table;//搜索提示tableView
+    
+    MBProgressHUD *loading;
 }
 
 @property (nonatomic, strong) AMapRoute *route;
@@ -69,6 +80,8 @@ enum{
 @property (nonatomic) CLLocationCoordinate2D destinationCoordinate;
 
 @property (nonatomic, strong) MAAnnotationView *userLocationAnnotationView;
+
+@property (nonatomic, strong) NSMutableArray *tips;//搜索提示
 
 
 @end
@@ -91,13 +104,13 @@ enum{
     UIBarButtonItem *spaceButton1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceButton1.width = IOS7_OR_LATER ? - 7 : 7;
     
-    UIButton *settings=[[UIButton alloc]initWithFrame:CGRectMake(20,7.5,34,34)];
+    UIButton *settings=[[UIButton alloc]initWithFrame:CGRectMake(20,7.5,40,40)];
     [settings addTarget:self action:@selector(clickToSave:) forControlEvents:UIControlEventTouchUpInside];
 //    [settings setTitle:@"保存" forState:UIControlStateNormal];
     [settings setImage:[UIImage imageNamed:@"road_save"] forState:UIControlStateNormal];
     [settings.titleLabel setFont:[UIFont systemFontOfSize:12]];
     settings.layer.cornerRadius = 3.f;
-    [settings setBackgroundColor:[UIColor colorWithHexString:@"bebebe"]];
+//    [settings setBackgroundColor:[UIColor colorWithHexString:@"bebebe"]];
     UIBarButtonItem *right =[[UIBarButtonItem alloc]initWithCustomView:settings];
     self.navigationItem.rightBarButtonItems = @[spaceButton1,right];
     
@@ -114,6 +127,8 @@ enum{
     save_finish = NO;
     nav_walk_finish = NO;
     
+    self.tips = [NSMutableArray array];
+    
     [self initHistoryMap];
     
     CGSize aSize = [UIScreen mainScreen].bounds.size;
@@ -121,6 +136,8 @@ enum{
     centerImage.center = CGPointMake(aSize.width / 2.f, aSize.height / 2.f - 64);
     [self.view addSubview:centerImage];
     
+    
+    loading = [LTools MBProgressWithText:@"路书制作中..." addToView:self.view];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -197,9 +214,10 @@ enum{
 
 - (void)initMapView
 {
-    self.mapView = [[MAMapView alloc]initWithFrame:self.view.bounds];
+//    self.mapView = [[MAMapView alloc]initWithFrame:self.view.bounds];
     
-//    self.mapView.frame = self.view.bounds;
+    self.mapView = [Gmap sharedMap];
+    self.mapView.frame = self.view.bounds;
     
     self.mapView.delegate = self;
     
@@ -229,17 +247,37 @@ enum{
 
 - (void)createTools
 {
+    
+    //===============键盘消失手势
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hiddenKeyword)];
+    [self.mapView addGestureRecognizer:tap];
    
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    
+    //===============搜索框
     
     UIView *search_back = [[UIView alloc]initWithFrame:CGRectMake(10, 5+2, screenSize.width - 20, 35)];
     search_back.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.2];
     [self.view addSubview:search_back];
     
+    UIImageView *logoImageV =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"map_search"]];
+    logoImageV.frame = CGRectMake(20, (search_back.height - 19)/2.0 , 20, 19);
+    [search_back addSubview:logoImageV];
     
+    _searchField = [[UITextField alloc]initWithFrame:CGRectMake(logoImageV.right + 5, 0, 240, search_back.height)];
+    _searchField.delegate = self;
+    _searchField.returnKeyType = UIReturnKeySearch;
+    _searchField.font=[UIFont systemFontOfSize:14];
+    _searchField.textColor = [UIColor whiteColor];
     
+    _searchField.attributedPlaceholder = [LTools attributedString:PLACEGOLD keyword:PLACEGOLD color:[UIColor whiteColor]];
+    
+    [search_back addSubview:_searchField];
+    
+    //===============选点按钮
    
-    UIView *tools = [[UIView alloc]initWithFrame:CGRectMake(0, screenSize.height - 50 - 50 - 64, screenSize.width, 50)];
+    UIView *tools = [[UIView alloc]initWithFrame:CGRectMake(0, screenSize.height - 50 - 20 - 64, screenSize.width, 50)];
     tools.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tools];
 //    NSArray *titls_arr = @[@"取消",@"起",@"途",@"终",@"生成"];
@@ -258,6 +296,16 @@ enum{
 }
 
 #pragma mark - 事件处理
+
+- (void)searchKeyword
+{
+    [self clearAndSearchGeocodeWithKey:_searchField.text];
+}
+
+- (void)hiddenKeyword
+{
+    [_searchField resignFirstResponder];
+}
 
 - (void)clearMapView
 {
@@ -399,6 +447,8 @@ enum{
             [self searchNaviWalk];
             
             longPress.enabled = NO;
+            
+            [self clear];
         }
             break;
             
@@ -492,22 +542,12 @@ enum{
     
     NSLog(@"--->searchNaviWalk");
     
+    [loading show:YES];
+    
     int middleCount = middle_points_arr.count;
     
     //没有途经点,直接导航
     if (middleCount == 0) {
-        
-//        AMapNavigationSearchRequest *navi = [[AMapNavigationSearchRequest alloc] init];
-//        navi.searchType       = AMapSearchType_NaviDrive;
-//        navi.requireExtension = YES;
-//        /* 出发点. */
-//        navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
-//                                               longitude:self.startCoordinate.longitude];
-//        /* 目的地. */
-//        navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
-//                                                    longitude:self.destinationCoordinate.longitude];
-//        
-//        [self.search AMapNavigationSearch:navi];
         
         AMapGeoPoint *origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
                                                         longitude:self.startCoordinate.longitude];
@@ -641,6 +681,26 @@ enum{
 
 #pragma mark - delegate
 
+#pragma mark - UITextFieldDelegate
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    //    maskView.hidden = YES;
+    //   searchBlock (Search_Cancel,nil);
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self searchKeyword];
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 #pragma mark - AMapSearchDelegate<NSObject>
 
@@ -653,6 +713,12 @@ enum{
 - (void)searchRequest:(id)request didFailWithError:(NSError *)error
 {
     NSLog(@"%s: searchRequest = %@, errInfo= %@", __func__, [request class], error);
+    
+    [loading hide:YES];
+    if (error.code == 1001) {
+        
+        [LTools showMBProgressWithText:@"请求超时" addToView:self.view];
+    }
 }
 
 - (void)search:(id)searchRequest error:(NSString *)errInfo __attribute__ ((deprecated("use -search:didFailWithError instead.")))
@@ -674,8 +740,6 @@ enum{
 //        [self.mapView addAnnotation:reGeocodeAnnotation];
 //        [self.mapView selectAnnotation:reGeocodeAnnotation animated:YES];
         
-        
-        
     }
 }
 
@@ -687,8 +751,6 @@ enum{
 - (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response
 {
     NSLog(@"--->onNavigationSearchDone");
-    
-//    NSLog(@"------》response %@",response);
     self.route = response.route;
     
     NSArray *polylines = [CommonUtility polylinesForPath:self.route.paths[0]];
@@ -715,9 +777,14 @@ enum{
             AMapGeoPoint *detin = [middle_points_arr objectAtIndex:point_index + 1];
             
             [self searchWithOrigin:origin destination:detin];
+            
         }else if(point_index == middle_points_arr.count - 1)
         {
             nav_walk_finish = YES;
+            
+            [loading hide:YES];
+            
+            [LTools showMBProgressWithText:@"路书制作成功" addToView:self.view];
         }
         
     }
@@ -816,7 +883,23 @@ enum{
         
         return poiAnnotationView;
         
+    }else if ([annotation isKindOfClass:[GeocodeAnnotation class]])
+    {
+        static NSString *geoCellIdentifier = @"geoCellIdentifier";
+        
+        MAPinAnnotationView *poiAnnotationView = (MAPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:geoCellIdentifier];
+        if (poiAnnotationView == nil)
+        {
+            poiAnnotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation
+                                                                reuseIdentifier:geoCellIdentifier];
+        }
+        
+        poiAnnotationView.canShowCallout            = YES;
+        poiAnnotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        
+        return poiAnnotationView;
     }
+
 
     
     
@@ -872,47 +955,107 @@ enum{
 }
 
 
-//测试导航途经点
-- (void)test
+#pragma mark - --------------- ---------搜索
+
+/* 地理编码 搜索. */
+- (void)searchGeocodeWithKey:(NSString *)key
 {
-    AMapNavigationSearchRequest *navi = [[AMapNavigationSearchRequest alloc] init];
-    navi.searchType       = AMapSearchType_NaviDrive;
-    navi.requireExtension = YES;
-    /* 出发点. */
-    navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
-                                           longitude:self.startCoordinate.longitude];
-    /* 目的地. */
-    navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
-                                                longitude:self.destinationCoordinate.longitude];
-    
-    //天安门东 116.401005,39.908024
-    //王府井 116.412163,39.908156
-    //崇文门 116.417484,39.901309
-    //前门  116.398773,39.900255
-    //宣武门 116.373882,39.899202
-    //陶然亭 116.374741,39.878259
-    //天坛东门 116.420918,39.882606
-    
-    NSArray *data = @[@"116.401005,39.908024",@"116.412163,39.908156",@"116.417484,39.901309",@"116.398773,39.900255",@"116.373882,39.899202",@"116.374741,39.878259",@"116.420918,39.882606"];
-    
-    NSMutableArray *ways = [NSMutableArray array];
-    for (int i = 0; i <ways.count; i ++) {
-        
-        NSString *des = [data objectAtIndex:i];
-        NSArray *ll = [des componentsSeparatedByString:@","];
-        
-        CGFloat la = [[ll objectAtIndex:1] floatValue];
-        CGFloat lon = [[ll objectAtIndex:0] floatValue];
-        
-        AMapGeoPoint *point = [AMapGeoPoint locationWithLatitude:la
-                                                       longitude:lon];
-        
-        [ways addObject:point];
+    if (key.length == 0)
+    {
+        return;
     }
     
-    navi.waypoints = [NSArray arrayWithArray:ways];
+    AMapGeocodeSearchRequest *geo = [[AMapGeocodeSearchRequest alloc] init];
+    geo.address = key;
     
-    [self.search AMapNavigationSearch:navi];
+    [self.search AMapGeocodeSearch:geo];
+}
+
+/* 输入提示 搜索.*/
+- (void)searchTipsWithKey:(NSString *)key
+{
+    if (key.length == 0)
+    {
+        return;
+    }
+    
+    AMapInputTipsSearchRequest *tips = [[AMapInputTipsSearchRequest alloc] init];
+    tips.keywords = key;
+    [self.search AMapInputTipsSearch:tips];
+}
+
+/* 清除annotation. */
+- (void)clear
+{
+    NSMutableArray *need_remove = [NSMutableArray array];
+    for (id a in self.mapView.annotations) {
+        
+        if ([a isKindOfClass:[GeocodeAnnotation class]]) {
+            
+            [need_remove addObject:a];
+        }
+    }
+    
+    [self.mapView removeAnnotations:need_remove];
+}
+
+- (void)clearAndSearchGeocodeWithKey:(NSString *)key
+{
+    /* 清除annotation. */
+    [self clear];
+    
+    [self searchGeocodeWithKey:key];
+}
+
+
+#pragma mark - MAMapViewDelegate
+
+- (void)mapView:(MAMapView *)mapView annotationView:(MAAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    if ([view.annotation isKindOfClass:[GeocodeAnnotation class]])
+    {
+//        [self gotoDetailForGeocode:[(GeocodeAnnotation*)view.annotation geocode]];
+    }
+}
+
+
+#pragma mark - AMapSearchDelegate
+
+/* 地理编码回调.*/
+- (void)onGeocodeSearchDone:(AMapGeocodeSearchRequest *)request response:(AMapGeocodeSearchResponse *)response
+{
+    if (response.geocodes.count == 0)
+    {
+        return;
+    }
+    
+    NSMutableArray *annotations = [NSMutableArray array];
+    
+    [response.geocodes enumerateObjectsUsingBlock:^(AMapGeocode *obj, NSUInteger idx, BOOL *stop) {
+        GeocodeAnnotation *geocodeAnnotation = [[GeocodeAnnotation alloc] initWithGeocode:obj];
+        
+        [annotations addObject:geocodeAnnotation];
+    }];
+    
+    if (annotations.count == 1)
+    {
+        [self.mapView setCenterCoordinate:[annotations[0] coordinate] animated:YES];
+    }
+    else
+    {
+        [self.mapView setVisibleMapRect:[CommonUtility minMapRectForAnnotations:annotations]
+                               animated:YES];
+    }
+    
+    [self.mapView addAnnotations:annotations];
+}
+
+/* 输入提示回调. */
+- (void)onInputTipsSearchDone:(AMapInputTipsSearchRequest *)request response:(AMapInputTipsSearchResponse *)response
+{
+    [self.tips setArray:response.tips];
+    
+//    [self.displayController.searchResultsTableView reloadData];
 }
 
 

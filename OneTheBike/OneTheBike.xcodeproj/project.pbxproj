@@ -103,6 +103,7 @@
 		13AC6BAB19D805D800E7FF7B /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13AC6BA719D805D800E7FF7B /* libSocialQQ.a */; };
 		13AC6BAC19D805D800E7FF7B /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13AC6BA819D805D800E7FF7B /* TencentOpenAPI.framework */; };
 		13AC6BAD19D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13AC6BA919D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle */; };
+		13CFBACD19F6AEB0006B9684 /* GeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CFBACC19F6AEB0006B9684 /* GeocodeAnnotation.m */; };
 		13D21C8C19F4095C0015AAF2 /* gps图标1格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7119F4095C0015AAF2 /* gps图标1格.png */; };
 		13D21C8D19F4095C0015AAF2 /* gps图标2格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7219F4095C0015AAF2 /* gps图标2格.png */; };
 		13D21C8E19F4095C0015AAF2 /* gps图标3格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7319F4095C0015AAF2 /* gps图标3格.png */; };
@@ -133,6 +134,7 @@
 		13E8EE1319F60C04006FA5CE /* LMapTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E8EE1219F60C04006FA5CE /* LMapTools.m */; };
 		13E8EE1619F60CE8006FA5CE /* LMaplineClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E8EE1519F60CE8006FA5CE /* LMaplineClass.m */; };
 		13E8EE1A19F6538B006FA5CE /* road_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E8EE1919F6538B006FA5CE /* road_save@2x.png */; };
+		13E8EE1E19F660C8006FA5CE /* map_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E8EE1D19F660C8006FA5CE /* map_search@2x.png */; };
 		1929B3B419D41C3A0045B6B5 /* bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3AE19D41C3A0045B6B5 /* bike@2x.png */; };
 		1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3AF19D41C3A0045B6B5 /* find@2x.png */; };
 		1929B3B619D41C3A0045B6B5 /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3B019D41C3A0045B6B5 /* history@2x.png */; };
@@ -620,6 +622,8 @@
 		13AC6BA819D805D800E7FF7B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		13AC6BA919D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		13AC6BAA19D805D800E7FF7B /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		13CFBACB19F6AEB0006B9684 /* GeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocodeAnnotation.h; sourceTree = "<group>"; };
+		13CFBACC19F6AEB0006B9684 /* GeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocodeAnnotation.m; sourceTree = "<group>"; };
 		13D21C7119F4095C0015AAF2 /* gps图标1格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标1格.png"; sourceTree = "<group>"; };
 		13D21C7219F4095C0015AAF2 /* gps图标2格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标2格.png"; sourceTree = "<group>"; };
 		13D21C7319F4095C0015AAF2 /* gps图标3格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标3格.png"; sourceTree = "<group>"; };
@@ -652,6 +656,7 @@
 		13E8EE1419F60CE8006FA5CE /* LMaplineClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMaplineClass.h; sourceTree = "<group>"; };
 		13E8EE1519F60CE8006FA5CE /* LMaplineClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMaplineClass.m; sourceTree = "<group>"; };
 		13E8EE1919F6538B006FA5CE /* road_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "road_save@2x.png"; sourceTree = "<group>"; };
+		13E8EE1D19F660C8006FA5CE /* map_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_search@2x.png"; sourceTree = "<group>"; };
 		1929B3AE19D41C3A0045B6B5 /* bike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bike@2x.png"; sourceTree = "<group>"; };
 		1929B3AF19D41C3A0045B6B5 /* find@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find@2x.png"; sourceTree = "<group>"; };
 		1929B3B019D41C3A0045B6B5 /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
@@ -1098,6 +1103,7 @@
 		137B0C4019F556B9001F3507 /* 路书制作 */ = {
 			isa = PBXGroup;
 			children = (
+				13E8EE1D19F660C8006FA5CE /* map_search@2x.png */,
 				13E8EE1919F6538B006FA5CE /* road_save@2x.png */,
 				137B0C4119F556C2001F3507 /* road_cancel@2x.png */,
 				137B0C4219F556C2001F3507 /* road_end@2x.png */,
@@ -2319,6 +2325,8 @@
 		E34C791019E813A000A5F4DE /* GModel */ = {
 			isa = PBXGroup;
 			children = (
+				13CFBACB19F6AEB0006B9684 /* GeocodeAnnotation.h */,
+				13CFBACC19F6AEB0006B9684 /* GeocodeAnnotation.m */,
 				E32B927B19F60609007536D0 /* ghuifu.png */,
 				E36DE09B19F51588007585AF /* gstarting.png */,
 				E36DE09919F4FCCC007585AF /* gbpm.png */,
@@ -2732,6 +2740,7 @@
 				19DAEA7F19D311D300519D22 /* selected_small_bbs_icon_image@2x.png in Resources */,
 				19DAEA4219D311D300519D22 /* jing@2x.png in Resources */,
 				19DAEA3119D311D300519D22 /* fly@2x.png in Resources */,
+				13E8EE1E19F660C8006FA5CE /* map_search@2x.png in Resources */,
 				19DAE98019D311D300519D22 /* add_fenlei@2x.png in Resources */,
 				56442E0819F5567300BAE678 /* ActivityTableViewCell.xib in Resources */,
 				134BA68F19D940AA00282D7D /* arrow_right@2x.png in Resources */,
@@ -2901,6 +2910,7 @@
 				137D9FD819F26E7000B31100 /* MoreViewController.m in Sources */,
 				19DAE80719D30C2D00519D22 /* AppDelegate.m in Sources */,
 				137D76E519F4BB5B00DD29D7 /* MJConst.m in Sources */,
+				13CFBACD19F6AEB0006B9684 /* GeocodeAnnotation.m in Sources */,
 				137D76E919F4BB5B00DD29D7 /* MJMethod.m in Sources */,
 				137D9FCE19F261B500B31100 /* UserInfoHeaderCell.m in Sources */,
 				56442DF419F5468B00BAE678 /* CycleScrollView.m in Sources */,
