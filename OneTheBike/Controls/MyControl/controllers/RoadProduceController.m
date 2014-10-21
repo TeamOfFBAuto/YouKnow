@@ -61,6 +61,8 @@ enum{
     
     NSString *startName;//起点名字
     NSString *endName;//终点名字
+    
+    UIImageView *centerImage;//中间点
 }
 
 @property (nonatomic, strong) AMapRoute *route;
@@ -111,8 +113,9 @@ enum{
     
     [self initHistoryMap];
     
-    UIImageView *centerImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"road_select"]];
-    centerImage.center = self.view.center;
+    CGSize aSize = [UIScreen mainScreen].bounds.size;
+    centerImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"road_select"]];
+    centerImage.center = CGPointMake(aSize.width / 2.f, aSize.height / 2.f - 64);
     [self.view addSubview:centerImage];
     
 }
@@ -385,6 +388,39 @@ enum{
     
 }
 
+//添加点
+- (void)addCoordinate
+{
+    CLLocationCoordinate2D coordinate = [self.mapView convertPoint:centerImage.center
+                                              toCoordinateFromView:self.mapView];
+    
+    [self searchReGeocodeWithCoordinate:coordinate];
+    
+    if (point_state == Point_Start) {
+        
+        self.startCoordinate = coordinate;
+        
+        [self addStartAnnotation];
+        
+    }else if (point_state == Point_End){
+        
+        self.destinationCoordinate = coordinate;
+        
+        [self addDestinationAnnotation];
+        
+    }else if (point_state == Point_Middle){
+        
+        NSLog(@"途经点");
+        
+        [middle_points_arr addObject:[AMapGeoPoint locationWithLatitude:coordinate.latitude
+                                                              longitude:coordinate.longitude]];
+        
+        [self addMiddleAnnotation:coordinate];
+        
+    }
+
+}
+
 - (void)clickToActionMap:(UIButton *)sender
 {
     switch (sender.tag - 100) {
@@ -413,25 +449,23 @@ enum{
             NSLog(@"起");
             point_state = Point_Start;
             
-            [LTools showMBProgressWithText:@"长按选择起点" addToView:self.view];
-            
-            longPress.enabled = YES;
+            [self addCoordinate];
         }
             break;
         case 2:
         {
             NSLog(@"途");
             point_state = Point_Middle;
-            [LTools showMBProgressWithText:@"长按选择途经点" addToView:self.view];
-            longPress.enabled = YES;
+            
+            [self addCoordinate];
         }
             break;
         case 3:
         {
             NSLog(@"终");
             point_state = Point_End;
-            [LTools showMBProgressWithText:@"长按选择终点" addToView:self.view];
-            longPress.enabled = YES;
+
+            [self addCoordinate];
         }
             break;
         case 4:
