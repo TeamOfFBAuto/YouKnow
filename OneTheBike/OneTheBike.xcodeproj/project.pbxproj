@@ -39,7 +39,6 @@
 		137D76ED19F4BB5B00DD29D7 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D76E119F4BB5B00DD29D7 /* NSObject+MJKeyValue.m */; };
 		137D76EE19F4BB5B00DD29D7 /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D76E319F4BB5B00DD29D7 /* NSObject+MJMember.m */; };
 		137D76F119F4BD9500DD29D7 /* MAPolyline+UN.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D76F019F4BD9500DD29D7 /* MAPolyline+UN.m */; };
-		137D76F819F4E54200DD29D7 /* MapCacheClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D76F719F4E54200DD29D7 /* MapCacheClass.m */; };
 		137D9F8919F2508200B31100 /* LTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9F8819F2508200B31100 /* LTools.m */; };
 		137D9F9019F250A900B31100 /* UIColor+ConvertColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9F8C19F250A900B31100 /* UIColor+ConvertColor.m */; };
 		137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9F8F19F250A900B31100 /* UIView+Frame.m */; };
@@ -131,6 +130,8 @@
 		13D21CA419F4095C0015AAF2 /* 海拔下降.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8919F4095C0015AAF2 /* 海拔下降.png */; };
 		13D21CA519F4095C0015AAF2 /* 爬升率.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8A19F4095C0015AAF2 /* 爬升率.png */; };
 		13D21CA619F4095C0015AAF2 /* 配速.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C8B19F4095C0015AAF2 /* 配速.png */; };
+		13E8EE1319F60C04006FA5CE /* LMapTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E8EE1219F60C04006FA5CE /* LMapTools.m */; };
+		13E8EE1619F60CE8006FA5CE /* LMaplineClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E8EE1519F60CE8006FA5CE /* LMaplineClass.m */; };
 		1929B3B419D41C3A0045B6B5 /* bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3AE19D41C3A0045B6B5 /* bike@2x.png */; };
 		1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3AF19D41C3A0045B6B5 /* find@2x.png */; };
 		1929B3B619D41C3A0045B6B5 /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1929B3B019D41C3A0045B6B5 /* history@2x.png */; };
@@ -526,8 +527,6 @@
 		137D76E319F4BB5B00DD29D7 /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
 		137D76EF19F4BD9500DD29D7 /* MAPolyline+UN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MAPolyline+UN.h"; sourceTree = "<group>"; };
 		137D76F019F4BD9500DD29D7 /* MAPolyline+UN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MAPolyline+UN.m"; sourceTree = "<group>"; };
-		137D76F619F4E54200DD29D7 /* MapCacheClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCacheClass.h; sourceTree = "<group>"; };
-		137D76F719F4E54200DD29D7 /* MapCacheClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCacheClass.m; sourceTree = "<group>"; };
 		137D9F8719F2508200B31100 /* LTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTools.h; sourceTree = "<group>"; };
 		137D9F8819F2508200B31100 /* LTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTools.m; sourceTree = "<group>"; };
 		137D9F8B19F250A900B31100 /* UIColor+ConvertColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ConvertColor.h"; sourceTree = "<group>"; };
@@ -650,6 +649,10 @@
 		13D21C8919F4095C0015AAF2 /* 海拔下降.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "海拔下降.png"; sourceTree = "<group>"; };
 		13D21C8A19F4095C0015AAF2 /* 爬升率.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "爬升率.png"; sourceTree = "<group>"; };
 		13D21C8B19F4095C0015AAF2 /* 配速.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "配速.png"; sourceTree = "<group>"; };
+		13E8EE1119F60C04006FA5CE /* LMapTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMapTools.h; sourceTree = "<group>"; };
+		13E8EE1219F60C04006FA5CE /* LMapTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMapTools.m; sourceTree = "<group>"; };
+		13E8EE1419F60CE8006FA5CE /* LMaplineClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMaplineClass.h; sourceTree = "<group>"; };
+		13E8EE1519F60CE8006FA5CE /* LMaplineClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMaplineClass.m; sourceTree = "<group>"; };
 		1929B3AE19D41C3A0045B6B5 /* bike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bike@2x.png"; sourceTree = "<group>"; };
 		1929B3AF19D41C3A0045B6B5 /* find@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find@2x.png"; sourceTree = "<group>"; };
 		1929B3B019D41C3A0045B6B5 /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
@@ -1146,8 +1149,6 @@
 		137D76F519F4E53300DD29D7 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				137D76F619F4E54200DD29D7 /* MapCacheClass.h */,
-				137D76F719F4E54200DD29D7 /* MapCacheClass.m */,
 				139467DE19F4F80D001DAEA9 /* MapCacheDashClass.h */,
 				139467DF19F4F80D001DAEA9 /* MapCacheDashClass.m */,
 			);
@@ -1171,6 +1172,10 @@
 				137D9F8D19F250A900B31100 /* UIView+Frame */,
 				137D9F8719F2508200B31100 /* LTools.h */,
 				137D9F8819F2508200B31100 /* LTools.m */,
+				13E8EE1119F60C04006FA5CE /* LMapTools.h */,
+				13E8EE1219F60C04006FA5CE /* LMapTools.m */,
+				13E8EE1419F60CE8006FA5CE /* LMaplineClass.h */,
+				13E8EE1519F60CE8006FA5CE /* LMaplineClass.m */,
 			);
 			path = LApi;
 			sourceTree = "<group>";
@@ -2920,6 +2925,7 @@
 				137D76EE19F4BB5B00DD29D7 /* NSObject+MJMember.m in Sources */,
 				137D9FE719F290F800B31100 /* CommonUtility.m in Sources */,
 				137D76E419F4BB5B00DD29D7 /* MJArgument.m in Sources */,
+				13E8EE1319F60C04006FA5CE /* LMapTools.m in Sources */,
 				E3BB362319E7C0C20096131D /* GMAPI.m in Sources */,
 				134BA69A19D9462900282D7D /* MineCellOne.m in Sources */,
 				E3C3B8B519F2802E00C8AE5A /* GStartViewController.m in Sources */,
@@ -2931,8 +2937,8 @@
 				134BA6A419D94D1A00282D7D /* UIColor+ConvertColor.m in Sources */,
 				56442DF519F5468B00BAE678 /* NSTimer+Addition.m in Sources */,
 				139467E019F4F80D001DAEA9 /* MapCacheDashClass.m in Sources */,
+				13E8EE1619F60CE8006FA5CE /* LMaplineClass.m in Sources */,
 				19DAE80419D30C2D00519D22 /* main.m in Sources */,
-				137D76F819F4E54200DD29D7 /* MapCacheClass.m in Sources */,
 				19DAE84419D30F4E00519D22 /* HistoryViewController.m in Sources */,
 				137D9FEB19F2916600B31100 /* LineDashPolyline.m in Sources */,
 				137D9FE219F27A6500B31100 /* RoadProduceController.m in Sources */,

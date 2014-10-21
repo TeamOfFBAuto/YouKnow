@@ -15,7 +15,6 @@
 
 #import "MAPolyline+UN.h"
 
-#import "MapCacheClass.h"
 #import "MapCacheDashClass.h"
 
 #import "AppDelegate.h"
@@ -125,88 +124,125 @@ enum{
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)clickToBack:(id)sender
+{
+    if (save_finish || polines_arr.count == 0) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }else
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"路书未保存" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"保存", nil];
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }else if(buttonIndex == 1){
+        
+        [self clickToSave:nil];
+    }
+}
+
 #pragma mark - 历史轨迹
 
 - (void)initHistoryMap
 {
-    
-//    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
-//    int index = [road_ids intValue];
-//    
-//    NSString *key = [NSString stringWithFormat:@"road_%d",index + 1];
-//    [LTools cache:dic_arr ForKey:key];
-
     NSString *key = [NSString stringWithFormat:@"road_%d",self.road_index];
-    
     
     NSArray *arr = [LTools cacheForKey:key];
     
-    NSMutableArray *pp = [NSMutableArray array];//所有的规划线
-    
-    double start_x = 0.0;
-    double start_y = 0.0;
-    double end_x = 0.0;
-    double end_y = 0.0;
-    
-    if (arr.count > 0) {
-        NSArray *object_arr = [MapCacheDashClass objectArrayWithKeyValuesArray:arr];
-        
-        for (int i = 0; i < object_arr.count; i ++) {
-            MapCacheDashClass *cache = [object_arr objectAtIndex:i];
-            
-            if (i == 0) {
-                
-                start_x = [[cache.polyline objectForKey:@"rect_x"]doubleValue];
-                start_y = [[cache.polyline objectForKey:@"rect_y"]doubleValue];
-                
-                self.startCoordinate = CLLocationCoordinate2DMake(cache.latitude, cache.longitude);
-                [self addStartAnnotation];
-            }
-            
-            if (i == object_arr.count - 1) {
-                end_x = [[cache.polyline objectForKey:@"rect_x"]doubleValue];
-                end_y = [[cache.polyline objectForKey:@"rect_y"]doubleValue];
-                
-                self.destinationCoordinate = CLLocationCoordinate2DMake(cache.latitude, cache.longitude);
-                [self addDestinationAnnotation];
-            }
-            
-            NSString *type = cache.classType;
-            
-            if ([type isEqualToString:TYPE_MAPolyline]) {
-                
-                NSUInteger count = cache.pointCount;
-                CLLocationCoordinate2D *temp = [CommonUtility coordinatesForString:cache.coordinatesString coordinateCount:&count parseToken:@","];
-                MAPolyline *line2 = [MAPolyline polylineWithCoordinates:temp count:cache.pointCount];
-                [pp addObject:line2];
-                
-            }else if ([type isEqualToString:TYPE_LineDashPolyline]){
-                
-                NSDictionary *polyline = cache.polyline;
-                MAMapPoint point = MAMapPointMake([[polyline valueForKey:@"pointX"] doubleValue], [[polyline valueForKey:@"pointY"] doubleValue]);
-                
-                MAPolyline *line = [MAPolyline polylineWithPoints:&point count:cache.pointCount];
-                LineDashPolyline *line_Dash = [[LineDashPolyline alloc]initWithPolyline:line];
-                
-                line_Dash.coordinate = CLLocationCoordinate2DMake(cache.latitude, cache.longitude);
-                double x = [[cache.polyline objectForKey:@"rect_x"]doubleValue];
-                double y = [[cache.polyline objectForKey:@"rect_y"]doubleValue];
-                double w = [[cache.polyline objectForKey:@"rect_width"]doubleValue];
-                double h = [[cache.polyline objectForKey:@"rect_height"]doubleValue];
-                
-                line_Dash.boundingMapRect = MAMapRectMake(x, y, w, h);
-                
-                [pp addObject:line_Dash];
-            }
-        }
-        
-        [self.mapView addOverlays:pp];
-        /* 缩放地图使其适应polylines的展示. */
-        //        self.mapView.visibleMapRect = [CommonUtility mapRectForOverlays:pp];
-        
-        [self.mapView setCenterCoordinate:self.startCoordinate animated:YES];
-        
+    if (arr.count == 0) {
+        return;
     }
+    
+    NSDictionary *history_dic = [LMapTools parseMapHistoryMap:arr];
+    
+    NSArray *lines = [history_dic objectForKey:L_POLINES];
+    NSArray *start_arr = [history_dic objectForKey:L_START_POINT_COORDINATE];
+    NSArray *end_arr = [history_dic objectForKey:L_END_POINT_COORDINATE];
+    
+    self.startCoordinate = CLLocationCoordinate2DMake([[start_arr objectAtIndex:0] floatValue], [[start_arr objectAtIndex:1] floatValue]);
+    [self addStartAnnotation];
+    
+    self.destinationCoordinate = CLLocationCoordinate2DMake([[end_arr objectAtIndex:0] floatValue], [[end_arr objectAtIndex:1] floatValue]);
+    [self addDestinationAnnotation];
+    
+    [self.mapView addOverlays:lines];
+    
+    [self.mapView setCenterCoordinate:self.startCoordinate animated:YES];
+
+    
+//    NSMutableArray *pp = [NSMutableArray array];//所有的规划线
+//    
+//    double start_x = 0.0;
+//    double start_y = 0.0;
+//    double end_x = 0.0;
+//    double end_y = 0.0;
+//    
+//    if (arr.count > 0) {
+//        NSArray *object_arr = [MapCacheDashClass objectArrayWithKeyValuesArray:arr];
+//        
+//        for (int i = 0; i < object_arr.count; i ++) {
+//            MapCacheDashClass *cache = [object_arr objectAtIndex:i];
+//            
+//            if (i == 0) {
+//                
+//                start_x = [[cache.polyline objectForKey:@"rect_x"]doubleValue];
+//                start_y = [[cache.polyline objectForKey:@"rect_y"]doubleValue];
+//                
+//                self.startCoordinate = CLLocationCoordinate2DMake(cache.latitude, cache.longitude);
+//                [self addStartAnnotation];
+//            }
+//            
+//            if (i == object_arr.count - 1) {
+//                end_x = [[cache.polyline objectForKey:@"rect_x"]doubleValue];
+//                end_y = [[cache.polyline objectForKey:@"rect_y"]doubleValue];
+//                
+//                self.destinationCoordinate = CLLocationCoordinate2DMake(cache.latitude, cache.longitude);
+//                [self addDestinationAnnotation];
+//            }
+//            
+//            NSString *type = cache.classType;
+//            
+//            if ([type isEqualToString:TYPE_MAPolyline]) {
+//                
+//                NSUInteger count = cache.pointCount;
+//                CLLocationCoordinate2D *temp = [CommonUtility coordinatesForString:cache.coordinatesString coordinateCount:&count parseToken:@","];
+//                MAPolyline *line2 = [MAPolyline polylineWithCoordinates:temp count:cache.pointCount];
+//                [pp addObject:line2];
+//                
+//            }else if ([type isEqualToString:TYPE_LineDashPolyline]){
+//                
+//                NSDictionary *polyline = cache.polyline;
+//                MAMapPoint point = MAMapPointMake([[polyline valueForKey:@"pointX"] doubleValue], [[polyline valueForKey:@"pointY"] doubleValue]);
+//                
+//                MAPolyline *line = [MAPolyline polylineWithPoints:&point count:cache.pointCount];
+//                LineDashPolyline *line_Dash = [[LineDashPolyline alloc]initWithPolyline:line];
+//                
+//                line_Dash.coordinate = CLLocationCoordinate2DMake(cache.latitude, cache.longitude);
+//                double x = [[cache.polyline objectForKey:@"rect_x"]doubleValue];
+//                double y = [[cache.polyline objectForKey:@"rect_y"]doubleValue];
+//                double w = [[cache.polyline objectForKey:@"rect_width"]doubleValue];
+//                double h = [[cache.polyline objectForKey:@"rect_height"]doubleValue];
+//                
+//                line_Dash.boundingMapRect = MAMapRectMake(x, y, w, h);
+//                
+//                [pp addObject:line_Dash];
+//            }
+//        }
+    
+//        [self.mapView addOverlays:pp];
+//        /* 缩放地图使其适应polylines的展示. */
+//        //        self.mapView.visibleMapRect = [CommonUtility mapRectForOverlays:pp];
+//        
+//        [self.mapView setCenterCoordinate:self.startCoordinate animated:YES];
+    
+//    }
 
 }
 
@@ -321,58 +357,58 @@ enum{
         return;
     }
     
-    ((AppDelegate *)[UIApplication sharedApplication].delegate).mapLines = polines_arr;
+//    NSMutableArray *polyline_arr = [NSMutableArray array];
+//    
+//    for (int i = 0; i < polines_arr.count; i ++) {
+//        
+//        id pp = [polines_arr objectAtIndex:i];
+//        if ([pp isKindOfClass:[MAPolyline class]]) {
+//            
+//            MAPolyline *temp = (MAPolyline *)pp;
+//            MapCacheDashClass *cache = [[MapCacheDashClass alloc]initWithMapPointX:temp.points->x pointY:temp.points->y pointCount:temp.pointCount type:TYPE_MAPolyline];
+//            
+//            cache.rect_x = temp.boundingMapRect.origin.x;
+//            cache.rect_y = temp.boundingMapRect.origin.y;
+//            cache.rect_width = temp.boundingMapRect.size.width;
+//            cache.rect_height = temp.boundingMapRect.size.height;
+//            
+//            cache.latitude = temp.coordinate.latitude;
+//            cache.longitude = temp.coordinate.longitude;
+//            
+//            NSLog(@"ffffffff ---> %f  %f",temp.boundingMapRect.origin.x,temp.boundingMapRect.origin.y);
+//            
+//            CLLocationCoordinate2D tempCoor[temp.pointCount];
+//            
+//            NSMutableArray *point_cor_arr = [NSMutableArray arrayWithCapacity:temp.pointCount * 2];
+//            
+//            [temp getCoordinates:tempCoor range:NSMakeRange(0, temp.pointCount)];
+//            
+//            for (int i = 0; i < temp.pointCount; i ++) {
+//                CLLocationCoordinate2D temp = tempCoor[i];
+//                
+//                [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.longitude]];
+//                [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.latitude]];
+//                
+//                NSLog(@"lat: %f long :%f",temp.latitude,temp.longitude);
+//            }
+//            
+//            cache.coordinatesString = [point_cor_arr componentsJoinedByString:@","];
+//            
+//            [polyline_arr addObject:cache];
+//        }
+//        if ([pp isKindOfClass:[LineDashPolyline class]]) {
+//            
+//            LineDashPolyline *temp = (LineDashPolyline *)pp;
+//            MapCacheDashClass *dashCache = [[MapCacheDashClass alloc]initWithCoordinate:temp.coordinate rect:temp.boundingMapRect polyline:temp.polyline type:TYPE_LineDashPolyline];
+//            
+//            [polyline_arr addObject:dashCache];
+//        }
+//    }
+//    
+//    NSArray *dic_arr = [MapCacheDashClass keyValuesArrayWithObjectArray:polyline_arr];
+
     
-    NSMutableArray *polyline_arr = [NSMutableArray array];
-    
-    
-    for (int i = 0; i < polines_arr.count; i ++) {
-        
-        id pp = [polines_arr objectAtIndex:i];
-        if ([pp isKindOfClass:[MAPolyline class]]) {
-            
-            MAPolyline *temp = (MAPolyline *)pp;
-            MapCacheDashClass *cache = [[MapCacheDashClass alloc]initWithMapPointX:temp.points->x pointY:temp.points->y pointCount:temp.pointCount type:TYPE_MAPolyline];
-            
-            cache.rect_x = temp.boundingMapRect.origin.x;
-            cache.rect_y = temp.boundingMapRect.origin.y;
-            cache.rect_width = temp.boundingMapRect.size.width;
-            cache.rect_height = temp.boundingMapRect.size.height;
-            
-            cache.latitude = temp.coordinate.latitude;
-            cache.longitude = temp.coordinate.longitude;
-            
-            NSLog(@"ffffffff ---> %f  %f",temp.boundingMapRect.origin.x,temp.boundingMapRect.origin.y);
-            
-            CLLocationCoordinate2D tempCoor[temp.pointCount];
-            
-            NSMutableArray *point_cor_arr = [NSMutableArray arrayWithCapacity:temp.pointCount * 2];
-            
-            [temp getCoordinates:tempCoor range:NSMakeRange(0, temp.pointCount)];
-            
-            for (int i = 0; i < temp.pointCount; i ++) {
-                CLLocationCoordinate2D temp = tempCoor[i];
-                
-                [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.longitude]];
-                [point_cor_arr addObject:[NSString stringWithFormat:@"%f",temp.latitude]];
-                
-                NSLog(@"lat: %f long :%f",temp.latitude,temp.longitude);
-            }
-            
-            cache.coordinatesString = [point_cor_arr componentsJoinedByString:@","];
-            
-            [polyline_arr addObject:cache];
-        }
-        if ([pp isKindOfClass:[LineDashPolyline class]]) {
-            
-            LineDashPolyline *temp = (LineDashPolyline *)pp;
-            MapCacheDashClass *dashCache = [[MapCacheDashClass alloc]initWithCoordinate:temp.coordinate rect:temp.boundingMapRect polyline:temp.polyline type:TYPE_LineDashPolyline];
-            
-            [polyline_arr addObject:dashCache];
-        }
-    }
-    
-    NSArray *dic_arr = [MapCacheDashClass keyValuesArrayWithObjectArray:polyline_arr];
+    NSArray *dic_arr = [LMapTools saveMaplines:polines_arr];
     
     save_finish = YES;
     
@@ -791,7 +827,7 @@ enum{
             AMapGeoPoint *detin = [middle_points_arr objectAtIndex:point_index + 1];
             
             [self searchWithOrigin:origin destination:detin];
-        }else
+        }else if(point_index == middle_points_arr.count - 1)
         {
             nav_walk_finish = YES;
         }
