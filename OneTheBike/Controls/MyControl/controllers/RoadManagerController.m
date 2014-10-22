@@ -128,21 +128,22 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",indexPath.row + 1]};
-//    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROAD_LINES object:nil userInfo:dic];
-//    
-//    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-//    
-//    tabarVC.selectedIndex = 0;
-    
-    RoadProduceController *produce = [[RoadProduceController alloc]init];
-    
-    produce.hidesBottomBarWhenPushed = YES;
-    
     LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
-    produce.road_index = road.roadId;
+    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",road.roadId]};
+    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROAD_LINES object:nil userInfo:dic];
     
-    [self.navigationController pushViewController:produce animated:YES];
+    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+    
+    tabarVC.selectedIndex = 0;
+    
+//    RoadProduceController *produce = [[RoadProduceController alloc]init];
+//    
+//    produce.hidesBottomBarWhenPushed = YES;
+//    
+//    LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
+//    produce.road_index = road.roadId;
+//    
+//    [self.navigationController pushViewController:produce animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
