@@ -72,6 +72,8 @@ enum{
     UITableView *tips_table;//搜索提示tableView
     
     MBProgressHUD *loading;
+    
+    NSInteger totalDistance;//总距离
 }
 
 @property (nonatomic, strong) AMapRoute *route;
@@ -403,9 +405,11 @@ enum{
     startName = first.text.length ? first.text : @"未知";
     endName = second.text.length ? second.text : @"未知";
     
-    [GMAPI addRoadLinesJsonString:jsonStr startName:startName endName:endName distance:@"11km" type:Type_Road startCoorStr:startString endCoorStr:endString];
+    [GMAPI addRoadLinesJsonString:jsonStr startName:startName endName:endName distance:[LTools stringForDistance:totalDistance] type:Type_Road startCoorStr:startString endCoorStr:endString];
     
     [LTools showMBProgressWithText:@"路书保存成功" addToView:self.view];
+    
+    [self performSelector:@selector(clickToBack:) withObject:nil afterDelay:0.5];
 }
 
 //添加点
@@ -494,6 +498,8 @@ enum{
         case 4:
         {
             NSLog(@"生成");
+            
+            totalDistance = 0;
             
             [self searchNaviWalk];
             
@@ -827,7 +833,13 @@ enum{
     NSLog(@"--->onNavigationSearchDone");
     self.route = response.route;
     
-    NSArray *polylines = [CommonUtility polylinesForPath:self.route.paths[0]];
+    AMapPath *path = self.route.paths[0];
+    
+    NSLog(@"distance -->%d",path.distance);
+    
+    totalDistance += path.distance;//计算总距离
+    
+    NSArray *polylines = [CommonUtility polylinesForPath:path];
 
     if (middle_points_arr.count == 0) {
         

@@ -113,6 +113,8 @@ typedef void(^versionBlock)(BOOL isNewVersion,NSString *updateUrl,NSString *upda
 
 #pragma mark - 小工具
 
++ (NSString *)stringForDistance:(NSInteger)distance;//米为单位
+
 + (NSString *) md5:(NSString *) text;
 + (void)alertText:(NSString *)text;
 +(NSString *)timechange:(NSString *)placetime;

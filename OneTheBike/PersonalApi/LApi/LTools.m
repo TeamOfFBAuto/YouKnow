@@ -28,6 +28,19 @@
     return dataBlock;
 }
 
+#pragma - mark 距离
+
++ (NSString *)stringForDistance:(NSInteger)distance
+{
+    if (distance < 1000) {
+        
+        return [NSString stringWithFormat:@"%dm",distance];
+    }else if(distance >= 1000){
+        return [NSString stringWithFormat:@"%.2fkm",distance/1000.0];
+    }
+    return @"0m";
+}
+
 #pragma - mark MD5 加密
 
 + (NSString *) md5:(NSString *) text
