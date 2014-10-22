@@ -454,6 +454,7 @@
 		E36DE09819F4FC26007585AF /* gbtndown.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09619F4FC26007585AF /* gbtndown.png */; };
 		E36DE09A19F4FCCC007585AF /* gbpm.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09919F4FCCC007585AF /* gbpm.png */; };
 		E36DE09C19F51588007585AF /* gstarting.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09B19F51588007585AF /* gstarting.png */; };
+		E387717619F73EAB00E17020 /* GstarCanshuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E387717519F73EAB00E17020 /* GstarCanshuViewController.m */; };
 		E3BB362319E7C0C20096131D /* GMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BB362219E7C0C20096131D /* GMAPI.m */; };
 		E3BB362719E7C1B20096131D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362619E7C1B20096131D /* QuartzCore.framework */; };
 		E3BB362919E7C1BE0096131D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362819E7C1BE0096131D /* CoreLocation.framework */; };
@@ -1001,6 +1002,8 @@
 		E36DE09619F4FC26007585AF /* gbtndown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbtndown.png; sourceTree = "<group>"; };
 		E36DE09919F4FCCC007585AF /* gbpm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbpm.png; sourceTree = "<group>"; };
 		E36DE09B19F51588007585AF /* gstarting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gstarting.png; sourceTree = "<group>"; };
+		E387717419F73EAB00E17020 /* GstarCanshuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GstarCanshuViewController.h; sourceTree = "<group>"; };
+		E387717519F73EAB00E17020 /* GstarCanshuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GstarCanshuViewController.m; sourceTree = "<group>"; };
 		E3BB362119E7C0C20096131D /* GMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAPI.h; sourceTree = "<group>"; };
 		E3BB362219E7C0C20096131D /* GMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMAPI.m; sourceTree = "<group>"; };
 		E3BB362619E7C1B20096131D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -2408,6 +2411,8 @@
 				E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */,
 				E3DD35BE19F4850800FCB51F /* GOffLineMapViewController.h */,
 				E3DD35BF19F4850800FCB51F /* GOffLineMapViewController.m */,
+				E387717419F73EAB00E17020 /* GstarCanshuViewController.h */,
+				E387717519F73EAB00E17020 /* GstarCanshuViewController.m */,
 			);
 			path = GControllers;
 			sourceTree = "<group>";
@@ -2937,6 +2942,7 @@
 				137D9FCE19F261B500B31100 /* UserInfoHeaderCell.m in Sources */,
 				56442DF419F5468B00BAE678 /* CycleScrollView.m in Sources */,
 				137D76CB19F4B74E00DD29D7 /* SSObjectBase.m in Sources */,
+				E387717619F73EAB00E17020 /* GstarCanshuViewController.m in Sources */,
 				137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */,
 				137D9F9019F250A900B31100 /* UIColor+ConvertColor.m in Sources */,
 				137D9FDD19F272E500B31100 /* RoadManagerController.m in Sources */,

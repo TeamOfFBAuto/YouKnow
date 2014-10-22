@@ -11,15 +11,13 @@
 @implementation Gmap
 
 
-
-
-
 + (MAMapView *)sharedMap
 {
     static MAMapView *sharedAccountManagerInstance = nil;
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         sharedAccountManagerInstance = [[MAMapView alloc] init];
+        sharedAccountManagerInstance.zoomLevel = 19;
         sharedAccountManagerInstance.visibleMapRect = MAMapRectMake(220880104, 101476980, 272496, 466656);
     });
     return sharedAccountManagerInstance;

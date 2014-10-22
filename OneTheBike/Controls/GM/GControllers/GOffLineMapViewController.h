@@ -6,6 +6,8 @@
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
+
+//离线地图
 #import <UIKit/UIKit.h>
 @class MAMapView;
 

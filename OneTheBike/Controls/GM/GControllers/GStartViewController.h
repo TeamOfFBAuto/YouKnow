@@ -16,6 +16,8 @@
 
 #import "LineDashPolyline.h"
 
+#import "GstarCanshuViewController.h"
+
 @interface GStartViewController : UIViewController<MAMapViewDelegate, AMapSearchDelegate>
 {
     // 点的数组

@@ -82,21 +82,11 @@
     //地图相关初始化
     [self initMapViewWithFrame:FRAME_IPHONE5_MAP_DOWN];
 //    [self initObservers];
-    [self initSearch];
+//    [self initSearch];
 //    [self modeAction];
-    self.mapView.showsUserLocation = NO;//关闭定位
-    self.mapView.customizeUserLocationAccuracyCircleRepresentation = YES;//自定义定位样式
-    self.mapView.userTrackingMode = MAUserTrackingModeNone;//定位模式
-    
-    self.mapView.showsCompass= YES;//开启指南针
-    self.mapView.compassOrigin= CGPointMake(280, 10); //设置指南针位置
-    
-    self.mapView.showsScale= NO; //关闭比例尺
-    self.mapView.scaleOrigin = CGPointMake(10, 70);
-    
 //    [self initGestureRecognizer];//长按手势
     
-    [self.mapView addOverlays:self.overlays];//把线条添加到地图上
+//    [self.mapView addOverlays:self.overlays];//把线条添加到地图上
     
     [self configureRoutes];//划线
     
@@ -123,9 +113,18 @@
     //图标数组
     NSArray *titleImageArr = @[[UIImage imageNamed:@"gspeed.png"],[UIImage imageNamed:@"gstartime.png"],[UIImage imageNamed:@"gongli.png"],[UIImage imageNamed:@"ghaiba.png"],[UIImage imageNamed:@"gbpm.png"]];
     
+    
+    
+    
+    
     for (int i = 0; i<6; i++) {
+        
+        //点击手势
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(GchooseCanshu:)];
+        
         //自定义view
         UIView *customView = [[UIView alloc]initWithFrame:CGRectZero];
+        customView.tag = 50+i;
         customView.backgroundColor = [UIColor whiteColor];
         //分割线
         UIView *line = [[UIView alloc]initWithFrame:CGRectZero];
@@ -138,15 +137,16 @@
             [imv setImage:titleImageArr[i-1]];
         }
         
-        //内容label
-        
+        customView.userInteractionEnabled = YES;
+        //点击手势
+        [customView addGestureRecognizer:tap];
         
         //添加视图
         [customView addSubview:line];
         [customView addSubview:line1];
         [customView addSubview:imv];
         
-        if (i == 0) {//上面灰条
+        if (i == 0) {//上面灰条 tag = 50
             customView.frame = CGRectMake(0, 0, 320, 35);
             customView.backgroundColor = RGBCOLOR(105, 105, 105);
             _fangxiangLabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 5, 50, 30)];
@@ -154,7 +154,7 @@
             _fangxiangLabel.textColor = [UIColor whiteColor];
             _fangxiangLabel.textAlignment = NSTextAlignmentCenter;
             [customView addSubview:_fangxiangLabel];
-        }else if (i == 1){//公里/时
+        }else if (i == 1){//公里/时 tag = 51
             customView.frame = CGRectMake(0, 35, 320, 75);
             line.frame = CGRectMake(0, 74, 320, 1);
             imv.frame = CGRectMake(80, 25, 30, 30);
@@ -172,7 +172,7 @@
             danweiLabel.text = @"公里/时";
             [customView addSubview:danweiLabel];
             
-        }else if (i == 2){//计时
+        }else if (i == 2){//计时 tag = 52
             customView.frame = CGRectMake(0, 110, 160, 75);
             line.frame = CGRectMake(0, 74, 160, 1);
             line1.frame = CGRectMake(159, 0, 1, 75);
@@ -187,7 +187,7 @@
             
             
             
-        }else if (i == 3){//公里
+        }else if (i == 3){//公里 tag = 53
             customView.frame = CGRectMake(160, 110, 160, 75);
             line.frame = CGRectMake(0, 74, 160, 1);
             imv.frame = CGRectMake(10, 25, 30, 30);
@@ -204,7 +204,7 @@
             danweiLabel.text = @"公里";
             [customView addSubview:danweiLabel];
             
-        }else if (i == 4){//海拔
+        }else if (i == 4){//海拔  tag = 54
             customView.frame = CGRectMake(0, 185, 160, 75);
             line.frame = CGRectMake(0, 74, 160, 1);
             line1.frame = CGRectMake(159, 0, 1, 75);
@@ -221,7 +221,7 @@
             [customView addSubview:danweiLabel];
             
             
-        }else if (i == 5){//bpm
+        }else if (i == 5){//bpm tag = 55
             customView.frame = CGRectMake(160, 185, 160, 75);
             line.frame = CGRectMake(0, 74, 160, 1);
             imv.frame = CGRectMake(10, 25, 30, 30);
@@ -303,9 +303,29 @@
     
     
     
-//    [self initHistoryMap];
+//    [self initHistoryMap];//往地图上添加路书
     
 }
+
+
+//手势
+
+-(void)GchooseCanshu:(UITapGestureRecognizer*)sender{
+    
+    
+    NSLog(@"%d",sender.view.tag);
+    
+    
+    GstarCanshuViewController *cc = [[GstarCanshuViewController alloc]init];
+    cc.passTag = sender.view.tag;
+    [self.navigationController pushViewController:cc animated:YES];
+    
+    
+    
+    
+}
+
+
 
 //路书跳转过来的通知方法
 -(void)newBilityXiaoPang:(NSNotification*)thenotification{
@@ -565,6 +585,17 @@
     self.mapView = [Gmap sharedMap];
     [self.mapView setFrame:theFrame];
     self.mapView.delegate = self;
+    
+    self.mapView.showsUserLocation = NO;//关闭定位
+    self.mapView.customizeUserLocationAccuracyCircleRepresentation = YES;//自定义定位样式
+    self.mapView.userTrackingMode = MAUserTrackingModeNone;//定位模式
+    
+    self.mapView.showsCompass= YES;//开启指南针
+    self.mapView.compassOrigin= CGPointMake(280, 10); //设置指南针位置
+    
+    self.mapView.showsScale= NO; //关闭比例尺
+    self.mapView.scaleOrigin = CGPointMake(10, 70);
+    
     [self.view addSubview:self.mapView];
     
     self.mapView.visibleMapRect = MAMapRectMake(220880104, 101476980, 272496, 466656);
@@ -824,7 +855,7 @@
 
 
 
-#pragma mark - 定位的回调方法
+#pragma mark - 定位的回调方法==========
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
 {
     
@@ -868,14 +899,24 @@
     
     //给速度lable赋值
     
-    NSString *hourStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(0, 1)];//00.00.00
-    NSString *minStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(3, 2)];
-    NSString *seStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(6, 2)];
+//    NSString *hourStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(0, 1)];//00.00.00
+//    NSString *minStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(3, 2)];
+//    NSString *seStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(6, 2)];
+//    
+//    double hour = [hourStr intValue]+([minStr floatValue]/60)+([seStr floatValue]/3600);
+//    NSString *speedStr = [NSString stringWithFormat:@"%.2f",_distance/hour];
+//    _gspeedLabel.text =  speedStr;
     
-    double hour = [hourStr intValue]+([minStr floatValue]/60)+([seStr floatValue]/3600);
-    NSString *speedStr = [NSString stringWithFormat:@"%.2f",_distance/hour];
-    _gspeedLabel.text =  speedStr;
     
+    double speed = userLocation.location.speed; //单位 米/秒
+    double miHour = speed*3600;
+    double gongliHour = miHour/1000;
+    if (gongliHour<0) {
+        gongliHour = 0;
+    }
+    _gspeedLabel.text = [NSString stringWithFormat:@"%.1f",gongliHour];
+    
+    NSLog(@"速度 公里每小时 %.1f     速度 %.1f米/秒",gongliHour, speed);
     
     
     
@@ -903,6 +944,8 @@
         _distance += distance;
         NSString *str = [NSString stringWithFormat:@"公里----%f",_distance/1000];
         _gongliLabel.text = str;//给距离label赋值 单位是公里
+        
+        
     }
     
     if (_points == nil) {
@@ -986,6 +1029,9 @@
 
 #pragma 点击tabbar上开始按钮开始的操作
 -(void)iWantToStart{
+    
+    [self.mapView removeOverlays:self.overlays];
+    
     [self hideTabBar:YES];
     _downView.hidden = NO;
     self.mapView.showsUserLocation = YES;//开启定位
