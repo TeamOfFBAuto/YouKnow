@@ -62,6 +62,8 @@ enum{
     
     NSString *startName;//起点名字
     NSString *endName;//终点名字
+    UITextField *first;
+    UITextField *second;
     
     UIImageView *centerImage;//中间点
     
@@ -70,6 +72,8 @@ enum{
     UITableView *tips_table;//搜索提示tableView
     
     MBProgressHUD *loading;
+    
+    NSInteger totalDistance;//总距离
 }
 
 @property (nonatomic, strong) AMapRoute *route;
@@ -154,19 +158,33 @@ enum{
     }else
     {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"路书未保存" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"保存", nil];
+        
+        alert.tag = 1000;
         [alert show];
     }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
-        
-        [self returnAction];
-        
-    }else if(buttonIndex == 1){
-        
-        [self clickToSave:nil];
+    if (alertView.tag == 1000) {
+        if (buttonIndex == 0) {
+            
+            [self returnAction];
+            
+        }else if(buttonIndex == 1){
+            
+            [self clickToSave:nil];
+        }
+    }else
+    {
+        if (buttonIndex == 0) {
+            
+            
+            
+        }else if(buttonIndex == 1){
+            
+            [self saveRoadLines];
+        }
     }
 }
 
@@ -358,32 +376,40 @@ enum{
         [LTools showMBProgressWithText:@"路书保存成功" addToView:self.view];
         return;
     }
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"起点和终点" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"保存", nil];
     
+    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    
+    [alert show];
+    
+    first = [alert textFieldAtIndex:0];
+    first.text = startName;
+    
+    second = [alert textFieldAtIndex:1];
+    second.text = endName;
+    second.secureTextEntry = NO;
+    
+}
+
+- (void)saveRoadLines
+{
     NSArray *dic_arr = [LMapTools saveMaplines:polines_arr];
     
-//    NSDictionary *ddd = @{};
-    
     NSString *jsonStr = [dic_arr JSONString];
-    
-//    NSLog(@"hhahahahh-->%@",jsonStr);
     
     save_finish = YES;
     
     NSString *startString = [NSString stringWithFormat:@"%@,%@",[NSString stringWithFormat:@"%f",self.startCoordinate.latitude],[NSString stringWithFormat:@"%f",self.startCoordinate.longitude]];
     NSString *endString = [NSString stringWithFormat:@"%@,%@",[NSString stringWithFormat:@"%f",self.destinationCoordinate.latitude],[NSString stringWithFormat:@"%f",self.destinationCoordinate.longitude]];
     
-    [GMAPI addRoadLinesJsonString:jsonStr startName:@"起点" endName:@"终点" distance:@"11km" type:Type_Road startCoorStr:startString endCoorStr:endString];
+    startName = first.text.length ? first.text : @"未知";
+    endName = second.text.length ? second.text : @"未知";
     
-//    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
-//    int index = [road_ids intValue];
-//    
-//    NSString *key = [NSString stringWithFormat:@"road_%d",index + 1];
-//    [LTools cache:dic_arr ForKey:key];
-//    
-//    [LTools cache:[NSString stringWithFormat:@"%d",index + 1] ForKey:ROAD_IDS];
+    [GMAPI addRoadLinesJsonString:jsonStr startName:startName endName:endName distance:[LTools stringForDistance:totalDistance] type:Type_Road startCoorStr:startString endCoorStr:endString];
     
     [LTools showMBProgressWithText:@"路书保存成功" addToView:self.view];
     
+    [self performSelector:@selector(clickToBack:) withObject:nil afterDelay:0.5];
 }
 
 //添加点
@@ -392,7 +418,6 @@ enum{
     CLLocationCoordinate2D coordinate = [self.mapView convertPoint:centerImage.center
                                               toCoordinateFromView:self.mapView];
     
-    [self searchReGeocodeWithCoordinate:coordinate];
     
     if (point_state == Point_Start) {
         
@@ -400,11 +425,15 @@ enum{
         
         [self addStartAnnotation];
         
+        [self searchReGeocodeWithCoordinate:coordinate];
+        
     }else if (point_state == Point_End){
         
         self.destinationCoordinate = coordinate;
         
         [self addDestinationAnnotation];
+        
+        [self searchReGeocodeWithCoordinate:coordinate];
         
     }else if (point_state == Point_Middle){
         
@@ -470,6 +499,8 @@ enum{
         {
             NSLog(@"生成");
             
+            totalDistance = 0;
+            
             [self searchNaviWalk];
             
             longPress.enabled = NO;
@@ -523,11 +554,15 @@ enum{
             
             [self addStartAnnotation];
             
+            [self searchReGeocodeWithCoordinate:coordinate];
+            
         }else if (point_state == Point_End){
             
             self.destinationCoordinate = coordinate;
             
             [self addDestinationAnnotation];
+            
+            [self searchReGeocodeWithCoordinate:coordinate];
             
         }else if (point_state == Point_Middle){
             
@@ -545,7 +580,6 @@ enum{
 - (void)searchReGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate
 {
     AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
-    
     regeo.location = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
     regeo.requireExtension = YES;
     
@@ -759,6 +793,26 @@ enum{
 {
     if (response.regeocode != nil)
     {
+        
+        NSLog(@"response0 %@",response.regeocode.formattedAddress);
+        
+        AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude longitude:self.startCoordinate.longitude];
+        AMapGeoPoint *end = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude longitude:self.destinationCoordinate.longitude];
+        
+        if (request.location.latitude == start.latitude) {
+            startName = response.regeocode.formattedAddress;
+        }else if (request.location.latitude == end.latitude){
+            endName = response.regeocode.formattedAddress;
+        }
+        
+//        if (fabsf(request.location.latitude - self.startCoordinate.latitude) < 0.00001) {
+//            
+//            startName = response.regeocode.formattedAddress;
+//        }else if (fabsf(request.location.latitude - self.destinationCoordinate.latitude) < 0.00001){
+//            endName = response.regeocode.formattedAddress;
+//        }
+
+        
 //        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(request.location.latitude, request.location.longitude);
 //        ReGeocodeAnnotation *reGeocodeAnnotation = [[ReGeocodeAnnotation alloc] initWithCoordinate:coordinate
 //                                                                                         reGeocode:response.regeocode];
@@ -779,13 +833,26 @@ enum{
     NSLog(@"--->onNavigationSearchDone");
     self.route = response.route;
     
-    NSArray *polylines = [CommonUtility polylinesForPath:self.route.paths[0]];
+    AMapPath *path = self.route.paths[0];
+    
+    NSLog(@"distance -->%d",path.distance);
+    
+    totalDistance += path.distance;//计算总距离
+    
+    NSArray *polylines = [CommonUtility polylinesForPath:path];
 
     if (middle_points_arr.count == 0) {
         
         [self.mapView addOverlays:polylines];
         /* 缩放地图使其适应polylines的展示. */
         self.mapView.visibleMapRect = [CommonUtility mapRectForOverlays:polylines];
+        
+        nav_walk_finish = YES;
+        
+        [loading hide:YES];
+        
+        [LTools showMBProgressWithText:@"路书制作成功" addToView:self.view];
+        
     }else
     {
         

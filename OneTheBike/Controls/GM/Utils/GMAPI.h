@@ -57,6 +57,18 @@ const static NSString *APIKey_MAP = @"0b92a81f23cc5905c30dcb4c39da609d";
 + (NSDictionary *)getRoadLinesForRoadId:(int)roadId;//根据id获取json 以及起点终点
 
 
-+ (NSArray *)getRoadLinesForType:(HistoryType)type;//LRoadClass对象
++ (NSArray *)getRoadLinesForType:(HistoryType)type;//根据类型获取LRoadClass对象列表
+
++ (void)updateRoadId:(int)roadId
+           startName:(NSString *)startName
+             endName:(NSString *)endName
+                Open:(BOOL)isOpen;// yes 1 地图显示  NO 0 不显示
+
++ (void)updateRoadId:(int)roadId isUpload:(BOOL)finish;//是否上传成功
+
++ (NSArray *)getRoadLinesForType:(HistoryType)type
+                          isOpen:(BOOL)open;//获取所有是否打开的路书或者轨迹
+
++ (BOOL)deleteRoadId:(int)roadId type:(HistoryType)type;//删除路书或者轨迹
 
 @end
