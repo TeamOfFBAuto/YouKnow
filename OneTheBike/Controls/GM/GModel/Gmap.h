@@ -15,4 +15,5 @@
 
 + (MAMapView *)sharedMap;
 
+
 @end
