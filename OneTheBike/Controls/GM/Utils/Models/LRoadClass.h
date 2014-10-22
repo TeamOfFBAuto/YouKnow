@@ -19,6 +19,8 @@
 @property(nonatomic,retain)NSString *dateline;
 @property(nonatomic,assign)CLLocationCoordinate2D startCoor;
 @property(nonatomic,assign)CLLocationCoordinate2D endCoor;
+@property(nonatomic,assign)BOOL isOpen;//是否在地图打开
+@property(nonatomic,assign)BOOL isUpload;//是否已经上传成功
 
 -(instancetype)initWithRoadId:(NSInteger)roadId
                     startName:(NSString *)startName

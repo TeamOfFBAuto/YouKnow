@@ -8,12 +8,14 @@
 
 #import "RoadManagerController.h"
 #import "RoadProduceController.h"
-#import "MineCellTwo.h"
+#import "RoadCell.h"
 #import "RoadProduceController.h"
 
 #import "AppDelegate.h"
 
 #import "LRoadClass.h"
+
+#import "RoadInfoViewController.h"
 
 @interface RoadManagerController ()
 {
@@ -128,13 +130,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
-    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",road.roadId]};
-    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROAD_LINES object:nil userInfo:dic];
-    
-    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-    
-    tabarVC.selectedIndex = 0;
+//    LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
+//    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",road.roadId]};
+//    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROAD_LINES object:nil userInfo:dic];
+//    
+//    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+//    
+//    tabarVC.selectedIndex = 0;
     
 //    RoadProduceController *produce = [[RoadProduceController alloc]init];
 //    
@@ -144,6 +146,12 @@
 //    produce.road_index = road.roadId;
 //    
 //    [self.navigationController pushViewController:produce animated:YES];
+    
+        RoadInfoViewController *produce = [[RoadInfoViewController alloc]initWithStyle:UITableViewStylePlain];
+        LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
+        produce.aRoad = road;
+        produce.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:produce animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -160,11 +168,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * identifier1= @"MineCellTwo";
+    static NSString * identifier1= @"RoadCell";
     
-    MineCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:identifier1];
+    RoadCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier1];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"MineCellTwo" owner:self options:nil]objectAtIndex:0];
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"RoadCell" owner:self options:nil]objectAtIndex:0];
     }
     
     cell.separatorInset = UIEdgeInsetsMake(7, 10, 10, 10);
@@ -174,8 +182,11 @@
     cell.iconImageView.image = [UIImage imageNamed:@"mine_road"];
     
     LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
-    NSString *title = [NSString stringWithFormat:@"%@ - %@",road.startName,road.endName];
-    cell.aTitleLabel.text = title;
+    NSString *start = [NSString stringWithFormat:@"起:%@",road.startName];
+    NSString *end = [NSString stringWithFormat:@"终:%@",road.endName];
+
+    cell.startLabel.text = start;
+    cell.endLabel.text = end;
     
     return cell;
     

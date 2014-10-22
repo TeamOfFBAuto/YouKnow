@@ -76,6 +76,12 @@
 		137D9FE719F290F800B31100 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FE619F290F800B31100 /* CommonUtility.m */; };
 		137D9FEB19F2916600B31100 /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FEA19F2916600B31100 /* LineDashPolyline.m */; };
 		139467E019F4F80D001DAEA9 /* MapCacheDashClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 139467DF19F4F80D001DAEA9 /* MapCacheDashClass.m */; };
+		13A146F919F75B3000F8D442 /* RoadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A146F719F75B3000F8D442 /* RoadCell.m */; };
+		13A146FA19F75B3000F8D442 /* RoadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13A146F819F75B3000F8D442 /* RoadCell.xib */; };
+		13A1470319F75EE100F8D442 /* RoadInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A1470119F75EE100F8D442 /* RoadInfoViewController.m */; };
+		13A1470419F75EE100F8D442 /* RoadInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13A1470219F75EE100F8D442 /* RoadInfoViewController.xib */; };
+		13A1470819F77E0C00F8D442 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A1470619F77E0C00F8D442 /* SwitchCell.m */; };
+		13A1470919F77E0C00F8D442 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13A1470719F77E0C00F8D442 /* SwitchCell.xib */; };
 		13A2AA4A19D7B946008D1B9F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4919D7B945008D1B9F /* libz.dylib */; };
 		13A2AA4C19D7B952008D1B9F /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4B19D7B952008D1B9F /* libstdc++.dylib */; };
 		13A2AA4E19D7B95B008D1B9F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA4D19D7B95B008D1B9F /* CoreTelephony.framework */; };
@@ -581,6 +587,15 @@
 		137D9FEA19F2916600B31100 /* LineDashPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
 		139467DE19F4F80D001DAEA9 /* MapCacheDashClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCacheDashClass.h; sourceTree = "<group>"; };
 		139467DF19F4F80D001DAEA9 /* MapCacheDashClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCacheDashClass.m; sourceTree = "<group>"; };
+		13A146F619F75B3000F8D442 /* RoadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoadCell.h; sourceTree = "<group>"; };
+		13A146F719F75B3000F8D442 /* RoadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoadCell.m; sourceTree = "<group>"; };
+		13A146F819F75B3000F8D442 /* RoadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoadCell.xib; sourceTree = "<group>"; };
+		13A1470019F75EE100F8D442 /* RoadInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoadInfoViewController.h; sourceTree = "<group>"; };
+		13A1470119F75EE100F8D442 /* RoadInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoadInfoViewController.m; sourceTree = "<group>"; };
+		13A1470219F75EE100F8D442 /* RoadInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoadInfoViewController.xib; sourceTree = "<group>"; };
+		13A1470519F77E0C00F8D442 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
+		13A1470619F77E0C00F8D442 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
+		13A1470719F77E0C00F8D442 /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		13A2AA4919D7B945008D1B9F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		13A2AA4B19D7B952008D1B9F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		13A2AA4D19D7B95B008D1B9F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1098,6 +1113,12 @@
 				137D9FCB19F261B500B31100 /* UserInfoHeaderCell.h */,
 				137D9FCC19F261B500B31100 /* UserInfoHeaderCell.m */,
 				137D9FCD19F261B500B31100 /* UserInfoHeaderCell.xib */,
+				13A146F619F75B3000F8D442 /* RoadCell.h */,
+				13A146F719F75B3000F8D442 /* RoadCell.m */,
+				13A146F819F75B3000F8D442 /* RoadCell.xib */,
+				13A1470519F77E0C00F8D442 /* SwitchCell.h */,
+				13A1470619F77E0C00F8D442 /* SwitchCell.m */,
+				13A1470719F77E0C00F8D442 /* SwitchCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1393,6 +1414,9 @@
 				137D9FDF19F27A6500B31100 /* RoadProduceController.h */,
 				137D9FE019F27A6500B31100 /* RoadProduceController.m */,
 				137D9FE119F27A6500B31100 /* RoadProduceController.xib */,
+				13A1470019F75EE100F8D442 /* RoadInfoViewController.h */,
+				13A1470119F75EE100F8D442 /* RoadInfoViewController.m */,
+				13A1470219F75EE100F8D442 /* RoadInfoViewController.xib */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -2679,6 +2703,7 @@
 				19DAEA2519D311D300519D22 /* touming-bg-150_150@2x.png in Resources */,
 				134BA6AB19D9581200282D7D /* mine_road.png in Resources */,
 				19DAEA7819D311D300519D22 /* classification_big6@2x.png in Resources */,
+				13A1470919F77E0C00F8D442 /* SwitchCell.xib in Resources */,
 				19DAEA0319D311D300519D22 /* dibuxian-444_8@2x.png in Resources */,
 				19DAE9A719D311D300519D22 /* FBCircleNavBackGroundImage@2x.png in Resources */,
 				19DAEA5B19D311D300519D22 /* di@2x.png in Resources */,
@@ -2748,6 +2773,7 @@
 				19DAEA5F19D311D300519D22 /* mirco_icon_11@2x.png in Resources */,
 				1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */,
 				19DAE98219D311D300519D22 /* add_jing@2x.png in Resources */,
+				13A1470419F75EE100F8D442 /* RoadInfoViewController.xib in Resources */,
 				E32B927C19F60609007536D0 /* ghuifu.png in Resources */,
 				19DAEA2019D311D300519D22 /* button2-down252_94@2x.png in Resources */,
 				19DAEA1619D311D300519D22 /* duihao-42_42@2x.png in Resources */,
@@ -2781,6 +2807,7 @@
 				19DAE98319D311D300519D22 /* add_login@2x.png in Resources */,
 				13D21C9319F4095C0015AAF2 /* 向上收缩.png in Resources */,
 				19DAEA7719D311D300519D22 /* classification_big5@2x.png in Resources */,
+				13A146FA19F75B3000F8D442 /* RoadCell.xib in Resources */,
 				137B0C5119F567E5001F3507 /* UMSocialLoginViewController.xib in Resources */,
 				1929B3B819D41C3A0045B6B5 /* qixinging@2x.png in Resources */,
 				19DAE99519D311D300519D22 /* denglu_logo144_130@2x.png in Resources */,
@@ -2940,6 +2967,7 @@
 				13CFBACD19F6AEB0006B9684 /* GeocodeAnnotation.m in Sources */,
 				137D76E919F4BB5B00DD29D7 /* MJMethod.m in Sources */,
 				137D9FCE19F261B500B31100 /* UserInfoHeaderCell.m in Sources */,
+				13A146F919F75B3000F8D442 /* RoadCell.m in Sources */,
 				56442DF419F5468B00BAE678 /* CycleScrollView.m in Sources */,
 				137D76CB19F4B74E00DD29D7 /* SSObjectBase.m in Sources */,
 				E387717619F73EAB00E17020 /* GstarCanshuViewController.m in Sources */,
@@ -2952,6 +2980,8 @@
 				137D9F8919F2508200B31100 /* LTools.m in Sources */,
 				137D76E719F4BB5B00DD29D7 /* MJIvar.m in Sources */,
 				19DAE84119D30F3100519D22 /* FindViewController.m in Sources */,
+				13A1470819F77E0C00F8D442 /* SwitchCell.m in Sources */,
+				13A1470319F75EE100F8D442 /* RoadInfoViewController.m in Sources */,
 				137D9FC919F25FF500B31100 /* UserInfoRowCell.m in Sources */,
 				13CFBAD319F6B887006B9684 /* README.md in Sources */,
 				13A2AAA019D7BF18008D1B9F /* MineViewController.m in Sources */,
