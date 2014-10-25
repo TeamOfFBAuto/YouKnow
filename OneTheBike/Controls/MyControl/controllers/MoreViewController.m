@@ -168,6 +168,7 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
 #pragma mark-意见反馈
 
 - (void)showNativeFeedbackWithAppkey:(NSString *)appkey {
@@ -182,7 +183,6 @@
 //    [self presentViewController:navigationController animated:YES completion:^{
 //        
 //    }];
->>>>>>> FETCH_HEAD
 }
 
 #pragma mark - UITableViewDataSource

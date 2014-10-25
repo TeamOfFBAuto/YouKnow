@@ -301,6 +301,21 @@
     sqlite3_finalize(stmt);
 }
 
++ (void)updateRoadId:(int)roadId newRoadId:(int)newId
+{
+    sqlite3 *db = [DataBase openDB];
+    sqlite3_stmt *stmt = nil;
+    
+    int result = sqlite3_prepare(db, "update RoadLines set roadId = ? where roadId = ?", -1, &stmt, nil);
+    sqlite3_bind_int(stmt, 1, newId);
+    sqlite3_bind_int(stmt, 2, roadId);
+    
+    if (result == SQLITE_OK) {
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
 + (BOOL)deleteRoadId:(int)roadId type:(HistoryType)type
 {
     sqlite3 *db = [DataBase openDB];

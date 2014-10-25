@@ -66,6 +66,9 @@ const static NSString *APIKey_MAP = @"0b92a81f23cc5905c30dcb4c39da609d";
 
 + (void)updateRoadId:(int)roadId isUpload:(BOOL)finish;//是否上传成功
 
+
++ (void)updateRoadId:(int)roadId newRoadId:(int)newId;//更新roadID
+
 + (NSArray *)getRoadLinesForType:(HistoryType)type
                           isOpen:(BOOL)open;//获取所有是否打开的路书或者轨迹
 

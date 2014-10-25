@@ -13,6 +13,8 @@
 {
     NSArray *titles_arr;
     NSArray *params_arr;
+    MBProgressHUD *loading;
+    UIButton *settings2;
 }
 
 @end
@@ -53,7 +55,7 @@
     settings1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     UIBarButtonItem *right1 =[[UIBarButtonItem alloc]initWithCustomView:settings1];
     
-    UIButton *settings2=[[UIButton alloc]initWithFrame:CGRectMake(0,8,40,44)];
+    settings2=[[UIButton alloc]initWithFrame:CGRectMake(0,8,40,44)];
     [settings2 addTarget:self action:@selector(clickToUpload:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right2 =[[UIBarButtonItem alloc]initWithCustomView:settings2];
     settings2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
@@ -73,10 +75,26 @@
     
     titles_arr = @[@"地图上显示",@"起点",@"终点",@"距离"];
     params_arr = @[self.aRoad.startName,self.aRoad.endName,self.aRoad.distance];
+    
+    loading = [LTools MBProgressWithText:@"路书上传" addToView:self.view];
 
 }
 
 #pragma mark 事件处理
+
+
+- (void)updateUploadState
+{
+    if (self.aRoad.isUpload) {
+        
+        [settings2 setTitle:@"已上传" forState:UIControlStateNormal];
+        settings2.userInteractionEnabled = NO;
+        
+    }else
+    {
+        [settings2 setTitle:@"上传" forState:UIControlStateNormal];
+    }
+}
 
 - (void)clickToBack:(UIButton *)sender
 {
@@ -94,6 +112,16 @@
 - (void)clickToUpload:(UIButton *)sender
 {
     NSLog(@"开始上传");
+    
+    NSString *startString = [NSString stringWithFormat:@"%f,%f",self.aRoad.startCoor.latitude,self.aRoad.startCoor.longitude];
+    
+    NSString *endString = [NSString stringWithFormat:@"%f,%f",self.aRoad.endCoor.latitude,self.aRoad.endCoor.longitude];
+    
+    
+    [loading show:YES];
+    
+    [self saveRoadlinesJsonString:self.aRoad.lineString startName:self.aRoad.startName endName:self.aRoad.endName distance:@"11" startCoorStr:startString endCoorStr:endString];
+    
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -130,6 +158,63 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - 网络请求
+
+//保存到服务器
+- (void)saveRoadlinesJsonString:(NSString *)jsonStr
+                      startName:(NSString *)startNameL
+                        endName:(NSString *)endNameL
+                       distance:(NSString *)totalDistanceL
+                   startCoorStr:(NSString *)startString
+                     endCoorStr:(NSString *)endString
+{
+    NSString *custId = [LTools cacheForKey:USER_CUSTID];
+    
+    NSString *post = [NSString stringWithFormat:@"&roadlines=%@",jsonStr];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    
+    NSString *url = [NSString stringWithFormat:BIKE_ROAD_LINE,custId,startNameL,@"middle",endNameL,startString,@"wayCoordinates",endString,totalDistanceL];
+    LTools *tool = [[LTools alloc]initWithUrl:url isPost:YES postData:postData];
+    [tool requestSpecialCompletion:^(NSDictionary *result, NSError *erro) {
+        
+        NSLog(@"result %@ erro %@",result,erro);
+        
+        int status = [[result objectForKey:@"status"]integerValue];
+        
+        if (status == 1) {
+            
+            [loading hide:YES];
+            
+            [LTools showMBProgressWithText:@"路书上传成功" addToView:self.view];
+            
+            self.aRoad.isUpload = YES;
+            
+            [self updateUploadState];
+            
+            int roadId = [[result objectForKey:@"rdbkId"]integerValue];
+            
+            [GMAPI updateRoadId:self.aRoad.roadId isUpload:YES];
+            
+            [GMAPI updateRoadId:self.aRoad.roadId newRoadId:roadId];
+            
+        }else
+        {
+            
+        }
+        
+        
+    } failBlock:^(NSDictionary *failDic, NSError *erro) {
+        
+        NSLog(@"failDic %@ erro %@",failDic,[failDic objectForKey:@"ERRO_INFO"]);
+        
+        [loading hide:YES];
+        
+        [LTools showMBProgressWithText:[failDic objectForKey:@"ERRO_INFO"] addToView:self.view];
+        
+    }];
+}
+
 
 #pragma mark - Table view data source
 

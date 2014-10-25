@@ -30,6 +30,8 @@
 {
     NSArray *titleArray;
     NSArray *imagesArray;
+    
+    UserInfoClass *loginUser;
 }
 
 @end
@@ -86,6 +88,8 @@
     [self.table reloadData];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeUser:) name:NOTIFICATION_CHANGE_USER object:nil];
+    
+    [LTools cache:@"1111" ForKey:USER_CUSTID];
     
 }
 
@@ -153,12 +157,26 @@
 
 #pragma mark - 事件处理
 
+- (void)updateUserInfo
+{
+    MineCellOne *cell = (MineCellOne *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    
+    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:loginUser.nickName] placeholderImage:[UIImage imageNamed:@""]];
+    cell.nameLabel.text = loginUser.nickName;
+    
+    cell.infoLabel.text = [NSString stringWithFormat:@"ID:%@ :%@",loginUser.custId,loginUser.gold];
+    
+    [LTools cache:loginUser.custId ForKey:USER_CUSTID];
+}
+
 - (void)userInfoWithImage:(NSString *)imageUrl name:(NSString *)name
 {
     MineCellOne *cell = (MineCellOne *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@""]];
     cell.nameLabel.text = name;
+    
+//    cell.infoLabel.text = [NSString stringWithFormat:@"%@ %@",];
 }
 
 //清空原先数据
@@ -179,7 +197,14 @@
         
         NSLog(@"result %@ erro %@",result,erro);
         
-        
+        int status = [[result objectForKey:@"status"]integerValue];
+        if (status == 1) {
+            NSDictionary *dic = [result objectForKey:@"custJson"];
+            loginUser = [[UserInfoClass alloc]initWithDictionary:dic];
+            
+            [self updateUserInfo];
+            
+        }
         
     } failBlock:^(NSDictionary *failDic, NSError *erro) {
         
