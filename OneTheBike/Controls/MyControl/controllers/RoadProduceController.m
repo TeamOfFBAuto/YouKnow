@@ -406,9 +406,11 @@ enum{
     startName = first.text.length ? first.text : @"未知";
     endName = second.text.length ? second.text : @"未知";
     
-    [GMAPI addRoadLinesJsonString:jsonStr startName:startName endName:endName distance:[LTools stringForDistance:totalDistance] type:Type_Road startCoorStr:startString endCoorStr:endString];
+    NSString *distance = [LTools stringForDistance:totalDistance];
     
-    [LTools showMBProgressWithText:@"路书保存成功" addToView:self.view];
+    [GMAPI addRoadLinesJsonString:jsonStr startName:startName endName:endName distance:distance type:Type_Road startCoorStr:startString endCoorStr:endString];
+    
+    [LTools showMBProgressWithText:@"路书本地保存成功" addToView:self.view];
     
     [self performSelector:@selector(clickToBack:) withObject:nil afterDelay:0.5];
 }

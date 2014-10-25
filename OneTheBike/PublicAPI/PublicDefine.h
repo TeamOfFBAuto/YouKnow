@@ -6,8 +6,6 @@
 //  Copyright (c) 2014年 szk. All rights reserved.
 //
 
-
-
 #ifndef OneTheBike_PublicDefine_h
 #define OneTheBike_PublicDefine_h
 
@@ -19,6 +17,7 @@
 #import "MBProgressHUD.h"
 #import "UIImageView+WebCache.h"
 #import "JSONKit.h"
+#import "UMFeedback.h"
 
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f \
@@ -34,6 +33,8 @@ alpha:(a)]
 #define USER_HIGHT @"height" //身高
 #define USER_WEIGHT @"weight"//体重
 
+#define USER_CUSTID @"custid"//服务器返回用户id
+
 #define ROAD_IDS @"road_ids"//路书id
 
 #define APP_ID @"605673005"
@@ -41,11 +42,15 @@ alpha:(a)]
 #define BACK_IMAGE [UIImage imageNamed:@"backButton"]
 #define NAVIGATION_IMAGE [UIImage imageNamed:@"navigationBack"]
 
+#define NOTIFICATION_CHANGE_USER @"CHANGE_USER"//更换账户
+
 //=========================接口
 
-#define BIKE_LOGIN @"http://182.254.242.58:8080/QiBa/QiBa/custAction_login.action?loginId=%@&password=%@"//登录
+#define BIKE_LOGIN @"http://182.254.242.58:8080/QiBa/QiBa/custAction_login.action?loginId=%@&nickName=%@&headPhoto=%@"//登录
 
+#define BIKE_ROAD_LINE @"http://182.254.242.58:8080/QiBa/QiBa/roadBookAction_saveRdbk.action?custId=%@&beginSite=%@&waySite=%@&endSite=%@&beginCoordinates=%@&wayCoordinates=%@&endCoordinates=%@&distance=%@"//保存路书
 
+#define BIKE_ROAD_LIST @"http://182.254.242.58:8080/QiBa/QiBa/roadBookAction_queryRdbkListByPage.action?custId=%@&page=%d"//路书列表
 
 
 

@@ -9,6 +9,8 @@
 #import "MoreViewController.h"
 #import "MineCellTwo.h"
 
+#import "UMFeedbackViewController.h"
+
 @interface MoreViewController ()
 {
     NSArray *titles_arr;
@@ -52,8 +54,8 @@
     header.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = header;
     
-    titles_arr = @[@"给个好评",@"联系轨记",@"反馈意见",@"版本更新",@"帮助说明"];
-    imagesArray = @[@"more_good",@"more_contact",@"more_recommend",@"more_update",@"more_help"];
+    titles_arr = @[@"给个好评",@"联系轨记",@"反馈意见",@"帮助说明",@"更换账号"];
+    imagesArray = @[@"more_good",@"more_contact",@"more_recommend",@"more_help",@"more_update"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,22 +128,61 @@
         case 2:
         {
             NSLog(@"反馈意见");
+            
+            
+            [self showNativeFeedbackWithAppkey:@"5440c181fd98c5a723000ea0"];
+
+            
+            
+            
         }
             break;
         case 3:
         {
-            [self gotoCheckVersion];
+            NSLog(@"帮助说明");
         }
             break;
         case 4:
         {
-            NSLog(@"帮助说明");
+//            [self gotoCheckVersion];
+            
+            NSLog(@"更换账号");
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"是否更换账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alert show];
         }
             break;
             
         default:
             break;
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+     
+        NSLog(@"切换账号");
+        [LTools cache:@"" ForKey:USER_AUTHKEY_OHTER];
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_CHANGE_USER object:nil];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+#pragma mark-意见反馈
+
+- (void)showNativeFeedbackWithAppkey:(NSString *)appkey {
+    
+    UMFeedbackViewController *feedbackViewController = [[UMFeedbackViewController alloc] initWithNibName:@"UMFeedbackViewController" bundle:nil];
+    feedbackViewController.appkey = appkey;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedbackViewController];
+    //    navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    //    navigationController.navigationBar.translucent = NO;
+     [self.navigationController pushViewController:feedbackViewController animated:YES];
+    
+//    [self presentViewController:navigationController animated:YES completion:^{
+//        
+//    }];
 }
 
 #pragma mark - UITableViewDataSource

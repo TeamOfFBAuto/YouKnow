@@ -23,10 +23,15 @@
 
 #import "GOffLineMapViewController.h"
 
+#import "UserInfoClass.h"
+#import "AppDelegate.h"
+
 @interface MineViewController ()<UIActionSheetDelegate>
 {
     NSArray *titleArray;
     NSArray *imagesArray;
+    
+    UserInfoClass *loginUser;
 }
 
 @end
@@ -37,17 +42,12 @@
 {
     [super viewWillAppear:animated];
     
-//    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
-//    if (authKey.length > 0) {
-//        return;
-//    }
-//    if (sheet) {
-//        
-//        [sheet dismissWithClickedButtonIndex:0 animated:YES];
-//        return;
-//    }
-//    
-//    [self login];
+    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
+    if (authKey.length > 0) {
+        return;
+    }
+    
+    [self login];
 }
 
 - (void)viewDidLoad {
@@ -70,6 +70,13 @@
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
+    
+    CGSize screenSize = [[UIScreen mainScreen]bounds].size;
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) style:UITableViewStylePlain];
+    _table.delegate = self;
+    _table.dataSource = self;
+    [self.view addSubview:_table];
+    
     self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.table.backgroundColor = [UIColor colorWithHexString:@"e3e3e3"];
@@ -78,24 +85,12 @@
     imagesArray = @[@"mine_road",@"mine_map",@"mine_share",@"mine_more"];
     titleArray = @[@"路书管理",@"离线地图",@"分享好友",@"更多"];
     
-
-//    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
-//    if (authKey.length > 0) {
-//        return;
-//    }else
-//    {
-//        [self login];
-//    }
-
+    [self.table reloadData];
     
-    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
-    if (authKey.length > 0) {
-        return;
-    }else
-    {
-        [self login];
-    }
-
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeUser:) name:NOTIFICATION_CHANGE_USER object:nil];
+    
+    [LTools cache:@"1111" ForKey:USER_CUSTID];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -109,9 +104,8 @@
 {
     UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"登录" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"QQ登录",@"新浪微博", nil];
     
-    UITabBarController *tabbarVC =(UITabBarController *) ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-    
-    [sheet showFromTabBar:tabbarVC.tabBar];
+    UIView *view = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
+    [sheet showInView:view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -154,7 +148,7 @@
             
             [weakSelf userInfoWithImage:snsAccount.iconURL name:snsAccount.userName];
             
-            [weakSelf loginToServer:snsAccount.usid pass:nil];
+            [weakSelf loginToServer:snsAccount.usid nickName:snsAccount.userName icon:snsAccount.iconURL];
             
             }
         
@@ -163,26 +157,54 @@
 
 #pragma mark - 事件处理
 
+- (void)updateUserInfo
+{
+    MineCellOne *cell = (MineCellOne *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    
+    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:loginUser.nickName] placeholderImage:[UIImage imageNamed:@""]];
+    cell.nameLabel.text = loginUser.nickName;
+    
+    cell.infoLabel.text = [NSString stringWithFormat:@"ID:%@ :%@",loginUser.custId,loginUser.gold];
+    
+    [LTools cache:loginUser.custId ForKey:USER_CUSTID];
+}
+
 - (void)userInfoWithImage:(NSString *)imageUrl name:(NSString *)name
 {
     MineCellOne *cell = (MineCellOne *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@""]];
     cell.nameLabel.text = name;
+    
+//    cell.infoLabel.text = [NSString stringWithFormat:@"%@ %@",];
+}
+
+//清空原先数据
+- (void)changeUser:(NSNotification *)notification
+{
+    [self userInfoWithImage:nil name:nil];
 }
 
 #pragma mark - 数据解析
 
 #pragma mark - 网络请求
 
-- (void)loginToServer:(NSString *)otherUserId pass:(NSString *)pass
+- (void)loginToServer:(NSString *)otherUserId nickName:(NSString *)nickName icon:(NSString *)icon
 {
-    pass = @"12345";
-    NSString *url = [NSString stringWithFormat:BIKE_LOGIN,otherUserId,pass];
+    NSString *url = [NSString stringWithFormat:BIKE_LOGIN,otherUserId,nickName,icon];
     LTools *tool = [[LTools alloc]initWithUrl:url isPost:NO postData:nil];
     [tool requestSpecialCompletion:^(NSDictionary *result, NSError *erro) {
         
         NSLog(@"result %@ erro %@",result,erro);
+        
+        int status = [[result objectForKey:@"status"]integerValue];
+        if (status == 1) {
+            NSDictionary *dic = [result objectForKey:@"custJson"];
+            loginUser = [[UserInfoClass alloc]initWithDictionary:dic];
+            
+            [self updateUserInfo];
+            
+        }
         
     } failBlock:^(NSDictionary *failDic, NSError *erro) {
         
@@ -264,8 +286,9 @@
     return 5;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row == 0) {
         static NSString * identifier1= @"MineCellOne";
         
@@ -286,13 +309,13 @@
             [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
         }else
         {
-            //            [self login];
+//            [self login];
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
-        
+
     }
     
     static NSString * identifier1= @"MineCellTwo";
@@ -309,8 +332,8 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+    
 }
-
 
 
 

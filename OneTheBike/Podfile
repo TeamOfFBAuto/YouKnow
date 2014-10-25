@@ -1,4 +1,6 @@
 
+pod 'UMengFeedback', '~> 1.4.2.1'
+
 
 pod 'AFNetworking', '~> 2.4.1'
 

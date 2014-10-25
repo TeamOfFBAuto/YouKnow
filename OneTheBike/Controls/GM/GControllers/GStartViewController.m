@@ -11,14 +11,10 @@
 #import "GOffLineMapViewController.h"
 #import "Gmap.h"
 
-#import "GstarCanshuViewController.h"
-#import "GyundongCustomView.h"
-@class GyundongCustomView;
-
-#define FRAME_IPHONE5_MAP_UP CGRectMake(0, 30, 320, 568-60-20)
-#define FRAME_IPHONE5_MAP_DOWN CGRectMake(0, 230+20, 320, 568-230-20)
-#define FRAME_IPHONE5_UPVIEW_UP CGRectMake(0, -165, 320, 230)
-#define FRAME_IPHONE5_UPVIEW_DOWN CGRectMake(0, 20, 320, 230)
+#define FRAME_IPHONE5_MAP_UP CGRectMake(0, 60, 320, 568-60-20)
+#define FRAME_IPHONE5_MAP_DOWN CGRectMake(0, 260+20, 320, 568-260-20)
+#define FRAME_IPHONE5_UPVIEW_UP CGRectMake(0, -200, 320, 260)
+#define FRAME_IPHONE5_UPVIEW_DOWN CGRectMake(0, 20, 320, 260)
 
 
 
@@ -31,14 +27,11 @@
     UIView *_downView;//运动开始时下方的view
     
     UILabel *_fangxiangLabel;//方向
-    
-    GyundongCustomView *_fangxiangView;//方向
-    GyundongCustomView *_dingView;//速度
-    GyundongCustomView *_zuoshangView;//时间
-    GyundongCustomView *_youshangView;//公里
-    GyundongCustomView *_zuoxiaView;//海拔
-    GyundongCustomView *_youxiaView;//bpm
-    
+    UILabel *_gspeedLabel;//速度
+    UILabel *_gstartimeLabel;//时间
+    UILabel *_gongliLabel;//公里
+    UILabel *_ghaibaLabel;//海拔
+    UILabel *_gbpmLabel;//bpm
     
     
     BOOL _isTimeOutClicked;//暂停按钮点击
@@ -47,16 +40,6 @@
     double _distance;//距离
     
     
-    BOOL _isFirstStartCanshu;//是否为刚开始时候的参数 用于记录开始时候的海拔 起点
-    
-    
-    
-    //保存路书时起点和终点的输入框
-    UITextField *first;
-    UITextField *second;
-    
-    NSString *startName;//起点名字
-    NSString *endName;//终点名字
     
     
     //路书
@@ -82,7 +65,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
     
-    
 }
 
 - (void)viewDidLoad {
@@ -91,7 +73,6 @@
     
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.gYunDongCanShuModel = [[GyundongCanshuModel alloc]init];
 #pragma mark - 接受通知隐藏tabbar
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(iWantToStart) name:@"GToGstar" object:nil];
     
@@ -101,239 +82,13 @@
     
     _isTimeOutClicked = NO;
     _distance = 0.0f;
-    _isFirstStartCanshu = NO;
     
-    [self initMap];//初始化地图
-    [self initMapUpView];//初始化地图上面的view
-    [self initStartDownView];//初始化地图下面的view
-    
-    
-    
-    
-    //计时器
-    timerMin = 0 ;
-    timerSecond = 0;
-    
-    splitTimerMin = 0;
-    splitTimerSecond = 0;
-    
-    timer = [NSTimer scheduledTimerWithTimeInterval:(1)
-                                             target:self
-                                           selector:@selector(taktCounter)
-                                           userInfo:nil
-                                            repeats:TRUE];
-    NSRunLoop *main = [NSRunLoop currentRunLoop];
-    [main addTimer:timer forMode:NSRunLoopCommonModes];
-    
-    
-    
-//    [self initHistoryMap];
-    
-}
-
-
-
-///初始化地图上方view
--(void)initMapUpView{
-    //地图上面的view
-    _isUpViewShow = YES;
-    _upview = [[UIView alloc]initWithFrame:FRAME_IPHONE5_UPVIEW_DOWN];
-    _upview.backgroundColor = [UIColor whiteColor];
-    //调试颜色
-//    _upview.backgroundColor = [UIColor orangeColor];
-    
-    //上下按钮
-    _upOrDownBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _upOrDownBtn.layer.cornerRadius = 15;
-    _upOrDownBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [_upOrDownBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_upOrDownBtn setTitle:@"up" forState:UIControlStateNormal];
-    [_upOrDownBtn setFrame:CGRectMake(145, 210, 30, 30)];
-    [_upOrDownBtn setImage:[UIImage imageNamed:@"gbtnup.png"] forState:UIControlStateNormal];
-    [_upOrDownBtn addTarget:self action:@selector(gShou) forControlEvents:UIControlEventTouchUpInside];
-    
-    //创建上下左右四个自定义view 并加到数组里
-    _dingView = [[GyundongCustomView alloc]initWithFrame:CGRectMake(0, 35, 320, 65)];
-    _zuoshangView = [[GyundongCustomView alloc]initWithFrame:CGRectMake(0, 100, 160, 65)];
-    _youshangView = [[GyundongCustomView alloc]initWithFrame:CGRectMake(160, 100, 160, 65)];
-    _zuoxiaView = [[GyundongCustomView alloc]initWithFrame:CGRectMake(0, 165, 160, 65)];
-    _youxiaView = [[GyundongCustomView alloc]initWithFrame:CGRectMake(160, 165, 160, 65)];
-    
-    //调试颜色
-//    _zuoshangView.backgroundColor = [UIColor yellowColor];
-//    _youshangView.backgroundColor = [UIColor lightGrayColor];
-//    _zuoxiaView.backgroundColor = [UIColor greenColor];
-//    _youxiaView.backgroundColor = [UIColor purpleColor];
-    
-    self.fourCustomView = @[_dingView,_zuoshangView,_youshangView,_zuoxiaView,_youshangView];
-    
-    
-    
-    //添加到upview上
-    [_upview addSubview:_dingView];
-    [_upview addSubview:_zuoshangView];
-    [_upview addSubview:_youshangView];
-    [_upview addSubview:_zuoxiaView];
-    [_upview addSubview:_youxiaView];
-    [_upview addSubview:_upOrDownBtn];
-    [self.view addSubview:_upview];
-    
-    //图标数组
-    NSArray *titleImageArr = @[[UIImage imageNamed:@"gspeed.png"],[UIImage imageNamed:@"gstartime.png"],[UIImage imageNamed:@"gongli.png"],[UIImage imageNamed:@"ghaiba.png"],[UIImage imageNamed:@"gbpm.png"]];
-    
-    for (int i = 0; i<6; i++) {
-        
-        //手势
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gChooseCanshu:)];
-        
-        //图标
-        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectZero];
-        if (i>0) {
-            [imv setImage:titleImageArr[i-1]];
-        }
-        
-        //内容label
-        
-        if (i == 0) {//上面灰条
-            UIView *shangGrayView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 35)];
-            shangGrayView.backgroundColor = RGBCOLOR(105, 105, 105);
-            _fangxiangLabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 5, 50, 30)];
-            _fangxiangLabel.font = [UIFont systemFontOfSize:13];
-            _fangxiangLabel.textColor = [UIColor whiteColor];
-            _fangxiangLabel.textAlignment = NSTextAlignmentCenter;
-            [shangGrayView addSubview:_fangxiangLabel];
-            [_upview addSubview:shangGrayView];
-            shangGrayView.tag = 50;
-            
-        }else if (i == 1){//公里/时 顶 tag 51
-            
-            
-            
-            _dingView.tag = 51;
-            [_dingView addGestureRecognizer:tap];
-            _dingView.line.frame = CGRectMake(0, 64, 320, 1);
-            [_dingView.titleImv setImage:titleImageArr[i-1]];
-            _dingView.titleImv.frame = CGRectMake(70, 20, 30, 30);
-            
-            //内容label
-            _dingView.contentLable.frame = CGRectMake(CGRectGetMaxX(_dingView.titleImv.frame)+5, _dingView.titleImv.frame.origin.y-5, 100, 35);
-//            _dingView.contentLable.backgroundColor = [UIColor redColor];
-            
-            _dingView.contentLable.text = @"0.0";
-            _dingView.contentLable.textAlignment = NSTextAlignmentCenter;//只有这里设置居中
-            
-            //计量单位
-            _dingView.danweiLabel.frame = CGRectMake(CGRectGetMaxX(_dingView.contentLable.frame)+5, _dingView.contentLable.frame.origin.y+5, 70, 30);
-            _dingView.danweiLabel.text = @"公里/时";
-            _dingView.viewTypeStr = @"速度";
-            
-            
-            
-            
-        }else if (i == 2){//计时 左上 tag 52
-            
-            
-            _zuoshangView.tag = 52;
-            
-            [_zuoshangView addGestureRecognizer:tap];
-            _zuoshangView.line.frame = CGRectMake(0, 64, 160, 1);
-            _zuoshangView.line1.frame = CGRectMake(159, 0, 1, 65);
-            _zuoshangView.titleImv.frame = CGRectMake(10, 20, 30, 30);
-            [_zuoshangView.titleImv setImage:titleImageArr[i-1]];
-            
-            //内容label
-            _zuoshangView.contentLable.frame = CGRectMake(CGRectGetMaxX(_zuoshangView.titleImv.frame)+5, _zuoshangView.titleImv.frame.origin.y-5, 100, 35);
-            _zuoshangView.contentLable.text = @"00:00:00";
-            
-            
-            _zuoshangView.viewTypeStr = @"计时";
-            
-            
-            
-        }else if (i == 3){//公里 右上
-            
-            
-            _youshangView.tag = 53;
-            
-            [_youshangView addGestureRecognizer:tap];
-            _youshangView.line.frame = CGRectMake(0, 64, 160, 1);
-            _youshangView.titleImv.frame = CGRectMake(10, 20, 30, 30);
-            
-            //内容label
-            _youshangView.contentLable.frame = CGRectMake(CGRectGetMaxX(_youshangView.titleImv.frame)+5, _youshangView.titleImv.frame.origin.y-5, 70, 35);
-            
-            _youshangView.contentLable.text = @"0.0";
-            
-            //计量单位
-            _youshangView.danweiLabel.frame = CGRectMake(CGRectGetMaxX(_youshangView.contentLable.frame)+5, _youshangView.titleImv.frame.origin.y, 40, 30);
-            _youshangView.danweiLabel.text = @"公里";
-            
-            [_youshangView.titleImv setImage:titleImageArr[i-1]];
-            
-            _youshangView.viewTypeStr = @"距离";
-            
-        }else if (i == 4){//海拔 左下
-            
-            
-            _zuoxiaView.tag = 54;
-            [_zuoxiaView addGestureRecognizer:tap];
-            _zuoxiaView.line.frame = CGRectMake(0, 64, 160, 1);
-            _zuoxiaView.line1.frame = CGRectMake(159, 0, 1, 65);
-            _zuoxiaView.titleImv.frame = CGRectMake(10, 20, 30, 30);
-            [_zuoxiaView.titleImv setImage:titleImageArr[i-1]];
-            
-            _zuoxiaView.contentLable.frame = CGRectMake(CGRectGetMaxX(_zuoshangView.titleImv.frame)+5, _zuoshangView.titleImv.frame.origin.y-5, 70, 35);
-            _zuoxiaView.contentLable.text = @"0";
-            
-            
-            _zuoxiaView.danweiLabel.frame = CGRectMake(CGRectGetMaxX(_zuoxiaView.contentLable.frame)+5, _zuoshangView.titleImv.frame.origin.y, 40, 30);
-            _zuoxiaView.danweiLabel.text = @"米";
-            [_zuoxiaView addSubview:_zuoxiaView.danweiLabel];
-            
-            _zuoxiaView.viewTypeStr = @"海拔";
-            
-        }else if (i == 5){//bpm 右下
-            
-            _youxiaView.tag = 55;
-            [_youxiaView addGestureRecognizer:tap];
-            _youxiaView.line.frame = CGRectMake(0, 64, 160, 1);
-            _youxiaView.titleImv.frame = CGRectMake(10, 20, 30, 30);
-            [_youxiaView.titleImv setImage:titleImageArr[i-1]];
-            
-            _youxiaView.contentLable.frame =CGRectMake(CGRectGetMaxX(_youxiaView.titleImv.frame)+5, _youxiaView.titleImv.frame.origin.y-5, 70, 35);
-            _youxiaView.contentLable.text = @"0";
-            
-            
-            _youxiaView.danweiLabel.frame = CGRectMake(CGRectGetMaxX(_youxiaView.contentLable.frame)+5, _youxiaView.titleImv.frame.origin.y, 40, 30);
-            _youxiaView.danweiLabel.text = @"bpm";
-            
-            _youshangView.viewTypeStr = @"热量";
-            
-            
-        }
-        
-        
-        
-    }
-}
-
-
-
-///初始化地图
--(void)initMap{
     //地图相关初始化
-//    [self initMapViewWithFrame:FRAME_IPHONE5_MAP_DOWN];
-    
-    self.mapView = [[MAMapView alloc]initWithFrame:FRAME_IPHONE5_MAP_DOWN];
-    self.mapView.delegate = self;
-    [self.view addSubview:self.mapView];
-    
-    
-    //    [self initObservers];
+    [self initMapViewWithFrame:FRAME_IPHONE5_MAP_DOWN];
+//    [self initObservers];
     [self initSearch];
-    //    [self modeAction];
+//    [self modeAction];
     self.mapView.showsUserLocation = NO;//关闭定位
-//    self.mapView.showsUserLocation = _kaishiyundong;
     self.mapView.customizeUserLocationAccuracyCircleRepresentation = YES;//自定义定位样式
     self.mapView.userTrackingMode = MAUserTrackingModeNone;//定位模式
     
@@ -343,15 +98,160 @@
     self.mapView.showsScale= NO; //关闭比例尺
     self.mapView.scaleOrigin = CGPointMake(10, 70);
     
-    //    [self initGestureRecognizer];//长按手势
+//    [self initGestureRecognizer];//长按手势
     
     [self.mapView addOverlays:self.overlays];//把线条添加到地图上
     
     [self configureRoutes];//划线
-}
+    
+    
 
-///初始化地图下方view
--(void)initStartDownView{
+    
+    //地图上面的view
+    _isUpViewShow = YES;
+    _upview = [[UIView alloc]initWithFrame:FRAME_IPHONE5_UPVIEW_DOWN];
+    _upview.backgroundColor = [UIColor whiteColor];
+    
+    //上下按钮
+    _upOrDownBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _upOrDownBtn.layer.cornerRadius = 15;
+    _upOrDownBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_upOrDownBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_upOrDownBtn setTitle:@"up" forState:UIControlStateNormal];
+    [_upOrDownBtn setFrame:CGRectMake(145, 240, 30, 30)];
+    //    [_upOrDownBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [_upOrDownBtn setImage:[UIImage imageNamed:@"gbtnup.png"] forState:UIControlStateNormal];
+    [_upOrDownBtn addTarget:self action:@selector(gShou) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    //图标数组
+    NSArray *titleImageArr = @[[UIImage imageNamed:@"gspeed.png"],[UIImage imageNamed:@"gstartime.png"],[UIImage imageNamed:@"gongli.png"],[UIImage imageNamed:@"ghaiba.png"],[UIImage imageNamed:@"gbpm.png"]];
+    
+    for (int i = 0; i<6; i++) {
+        //自定义view
+        UIView *customView = [[UIView alloc]initWithFrame:CGRectZero];
+        customView.backgroundColor = [UIColor whiteColor];
+        //分割线
+        UIView *line = [[UIView alloc]initWithFrame:CGRectZero];
+        UIView *line1 = [[UIView alloc]initWithFrame:CGRectZero];
+        line.backgroundColor = RGBCOLOR(222, 222, 222);
+        line1.backgroundColor = RGBCOLOR(222, 222, 222);
+        //图标
+        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectZero];
+        if (i>0) {
+            [imv setImage:titleImageArr[i-1]];
+        }
+        
+        //内容label
+        
+        
+        //添加视图
+        [customView addSubview:line];
+        [customView addSubview:line1];
+        [customView addSubview:imv];
+        
+        if (i == 0) {//上面灰条
+            customView.frame = CGRectMake(0, 0, 320, 35);
+            customView.backgroundColor = RGBCOLOR(105, 105, 105);
+            _fangxiangLabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 5, 50, 30)];
+            _fangxiangLabel.font = [UIFont systemFontOfSize:20];
+            _fangxiangLabel.textColor = [UIColor whiteColor];
+            _fangxiangLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_fangxiangLabel];
+        }else if (i == 1){//公里/时
+            customView.frame = CGRectMake(0, 35, 320, 75);
+            line.frame = CGRectMake(0, 74, 320, 1);
+            imv.frame = CGRectMake(80, 25, 30, 30);
+            
+            //内容label
+            _gspeedLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 90, 35)];
+            _gspeedLabel.font = [UIFont systemFontOfSize:25];
+//            _gspeedLabel.backgroundColor = [UIColor orangeColor];
+            _gspeedLabel.text = @"0.00";
+            _gspeedLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_gspeedLabel];
+            
+            //计量单位
+            UILabel *danweiLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_gspeedLabel.frame)+5, _gspeedLabel.frame.origin.y+5, 70, 30)];
+            danweiLabel.text = @"公里/时";
+            [customView addSubview:danweiLabel];
+            
+        }else if (i == 2){//计时
+            customView.frame = CGRectMake(0, 110, 160, 75);
+            line.frame = CGRectMake(0, 74, 160, 1);
+            line1.frame = CGRectMake(159, 0, 1, 75);
+            imv.frame = CGRectMake(10, 25, 30, 30);
+            
+            //内容label
+            _gstartimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 100, 35)];
+            _gstartimeLabel.text = @"00:00:00";
+            _gstartimeLabel.font = [UIFont systemFontOfSize:25];
+            _gstartimeLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_gstartimeLabel];
+            
+            
+            
+        }else if (i == 3){//公里
+            customView.frame = CGRectMake(160, 110, 160, 75);
+            line.frame = CGRectMake(0, 74, 160, 1);
+            imv.frame = CGRectMake(10, 25, 30, 30);
+            
+            //内容label
+            _gongliLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 70, 35)];
+            _gongliLabel.font = [UIFont systemFontOfSize:25];
+            _gongliLabel.textAlignment = NSTextAlignmentCenter;
+            _gongliLabel.text = @"0.00";
+            [customView addSubview:_gongliLabel];
+            
+            //计量单位
+            UILabel *danweiLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_gongliLabel.frame)+5, imv.frame.origin.y, 40, 30)];
+            danweiLabel.text = @"公里";
+            [customView addSubview:danweiLabel];
+            
+        }else if (i == 4){//海拔
+            customView.frame = CGRectMake(0, 185, 160, 75);
+            line.frame = CGRectMake(0, 74, 160, 1);
+            line1.frame = CGRectMake(159, 0, 1, 75);
+            imv.frame = CGRectMake(10, 25, 30, 30);
+            
+            _ghaibaLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 50, 35)];
+            _ghaibaLabel.text = @"00";
+            _ghaibaLabel.font = [UIFont systemFontOfSize:25];
+            _ghaibaLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_ghaibaLabel];
+            
+            UILabel *danweiLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_ghaibaLabel.frame)+5, imv.frame.origin.y, 40, 30)];
+            danweiLabel.text = @"米";
+            [customView addSubview:danweiLabel];
+            
+            
+        }else if (i == 5){//bpm
+            customView.frame = CGRectMake(160, 185, 160, 75);
+            line.frame = CGRectMake(0, 74, 160, 1);
+            imv.frame = CGRectMake(10, 25, 30, 30);
+            
+            _gbpmLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imv.frame)+5, imv.frame.origin.y-5, 50, 35)];
+            _gbpmLabel.text = @"00";
+            _gbpmLabel.font = [UIFont systemFontOfSize:25];
+            _gbpmLabel.textAlignment = NSTextAlignmentCenter;
+            [customView addSubview:_gbpmLabel];
+            
+            UILabel *danweiLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_gbpmLabel.frame)+5, imv.frame.origin.y, 40, 30)];
+            danweiLabel.text = @"bpm";
+            [customView addSubview:danweiLabel];
+        }
+        
+        
+        [_upview addSubview:customView];
+    }
+    
+    [_upview addSubview:_upOrDownBtn];
+    [self.view addSubview:_upview];
+    
+    
+    
+    
+    
     //开始运动时下方view
     _downView = [[UIView alloc]initWithFrame:CGRectMake(0, iPhone5?(568-50):(480-50), 320, 50)];
     _downView.backgroundColor = [UIColor whiteColor];
@@ -368,7 +268,7 @@
     //完成按钮
     UIButton *redFinishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [redFinishBtn setFrame:CGRectMake(80, 0, 80, 50)];
-    
+
     [redFinishBtn setImage:[UIImage imageNamed:@"gfinish.png"] forState:UIControlStateNormal];
     
     [redFinishBtn addTarget:self action:@selector(gFinish) forControlEvents:UIControlEventTouchUpInside];
@@ -392,110 +292,24 @@
     [_downView addSubview:takePhotoBtn];
     
     [self.view addSubview:_downView];
+    
+    
+    
+    //计时器
+    timer = [NSTimer scheduledTimerWithTimeInterval:(0.01)
+                                             target:self
+                                           selector:@selector(taktCounter)
+                                           userInfo:nil
+                                            repeats:TRUE];
+    NSRunLoop *main = [NSRunLoop currentRunLoop];
+    [main addTimer:timer forMode:NSRunLoopCommonModes];
+    
+    
+    
+    
+//    [self initHistoryMap];
+    
 }
-
-
-
-
-//参数选择
--(void)setImage:(UIImage*)theImage andContent:(NSString *)theStr andDanwei:(NSString *)theDanwei withTag:(NSInteger)theTag    
-   withType:(NSString *)theViewType{
-    switch (theTag) {
-        case 51://顶
-        {
-            _dingView.titleImv.image = theImage;
-            _dingView.contentLable.text = theStr;
-            _dingView.danweiLabel.text = theDanwei;
-            _dingView.viewTypeStr = theViewType;
-            
-        }
-            break;
-        case 52://左上 //计时lable 无单位label
-        {
-            _zuoshangView.titleImv.image = theImage;
-            _zuoshangView.contentLable.text = theStr;
-            _zuoshangView.danweiLabel.text = theDanwei;
-            _zuoshangView.viewTypeStr = theViewType;
-            if (![theViewType isEqualToString:@"计时"]) {//不是计时的话 变窄contentlabel
-                _zuoshangView.contentLable.frame = CGRectMake(CGRectGetMaxX(_zuoshangView.titleImv.frame)+5, _zuoshangView.titleImv.frame.origin.y-5, 70, 35);
-                _zuoshangView.danweiLabel.frame = CGRectMake(CGRectGetMaxX(_zuoshangView.contentLable.frame)+5, _zuoshangView.titleImv.frame.origin.y, 40, 30);
-                _zuoshangView.danweiLabel.hidden = NO;
-            }else{
-                _zuoshangView.danweiLabel.frame = CGRectMake(CGRectGetMaxX(_zuoshangView.contentLable.frame)+5, _zuoshangView.titleImv.frame.origin.y, 100, 35);
-                _zuoshangView.danweiLabel.hidden = YES;
-            }
-        }
-            break;
-        case 53://右上
-        {
-            _youshangView.titleImv.image = theImage;
-            _youshangView.contentLable.text = theStr;
-            _youshangView.danweiLabel.text = theDanwei;
-            _youshangView.viewTypeStr = theViewType;
-            if ([theViewType isEqualToString:@"计时"]) {//是计时的话 加宽contentLabel
-                _youshangView.contentLable.frame = CGRectMake(CGRectGetMaxX(_youshangView.titleImv.frame)+5, _youshangView.titleImv.frame.origin.y-5, 100, 35);
-                _youshangView.danweiLabel.hidden = YES;
-            }else{
-                _youshangView.contentLable.frame = CGRectMake(CGRectGetMaxX(_youshangView.titleImv.frame)+5, _youshangView.titleImv.frame.origin.y-5, 70, 35);
-                _youshangView.danweiLabel.hidden = NO;
-            }
-        }
-            break;
-        case 54://左下
-        {
-            _zuoxiaView.titleImv.image = theImage;
-            _zuoxiaView.contentLable.text = theStr;
-            _zuoxiaView.danweiLabel.text = theDanwei;
-            _zuoshangView.viewTypeStr = theViewType;
-            
-            
-            if ([theViewType isEqualToString:@"计时"]) {//是计时的话 加宽contentLabel
-                _zuoxiaView.contentLable.frame = CGRectMake(CGRectGetMaxX(_zuoxiaView.titleImv.frame)+5, _zuoxiaView.titleImv.frame.origin.y-5, 100, 35);
-                _zuoxiaView.danweiLabel.hidden = YES;
-            }else{
-                _zuoxiaView.contentLable.frame = CGRectMake(CGRectGetMaxX(_zuoxiaView.titleImv.frame)+5, _zuoxiaView.titleImv.frame.origin.y-5, 70, 35);
-                _zuoxiaView.danweiLabel.frame = CGRectMake(CGRectGetMaxX(_zuoxiaView.contentLable.frame)+5, _zuoxiaView.titleImv.frame.origin.y, 40, 30);
-                _zuoxiaView.danweiLabel.hidden = NO;
-            }
-            
-        }
-            break;
-        case 55://右下
-        {
-            _youxiaView.titleImv.image = theImage;
-            _youxiaView.contentLable.text = theStr;
-            _youxiaView.danweiLabel.text = theDanwei;
-            _youxiaView.viewTypeStr = theViewType;
-            
-            if ([theViewType isEqualToString:@"计时"]) {//是计时的话 加宽contentLabel
-                _youxiaView.contentLable.frame = CGRectMake(CGRectGetMaxX(_youxiaView.titleImv.frame)+5, _youxiaView.titleImv.frame.origin.y-5, 100, 35);
-                _youxiaView.danweiLabel.hidden = YES;
-            }else{
-                _youxiaView.contentLable.frame = CGRectMake(CGRectGetMaxX(_youxiaView.titleImv.frame)+5, _youxiaView.titleImv.frame.origin.y-5, 70, 35);
-                _youxiaView.danweiLabel.frame = CGRectMake(CGRectGetMaxX(_youxiaView.contentLable.frame)+5, _youxiaView.titleImv.frame.origin.y, 40, 30);
-                _youxiaView.danweiLabel.hidden = NO;
-            }
-            
-            
-        }
-            break;
-        default:
-            break;
-    }
-}
-
-#pragma mark - 上面5个自定义的手势点击方法
-//手势
--(void)gChooseCanshu:(UITapGestureRecognizer*)sender{
-    GstarCanshuViewController *cc = [[GstarCanshuViewController alloc]init];
-    cc.passTag = sender.view.tag;
-    cc.delegate = self;
-    cc.yundongModel = self.gYunDongCanShuModel;
-//    cc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:cc animated:YES];
-}
-
-
 
 //路书跳转过来的通知方法
 -(void)newBilityXiaoPang:(NSNotification*)thenotification{
@@ -515,73 +329,91 @@
 - (void) taktCounter
 {
     //    NSLog(@"taktCounter is called");
+    NSInteger timerMin = 0;
+    NSInteger timerSecond = 0;
+    NSInteger timerMSecond = 0;
+    NSInteger timerMMSecond = 0;
+    
+    NSInteger splitTimerMin = 0;
+    NSInteger splitTimerSecond = 0;
+    NSInteger splitTimerMSecond = 0;
+    NSInteger splitTimerMMSecond = 0;
     
     if (started)
     {
-        _totalTakt++;
-        _lapTakt++;
+        totalTakt++;
+        lapTakt++;
         
+        if (totalTakt == 594000) {
+            totalTakt = 0;
+        }
+        if (lapTakt == 594000) {
+            lapTakt = 0;
+        }
         
         if(splitted)
         {
-            _lapTakt = 0;
-            [self.gYunDongCanShuModel.timeRunLabel setText:@"00:00:00"];
+            lapTakt = 0;
+            [_gstartimeLabel setText:@"00:00.00"];
             splitted = NO;
         }
         
+        timerMMSecond = totalTakt % 10;
+        timerMSecond = totalTakt / 10 % 10;
+        timerSecond = totalTakt / 100;
+        timerMin = totalTakt / 6000;
         
-        timerSecond = _totalTakt;
-        if (timerSecond==60) {//秒转分
-            timerSecond = 0;
-            _totalTakt = 0;
-            timerMin++;
+        splitTimerMMSecond = lapTakt % 10;
+        splitTimerMSecond = lapTakt / 10 % 10;
+        splitTimerSecond = lapTakt / 100;
+        splitTimerMin = lapTakt / 6000;
+        
+        if (timerSecond < 10) {
+            if (timerMin < 10) {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"0%d:0%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
+            }
+            else {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"%d:0%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
+            }
         }
-        if (timerMin==60) {//分转时
-            timerMin = 0;
-            _timerHour++;
+        else {
+            if (timerMin < 10) {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"0%d:%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
+            }
+            else {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"%d:%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
+            }
         }
         
-        
-        
-        if (splitTimerSecond == 60) {
-            splitTimerMin++;
-            splitTimerSecond = 0;
-            _lapTakt = 0;
+        if (splitTimerSecond < 10) {
+            if (splitTimerMin < 10) {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"0%d:0%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
+            }
+            else {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"%d:0%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
+            }
+        }
+        else {
+            if (splitTimerMin < 10) {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"0%d:%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
+            }
+            else {
+                _gstartimeLabel.text = [[NSString alloc]initWithFormat:@"%d:%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
+            }
         }
         
-        if (splitTimerMin == 60) {
-            _splitTimerHour++;
-            splitTimerMin = 0;
-            
-        }
-        
-#pragma mark - 计时label=======
-        self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"%02d:%02d:%02d",_timerHour,timerMin,timerSecond];
-        
-#pragma mark - 用时=======
-        self.gYunDongCanShuModel.yongshi = self.gYunDongCanShuModel.timeRunLabel.text;
-    
+    }
+    else{
         if (reset == YES) {
-            [self.gYunDongCanShuModel.timeRunLabel setText:@"00:00:00"];
+            [_gstartimeLabel setText:@"00:00.00"];
             started = NO;
             splitted = NO;
-            _totalTakt = 0;
-            _lapTakt = 0;
+            totalTakt = 0;
+            lapTakt = 0;
             splitTimes = 0;
             reset = NO;
         }
     }
-    
-    
-    
-#pragma 数据model赋值  计时时间--------
-    for (GyundongCustomView *view in self.fourCustomView) {
-        if ([view.viewTypeStr isEqualToString:@"计时"]) {
-            view.contentLable.text = self.gYunDongCanShuModel.timeRunLabel.text;
-        }
-    }
-    
-    
     
 }
 
@@ -597,9 +429,6 @@
 
 #pragma mark - 暂停按钮
 -(void)gTimeOut{
-    
-//    _kaishiyundong = NO;
-    
     _isTimeOutClicked = !_isTimeOutClicked;
     if (_isTimeOutClicked) {
         self.mapView.showsUserLocation = NO;
@@ -631,17 +460,7 @@
 #pragma mark - 行走完成
 
 -(void)gFinish{
-//    _kaishiyundong = NO;
     started = NO;
-    
-    NSDate *date = [NSDate date];
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: date];
-    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-    
-    self.gYunDongCanShuModel.endTime = [NSString stringWithFormat:@"%@",localeDate];
-    
-    
     UIActionSheet *actionsheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"放弃记录" otherButtonTitles:@"保存分享", nil];
     actionsheet.tag = 101;
     [actionsheet showInView:self.view];
@@ -650,12 +469,12 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (actionSheet.tag == 101) {
         if (buttonIndex == 1) {//保存记录
-//            _kaishiyundong = NO;
             self.mapView.showsUserLocation = NO;
             _distance = 0.0f;
             reset = YES;//停止计时器
             _downView.hidden = YES;
             [self hideTabBar:NO];
+
             
             
             NSString *jsonStr = [self.routeLineArray JSONString];
@@ -727,31 +546,21 @@
             
             
             
+
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"gstopandsave" object:nil];
+
         }else if (buttonIndex == 0){//放弃保存
-            
-            for (GyundongCustomView *view in self.fourCustomView) {
-                if ([view.viewTypeStr isEqualToString:@"计时"]) {
-                    view.contentLable.text = @"00:00:00";
-                }else{
-                    view.contentLable.text = @"0.0";
-                }
-            }
-            
             _distance = 0.0f;
-//            _kaishiyundong = NO;
             self.mapView.showsUserLocation = NO;
             reset = YES;//停止计时器
             _downView.hidden = YES;
-            [self.gYunDongCanShuModel cleanAllData];
             [self hideTabBar:NO];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"gstopandnosave" object:nil];
         }else if (buttonIndex == 2){//取消按钮
             if (_isTimeOutClicked) {
                 started = NO;
-//                _kaishiyundong = NO;
             }else{
                 started = YES;
-//                _kaishiyundong = YES;
             }
             
         }
@@ -925,9 +734,6 @@
 
 
 -(void)mapView:(MAMapView*)mapView didFailToLocateUserWithError:(NSError*)error{
-    
-    UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"定位失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [al show];
     NSLog(@"定位失败");
 }
 
@@ -1096,7 +902,7 @@
 
 
 
-#pragma mark - 定位的回调方法===========================================
+#pragma mark - 定位的回调方法
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
 {
     
@@ -1118,49 +924,13 @@
         _fangxiangLabel.text = headingStr;
     }
     
-#pragma mark - 给数据model赋值=========== 海拔(最高 最低 实时) 经纬度(开始，实时)
     //海拔
     CLLocation *currentLocation = userLocation.location;
     if (currentLocation) {
         NSLog(@"海拔---%f",currentLocation.altitude);
         int alti = (int)currentLocation.altitude;
-        
-        if (_isFirstStartCanshu) {
-            self.gYunDongCanShuModel.startHaiba = [NSString stringWithFormat:@"%d",alti];//开始海拔
-            self.gYunDongCanShuModel.maxHaiba = [NSString stringWithFormat:@"%d",alti];
-            self.gYunDongCanShuModel.minHaiba = [NSString stringWithFormat:@"%d",alti];
-            
-            //开始时的经纬度
-            self.gYunDongCanShuModel.startCoorStr = [NSString stringWithFormat:@"%f,%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
-#pragma makr - 第一次的各个参数
-            _isFirstStartCanshu = NO;
-        }
-        
-        if (alti > [self.gYunDongCanShuModel.maxHaiba intValue]) {
-            self.gYunDongCanShuModel.maxHaiba = [NSString stringWithFormat:@"%d",alti];//最高海拔
-        }
-        
-        if (alti <[self.gYunDongCanShuModel.minHaiba integerValue]) {
-            self.gYunDongCanShuModel.minHaiba = [NSString stringWithFormat:@"%d",alti];//最低海拔
-        }
-        
-        
-        self.gYunDongCanShuModel.haiba = [NSString stringWithFormat:@"%d",alti];//实时海拔
-        self.gYunDongCanShuModel.coorStr = [NSString stringWithFormat:@"%f,%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];//实时经纬度 定位结束后为终点经纬度
-        
-        
-
-        
-        for (GyundongCustomView *view in self.fourCustomView) {
-            if ([view.viewTypeStr isEqualToString:@"海拔"]) {
-                
-                view.contentLable.text = self.gYunDongCanShuModel.haiba;
-                
-            }
-        }
+        _ghaibaLabel.text = [NSString stringWithFormat:@"%d",alti];
     }
-    
-
     
     //自定义定位箭头方向
     if (!updatingLocation && self.userLocationAnnotationView != nil)
@@ -1174,7 +944,15 @@
     }
     
     
+    //给速度lable赋值
     
+    NSString *hourStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(0, 1)];//00.00.00
+    NSString *minStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(3, 2)];
+    NSString *seStr = [_gstartimeLabel.text substringWithRange:NSMakeRange(6, 2)];
+    
+    double hour = [hourStr intValue]+([minStr floatValue]/60)+([seStr floatValue]/3600);
+    NSString *speedStr = [NSString stringWithFormat:@"%.2f",_distance/hour];
+    _gspeedLabel.text =  speedStr;
     
     
     
@@ -1201,42 +979,11 @@
             return;
         }
         _distance += distance;
-#pragma mark - 数据model赋值--------------- 距离
-        self.gYunDongCanShuModel.juli = [NSString stringWithFormat:@"%.2f",_distance/1000];
-        
-        for (GyundongCustomView *view in self.fourCustomView) {
-            if ([view.viewTypeStr isEqualToString:@"公里"]) {
-                view.contentLable.text = self.gYunDongCanShuModel.juli;//给距离label赋值 单位是公里
-            }
-        }
-        
+        NSString *str = [NSString stringWithFormat:@"公里----%f",_distance/1000];
+        _gongliLabel.text = str;//给距离label赋值 单位是公里
     }
     
-    
-#pragma mark - 数据model赋值 ------------- 当前 速度
-    //给速度lable赋值
-    
-    double sudu = userLocation.location.speed;//单位米每秒
-    if (sudu<0) {
-        sudu = 0;
-    }
-    double suduOfGongli = sudu *3.6;
-    self.gYunDongCanShuModel.dangqiansudu = [NSString stringWithFormat:@"%.1f",suduOfGongli];//单位 公里每小时
-    
-    
-    for (GyundongCustomView *view in self.fourCustomView) {
-        if ([view.viewTypeStr isEqualToString:@"速度"]) {
-            view.contentLable.text = self.gYunDongCanShuModel.dangqiansudu;
-        }
-    }
-    
-    
-#pragma mark - 数据model赋值 ------------ 最高速度 
-    
-    if ([self.gYunDongCanShuModel.maxSudu intValue] < [self.gYunDongCanShuModel.dangqiansudu intValue]) {
-        self.gYunDongCanShuModel.maxSudu = self.gYunDongCanShuModel.dangqiansudu;
-    }
-    
+
     
 #pragma mark - 数据model赋值 ------------ 平均速度
     
@@ -1255,6 +1002,7 @@
     
     
     
+
     if (_points == nil) {
         _points = [[NSMutableArray alloc] init];
     }
@@ -1326,9 +1074,6 @@
     // add the overlay to the map
     if (nil != self.routeLine) {
         [self.mapView addOverlay:self.routeLine];
-        
-        //这个数组保存的时候转为json串存入数据库中
-        [self.routeLineArray addObject:self.routeLine];
     }
     
     // clear the memory allocated earlier for the points
@@ -1337,14 +1082,10 @@
     
 }
 
-#pragma 点击tabbar上开始按钮开始的操作   开始骑行============
+#pragma 点击tabbar上开始按钮开始的操作
 -(void)iWantToStart{
-//    _kaishiyundong = YES;
     [self hideTabBar:YES];
-    _isFirstStartCanshu = YES;
     _downView.hidden = NO;
-    
-    
     self.mapView.showsUserLocation = YES;//开启定位
     
     
@@ -1353,14 +1094,6 @@
         
     }else{
         started = YES;
-        NSDate *date = [NSDate date];
-        NSTimeZone *zone = [NSTimeZone systemTimeZone];
-        NSInteger interval = [zone secondsFromGMTForDate: date];
-        NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-        
-        self.gYunDongCanShuModel.startTime = [NSString stringWithFormat:@"%@",localeDate];
-        
-        
     }
     
 }
@@ -1409,22 +1142,9 @@
     
     NSString *index = [dic objectForKey:@"road_index"];
     int indexx = [index intValue];
-    NSDictionary *dic1 = [GMAPI getRoadLinesForRoadId:indexx];
-    NSString *jsonString = [dic1 objectForKey:LINE_JSONSTRING];
-    NSArray *arr = [jsonString objectFromJSONString];
+    NSString *key = [NSString stringWithFormat:@"road_%d",indexx];
     
-    NSArray *start_arr = [[dic objectForKey:START_COOR_STRING] componentsSeparatedByString:@","];
-    
-    CLLocationCoordinate2D start;
-    if (start_arr.count == 2) {
-        start = CLLocationCoordinate2DMake([[start_arr objectAtIndex:0]floatValue], [[start_arr objectAtIndex:1]floatValue]);
-    }
-    
-    NSArray *end_arr = [[dic objectForKey:END_COOR_STRING] componentsSeparatedByString:@","];
-    CLLocationCoordinate2D end;
-    if (end_arr.count == 2) {
-        end = CLLocationCoordinate2DMake([[end_arr objectAtIndex:0]floatValue], [[end_arr objectAtIndex:1]floatValue]);
-    }
+    NSArray *arr = [LTools cacheForKey:key];
     
     if (arr.count == 0) {
         return;
@@ -1432,15 +1152,17 @@
     
     NSDictionary *history_dic = [LMapTools parseMapHistoryMap:arr];
     
-    NSArray *lines = [history_dic objectForKey:L_POLINES];
+    _lines = [history_dic objectForKey:L_POLINES];
+    NSArray *start_arr = [history_dic objectForKey:L_START_POINT_COORDINATE];
+    NSArray *end_arr = [history_dic objectForKey:L_END_POINT_COORDINATE];
     
-    self.startCoordinate = start;
+    self.startCoordinate = CLLocationCoordinate2DMake([[start_arr objectAtIndex:0] floatValue], [[start_arr objectAtIndex:1] floatValue]);
     [self addStartAnnotation];
     
-    self.destinationCoordinate = end;
+    self.destinationCoordinate = CLLocationCoordinate2DMake([[end_arr objectAtIndex:0] floatValue], [[end_arr objectAtIndex:1] floatValue]);
     [self addDestinationAnnotation];
     
-    [self.mapView addOverlays:lines];
+    [self.mapView addOverlays:_lines];
     
     [self.mapView setCenterCoordinate:self.startCoordinate animated:YES];
     

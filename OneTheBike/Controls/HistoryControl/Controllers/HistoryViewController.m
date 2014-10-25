@@ -10,14 +10,12 @@
 
 @interface HistoryViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    UITableView *_tableView;//主tableview
-    
-    NSMutableArray *_fangkaiArray;//里面记录的是已经展开的section
+    UITableView *_tableView;
 }
 @end
 
-
 @implementation HistoryViewController
+
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -109,12 +107,20 @@
     
     self.view.backgroundColor=[UIColor whiteColor];
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568) style:UITableViewStyleGrouped];
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.backgroundColor=[UIColor whiteColor];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
     
     
+
     
     
     
@@ -136,6 +142,8 @@
     
     
     
+
+
     // Do any additional setup after loading the view.
 }
 
@@ -158,36 +166,15 @@
     return num;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    NSInteger num = 0;
-    
-    if (section == 0) {
-        num = 0;
-    }else{
-        num = 0;
-    }
-    
-    
-    for (NSString *str in _fangkaiArray) {
-        
-        
-        if ([str integerValue] == section) {
-            
-            NSArray *arr = self.dataArray[section];
-            num = arr.count;
-        }
-    }
-    
-    
-    
-    return num;
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 44;
 }
+
 
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -249,6 +236,7 @@
         
     }
 }
+
 
 
 

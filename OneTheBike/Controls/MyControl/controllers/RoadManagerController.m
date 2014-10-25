@@ -89,8 +89,9 @@
     self.tableView.tableHeaderView = header;
     
     
-//    NSString *road_ids = [LTools cacheForKey:ROAD_IDS];
-//    road_count = [road_ids intValue];
+    NSString *custid = [LTools cacheForKey:USER_CUSTID];
+    
+    [self getRoadlistWithUserId:custid page:1];
     
 }
 
@@ -107,6 +108,24 @@
 #pragma mark - 数据解析
 
 #pragma mark - 网络请求
+
+
+- (void)getRoadlistWithUserId:(NSString *)userId page:(int)page
+{
+    NSString *url = [NSString stringWithFormat:BIKE_ROAD_LIST,userId,page];
+    LTools *tool = [[LTools alloc]initWithUrl:url isPost:NO postData:nil];
+    [tool requestSpecialCompletion:^(NSDictionary *result, NSError *erro) {
+        
+        NSLog(@"result %@ erro %@",result,erro);
+        
+        
+        
+    } failBlock:^(NSDictionary *failDic, NSError *erro) {
+        
+        NSLog(@"failDic %@ erro %@",failDic,erro);
+        
+    }];
+}
 
 #pragma mark - 视图创建
 
@@ -130,23 +149,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
-//    NSDictionary *dic = @{ROAD_INDEX:[NSString stringWithFormat:@"%d",road.roadId]};
-//    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROAD_LINES object:nil userInfo:dic];
-//    
-//    UITabBarController *tabarVC = (UITabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-//    
-//    tabarVC.selectedIndex = 0;
-    
-//    RoadProduceController *produce = [[RoadProduceController alloc]init];
-//    
-//    produce.hidesBottomBarWhenPushed = YES;
-//    
-//    LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
-//    produce.road_index = road.roadId;
-//    
-//    [self.navigationController pushViewController:produce animated:YES];
-    
         RoadInfoViewController *produce = [[RoadInfoViewController alloc]initWithStyle:UITableViewStylePlain];
         LRoadClass *road = [roads_arr objectAtIndex:indexPath.row];
         produce.aRoad = road;
@@ -185,6 +187,7 @@
     NSString *start = [NSString stringWithFormat:@"起:%@",road.startName];
     NSString *end = [NSString stringWithFormat:@"终:%@",road.endName];
 
+    NSLog(@"--->%d",road.roadId);
     cell.startLabel.text = start;
     cell.endLabel.text = end;
     
