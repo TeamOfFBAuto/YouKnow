@@ -78,6 +78,7 @@
     imagesArray = @[@"mine_road",@"mine_map",@"mine_share",@"mine_more"];
     titleArray = @[@"路书管理",@"离线地图",@"分享好友",@"更多"];
     
+
 //    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
 //    if (authKey.length > 0) {
 //        return;
@@ -85,6 +86,16 @@
 //    {
 //        [self login];
 //    }
+
+    
+    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
+    if (authKey.length > 0) {
+        return;
+    }else
+    {
+        [self login];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
