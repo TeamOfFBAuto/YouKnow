@@ -23,20 +23,16 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
     
-    
-//    NSArray *dataBaseArray = [GMAPI getRoadLinesForType:Type_GUIJI];
-//    
-//    for (nsar in <#collection#>) {
-//        <#statements#>
-//    }
+
     
     
-//    self.dataArray =
-    
-    
-    NSArray *dataBaseArray = [GMAPI getRoadLinesForType:1];
+    NSArray *dataBaseArray = [GMAPI GgetGuiji];
     
     NSLog(@"%s %d",__FUNCTION__,dataBaseArray.count);
+    
+    for (LRoadClass *model in dataBaseArray) {
+        NSLog(@"lroadClass---startName:%@  endName:%@ distance:%@ roadId:%d",model.startName,model.endName,model.distance,model.roadId);
+    }
     
     
     
