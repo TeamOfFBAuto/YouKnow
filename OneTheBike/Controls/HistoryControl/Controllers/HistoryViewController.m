@@ -34,6 +34,13 @@
         NSLog(@"lroadClass---startName:%@  endName:%@ distance:%@ roadId:%d",model.startName,model.endName,model.distance,model.roadId);
     }
     
+    NSString *flag = @"";
+    
+//    for (LRoadClass *road in dataBaseArray) {
+//        flag = road.startName;
+//        
+//    }
+    
     
     
     

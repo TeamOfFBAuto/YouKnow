@@ -78,15 +78,13 @@
     imagesArray = @[@"mine_road",@"mine_map",@"mine_share",@"mine_more"];
     titleArray = @[@"路书管理",@"离线地图",@"分享好友",@"更多"];
     
-    [self.table reloadData];
-    
-    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
-    if (authKey.length > 0) {
-        return;
-    }else
-    {
-        [self login];
-    }
+//    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
+//    if (authKey.length > 0) {
+//        return;
+//    }else
+//    {
+//        [self login];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -255,9 +253,8 @@
     return 5;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.row == 0) {
         static NSString * identifier1= @"MineCellOne";
         
@@ -278,13 +275,13 @@
             [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
         }else
         {
-//            [self login];
+            //            [self login];
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
-
+        
     }
     
     static NSString * identifier1= @"MineCellTwo";
@@ -301,8 +298,8 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-    
 }
+
 
 
 
