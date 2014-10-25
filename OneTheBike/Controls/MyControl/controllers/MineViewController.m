@@ -78,7 +78,6 @@
     imagesArray = @[@"mine_road",@"mine_map",@"mine_share",@"mine_more"];
     titleArray = @[@"路书管理",@"离线地图",@"分享好友",@"更多"];
     
-    [self.table reloadData];
     
     NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
     if (authKey.length > 0) {

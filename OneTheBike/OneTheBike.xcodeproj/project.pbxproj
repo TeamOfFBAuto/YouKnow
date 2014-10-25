@@ -2820,7 +2820,6 @@
 				56442DFF19F5533500BAE678 /* find_huodong_image@2x.png in Resources */,
 				137D9FB719F25EC700B31100 /* 新浪微博点击.png in Resources */,
 				13BE658B19FB8390006242A8 /* icon114.png in Resources */,
-				E36DE09819F4FC26007585AF /* gbtndown.png in Resources */,
 				13D21C9719F4095C0015AAF2 /* map_end@2x.png in Resources */,
 				E3E2EECD19F756070033CDBC /* gzuigaosudu.png in Resources */,
 				19DAE9EB19D311D300519D22 /* haoyou--48_44-xy298_404@2x.png in Resources */,
@@ -2845,11 +2844,7 @@
 				19DAEA5F19D311D300519D22 /* mirco_icon_11@2x.png in Resources */,
 				1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */,
 				19DAE98219D311D300519D22 /* add_jing@2x.png in Resources */,
-
-
 				13A1470419F75EE100F8D442 /* RoadInfoViewController.xib in Resources */,
-				E32B927C19F60609007536D0 /* ghuifu.png in Resources */,
-
 				19DAEA2019D311D300519D22 /* button2-down252_94@2x.png in Resources */,
 				19DAEA1619D311D300519D22 /* duihao-42_42@2x.png in Resources */,
 				137D9FC019F25EC700B31100 /* more_good@2x.png in Resources */,
@@ -3232,6 +3227,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = armv7;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
@@ -3253,7 +3249,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 			};
@@ -3265,6 +3261,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = armv7;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
@@ -3286,7 +3283,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 			};
