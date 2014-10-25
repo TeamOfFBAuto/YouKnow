@@ -20,6 +20,9 @@
 #define FRAME_IPHONE5_UPVIEW_UP CGRectMake(0, -165, 320, 230)
 #define FRAME_IPHONE5_UPVIEW_DOWN CGRectMake(0, 20, 320, 230)
 
+
+
+
 @interface GStartViewController ()<UIActionSheetDelegate>
 {
     UIView *_upview;//上面的运动信息view
@@ -85,6 +88,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.gYunDongCanShuModel = [[GyundongCanshuModel alloc]init];
@@ -660,7 +664,13 @@
             //时间  平均速度 用时 距离
             
             NSString *startNameStr = [NSString stringWithFormat:@"%@,%@,%@",self.gYunDongCanShuModel.startTime,self.gYunDongCanShuModel.endTime,self.gYunDongCanShuModel.yongshi];
-            NSString *endNameStr = [NSString stringWithFormat:@"%@",self.gYunDongCanShuModel.pingjunsudu];
+            
+            NSString *endNameStr = @"0";
+            
+            if (self.gYunDongCanShuModel.pingjunsudu.length >0) {
+                endNameStr = [NSString stringWithFormat:@"%@",self.gYunDongCanShuModel.pingjunsudu];
+            }
+            
             
             
             //保存路书
@@ -681,7 +691,39 @@
 //            second.secureTextEntry = NO;
             
             
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"gstopandsave" object:nil];
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"gstopandsave" object:nil];
+            
+            
+            
+#pragma mark - 上传轨迹===============================
+            int upMetre = [self.gYunDongCanShuModel.maxHaiba intValue] - [self.gYunDongCanShuModel.startHaiba intValue];
+            int downMetre = [self.gYunDongCanShuModel.startHaiba intValue] - [self.gYunDongCanShuModel.minHaiba intValue];
+            
+            NSString *upMetreStr = [NSString stringWithFormat:@"%d",upMetre];
+            NSString *downMetreStr = [NSString stringWithFormat:@"%d",downMetre];
+            NSString *startTimeStr = [self.gYunDongCanShuModel.startTime substringToIndex:19];
+            NSString *endTimeStr = [self.gYunDongCanShuModel.startTime substringToIndex:19];
+            self.gYunDongCanShuModel.startTime = startTimeStr;
+            self.gYunDongCanShuModel.endTime = endTimeStr;
+            
+            [self saveRoadlinesJsonString:jsonStr
+                                startName:startNameStr
+                                  endName:endNameStr
+                                cyclingKm:self.gYunDongCanShuModel.juli
+                                  upMetre:upMetreStr
+                                downMetre:downMetreStr
+                             costCalories:nil
+                                 avgSpeed:self.gYunDongCanShuModel.pingjunsudu
+                                 topSpeed:self.gYunDongCanShuModel.maxSudu
+                                heartRate:nil beginTime:startTimeStr
+                                  endTime:endTimeStr
+                                 costTime:@"30"
+                                beginSite:nil
+                                  endSite:nil
+                         beginCoordinates:self.gYunDongCanShuModel.startCoorStr
+                           endCoordinates:self.gYunDongCanShuModel.coorStr];
+            
+            
             
             
             
@@ -1198,13 +1240,17 @@
     
 #pragma mark - 数据model赋值 ------------ 平均速度
     
-    double juli = [self.gYunDongCanShuModel.juli floatValue];
-    int h = [[self.gYunDongCanShuModel.yongshi substringWithRange:NSMakeRange(0, 2)]intValue];
-    int m = [[self.gYunDongCanShuModel.yongshi substringWithRange:NSMakeRange(3, 2)]intValue];
-    int s = [[self.gYunDongCanShuModel.yongshi substringWithRange:NSMakeRange(6, 2)]intValue];
-    double yongshi = h+m/60.0+s/3600.0;//单位小时
     
-    self.gYunDongCanShuModel.pingjunsudu = [NSString stringWithFormat:@"%.1f",juli/yongshi];
+//    if (self.gYunDongCanShuModel.juli) {
+//        double juli = [self.gYunDongCanShuModel.juli floatValue];
+//        int h = [[self.gYunDongCanShuModel.yongshi substringWithRange:NSMakeRange(0, 2)]intValue];
+//        int m = [[self.gYunDongCanShuModel.yongshi substringWithRange:NSMakeRange(3, 2)]intValue];
+//        int s = [[self.gYunDongCanShuModel.yongshi substringWithRange:NSMakeRange(6, 2)]intValue];
+//        double yongshi = h+m/60.0+s/3600.0;//单位小时
+//        
+//        self.gYunDongCanShuModel.pingjunsudu = [NSString stringWithFormat:@"%.1f",juli/yongshi];
+//    }
+    
     
     
     
@@ -1473,6 +1519,79 @@
     
     [middleAnntations addObject:midAnnotation];
 }
+
+
+
+//上传接口
+//#define BIKE_ROAD_LINE_GUIJI  @"http://182.254.242.58:8080/QiBa/QiBa/cyclingAction_saveCycling.action?custId=%@&cyclingKm=%.2f&upMetre=%d&downMetre=%d&costCalories=%d&avgSpeed=%.2f&topSpeed=%.2f&heartRate=%d&beginTime=%@&endTime=%@&costTime=%d&beginSite=%@&endSite=%@&beginCoordinates=%@&endCoordinates=%@"
+
+#define BIKE_ROAD_LINE_GUIJI  @"http://182.254.242.58:8080/QiBa/QiBa/cyclingAction_saveCycling.action?custId=%@&cyclingKm=%@&upMetre=%@&downMetre=%@&costCalories=%@&avgSpeed=%@&topSpeed=%@&heartRate=%@&beginTime=%@&endTime=%@&costTime=%@&beginSite=%@&endSite=%@&beginCoordinates=%@&endCoordinates=%@"
+
+
+
+- (void)saveRoadlinesJsonString:(NSString *)jsonStr
+                      startName:(NSString *)startNameL
+                        endName:(NSString *)endNameL
+                      cyclingKm:(NSString *)cyclingKmStr
+                        upMetre:(NSString *)upMetreStr
+                      downMetre:(NSString *)downMetreStr
+                   costCalories:(NSString *)costCaloriesStr
+                       avgSpeed:(NSString *)avgSpeedStr
+                       topSpeed:(NSString *)topSpeedStr
+                      heartRate:(NSString *)heartRateStr
+                      beginTime:(NSString *)beginTimeStr
+                        endTime:(NSString *)endTimeStr
+                       costTime:(NSString *)costTimeStr
+                      beginSite:(NSString *)beginSiteStr
+                        endSite:(NSString *)endSiteStr
+               beginCoordinates:(NSString *)beginCoordinatesStr
+                 endCoordinates:(NSString *)endCoordinatesStr
+
+{
+    NSString *custId = [LTools timechangeToDateline];
+    
+    NSString *post = [NSString stringWithFormat:@"&roadlines=%@",jsonStr];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    
+    NSString *url = [NSString stringWithFormat:BIKE_ROAD_LINE_GUIJI,custId,cyclingKmStr,upMetreStr,downMetreStr,costCaloriesStr,avgSpeedStr,topSpeedStr,heartRateStr,beginTimeStr,endTimeStr,costTimeStr,beginSiteStr,endSiteStr,beginCoordinatesStr,endCoordinatesStr];
+    
+    NSLog(@"请求的url : %@",url);
+    
+    LTools *tool = [[LTools alloc]initWithUrl:url isPost:YES postData:postData];
+    [tool requestSpecialCompletion:^(NSDictionary *result, NSError *erro) {
+        
+        NSLog(@"result %@ erro %@",result,erro);
+        
+        int status = [[result objectForKey:@"status"]integerValue];
+        
+        if (status == 1) {
+            
+//            [loading hide:YES];
+            
+            NSLog(@"上传返回的dic ： %@",result);
+            
+            [LTools showMBProgressWithText:@"路书上传成功" addToView:self.view];
+        }else
+        {
+            NSLog(@"上传返回的dic ： %@",result);
+            
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
+            
+            
+        }
+        
+        
+    } failBlock:^(NSDictionary *failDic, NSError *erro) {
+        
+        NSLog(@"failDic %@ erro %@",failDic,[failDic objectForKey:@"ERRO_INFO"]);
+        
+//        [loading hide:YES];
+        
+    }];
+}
+
+
 
 
 

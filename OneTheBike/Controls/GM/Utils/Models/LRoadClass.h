@@ -22,6 +22,8 @@
 @property(nonatomic,assign)BOOL isOpen;//是否在地图打开
 @property(nonatomic,assign)BOOL isUpload;//是否已经上传成功
 
+@property(nonatomic,assign)BOOL time;
+
 -(instancetype)initWithRoadId:(NSInteger)roadId
                     startName:(NSString *)startName
                       endName:(NSString *)endName

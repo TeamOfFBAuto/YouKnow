@@ -20,7 +20,7 @@
     
     self.contentLable = [[UILabel alloc]initWithFrame:CGRectZero];
     self.contentLable.textAlignment = NSTextAlignmentRight;
-    self.contentLable.font = [UIFont systemFontOfSize:20];
+    self.contentLable.font = [UIFont systemFontOfSize:25];
     
     self.danweiLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     self.danweiLabel.textAlignment = NSTextAlignmentLeft;
@@ -35,7 +35,7 @@
     
     
     
-    //测试颜色
+//    //测试颜色
 //    self.titleLable.backgroundColor = [UIColor redColor];
 //    self.contentLable.backgroundColor = [UIColor grayColor];
 //    self.danweiLabel.backgroundColor = [UIColor orangeColor];

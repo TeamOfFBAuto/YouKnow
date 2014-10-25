@@ -15,7 +15,7 @@
 
 @interface HistoryViewController : UIViewController
 
-@property(nonatomic,strong)NSArray *dataArray;//里面装字典 key为天数  数据源
+@property(nonatomic,strong)NSMutableArray *dataArray;//里面装字典 key为天数  数据源
 
 
 @end
