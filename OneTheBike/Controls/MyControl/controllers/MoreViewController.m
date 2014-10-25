@@ -9,6 +9,8 @@
 #import "MoreViewController.h"
 #import "MineCellTwo.h"
 
+#import "UMFeedbackViewController.h"
+
 @interface MoreViewController ()
 {
     NSArray *titles_arr;
@@ -126,6 +128,13 @@
         case 2:
         {
             NSLog(@"反馈意见");
+            
+            
+            [self showNativeFeedbackWithAppkey:@"5440c181fd98c5a723000ea0"];
+
+            
+            
+            
         }
             break;
         case 3:
@@ -159,6 +168,21 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }
+#pragma mark-意见反馈
+
+- (void)showNativeFeedbackWithAppkey:(NSString *)appkey {
+    
+    UMFeedbackViewController *feedbackViewController = [[UMFeedbackViewController alloc] initWithNibName:@"UMFeedbackViewController" bundle:nil];
+    feedbackViewController.appkey = appkey;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedbackViewController];
+    //    navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    //    navigationController.navigationBar.translucent = NO;
+     [self.navigationController pushViewController:feedbackViewController animated:YES];
+    
+//    [self presentViewController:navigationController animated:YES completion:^{
+//        
+//    }];
+>>>>>>> FETCH_HEAD
 }
 
 #pragma mark - UITableViewDataSource
