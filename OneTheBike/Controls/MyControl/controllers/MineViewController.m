@@ -70,30 +70,15 @@
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    CGSize screenSize = [[UIScreen mainScreen]bounds].size;
-    
-    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) style:UITableViewStylePlain];
-    _table.delegate = self;
-    _table.dataSource = self;
-    [self.view addSubview:_table];
-    
-    
     self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     self.table.backgroundColor = [UIColor colorWithHexString:@"e3e3e3"];
     
     
     imagesArray = @[@"mine_road",@"mine_map",@"mine_share",@"mine_more"];
     titleArray = @[@"路书管理",@"离线地图",@"分享好友",@"更多"];
     
-
-//    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
-//    if (authKey.length > 0) {
-//        return;
-//    }else
-//    {
-//        [self login];
-//    }
-
+    [self.table reloadData];
     
     NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
     if (authKey.length > 0) {
@@ -102,7 +87,6 @@
     {
         [self login];
     }
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -271,8 +255,9 @@
     return 5;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row == 0) {
         static NSString * identifier1= @"MineCellOne";
         
@@ -293,13 +278,13 @@
             [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
         }else
         {
-            //            [self login];
+//            [self login];
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
-        
+
     }
     
     static NSString * identifier1= @"MineCellTwo";
@@ -316,8 +301,8 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+    
 }
-
 
 
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MineViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MineViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
 

@@ -97,7 +97,7 @@
     
     FindViewController * foundVC = [[FindViewController alloc] init];
     
-    MineViewController * mineVC = [[MineViewController alloc] initWithNibName:@"MineViewController" bundle:nil];
+    MineViewController * mineVC = [[MineViewController alloc] init];
     
     UINavigationController * navc1 = [[UINavigationController alloc] initWithRootViewController:mainVC];
     
@@ -159,6 +159,7 @@
         [_locationmanager requestAlwaysAuthorization];        //NSLocationAlwaysUsageDescription
         [_locationmanager requestWhenInUseAuthorization];     //NSLocationWhenInUseDescription
     }
+    
     
     _locationmanager.delegate = self;
     
