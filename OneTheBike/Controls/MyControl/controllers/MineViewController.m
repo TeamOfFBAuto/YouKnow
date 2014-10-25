@@ -70,8 +70,15 @@
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
+    CGSize screenSize = [[UIScreen mainScreen]bounds].size;
     
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) style:UITableViewStylePlain];
+    _table.delegate = self;
+    _table.dataSource = self;
+    [self.view addSubview:_table];
+    
+    
+    self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.table.backgroundColor = [UIColor colorWithHexString:@"e3e3e3"];
     
     

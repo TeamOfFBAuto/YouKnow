@@ -97,7 +97,7 @@
     
     FindViewController * foundVC = [[FindViewController alloc] init];
     
-    MineViewController * mineVC = [[MineViewController alloc] init];
+    MineViewController * mineVC = [[MineViewController alloc] initWithNibName:@"MineViewController" bundle:nil];
     
     UINavigationController * navc1 = [[UINavigationController alloc] initWithRootViewController:mainVC];
     
