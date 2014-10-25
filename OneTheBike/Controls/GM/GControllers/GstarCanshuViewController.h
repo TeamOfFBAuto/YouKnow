@@ -21,7 +21,7 @@
 
 @property(nonatomic,assign)NSInteger passTag;
 @property(nonatomic,assign)GStartViewController *delegate;
-@property(nonatomic,strong)GyundongCanshuModel *model;
+@property(nonatomic,strong)GyundongCanshuModel *yundongModel;
 
 
 @end

@@ -17,7 +17,7 @@
 
 #define FRAME_IPHONE5_MAP_UP CGRectMake(0, 30, 320, 568-60-20)
 #define FRAME_IPHONE5_MAP_DOWN CGRectMake(0, 230+20, 320, 568-230-20)
-#define FRAME_IPHONE5_UPVIEW_UP CGRectMake(0, -200, 320, 230)
+#define FRAME_IPHONE5_UPVIEW_UP CGRectMake(0, -165, 320, 230)
 #define FRAME_IPHONE5_UPVIEW_DOWN CGRectMake(0, 20, 320, 230)
 
 @interface GStartViewController ()<UIActionSheetDelegate>
@@ -44,6 +44,16 @@
     double _distance;//距离
     
     
+    BOOL _isFirstStartCanshu;//是否为刚开始时候的参数 用于记录开始时候的海拔 起点
+    
+    
+    
+    //保存路书时起点和终点的输入框
+    UITextField *first;
+    UITextField *second;
+    
+    NSString *startName;//起点名字
+    NSString *endName;//终点名字
     
     
     //路书
@@ -87,6 +97,7 @@
     
     _isTimeOutClicked = NO;
     _distance = 0.0f;
+    _isFirstStartCanshu = NO;
     
     [self initMap];//初始化地图
     [self initMapUpView];//初始化地图上面的view
@@ -94,7 +105,7 @@
     
     
     //计时器
-    timer = [NSTimer scheduledTimerWithTimeInterval:(0.01)
+    timer = [NSTimer scheduledTimerWithTimeInterval:(1)
                                              target:self
                                            selector:@selector(taktCounter)
                                            userInfo:nil
@@ -467,7 +478,7 @@
     GstarCanshuViewController *cc = [[GstarCanshuViewController alloc]init];
     cc.passTag = sender.view.tag;
     cc.delegate = self;
-    cc.model = self.gYunDongCanShuModel;
+    cc.yundongModel = self.gYunDongCanShuModel;
 //    cc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:cc animated:YES];
 }
@@ -494,85 +505,63 @@
     //    NSLog(@"taktCounter is called");
     NSInteger timerMin = 0;
     NSInteger timerSecond = 0;
-    NSInteger timerMSecond = 0;
-    NSInteger timerMMSecond = 0;
+    
     
     NSInteger splitTimerMin = 0;
     NSInteger splitTimerSecond = 0;
-    NSInteger splitTimerMSecond = 0;
-    NSInteger splitTimerMMSecond = 0;
+    
     
     if (started)
     {
-        totalTakt++;
-        lapTakt++;
+        _totalTakt++;
+        _lapTakt++;
         
-        if (totalTakt == 594000) {
-            totalTakt = 0;
-        }
-        if (lapTakt == 594000) {
-            lapTakt = 0;
-        }
         
         if(splitted)
         {
-            lapTakt = 0;
-            [self.gYunDongCanShuModel.timeRunLabel setText:@"00:00.00"];
+            _lapTakt = 0;
+            [self.gYunDongCanShuModel.timeRunLabel setText:@"00:00:00"];
             splitted = NO;
         }
         
-        timerMMSecond = totalTakt % 10;
-        timerMSecond = totalTakt / 10 % 10;
-        timerSecond = totalTakt / 100;
-        timerMin = totalTakt / 6000;
         
-        splitTimerMMSecond = lapTakt % 10;
-        splitTimerMSecond = lapTakt / 10 % 10;
-        splitTimerSecond = lapTakt / 100;
-        splitTimerMin = lapTakt / 6000;
-        
-        if (timerSecond < 10) {
-            if (timerMin < 10) {
-                self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"0%d:0%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
-            }
-            else {
-                self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"%d:0%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
-            }
+        timerSecond = _totalTakt;
+        if (timerSecond==60) {//秒转分
+            timerSecond = 0;
+            _totalTakt = 0;
+            timerMin++;
         }
-        else {
-            if (timerMin < 10) {
-                self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"0%d:%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
-            }
-            else {
-                self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"%d:%d.%d%d", timerMin, timerSecond, timerMSecond, timerMMSecond];
-            }
+        if (timerMin==60) {//分转时
+            timerMin = 0;
+            _timerHour++;
         }
         
-        if (splitTimerSecond < 10) {
-            if (splitTimerMin < 10) {
-                self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"0%d:0%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
-            }
-            else {
-                self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"%d:0%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
-            }
-        }
-        else {
-            if (splitTimerMin < 10) {
-                self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"0%d:%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
-            }
-            else {
-                self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"%d:%d.%d%d", splitTimerMin, splitTimerSecond, splitTimerMSecond, splitTimerMMSecond];
-            }
+        
+        
+        if (splitTimerSecond == 60) {
+            splitTimerMin++;
+            splitTimerSecond = 0;
+            _lapTakt = 0;
         }
         
-    }
-    else{
+        if (splitTimerMin == 60) {
+            _splitTimerHour++;
+            splitTimerMin = 0;
+            
+        }
+        
+#pragma mark - 计时label=======
+        self.gYunDongCanShuModel.timeRunLabel.text = [[NSString alloc]initWithFormat:@"%02d:%02d:%02d",_timerHour,timerMin,timerSecond];
+        
+#pragma mark - 用时=======
+        self.gYunDongCanShuModel.yongshi = self.gYunDongCanShuModel.timeRunLabel.text;
+    
         if (reset == YES) {
-            [self.gYunDongCanShuModel.timeRunLabel setText:@"00:00.00"];
+            [self.gYunDongCanShuModel.timeRunLabel setText:@"00:00:00"];
             started = NO;
             splitted = NO;
-            totalTakt = 0;
-            lapTakt = 0;
+            _totalTakt = 0;
+            _lapTakt = 0;
             splitTimes = 0;
             reset = NO;
         }
@@ -639,6 +628,15 @@
 -(void)gFinish{
 //    _kaishiyundong = NO;
     started = NO;
+    
+    NSDate *date = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: date];
+    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+    
+    self.gYunDongCanShuModel.endTime = [NSString stringWithFormat:@"%@",localeDate];
+    
+    
     UIActionSheet *actionsheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"放弃记录" otherButtonTitles:@"保存分享", nil];
     actionsheet.tag = 101;
     [actionsheet showInView:self.view];
@@ -653,7 +651,39 @@
             reset = YES;//停止计时器
             _downView.hidden = YES;
             [self hideTabBar:NO];
+            
+            
+            NSString *jsonStr = [self.routeLineArray JSONString];
+            
+            //历史展示界面需要的参数
+            //时间  平均速度 用时 距离
+            
+            NSString *startNameStr = [NSString stringWithFormat:@"%@,%@,%@",self.gYunDongCanShuModel.startTime,self.gYunDongCanShuModel.endTime,self.gYunDongCanShuModel.yongshi];
+            NSString *endNameStr = [NSString stringWithFormat:@"%@",self.gYunDongCanShuModel.pingjunsudu];
+            
+            
+            //保存路书
+            [GMAPI addRoadLinesJsonString:jsonStr startName:startNameStr endName:endNameStr distance:self.gYunDongCanShuModel.juli type:2 startCoorStr:self.gYunDongCanShuModel.startCoorStr endCoorStr:self.gYunDongCanShuModel.coorStr];
+            
+            
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"起点和终点" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"保存", nil];
+//            
+//            alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+//            
+//            [alert show];
+//            
+//            first = [alert textFieldAtIndex:0];
+//            first.text = startName;
+//            
+//            second = [alert textFieldAtIndex:1];
+//            second.text = endName;
+//            second.secureTextEntry = NO;
+            
+            
             [[NSNotificationCenter defaultCenter]postNotificationName:@"gstopandsave" object:nil];
+            
+            
+            
         }else if (buttonIndex == 0){//放弃保存
             
             for (GyundongCustomView *view in self.fourCustomView) {
@@ -852,6 +882,9 @@
 
 
 -(void)mapView:(MAMapView*)mapView didFailToLocateUserWithError:(NSError*)error{
+    
+    UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"定位失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [al show];
     NSLog(@"定位失败");
 }
 
@@ -1020,7 +1053,7 @@
 
 
 
-#pragma mark - 定位的回调方法===============
+#pragma mark - 定位的回调方法===========================================
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
 {
     
@@ -1042,12 +1075,37 @@
         _fangxiangLabel.text = headingStr;
     }
     
+#pragma mark - 给数据model赋值=========== 海拔(最高 最低 实时) 经纬度(开始，实时)
     //海拔
     CLLocation *currentLocation = userLocation.location;
     if (currentLocation) {
         NSLog(@"海拔---%f",currentLocation.altitude);
         int alti = (int)currentLocation.altitude;
-        self.gYunDongCanShuModel.haiba = [NSString stringWithFormat:@"%d",alti];
+        
+        if (_isFirstStartCanshu) {
+            self.gYunDongCanShuModel.startHaiba = [NSString stringWithFormat:@"%d",alti];//开始海拔
+            self.gYunDongCanShuModel.maxHaiba = [NSString stringWithFormat:@"%d",alti];
+            self.gYunDongCanShuModel.minHaiba = [NSString stringWithFormat:@"%d",alti];
+            
+            //开始时的经纬度
+            self.gYunDongCanShuModel.startCoorStr = [NSString stringWithFormat:@"%f,%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
+#pragma makr - 第一次的各个参数
+            _isFirstStartCanshu = NO;
+        }
+        
+        if (alti > [self.gYunDongCanShuModel.maxHaiba intValue]) {
+            self.gYunDongCanShuModel.maxHaiba = [NSString stringWithFormat:@"%d",alti];//最高海拔
+        }
+        
+        if (alti <[self.gYunDongCanShuModel.minHaiba integerValue]) {
+            self.gYunDongCanShuModel.minHaiba = [NSString stringWithFormat:@"%d",alti];//最低海拔
+        }
+        
+        
+        self.gYunDongCanShuModel.haiba = [NSString stringWithFormat:@"%d",alti];//实时海拔
+        self.gYunDongCanShuModel.coorStr = [NSString stringWithFormat:@"%f,%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];//实时经纬度 定位结束后为终点经纬度
+        
+        
 
         
         for (GyundongCustomView *view in self.fourCustomView) {
@@ -1058,6 +1116,8 @@
             }
         }
     }
+    
+
     
     //自定义定位箭头方向
     if (!updatingLocation && self.userLocationAnnotationView != nil)
@@ -1120,21 +1180,30 @@
     double suduOfGongli = sudu *3.6;
     self.gYunDongCanShuModel.dangqiansudu = [NSString stringWithFormat:@"%.1f",suduOfGongli];//单位 公里每小时
     
+    
     for (GyundongCustomView *view in self.fourCustomView) {
         if ([view.viewTypeStr isEqualToString:@"速度"]) {
             view.contentLable.text = self.gYunDongCanShuModel.dangqiansudu;
         }
     }
     
-
-   
+    
+#pragma mark - 数据model赋值 ------------ 最高速度 
+    
+    if ([self.gYunDongCanShuModel.maxSudu intValue] < [self.gYunDongCanShuModel.dangqiansudu intValue]) {
+        self.gYunDongCanShuModel.maxSudu = self.gYunDongCanShuModel.dangqiansudu;
+    }
     
     
+#pragma mark - 数据model赋值 ------------ 平均速度
     
+    double juli = [self.gYunDongCanShuModel.juli floatValue];
+    int h = [[self.gYunDongCanShuModel.yongshi substringWithRange:NSMakeRange(0, 2)]intValue];
+    int m = [[self.gYunDongCanShuModel.yongshi substringWithRange:NSMakeRange(3, 2)]intValue];
+    int s = [[self.gYunDongCanShuModel.yongshi substringWithRange:NSMakeRange(6, 2)]intValue];
+    double yongshi = h+m/60.0+s/3600.0;//单位小时
     
-    
-    
-    
+    self.gYunDongCanShuModel.pingjunsudu = [NSString stringWithFormat:@"%.1f",juli/yongshi];
     
     
     
@@ -1210,6 +1279,9 @@
     // add the overlay to the map
     if (nil != self.routeLine) {
         [self.mapView addOverlay:self.routeLine];
+        
+        //这个数组保存的时候转为json串存入数据库中
+        [self.routeLineArray addObject:self.routeLine];
     }
     
     // clear the memory allocated earlier for the points
@@ -1218,11 +1290,14 @@
     
 }
 
-#pragma 点击tabbar上开始按钮开始的操作
+#pragma 点击tabbar上开始按钮开始的操作   开始骑行============
 -(void)iWantToStart{
 //    _kaishiyundong = YES;
     [self hideTabBar:YES];
+    _isFirstStartCanshu = YES;
     _downView.hidden = NO;
+    
+    
     self.mapView.showsUserLocation = YES;//开启定位
     
     
@@ -1231,6 +1306,14 @@
         
     }else{
         started = YES;
+        NSDate *date = [NSDate date];
+        NSTimeZone *zone = [NSTimeZone systemTimeZone];
+        NSInteger interval = [zone secondsFromGMTForDate: date];
+        NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+        
+        self.gYunDongCanShuModel.startTime = [NSString stringWithFormat:@"%@",localeDate];
+        
+        
     }
     
 }

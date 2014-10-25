@@ -9,6 +9,7 @@
 
 #import "GstarCanshuViewController.h"
 #import "GStartViewController.h"
+#import "GyundongCustomView.h"
 
 @interface GstarCanshuViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -111,43 +112,45 @@
     switch (indexPath.row) {
         case 0://时间
         {
-            contentLabel.text = self.model.timeRunLabel.text;
+            contentLabel.text = self.yundongModel.timeRunLabel.text;
         }
             break;
         case 1://坡度
         {
-            contentLabel.text = self.model.podu;
+            contentLabel.text = self.yundongModel.podu;
         }
             break;
         case 2://配速
         {
-            contentLabel.text = self.model.peisu;
+            contentLabel.text = self.yundongModel.peisu;
         }
             break;
         case 3://爬升率
         {
-            contentLabel.text = self.model.pashenglv;
+            contentLabel.text = self.yundongModel.pashenglv;
         }
             break;
         case 4://海拔上升
         {
-            contentLabel.text = self.model.haibashang;
+            int num = [self.yundongModel.maxHaiba intValue] - [self.yundongModel.startHaiba intValue];
+            contentLabel.text = [NSString stringWithFormat:@"%d",num];
         }
             break;
         case 5://海拔下降
         {
-            contentLabel.text = self.model.haibaxia;
+            int num = [self.yundongModel.startHaiba intValue]-[self.yundongModel.minHaiba intValue];
+            contentLabel.text = [NSString stringWithFormat:@"%d",num];
         }
             break;
         case 6://平均速度
         {
            
-            contentLabel.text = self.model.dangqiansudu;
+            contentLabel.text = self.yundongModel.dangqiansudu;
         }
             break;
         case 7://最高速度
         {
-            contentLabel.text = self.model.zuigaosudu;
+            contentLabel.text = self.yundongModel.maxSudu;
         }
             break;
         default:
@@ -174,45 +177,158 @@
     switch (indexPath.row) {
         case 0://时间
         {
+            contentStr = self.yundongModel.timeRunLabel.text;
+            BOOL isChange = YES;
+            for (GyundongCustomView *view in self.delegate.fourCustomView) {
+                if ([view.viewTypeStr isEqualToString:@"计时"]) {
+                    isChange = NO;
+                }
+            }
             
-            contentStr = self.model.timeRunLabel.text;
             
-            [self.delegate setImage:_imageArray[indexPath.row] andContent:contentStr andDanwei:nil withTag:self.passTag withType:@"计时"];
+            if (isChange) {
+                [self.delegate setImage:_imageArray[indexPath.row] andContent:contentStr andDanwei:nil withTag:self.passTag withType:@"计时"];
+            }
+            
             
         }
             break;
         case 1://坡度
         {
-            [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:nil withTag:self.passTag withType:@"坡度"];
+            
+            contentStr = self.yundongModel.podu;
+            BOOL isChange = YES;
+            
+            for (GyundongCustomView *view in self.delegate.fourCustomView) {
+                if ([view.viewTypeStr isEqualToString:@"坡度"]) {
+                    isChange = NO;
+                }
+            }
+            
+            
+            if (isChange) {
+                [self.delegate setImage:_imageArray[indexPath.row] andContent:contentStr andDanwei:@"%" withTag:self.passTag withType:@"坡度"];
+            }
+            
+            
+            
+            
         }
             break;
         case 2://配速
         {
-            [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:nil withTag:self.passTag withType:@"配速"];
+            
+            contentStr =self.yundongModel.peisu;
+            BOOL ischange = YES;
+            for (GyundongCustomView *view in self.delegate.fourCustomView) {
+                if ([view.viewTypeStr isEqualToString:@"配速"]) {
+                    ischange = NO;
+                }
+            }
+            
+            if (ischange) {
+                
+                if (self.passTag == 51) {//顶部较宽 单位用分钟/公里
+                    [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:@"分钟/公里" withTag:self.passTag withType:@"配速"];
+                }else{//单位用m/km
+                    [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:@"m/km" withTag:self.passTag withType:@"配速"];
+                }
+                
+                
+            }
+            
+            
         }
             break;
         case 3://爬升率
         {
-            [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:nil withTag:self.passTag withType:@"爬升率"];
+            
+            contentStr = self.yundongModel.pashenglv;
+            BOOL isChange = YES;
+            for (GyundongCustomView *view in self.delegate.fourCustomView) {
+                if ([view.viewTypeStr isEqualToString:@"爬升率"]) {
+                    isChange = NO;
+                }
+            }
+            
+            if (isChange) {
+                [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:@"米/分钟" withTag:self.passTag withType:@"爬升率"];
+            }
+            
+            
         }
             break;
         case 4://海拔上升
         {
-            [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:nil withTag:self.passTag withType:@"海拔上升"];
+            
+            contentStr = [NSString stringWithFormat:@"%d",([self.yundongModel.maxHaiba intValue] - [self.yundongModel.haiba intValue])];
+            BOOL isChange = YES;
+            for (GyundongCustomView *view in self.delegate.fourCustomView) {
+                if ([view.viewTypeStr isEqualToString:@"海拔上升"]) {
+                    isChange = NO;
+                }
+            }
+            
+            
+            if (isChange) {
+                [self.delegate setImage:_imageArray[indexPath.row] andContent:contentStr andDanwei:@"米" withTag:self.passTag withType:@"海拔上升"];
+            }
+            
+            
         }
             break;
         case 5://海拔下降
         {
-            [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:nil withTag:self.passTag withType:@"海拔下降"];
+            
+            contentStr = [NSString stringWithFormat:@"%d",([self.yundongModel.startHaiba intValue]-[self.yundongModel.minHaiba intValue])];
+            
+            BOOL isChange = YES;
+            for (GyundongCustomView *view in self.delegate.fourCustomView) {
+                if ([view.viewTypeStr isEqualToString:@"海拔下降"]) {
+                    isChange = NO;
+                }
+            }
+            
+            if (isChange) {
+                [self.delegate setImage:_imageArray[indexPath.row] andContent:contentStr andDanwei:@"米" withTag:self.passTag withType:@"海拔下降"];
+            }
+            
+            
         }
             break;
         case 6://平均速度
         {
-            contentStr = self.model.dangqiansudu;
+            contentStr = self.yundongModel.dangqiansudu;
             if (self.passTag == 51) {//顶部较宽 单位用 公里/时间
-                [self.delegate setImage:_imageArray[indexPath.row] andContent:contentStr andDanwei:@"公里/时" withTag:self.passTag withType:@"速度"];
+                
+                BOOL isChange = YES;
+                for (GyundongCustomView *view in self.delegate.fourCustomView) {
+                    if ([view.viewTypeStr isEqualToString:@"速度"]) {
+                        isChange = NO;
+                    }
+                }
+                
+                if (isChange) {
+                    [self.delegate setImage:_imageArray[indexPath.row] andContent:contentStr andDanwei:@"公里/时" withTag:self.passTag withType:@"速度"];
+                }
+                
+                
             }else{
-                [self.delegate setImage:_imageArray[indexPath.row] andContent:contentStr andDanwei:@"km/时" withTag:self.passTag withType:@"速度"];
+                
+                BOOL isChange = YES;
+                for (GyundongCustomView *view in self.delegate.fourCustomView) {
+                    if ([view.viewTypeStr isEqualToString:@"速度"]) {
+                        isChange = NO;
+                    }
+                }
+                
+                if (isChange) {
+                    [self.delegate setImage:_imageArray[indexPath.row] andContent:contentStr andDanwei:@"km/时" withTag:self.passTag withType:@"速度"];
+                }
+                
+                
+                
+                
             }
             
             
@@ -221,7 +337,21 @@
             break;
         case 7://最高速度
         {
-            [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:nil withTag:self.passTag withType:@"最高速度"];
+            
+            contentStr = self.yundongModel.maxSudu;
+            
+            BOOL isChange = YES;
+            for (GyundongCustomView *view in self.delegate.fourCustomView) {
+                if ([view.viewTypeStr isEqualToString:@"最高速度"]) {
+                    isChange = NO;
+                }
+            }
+            
+            
+            if (isChange) {
+                [self.delegate setImage:_imageArray[indexPath.row] andContent:nil andDanwei:nil withTag:self.passTag withType:@"最高速度"];
+            }
+            
         }
             break;
         default:

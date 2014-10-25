@@ -36,14 +36,20 @@
     
     //时间跑起来
     Boolean started;
-    NSInteger totalTakt;
-    NSInteger lapTakt;
+    NSInteger _totalTakt;
+    NSInteger _lapTakt;
     Boolean splitted;
     Boolean reset;
     NSInteger splitTimes;
     NSTimer *timer;
     
+    NSInteger _timerHour;
+    NSInteger _splitTimerHour;
+    
 //    BOOL _kaishiyundong;//用于判断 别的类有mapview 回到这个类的时候在viewWillApear方法里是否开启定位
+    
+    NSString *_startTime;//开始时间
+    NSString *_endTime;//结束时间
     
 }
 @property (nonatomic, strong) MAMapView *mapView;
@@ -53,6 +59,8 @@
 //划线
 @property (nonatomic, retain) MAPolyline* routeLine;
 @property (nonatomic, retain) MAPolylineView* routeLineView;
+
+@property(nonatomic,strong) NSMutableArray *routeLineArray;
 
 
 //路书=================

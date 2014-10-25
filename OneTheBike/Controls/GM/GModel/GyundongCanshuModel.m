@@ -25,12 +25,13 @@
     self.podu = 0;
     self.peisu = 0;
     self.pashenglv = 0;
-    self.haibashang = 0;
-    self.haibaxia = 0;
+//    self.haibashang = 0;
+//    self.haibaxia = 0;
     self.pingjunsudu = 0;
-    self.zuigaosudu = 0;
+    self.maxSudu = 0;
     self.timeRunLabel.text = @"00:00:00";
     self.haiba = @"";
+    
     
 }
 
