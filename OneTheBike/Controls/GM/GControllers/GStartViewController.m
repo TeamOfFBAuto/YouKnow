@@ -104,8 +104,16 @@
     [self initStartDownView];//初始化地图下面的view
     
     
+    
+    
     //计时器
-    timer = [NSTimer scheduledTimerWithTimeInterval:(1)
+    timerMin = 0 ;
+    timerSecond = 0;
+    
+    splitTimerMin = 0;
+    splitTimerSecond = 0;
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:(0.1)
                                              target:self
                                            selector:@selector(taktCounter)
                                            userInfo:nil
@@ -503,13 +511,6 @@
 - (void) taktCounter
 {
     //    NSLog(@"taktCounter is called");
-    NSInteger timerMin = 0;
-    NSInteger timerSecond = 0;
-    
-    
-    NSInteger splitTimerMin = 0;
-    NSInteger splitTimerSecond = 0;
-    
     
     if (started)
     {

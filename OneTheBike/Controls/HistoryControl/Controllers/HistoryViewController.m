@@ -32,6 +32,16 @@
     
     
 //    self.dataArray =
+    
+    
+    NSArray *dataBaseArray = [GMAPI getRoadLinesForType:1];
+    
+    NSLog(@"%s %d",__FUNCTION__,dataBaseArray.count);
+    
+    
+    
+    
+    
 }
 
 - (void)viewDidLoad {

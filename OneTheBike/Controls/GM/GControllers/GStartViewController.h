@@ -46,6 +46,17 @@
     NSInteger _timerHour;
     NSInteger _splitTimerHour;
     
+    
+    NSInteger timerMin ;
+    NSInteger timerSecond ;
+    
+    
+    NSInteger splitTimerMin ;
+    NSInteger splitTimerSecond ;
+    
+    
+    
+    
 //    BOOL _kaishiyundong;//用于判断 别的类有mapview 回到这个类的时候在viewWillApear方法里是否开启定位
     
     NSString *_startTime;//开始时间
