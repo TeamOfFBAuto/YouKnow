@@ -38,7 +38,6 @@
 		137D76EC19F4BB5B00DD29D7 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D76DF19F4BB5B00DD29D7 /* NSObject+MJCoding.m */; };
 		137D76ED19F4BB5B00DD29D7 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D76E119F4BB5B00DD29D7 /* NSObject+MJKeyValue.m */; };
 		137D76EE19F4BB5B00DD29D7 /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D76E319F4BB5B00DD29D7 /* NSObject+MJMember.m */; };
-		137D76F119F4BD9500DD29D7 /* MAPolyline+UN.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D76F019F4BD9500DD29D7 /* MAPolyline+UN.m */; };
 		137D9F8919F2508200B31100 /* LTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9F8819F2508200B31100 /* LTools.m */; };
 		137D9F9019F250A900B31100 /* UIColor+ConvertColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9F8C19F250A900B31100 /* UIColor+ConvertColor.m */; };
 		137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9F8F19F250A900B31100 /* UIView+Frame.m */; };
@@ -73,8 +72,6 @@
 		137D9FDE19F272E500B31100 /* RoadManagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FDC19F272E500B31100 /* RoadManagerController.xib */; };
 		137D9FE219F27A6500B31100 /* RoadProduceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FE019F27A6500B31100 /* RoadProduceController.m */; };
 		137D9FE319F27A6500B31100 /* RoadProduceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137D9FE119F27A6500B31100 /* RoadProduceController.xib */; };
-		137D9FE719F290F800B31100 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FE619F290F800B31100 /* CommonUtility.m */; };
-		137D9FEB19F2916600B31100 /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 137D9FEA19F2916600B31100 /* LineDashPolyline.m */; };
 		139467E019F4F80D001DAEA9 /* MapCacheDashClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 139467DF19F4F80D001DAEA9 /* MapCacheDashClass.m */; };
 		13A146F919F75B3000F8D442 /* RoadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A146F719F75B3000F8D442 /* RoadCell.m */; };
 		13A146FA19F75B3000F8D442 /* RoadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13A146F819F75B3000F8D442 /* RoadCell.xib */; };
@@ -114,10 +111,8 @@
 		13BE658A19FB8390006242A8 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE658719FB8390006242A8 /* icon57.png */; };
 		13BE658B19FB8390006242A8 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE658819FB8390006242A8 /* icon114.png */; };
 		13BE658C19FB8390006242A8 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE658919FB8390006242A8 /* icon120.png */; };
-		13CFBACD19F6AEB0006B9684 /* GeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CFBACC19F6AEB0006B9684 /* GeocodeAnnotation.m */; };
 		13CFBAD219F6B887006B9684 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CFBAD019F6B887006B9684 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		13CFBAD319F6B887006B9684 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 13CFBAD119F6B887006B9684 /* README.md */; };
-		13CFBAD619F6C36D006B9684 /* LRoadClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CFBAD519F6C36D006B9684 /* LRoadClass.m */; };
 		13D21C8C19F4095C0015AAF2 /* gps图标1格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7119F4095C0015AAF2 /* gps图标1格.png */; };
 		13D21C8D19F4095C0015AAF2 /* gps图标2格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7219F4095C0015AAF2 /* gps图标2格.png */; };
 		13D21C8E19F4095C0015AAF2 /* gps图标3格.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D21C7319F4095C0015AAF2 /* gps图标3格.png */; };
@@ -476,38 +471,25 @@
 		56442E1019F55B1E00BAE678 /* RankingFunctionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56442E0F19F55B1E00BAE678 /* RankingFunctionView.xib */; };
 		56442E1419F5621700BAE678 /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56442E1219F5621700BAE678 /* RankingTableViewCell.m */; };
 		56442E1519F5621700BAE678 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56442E1319F5621700BAE678 /* RankingTableViewCell.xib */; };
-		56DE2E8019F5711B0042C2A5 /* ReGeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */; };
+		E316C96019FBD85D0036B0C1 /* GMapStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C94419FBD85D0036B0C1 /* GMapStarViewController.m */; };
+		E316C96119FBD85D0036B0C1 /* GOffLineMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C94619FBD85D0036B0C1 /* GOffLineMapViewController.m */; };
+		E316C96219FBD85D0036B0C1 /* GstarCanshuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C94819FBD85D0036B0C1 /* GstarCanshuViewController.m */; };
+		E316C96319FBD85D0036B0C1 /* GStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C94A19FBD85D0036B0C1 /* GStartViewController.m */; };
+		E316C96419FBD85D0036B0C1 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E316C94E19FBD85D0036B0C1 /* AMap.bundle */; };
+		E316C96519FBD85D0036B0C1 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E316C94F19FBD85D0036B0C1 /* AMapSearchKit.framework */; };
+		E316C96619FBD85D0036B0C1 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C95119FBD85D0036B0C1 /* DataBase.m */; };
+		E316C96719FBD85D0036B0C1 /* GMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C95319FBD85D0036B0C1 /* GMAPI.m */; };
+		E316C96819FBD85D0036B0C1 /* GMLOCATION.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E316C95419FBD85D0036B0C1 /* GMLOCATION.sqlite */; };
+		E316C96919FBD85D0036B0C1 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E316C95519FBD85D0036B0C1 /* MAMapKit.framework */; };
+		E316C96A19FBD85D0036B0C1 /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C95819FBD85D0036B0C1 /* LineDashPolyline.m */; };
+		E316C96B19FBD85D0036B0C1 /* LRoadClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C95A19FBD85D0036B0C1 /* LRoadClass.m */; };
+		E316C96C19FBD85D0036B0C1 /* MAPolyline+UN.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C95C19FBD85D0036B0C1 /* MAPolyline+UN.m */; };
+		E316C96D19FBD85D0036B0C1 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C95F19FBD85D0036B0C1 /* CommonUtility.m */; };
 		E31F584919F638450064959E /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F584819F638450064959E /* StartViewController.m */; };
-		E31F584C19F64EF60064959E /* Gmap.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F584B19F64EF60064959E /* Gmap.m */; };
-		E32B927C19F60609007536D0 /* ghuifu.png in Resources */ = {isa = PBXBuildFile; fileRef = E32B927B19F60609007536D0 /* ghuifu.png */; };
-		E34451F019E7D67000A3546A /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EE19E7D67000A3546A /* MAMapKit.framework */; };
-		E34451F119E7D67000A3546A /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EF19E7D67000A3546A /* AMapSearchKit.framework */; };
-		E34451F319E7D6A400A3546A /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E34451F219E7D6A400A3546A /* AMap.bundle */; };
-		E34C791219E813A000A5F4DE /* userPosition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E34C791119E813A000A5F4DE /* userPosition@2x.png */; };
-		E36DE08619F4EEF6007585AF /* gback160x98.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08519F4EEF6007585AF /* gback160x98.png */; };
-		E36DE08819F4EF76007585AF /* gfinish.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08719F4EF76007585AF /* gfinish.png */; };
-		E36DE08A19F4F013007585AF /* gtimeout.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08919F4F013007585AF /* gtimeout.png */; };
-		E36DE08C19F4F0B9007585AF /* gtakephoto.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08B19F4F0B9007585AF /* gtakephoto.png */; };
-		E36DE08E19F4FAB1007585AF /* gspeed.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08D19F4FAB1007585AF /* gspeed.png */; };
-		E36DE09019F4FB2D007585AF /* gstartime.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08F19F4FB2D007585AF /* gstartime.png */; };
-		E36DE09219F4FB92007585AF /* gongli.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09119F4FB92007585AF /* gongli.png */; };
-		E36DE09419F4FBDE007585AF /* ghaiba.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09319F4FBDE007585AF /* ghaiba.png */; };
-		E36DE09719F4FC26007585AF /* gbtnup.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09519F4FC26007585AF /* gbtnup.png */; };
-		E36DE09819F4FC26007585AF /* gbtndown.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09619F4FC26007585AF /* gbtndown.png */; };
-		E36DE09A19F4FCCC007585AF /* gbpm.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09919F4FCCC007585AF /* gbpm.png */; };
-		E36DE09C19F51588007585AF /* gstarting.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09B19F51588007585AF /* gstarting.png */; };
-		E387717619F73EAB00E17020 /* GstarCanshuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E387717519F73EAB00E17020 /* GstarCanshuViewController.m */; };
-		E3BB362319E7C0C20096131D /* GMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BB362219E7C0C20096131D /* GMAPI.m */; };
 		E3BB362719E7C1B20096131D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362619E7C1B20096131D /* QuartzCore.framework */; };
 		E3BB362919E7C1BE0096131D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362819E7C1BE0096131D /* CoreLocation.framework */; };
 		E3BB362B19E7C1EE0096131D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362A19E7C1EE0096131D /* OpenGLES.framework */; };
 		E3BB362D19E7C1FC0096131D /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362C19E7C1FC0096131D /* libstdc++.6.0.9.dylib */; };
-		E3C3B8A219F25AB200C8AE5A /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C3B8A119F25AB200C8AE5A /* DataBase.m */; };
-		E3C3B8A419F25E6900C8AE5A /* GMLOCATION.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E3C3B8A319F25E6900C8AE5A /* GMLOCATION.sqlite */; };
-		E3C3B8B519F2802E00C8AE5A /* GStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C3B8B219F2802E00C8AE5A /* GStartViewController.m */; };
-		E3C3B8B919F2927E00C8AE5A /* GMapStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */; };
-		E3DD35C019F4850800FCB51F /* GOffLineMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DD35BF19F4850800FCB51F /* GOffLineMapViewController.m */; };
-		E3DD35C319F485C400FCB51F /* MAHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DD35C219F485C400FCB51F /* MAHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -571,8 +553,6 @@
 		137D76E119F4BB5B00DD29D7 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
 		137D76E219F4BB5B00DD29D7 /* NSObject+MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJMember.h"; sourceTree = "<group>"; };
 		137D76E319F4BB5B00DD29D7 /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
-		137D76EF19F4BD9500DD29D7 /* MAPolyline+UN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MAPolyline+UN.h"; sourceTree = "<group>"; };
-		137D76F019F4BD9500DD29D7 /* MAPolyline+UN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MAPolyline+UN.m"; sourceTree = "<group>"; };
 		137D9F8719F2508200B31100 /* LTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTools.h; sourceTree = "<group>"; };
 		137D9F8819F2508200B31100 /* LTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTools.m; sourceTree = "<group>"; };
 		137D9F8B19F250A900B31100 /* UIColor+ConvertColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ConvertColor.h"; sourceTree = "<group>"; };
@@ -617,10 +597,6 @@
 		137D9FDF19F27A6500B31100 /* RoadProduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoadProduceController.h; sourceTree = "<group>"; };
 		137D9FE019F27A6500B31100 /* RoadProduceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoadProduceController.m; sourceTree = "<group>"; };
 		137D9FE119F27A6500B31100 /* RoadProduceController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoadProduceController.xib; sourceTree = "<group>"; };
-		137D9FE519F290F800B31100 /* CommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtility.h; sourceTree = "<group>"; };
-		137D9FE619F290F800B31100 /* CommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
-		137D9FE919F2916600B31100 /* LineDashPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDashPolyline.h; sourceTree = "<group>"; };
-		137D9FEA19F2916600B31100 /* LineDashPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
 		139467DE19F4F80D001DAEA9 /* MapCacheDashClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCacheDashClass.h; sourceTree = "<group>"; };
 		139467DF19F4F80D001DAEA9 /* MapCacheDashClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCacheDashClass.m; sourceTree = "<group>"; };
 		13A146F619F75B3000F8D442 /* RoadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoadCell.h; sourceTree = "<group>"; };
@@ -684,13 +660,9 @@
 		13BE658719FB8390006242A8 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
 		13BE658819FB8390006242A8 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
 		13BE658919FB8390006242A8 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
-		13CFBACB19F6AEB0006B9684 /* GeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocodeAnnotation.h; sourceTree = "<group>"; };
-		13CFBACC19F6AEB0006B9684 /* GeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocodeAnnotation.m; sourceTree = "<group>"; };
 		13CFBACF19F6B887006B9684 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		13CFBAD019F6B887006B9684 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		13CFBAD119F6B887006B9684 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		13CFBAD419F6C36D006B9684 /* LRoadClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRoadClass.h; sourceTree = "<group>"; };
-		13CFBAD519F6C36D006B9684 /* LRoadClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRoadClass.m; sourceTree = "<group>"; };
 		13D21C7119F4095C0015AAF2 /* gps图标1格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标1格.png"; sourceTree = "<group>"; };
 		13D21C7219F4095C0015AAF2 /* gps图标2格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标2格.png"; sourceTree = "<group>"; };
 		13D21C7319F4095C0015AAF2 /* gps图标3格.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps图标3格.png"; sourceTree = "<group>"; };
@@ -1073,48 +1045,36 @@
 		56442E1119F5621700BAE678 /* RankingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingTableViewCell.h; sourceTree = "<group>"; };
 		56442E1219F5621700BAE678 /* RankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingTableViewCell.m; sourceTree = "<group>"; };
 		56442E1319F5621700BAE678 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
+		E316C94319FBD85D0036B0C1 /* GMapStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMapStarViewController.h; sourceTree = "<group>"; };
+		E316C94419FBD85D0036B0C1 /* GMapStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMapStarViewController.m; sourceTree = "<group>"; };
+		E316C94519FBD85D0036B0C1 /* GOffLineMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOffLineMapViewController.h; sourceTree = "<group>"; };
+		E316C94619FBD85D0036B0C1 /* GOffLineMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOffLineMapViewController.m; sourceTree = "<group>"; };
+		E316C94719FBD85D0036B0C1 /* GstarCanshuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GstarCanshuViewController.h; sourceTree = "<group>"; };
+		E316C94819FBD85D0036B0C1 /* GstarCanshuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GstarCanshuViewController.m; sourceTree = "<group>"; };
+		E316C94919FBD85D0036B0C1 /* GStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GStartViewController.h; sourceTree = "<group>"; };
+		E316C94A19FBD85D0036B0C1 /* GStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GStartViewController.m; sourceTree = "<group>"; };
+		E316C94E19FBD85D0036B0C1 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
+		E316C94F19FBD85D0036B0C1 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
+		E316C95019FBD85D0036B0C1 /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
+		E316C95119FBD85D0036B0C1 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
+		E316C95219FBD85D0036B0C1 /* GMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAPI.h; sourceTree = "<group>"; };
+		E316C95319FBD85D0036B0C1 /* GMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMAPI.m; sourceTree = "<group>"; };
+		E316C95419FBD85D0036B0C1 /* GMLOCATION.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = GMLOCATION.sqlite; sourceTree = "<group>"; };
+		E316C95519FBD85D0036B0C1 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
+		E316C95719FBD85D0036B0C1 /* LineDashPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDashPolyline.h; sourceTree = "<group>"; };
+		E316C95819FBD85D0036B0C1 /* LineDashPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
+		E316C95919FBD85D0036B0C1 /* LRoadClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRoadClass.h; sourceTree = "<group>"; };
+		E316C95A19FBD85D0036B0C1 /* LRoadClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRoadClass.m; sourceTree = "<group>"; };
+		E316C95B19FBD85D0036B0C1 /* MAPolyline+UN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MAPolyline+UN.h"; sourceTree = "<group>"; };
+		E316C95C19FBD85D0036B0C1 /* MAPolyline+UN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MAPolyline+UN.m"; sourceTree = "<group>"; };
+		E316C95E19FBD85D0036B0C1 /* CommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtility.h; sourceTree = "<group>"; };
+		E316C95F19FBD85D0036B0C1 /* CommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
 		E31F584719F638450064959E /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		E31F584819F638450064959E /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
-		E31F584A19F64EF60064959E /* Gmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gmap.h; sourceTree = "<group>"; };
-		E31F584B19F64EF60064959E /* Gmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gmap.m; sourceTree = "<group>"; };
-		E32A591B19ED04CE00142E3A /* ReGeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReGeocodeAnnotation.h; sourceTree = "<group>"; };
-		E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReGeocodeAnnotation.m; sourceTree = "<group>"; };
-		E32B927B19F60609007536D0 /* ghuifu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghuifu.png; sourceTree = "<group>"; };
-		E34451EE19E7D67000A3546A /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
-		E34451EF19E7D67000A3546A /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
-		E34451F219E7D6A400A3546A /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
-		E34C791119E813A000A5F4DE /* userPosition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userPosition@2x.png"; sourceTree = "<group>"; };
-		E36DE08519F4EEF6007585AF /* gback160x98.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gback160x98.png; sourceTree = "<group>"; };
-		E36DE08719F4EF76007585AF /* gfinish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gfinish.png; sourceTree = "<group>"; };
-		E36DE08919F4F013007585AF /* gtimeout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gtimeout.png; sourceTree = "<group>"; };
-		E36DE08B19F4F0B9007585AF /* gtakephoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gtakephoto.png; sourceTree = "<group>"; };
-		E36DE08D19F4FAB1007585AF /* gspeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gspeed.png; sourceTree = "<group>"; };
-		E36DE08F19F4FB2D007585AF /* gstartime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gstartime.png; sourceTree = "<group>"; };
-		E36DE09119F4FB92007585AF /* gongli.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gongli.png; sourceTree = "<group>"; };
-		E36DE09319F4FBDE007585AF /* ghaiba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghaiba.png; sourceTree = "<group>"; };
-		E36DE09519F4FC26007585AF /* gbtnup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbtnup.png; sourceTree = "<group>"; };
-		E36DE09619F4FC26007585AF /* gbtndown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbtndown.png; sourceTree = "<group>"; };
-		E36DE09919F4FCCC007585AF /* gbpm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbpm.png; sourceTree = "<group>"; };
-		E36DE09B19F51588007585AF /* gstarting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gstarting.png; sourceTree = "<group>"; };
-		E387717419F73EAB00E17020 /* GstarCanshuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GstarCanshuViewController.h; sourceTree = "<group>"; };
-		E387717519F73EAB00E17020 /* GstarCanshuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GstarCanshuViewController.m; sourceTree = "<group>"; };
-		E3BB362119E7C0C20096131D /* GMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAPI.h; sourceTree = "<group>"; };
-		E3BB362219E7C0C20096131D /* GMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMAPI.m; sourceTree = "<group>"; };
 		E3BB362619E7C1B20096131D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E3BB362819E7C1BE0096131D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E3BB362A19E7C1EE0096131D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E3BB362C19E7C1FC0096131D /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		E3C3B8A019F25AB200C8AE5A /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
-		E3C3B8A119F25AB200C8AE5A /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
-		E3C3B8A319F25E6900C8AE5A /* GMLOCATION.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = GMLOCATION.sqlite; sourceTree = "<group>"; };
-		E3C3B8B119F2802E00C8AE5A /* GStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GStartViewController.h; sourceTree = "<group>"; };
-		E3C3B8B219F2802E00C8AE5A /* GStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GStartViewController.m; sourceTree = "<group>"; };
-		E3C3B8B719F2927E00C8AE5A /* GMapStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMapStarViewController.h; sourceTree = "<group>"; };
-		E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMapStarViewController.m; sourceTree = "<group>"; };
-		E3DD35BE19F4850800FCB51F /* GOffLineMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOffLineMapViewController.h; sourceTree = "<group>"; };
-		E3DD35BF19F4850800FCB51F /* GOffLineMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOffLineMapViewController.m; sourceTree = "<group>"; };
-		E3DD35C119F485C400FCB51F /* MAHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAHeaderView.h; sourceTree = "<group>"; };
-		E3DD35C219F485C400FCB51F /* MAHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1130,16 +1090,16 @@
 				13A2AA5219D7B973008D1B9F /* SystemConfiguration.framework in Frameworks */,
 				E3BB362919E7C1BE0096131D /* CoreLocation.framework in Frameworks */,
 				E3BB362719E7C1B20096131D /* QuartzCore.framework in Frameworks */,
-				E34451F119E7D67000A3546A /* AMapSearchKit.framework in Frameworks */,
 				13A2AA5819D7B99F008D1B9F /* libsqlite3.dylib in Frameworks */,
+				E316C96919FBD85D0036B0C1 /* MAMapKit.framework in Frameworks */,
 				13A2AA5419D7B989008D1B9F /* libiconv.dylib in Frameworks */,
 				13A2AA8419D7BAB3008D1B9F /* libUMSocial_Sdk_4.1.a in Frameworks */,
 				13A2AA9219D7BAB3008D1B9F /* libSocialWechat.a in Frameworks */,
 				13A2AA5019D7B968008D1B9F /* CoreGraphics.framework in Frameworks */,
 				13A2AA8E19D7BAB3008D1B9F /* libSocialSina.a in Frameworks */,
-				E34451F019E7D67000A3546A /* MAMapKit.framework in Frameworks */,
 				13A2AA4C19D7B952008D1B9F /* libstdc++.dylib in Frameworks */,
 				13AC6BAC19D805D800E7FF7B /* TencentOpenAPI.framework in Frameworks */,
+				E316C96519FBD85D0036B0C1 /* AMapSearchKit.framework in Frameworks */,
 				4105558E38114451B6944629 /* libPods.a in Frameworks */,
 				13AC6BAB19D805D800E7FF7B /* libSocialQQ.a in Frameworks */,
 				13A2AA9319D7BAB3008D1B9F /* libWeChatSDK.a in Frameworks */,
@@ -1355,28 +1315,6 @@
 				137D9FB119F25EC700B31100 /* +@2x.png */,
 			);
 			path = "离线地图";
-			sourceTree = "<group>";
-		};
-		137D9FE419F290F800B31100 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				137D9FE519F290F800B31100 /* CommonUtility.h */,
-				137D9FE619F290F800B31100 /* CommonUtility.m */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		137D9FE819F2915100B31100 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				137D9FE919F2916600B31100 /* LineDashPolyline.h */,
-				137D9FEA19F2916600B31100 /* LineDashPolyline.m */,
-				137D76EF19F4BD9500DD29D7 /* MAPolyline+UN.h */,
-				137D76F019F4BD9500DD29D7 /* MAPolyline+UN.m */,
-				13CFBAD419F6C36D006B9684 /* LRoadClass.h */,
-				13CFBAD519F6C36D006B9684 /* LRoadClass.m */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		13A2AA1519D7B90B008D1B9F /* HelperTools */ = {
@@ -1715,7 +1653,7 @@
 		19DAE82A19D30EEE00519D22 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				E3BB361F19E7C0700096131D /* GM */,
+				E316C94119FBD85D0036B0C1 /* GM */,
 				13A2AA9919D7BF18008D1B9F /* MyControl */,
 				19DAE82B19D30EEE00519D22 /* FindControl */,
 				19DAE82F19D30EEE00519D22 /* HistoryControl */,
@@ -2524,75 +2462,83 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E34C791019E813A000A5F4DE /* GModel */ = {
+		E316C94119FBD85D0036B0C1 /* GM */ = {
 			isa = PBXGroup;
 			children = (
-				13CFBACB19F6AEB0006B9684 /* GeocodeAnnotation.h */,
-				13CFBACC19F6AEB0006B9684 /* GeocodeAnnotation.m */,
-				E32B927B19F60609007536D0 /* ghuifu.png */,
-				E36DE09B19F51588007585AF /* gstarting.png */,
-				E36DE09919F4FCCC007585AF /* gbpm.png */,
-				E36DE09519F4FC26007585AF /* gbtnup.png */,
-				E36DE09619F4FC26007585AF /* gbtndown.png */,
-				E36DE09319F4FBDE007585AF /* ghaiba.png */,
-				E36DE09119F4FB92007585AF /* gongli.png */,
-				E36DE08F19F4FB2D007585AF /* gstartime.png */,
-				E36DE08B19F4F0B9007585AF /* gtakephoto.png */,
-				E36DE08D19F4FAB1007585AF /* gspeed.png */,
-				E36DE08919F4F013007585AF /* gtimeout.png */,
-				E36DE08719F4EF76007585AF /* gfinish.png */,
-				E36DE08519F4EEF6007585AF /* gback160x98.png */,
-				E3DD35C119F485C400FCB51F /* MAHeaderView.h */,
-				E3DD35C219F485C400FCB51F /* MAHeaderView.m */,
-				E32A591B19ED04CE00142E3A /* ReGeocodeAnnotation.h */,
-				E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */,
-				E34C791119E813A000A5F4DE /* userPosition@2x.png */,
-				E31F584A19F64EF60064959E /* Gmap.h */,
-				E31F584B19F64EF60064959E /* Gmap.m */,
-			);
-			path = GModel;
-			sourceTree = "<group>";
-		};
-		E3BB361F19E7C0700096131D /* GM */ = {
-			isa = PBXGroup;
-			children = (
-				E3C3B8B019F2802E00C8AE5A /* GControllers */,
-				E34C791019E813A000A5F4DE /* GModel */,
-				E3BB362019E7C0B60096131D /* Utils */,
+				E316C94219FBD85D0036B0C1 /* GControllers */,
+				E316C94B19FBD85D0036B0C1 /* GModel */,
+				E316C94C19FBD85D0036B0C1 /* GViews */,
+				E316C94D19FBD85D0036B0C1 /* Utils */,
 			);
 			path = GM;
 			sourceTree = "<group>";
 		};
-		E3BB362019E7C0B60096131D /* Utils */ = {
+		E316C94219FBD85D0036B0C1 /* GControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E3C3B8A319F25E6900C8AE5A /* GMLOCATION.sqlite */,
-				137D9FE819F2915100B31100 /* Models */,
-				137D9FE419F290F800B31100 /* Utility */,
-				E34451F219E7D6A400A3546A /* AMap.bundle */,
-				E34451EE19E7D67000A3546A /* MAMapKit.framework */,
-				E34451EF19E7D67000A3546A /* AMapSearchKit.framework */,
-				E3BB362119E7C0C20096131D /* GMAPI.h */,
-				E3BB362219E7C0C20096131D /* GMAPI.m */,
-				E3C3B8A019F25AB200C8AE5A /* DataBase.h */,
-				E3C3B8A119F25AB200C8AE5A /* DataBase.m */,
+				E316C94319FBD85D0036B0C1 /* GMapStarViewController.h */,
+				E316C94419FBD85D0036B0C1 /* GMapStarViewController.m */,
+				E316C94519FBD85D0036B0C1 /* GOffLineMapViewController.h */,
+				E316C94619FBD85D0036B0C1 /* GOffLineMapViewController.m */,
+				E316C94719FBD85D0036B0C1 /* GstarCanshuViewController.h */,
+				E316C94819FBD85D0036B0C1 /* GstarCanshuViewController.m */,
+				E316C94919FBD85D0036B0C1 /* GStartViewController.h */,
+				E316C94A19FBD85D0036B0C1 /* GStartViewController.m */,
+			);
+			path = GControllers;
+			sourceTree = "<group>";
+		};
+		E316C94B19FBD85D0036B0C1 /* GModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GModel;
+			sourceTree = "<group>";
+		};
+		E316C94C19FBD85D0036B0C1 /* GViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GViews;
+			sourceTree = "<group>";
+		};
+		E316C94D19FBD85D0036B0C1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E316C94E19FBD85D0036B0C1 /* AMap.bundle */,
+				E316C94F19FBD85D0036B0C1 /* AMapSearchKit.framework */,
+				E316C95019FBD85D0036B0C1 /* DataBase.h */,
+				E316C95119FBD85D0036B0C1 /* DataBase.m */,
+				E316C95219FBD85D0036B0C1 /* GMAPI.h */,
+				E316C95319FBD85D0036B0C1 /* GMAPI.m */,
+				E316C95419FBD85D0036B0C1 /* GMLOCATION.sqlite */,
+				E316C95519FBD85D0036B0C1 /* MAMapKit.framework */,
+				E316C95619FBD85D0036B0C1 /* Models */,
+				E316C95D19FBD85D0036B0C1 /* Utility */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		E3C3B8B019F2802E00C8AE5A /* GControllers */ = {
+		E316C95619FBD85D0036B0C1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E3C3B8B119F2802E00C8AE5A /* GStartViewController.h */,
-				E3C3B8B219F2802E00C8AE5A /* GStartViewController.m */,
-				E3C3B8B719F2927E00C8AE5A /* GMapStarViewController.h */,
-				E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */,
-				E3DD35BE19F4850800FCB51F /* GOffLineMapViewController.h */,
-				E3DD35BF19F4850800FCB51F /* GOffLineMapViewController.m */,
-				E387717419F73EAB00E17020 /* GstarCanshuViewController.h */,
-				E387717519F73EAB00E17020 /* GstarCanshuViewController.m */,
+				E316C95719FBD85D0036B0C1 /* LineDashPolyline.h */,
+				E316C95819FBD85D0036B0C1 /* LineDashPolyline.m */,
+				E316C95919FBD85D0036B0C1 /* LRoadClass.h */,
+				E316C95A19FBD85D0036B0C1 /* LRoadClass.m */,
+				E316C95B19FBD85D0036B0C1 /* MAPolyline+UN.h */,
+				E316C95C19FBD85D0036B0C1 /* MAPolyline+UN.m */,
 			);
-			path = GControllers;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E316C95D19FBD85D0036B0C1 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E316C95E19FBD85D0036B0C1 /* CommonUtility.h */,
+				E316C95F19FBD85D0036B0C1 /* CommonUtility.m */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2715,11 +2661,7 @@
 				19DAEA2619D311D300519D22 /* wnacheng-button-bukedian-100_58@2x.png in Resources */,
 				19DAEA6919D311D300519D22 /* mirco_icon_20@2x.png in Resources */,
 				19DAE9CD19D311D300519D22 /* Expression_11@2x.png in Resources */,
-
-				E3E2EEBB19F753930033CDBC /* gtakephoto.png in Resources */,
 				1965030019FB902800B19738 /* blueArrow.png in Resources */,
-
-
 				19DAE9B919D311D300519D22 /* pinglun-zhuanfa-down-24_24@2x.png in Resources */,
 				19DAE99919D311D300519D22 /* duihao-doun-46_46@2x.png in Resources */,
 				13D21C9119F4095C0015AAF2 /* 卡路里.png in Resources */,
@@ -2743,13 +2685,12 @@
 				19DAEA4919D311D300519D22 /* quxiao@2x.png in Resources */,
 				19DAEA4719D311D300519D22 /* tankuang@2x.png in Resources */,
 				19DAE98A19D311D300519D22 /* add_zan@2x.png in Resources */,
-				E36DE08819F4EF76007585AF /* gfinish.png in Resources */,
 				19DAEA1E19D311D300519D22 /* button1-down252_94@2x.png in Resources */,
 				13D21C9F19F4095C0015AAF2 /* 时速.png in Resources */,
 				19DAEA1D19D311D300519D22 /* xiangqing-xin-icon-24_24@2x.png in Resources */,
 				19DAEA8219D311D300519D22 /* unselected_found_image@2x.png in Resources */,
 				19DAE9C919D311D300519D22 /* loading640_1136@2x.png in Resources */,
-				E36DE09C19F51588007585AF /* gstarting.png in Resources */,
+				E316C96819FBD85D0036B0C1 /* GMLOCATION.sqlite in Resources */,
 				19DAEA4119D311D300519D22 /* jiaruluntan@2x.png in Resources */,
 				19DAE98F19D311D300519D22 /* fbMetongxunlu@2x.png in Resources */,
 				19DAE9B719D311D300519D22 /* pinglun-xin-down-24_24@2x.png in Resources */,
@@ -2796,11 +2737,7 @@
 				13A2AA8819D7BAB3008D1B9F /* UMShareEditViewController.xib in Resources */,
 				19DAEA0E19D311D300519D22 /* xinfeng36_24@2x.png in Resources */,
 				137D9FBB19F25EC700B31100 /* 腾讯微博点击.png in Resources */,
-
-				E3E2EEBF19F7541C0033CDBC /* gtime.png in Resources */,
 				1965031719FB902800B19738 /* UMContactViewController.xib in Resources */,
-
-
 				19DAEA1B19D311D300519D22 /* xiangqing-pinglun-icon-24_24@2x.png in Resources */,
 				19DAEA6219D311D300519D22 /* mirco_icon_14@2x.png in Resources */,
 				19DAE9D719D311D300519D22 /* Expression_20@2x.png in Resources */,
@@ -2816,7 +2753,6 @@
 				19DAE9BB19D311D300519D22 /* pinglun596_10@2x.png in Resources */,
 				19DAEA6E19D311D300519D22 /* mirco_icon_5@2x.png in Resources */,
 				19DAEA5819D311D300519D22 /* BBS-seach-kuang@2x.png in Resources */,
-				E36DE09019F4FB2D007585AF /* gstartime.png in Resources */,
 				19DAEA1919D311D300519D22 /* sousuo-bg-10_88@2x.png in Resources */,
 				19DAEA6419D311D300519D22 /* mirco_icon_16@2x.png in Resources */,
 				19DAE9C819D311D300519D22 /* loading320_480@2x.png in Resources */,
@@ -2835,6 +2771,7 @@
 				19DAEA6719D311D300519D22 /* mirco_icon_19@2x.png in Resources */,
 				19DAE99F19D311D300519D22 /* biaoqing-56_56@2x.png in Resources */,
 				19DAE9B319D311D300519D22 /* pinglun-bg2-up-216_76@2x.png in Resources */,
+				E316C96419FBD85D0036B0C1 /* AMap.bundle in Resources */,
 				19DAEA5019D311D300519D22 /* take_photo_snak_image@2x.png in Resources */,
 				196502FF19FB902800B19738 /* background@2x.png in Resources */,
 				19DAE9E519D311D300519D22 /* xiaoxi_80_80@2x.png in Resources */,
@@ -2848,24 +2785,15 @@
 				19DAE9EF19D311D300519D22 /* zuji-42_42-xy84_404@2x.png in Resources */,
 				19DAE9D419D311D300519D22 /* Expression_18@2x.png in Resources */,
 				19DAEA3C19D311D300519D22 /* sheying@2x.png in Resources */,
-
 				1965031419FB902800B19738 /* send_selected@2x.png in Resources */,
-
-				E36DE09219F4FB92007585AF /* gongli.png in Resources */,
-
 				19DAEA3D19D311D300519D22 /* shuxian@2x.png in Resources */,
 				19DAEA7A19D311D300519D22 /* classification_big8@2x.png in Resources */,
 				19DAE9E319D311D300519D22 /* Expression_9@2x.png in Resources */,
 				13D21C9519F4095C0015AAF2 /* 地图位置图标.png in Resources */,
 				19DAE98E19D311D300519D22 /* fbMefb@2x.png in Resources */,
 				1929B3B619D41C3A0045B6B5 /* history@2x.png in Resources */,
-
-				E3F27BD319F836B600B91A26 /* gbpm.png in Resources */,
 				1965030A19FB902800B19738 /* messages_tableview_background.png in Resources */,
-
-
 				19DAE9D019D311D300519D22 /* Expression_14@2x.png in Resources */,
-				E36DE08619F4EEF6007585AF /* gback160x98.png in Resources */,
 				19DAEA1C19D311D300519D22 /* xiangqing-shurukuang-496_60@2x.png in Resources */,
 				19DAE9B219D311D300519D22 /* pinglun-bg2-up-216_76@2x.jpg in Resources */,
 				19DAEA6F19D311D300519D22 /* mirco_icon_6@2x.png in Resources */,
@@ -2873,7 +2801,6 @@
 				13A2AA8A19D7BAB3008D1B9F /* UMSLoginViewController.xib in Resources */,
 				19DAEA5A19D311D300519D22 /* seach@2x.png in Resources */,
 				19DAE9D519D311D300519D22 /* Expression_19@2x.png in Resources */,
-				E36DE08A19F4F013007585AF /* gtimeout.png in Resources */,
 				19DAEA2B19D311D300519D22 /* jiantou@2x.png in Resources */,
 				19DAE9B819D311D300519D22 /* pinglun-xin_up-24_24@2x.png in Resources */,
 				13D21C8E19F4095C0015AAF2 /* gps图标3格.png in Resources */,
@@ -2886,11 +2813,7 @@
 				1929B3B419D41C3A0045B6B5 /* bike@2x.png in Resources */,
 				19DAEA2519D311D300519D22 /* touming-bg-150_150@2x.png in Resources */,
 				134BA6AB19D9581200282D7D /* mine_road.png in Resources */,
-
-				E3E2EEBA19F753930033CDBC /* gstarting.png in Resources */,
 				1965031D19FB95CF00B19738 /* navigation_backGroud@2x.png in Resources */,
-
-
 				19DAEA7819D311D300519D22 /* classification_big6@2x.png in Resources */,
 				13A1470919F77E0C00F8D442 /* SwitchCell.xib in Resources */,
 				19DAEA0319D311D300519D22 /* dibuxian-444_8@2x.png in Resources */,
@@ -2907,13 +2830,7 @@
 				1965030D19FB902800B19738 /* messages_toolbar_background@2x.png in Resources */,
 				19DAEA4419D311D300519D22 /* new@2x.png in Resources */,
 				137D9FBC19F25EC700B31100 /* more_recommend@2x.png in Resources */,
-				E34451F319E7D6A400A3546A /* AMap.bundle in Resources */,
-
 				1965031119FB902800B19738 /* nav_btn_bg@2x.png in Resources */,
-				E3E2EEB519F753930033CDBC /* ghaiba.png in Resources */,
-				E3E2EEC919F755620033CDBC /* ghaibaxia.png in Resources */,
-
-
 				19DAEA3319D311D300519D22 /* jiazai@2x.png in Resources */,
 				19DAE81519D30C2D00519D22 /* LaunchScreen.xib in Resources */,
 				19DAE9A219D311D300519D22 /* fanhui-daohanglan-20_38@2x.png in Resources */,
@@ -2930,7 +2847,6 @@
 				19DAE99219D311D300519D22 /* back1.png in Resources */,
 				137D9FBA19F25EC700B31100 /* 空间点击.png in Resources */,
 				19DAE99319D311D300519D22 /* back7.png in Resources */,
-				E36DE08E19F4FAB1007585AF /* gspeed.png in Resources */,
 				19DAE99A19D311D300519D22 /* fb_142_126@2x.png in Resources */,
 				19DAE98119D311D300519D22 /* add_flag@2x.png in Resources */,
 				19DAE9C119D311D300519D22 /* touxiang-150_150@2x.png in Resources */,
@@ -2950,7 +2866,6 @@
 				56442DFF19F5533500BAE678 /* find_huodong_image@2x.png in Resources */,
 				137D9FB719F25EC700B31100 /* 新浪微博点击.png in Resources */,
 				13BE658B19FB8390006242A8 /* icon114.png in Resources */,
-				E36DE09819F4FC26007585AF /* gbtndown.png in Resources */,
 				13D21C9719F4095C0015AAF2 /* map_end@2x.png in Resources */,
 				19DAE9EB19D311D300519D22 /* haoyou--48_44-xy298_404@2x.png in Resources */,
 				13A2AA8919D7BAB3008D1B9F /* UMShareEditViewControlleriPad.xib in Resources */,
@@ -2969,16 +2884,11 @@
 				19DAEA2E19D311D300519D22 /* search@2x.png in Resources */,
 				19DAE9F719D311D300519D22 /* jianpan-icon-56_56@2x.png in Resources */,
 				19DAE9BE19D311D300519D22 /* shanchu40_40@2x.png in Resources */,
-				E3C3B8A419F25E6900C8AE5A /* GMLOCATION.sqlite in Resources */,
 				19DAEA8119D311D300519D22 /* unselected_fbcircle_image@2x.png in Resources */,
 				19DAEA5F19D311D300519D22 /* mirco_icon_11@2x.png in Resources */,
 				1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */,
 				19DAE98219D311D300519D22 /* add_jing@2x.png in Resources */,
 				13A1470419F75EE100F8D442 /* RoadInfoViewController.xib in Resources */,
-
-
-				E32B927C19F60609007536D0 /* ghuifu.png in Resources */,
-
 				19DAEA2019D311D300519D22 /* button2-down252_94@2x.png in Resources */,
 				19DAEA1619D311D300519D22 /* duihao-42_42@2x.png in Resources */,
 				137D9FC019F25EC700B31100 /* more_good@2x.png in Resources */,
@@ -2990,7 +2900,6 @@
 				19DAEA3019D311D300519D22 /* chahua@2x.png in Resources */,
 				19DAEA1219D311D300519D22 /* duanxin-icon-94_94@2x.png in Resources */,
 				19DAE81219D30C2D00519D22 /* Images.xcassets in Resources */,
-				E36DE09419F4FBDE007585AF /* ghaiba.png in Resources */,
 				19DAEA0119D311D300519D22 /* toujxiang-moren-94_94@2x.png in Resources */,
 				134BA6AA19D9581200282D7D /* mine_more@2x.png in Resources */,
 				19DAEA7F19D311D300519D22 /* selected_small_bbs_icon_image@2x.png in Resources */,
@@ -3070,9 +2979,7 @@
 				19DAE9CC19D311D300519D22 /* Expression_10@2x.png in Resources */,
 				19DAE9DF19D311D300519D22 /* Expression_5@2x.png in Resources */,
 				19DAE9B419D311D300519D22 /* pinglun-icon-66_24@2x.png in Resources */,
-				E36DE08C19F4F0B9007585AF /* gtakephoto.png in Resources */,
 				19DAE99D19D311D300519D22 /* baocun40_48@2x.png in Resources */,
-				E34C791219E813A000A5F4DE /* userPosition@2x.png in Resources */,
 				19DAE99619D311D300519D22 /* Loginbutton528_88@2x.png in Resources */,
 				13D21CA419F4095C0015AAF2 /* 海拔下降.png in Resources */,
 				19DAEA7D19D311D300519D22 /* selected_message_icon@2x.png in Resources */,
@@ -3096,13 +3003,11 @@
 				13D21C9819F4095C0015AAF2 /* 地图路书关闭.png in Resources */,
 				1965031519FB902800B19738 /* umeng_logo.png in Resources */,
 				19DAEA3819D311D300519D22 /* gaizhuang@2x.png in Resources */,
-				E36DE09A19F4FCCC007585AF /* gbpm.png in Resources */,
 				13D21CA019F4095C0015AAF2 /* 时间.png in Resources */,
 				19DAEA5619D311D300519D22 /* BBS-kuang-up@2x.png in Resources */,
 				56442DFC19F552BB00BAE678 /* right_jiantou_image@2x.png in Resources */,
 				19DAEA6519D311D300519D22 /* mirco_icon_17@2x.png in Resources */,
 				19DAE9A119D311D300519D22 /* fabu-40_40@2x.png in Resources */,
-				E36DE09719F4FC26007585AF /* gbtnup.png in Resources */,
 				19DAE9F519D311D300519D22 /* dingwei-icon-30_36@2x.png in Resources */,
 				137D9FBF19F25EC700B31100 /* more_update@2x.png in Resources */,
 				19DAE9C519D311D300519D22 /* xiangqing-pinglun-icon-24_24@2x.png in Resources */,
@@ -3166,29 +3071,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				13CFBAD219F6B887006B9684 /* JSONKit.m in Sources */,
-				56DE2E8019F5711B0042C2A5 /* ReGeocodeAnnotation.m in Sources */,
+				E316C96A19FBD85D0036B0C1 /* LineDashPolyline.m in Sources */,
 				134BA69F19D948E800282D7D /* MineCellTwo.m in Sources */,
 				196502FE19FB902800B19738 /* UMEGORefreshTableHeaderView.m in Sources */,
-				E3C3B8B919F2927E00C8AE5A /* GMapStarViewController.m in Sources */,
 				56442E0E19F55AD300BAE678 /* RankingFunctionView.m in Sources */,
 				19DAE80A19D30C2D00519D22 /* OneTheBike.xcdatamodeld in Sources */,
 				137D9FD819F26E7000B31100 /* MoreViewController.m in Sources */,
 				19DAE80719D30C2D00519D22 /* AppDelegate.m in Sources */,
 				1965031819FB902800B19738 /* UMFeedbackTableViewCellLeft.m in Sources */,
 				137D76E519F4BB5B00DD29D7 /* MJConst.m in Sources */,
-				13CFBACD19F6AEB0006B9684 /* GeocodeAnnotation.m in Sources */,
 				137D76E919F4BB5B00DD29D7 /* MJMethod.m in Sources */,
+				E316C96D19FBD85D0036B0C1 /* CommonUtility.m in Sources */,
 				137D9FCE19F261B500B31100 /* UserInfoHeaderCell.m in Sources */,
 				13A146F919F75B3000F8D442 /* RoadCell.m in Sources */,
+				E316C96219FBD85D0036B0C1 /* GstarCanshuViewController.m in Sources */,
 				56442DF419F5468B00BAE678 /* CycleScrollView.m in Sources */,
+				E316C96619FBD85D0036B0C1 /* DataBase.m in Sources */,
 				137D76CB19F4B74E00DD29D7 /* SSObjectBase.m in Sources */,
-				E387717619F73EAB00E17020 /* GstarCanshuViewController.m in Sources */,
 				137D9F9119F250A900B31100 /* UIView+Frame.m in Sources */,
+				E316C96C19FBD85D0036B0C1 /* MAPolyline+UN.m in Sources */,
 				137D9F9019F250A900B31100 /* UIColor+ConvertColor.m in Sources */,
 				137D9FDD19F272E500B31100 /* RoadManagerController.m in Sources */,
 				137D76EA19F4BB5B00DD29D7 /* MJType.m in Sources */,
-				E3DD35C319F485C400FCB51F /* MAHeaderView.m in Sources */,
 				137D9F9D19F25E0600B31100 /* UserInfoViewController.m in Sources */,
+				E316C96019FBD85D0036B0C1 /* GMapStarViewController.m in Sources */,
 				137D9F8919F2508200B31100 /* LTools.m in Sources */,
 				137D76E719F4BB5B00DD29D7 /* MJIvar.m in Sources */,
 				19DAE84119D30F3100519D22 /* FindViewController.m in Sources */,
@@ -3197,17 +3103,15 @@
 				137D9FC919F25FF500B31100 /* UserInfoRowCell.m in Sources */,
 				13CFBAD319F6B887006B9684 /* README.md in Sources */,
 				13A2AAA019D7BF18008D1B9F /* MineViewController.m in Sources */,
+				E316C96719FBD85D0036B0C1 /* GMAPI.m in Sources */,
 				56442E0319F5557100BAE678 /* FindActivityViewController.m in Sources */,
 				13A9266E19FB9EF10015CB79 /* UserInfoClass.m in Sources */,
 				56442E1419F5621700BAE678 /* RankingTableViewCell.m in Sources */,
 				56442E0719F5567300BAE678 /* ActivityTableViewCell.m in Sources */,
 				13A9266B19FB9EA30015CB79 /* BaseModel.m in Sources */,
-				137D76F119F4BD9500DD29D7 /* MAPolyline+UN.m in Sources */,
-
-				E3E2EED319F78B7D0033CDBC /* GyundongCanshuModel.m in Sources */,
 				1965031A19FB902800B19738 /* UMFeedbackViewController.m in Sources */,
-
-
+				E316C96319FBD85D0036B0C1 /* GStartViewController.m in Sources */,
+				E316C96119FBD85D0036B0C1 /* GOffLineMapViewController.m in Sources */,
 				137D76E819F4BB5B00DD29D7 /* MJMember.m in Sources */,
 				1965031619FB902800B19738 /* UMContactViewController.m in Sources */,
 				137D76EB19F4BB5B00DD29D7 /* MJTypeEncoding.m in Sources */,
@@ -3216,30 +3120,23 @@
 				137D76E619F4BB5B00DD29D7 /* MJFoundation.m in Sources */,
 				137D76EC19F4BB5B00DD29D7 /* NSObject+MJCoding.m in Sources */,
 				137D76EE19F4BB5B00DD29D7 /* NSObject+MJMember.m in Sources */,
-				137D9FE719F290F800B31100 /* CommonUtility.m in Sources */,
 				137D76E419F4BB5B00DD29D7 /* MJArgument.m in Sources */,
-				13CFBAD619F6C36D006B9684 /* LRoadClass.m in Sources */,
 				13E8EE1319F60C04006FA5CE /* LMapTools.m in Sources */,
 				E31F584919F638450064959E /* StartViewController.m in Sources */,
-				E3BB362319E7C0C20096131D /* GMAPI.m in Sources */,
 				134BA69A19D9462900282D7D /* MineCellOne.m in Sources */,
 				1965031919FB902800B19738 /* UMFeedbackTableViewCellRight.m in Sources */,
-				E3C3B8B519F2802E00C8AE5A /* GStartViewController.m in Sources */,
 				19DAE80D19D30C2D00519D22 /* ViewController.m in Sources */,
 				137D9F9419F25BB800B31100 /* FBBaseViewController.m in Sources */,
 				19DAE84719D30F6000519D22 /* MainViewController.m in Sources */,
-				E3C3B8A219F25AB200C8AE5A /* DataBase.m in Sources */,
 				56442E0B19F55A7200BAE678 /* FindRankingViewController.m in Sources */,
-				E31F584C19F64EF60064959E /* Gmap.m in Sources */,
 				134BA6A419D94D1A00282D7D /* UIColor+ConvertColor.m in Sources */,
 				56442DF519F5468B00BAE678 /* NSTimer+Addition.m in Sources */,
+				E316C96B19FBD85D0036B0C1 /* LRoadClass.m in Sources */,
 				139467E019F4F80D001DAEA9 /* MapCacheDashClass.m in Sources */,
 				13E8EE1619F60CE8006FA5CE /* LMaplineClass.m in Sources */,
 				19DAE80419D30C2D00519D22 /* main.m in Sources */,
 				19DAE84419D30F4E00519D22 /* HistoryViewController.m in Sources */,
-				137D9FEB19F2916600B31100 /* LineDashPolyline.m in Sources */,
 				137D9FE219F27A6500B31100 /* RoadProduceController.m in Sources */,
-				E3DD35C019F4850800FCB51F /* GOffLineMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
