@@ -52,8 +52,8 @@
     header.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = header;
     
-    titles_arr = @[@"给个好评",@"联系轨记",@"反馈意见",@"版本更新",@"帮助说明"];
-    imagesArray = @[@"more_good",@"more_contact",@"more_recommend",@"more_update",@"more_help"];
+    titles_arr = @[@"给个好评",@"联系轨记",@"反馈意见",@"帮助说明",@"更换账号"];
+    imagesArray = @[@"more_good",@"more_contact",@"more_recommend",@"more_help",@"more_update"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,17 +130,34 @@
             break;
         case 3:
         {
-            [self gotoCheckVersion];
+            NSLog(@"帮助说明");
         }
             break;
         case 4:
         {
-            NSLog(@"帮助说明");
+//            [self gotoCheckVersion];
+            
+            NSLog(@"更换账号");
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"是否更换账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alert show];
         }
             break;
             
         default:
             break;
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+     
+        NSLog(@"切换账号");
+        [LTools cache:@"" ForKey:USER_AUTHKEY_OHTER];
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_CHANGE_USER object:nil];
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

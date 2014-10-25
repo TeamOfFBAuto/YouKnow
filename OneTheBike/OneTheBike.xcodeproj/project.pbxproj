@@ -106,6 +106,8 @@
 		13A2AA9319D7BAB3008D1B9F /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2AA7F19D7BAB3008D1B9F /* libWeChatSDK.a */; };
 		13A2AAA019D7BF18008D1B9F /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2AA9C19D7BF18008D1B9F /* MineViewController.m */; };
 		13A2AAA119D7BF18008D1B9F /* MineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13A2AA9D19D7BF18008D1B9F /* MineViewController.xib */; };
+		13A9266B19FB9EA30015CB79 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A9266A19FB9EA30015CB79 /* BaseModel.m */; };
+		13A9266E19FB9EF10015CB79 /* UserInfoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A9266D19FB9EF10015CB79 /* UserInfoClass.m */; };
 		13AC6BAB19D805D800E7FF7B /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13AC6BA719D805D800E7FF7B /* libSocialQQ.a */; };
 		13AC6BAC19D805D800E7FF7B /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13AC6BA819D805D800E7FF7B /* TencentOpenAPI.framework */; };
 		13AC6BAD19D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13AC6BA919D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle */; };
@@ -640,6 +642,10 @@
 		13A2AA9B19D7BF18008D1B9F /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		13A2AA9C19D7BF18008D1B9F /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		13A2AA9D19D7BF18008D1B9F /* MineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineViewController.xib; sourceTree = "<group>"; };
+		13A9266919FB9EA30015CB79 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		13A9266A19FB9EA30015CB79 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		13A9266C19FB9EF10015CB79 /* UserInfoClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoClass.h; sourceTree = "<group>"; };
+		13A9266D19FB9EF10015CB79 /* UserInfoClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoClass.m; sourceTree = "<group>"; };
 		13AC6BA719D805D800E7FF7B /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
 		13AC6BA819D805D800E7FF7B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		13AC6BA919D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
@@ -1195,8 +1201,12 @@
 		137D76F519F4E53300DD29D7 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				13A9266919FB9EA30015CB79 /* BaseModel.h */,
+				13A9266A19FB9EA30015CB79 /* BaseModel.m */,
 				139467DE19F4F80D001DAEA9 /* MapCacheDashClass.h */,
 				139467DF19F4F80D001DAEA9 /* MapCacheDashClass.m */,
+				13A9266C19FB9EF10015CB79 /* UserInfoClass.h */,
+				13A9266D19FB9EF10015CB79 /* UserInfoClass.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -2998,8 +3008,10 @@
 				13CFBAD319F6B887006B9684 /* README.md in Sources */,
 				13A2AAA019D7BF18008D1B9F /* MineViewController.m in Sources */,
 				56442E0319F5557100BAE678 /* FindActivityViewController.m in Sources */,
+				13A9266E19FB9EF10015CB79 /* UserInfoClass.m in Sources */,
 				56442E1419F5621700BAE678 /* RankingTableViewCell.m in Sources */,
 				56442E0719F5567300BAE678 /* ActivityTableViewCell.m in Sources */,
+				13A9266B19FB9EA30015CB79 /* BaseModel.m in Sources */,
 				137D76F119F4BD9500DD29D7 /* MAPolyline+UN.m in Sources */,
 				137D76E819F4BB5B00DD29D7 /* MJMember.m in Sources */,
 				137D76EB19F4BB5B00DD29D7 /* MJTypeEncoding.m in Sources */,
@@ -3167,6 +3179,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = armv7;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
@@ -3200,6 +3213,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = armv7;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
