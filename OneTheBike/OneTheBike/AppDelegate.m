@@ -160,7 +160,6 @@
         [_locationmanager requestWhenInUseAuthorization];     //NSLocationWhenInUseDescription
     }
     
-    
     _locationmanager.delegate = self;
     
     

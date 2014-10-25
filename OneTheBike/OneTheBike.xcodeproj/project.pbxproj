@@ -446,23 +446,9 @@
 		56DE2E8019F5711B0042C2A5 /* ReGeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */; };
 		E31F584919F638450064959E /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F584819F638450064959E /* StartViewController.m */; };
 		E31F584C19F64EF60064959E /* Gmap.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F584B19F64EF60064959E /* Gmap.m */; };
-		E32B927C19F60609007536D0 /* ghuifu.png in Resources */ = {isa = PBXBuildFile; fileRef = E32B927B19F60609007536D0 /* ghuifu.png */; };
 		E34451F019E7D67000A3546A /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EE19E7D67000A3546A /* MAMapKit.framework */; };
 		E34451F119E7D67000A3546A /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34451EF19E7D67000A3546A /* AMapSearchKit.framework */; };
 		E34451F319E7D6A400A3546A /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E34451F219E7D6A400A3546A /* AMap.bundle */; };
-		E34C791219E813A000A5F4DE /* userPosition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E34C791119E813A000A5F4DE /* userPosition@2x.png */; };
-		E36DE08619F4EEF6007585AF /* gback160x98.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08519F4EEF6007585AF /* gback160x98.png */; };
-		E36DE08819F4EF76007585AF /* gfinish.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08719F4EF76007585AF /* gfinish.png */; };
-		E36DE08A19F4F013007585AF /* gtimeout.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08919F4F013007585AF /* gtimeout.png */; };
-		E36DE08C19F4F0B9007585AF /* gtakephoto.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08B19F4F0B9007585AF /* gtakephoto.png */; };
-		E36DE08E19F4FAB1007585AF /* gspeed.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08D19F4FAB1007585AF /* gspeed.png */; };
-		E36DE09019F4FB2D007585AF /* gstartime.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE08F19F4FB2D007585AF /* gstartime.png */; };
-		E36DE09219F4FB92007585AF /* gongli.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09119F4FB92007585AF /* gongli.png */; };
-		E36DE09419F4FBDE007585AF /* ghaiba.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09319F4FBDE007585AF /* ghaiba.png */; };
-		E36DE09719F4FC26007585AF /* gbtnup.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09519F4FC26007585AF /* gbtnup.png */; };
-		E36DE09819F4FC26007585AF /* gbtndown.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09619F4FC26007585AF /* gbtndown.png */; };
-		E36DE09A19F4FCCC007585AF /* gbpm.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09919F4FCCC007585AF /* gbpm.png */; };
-		E36DE09C19F51588007585AF /* gstarting.png in Resources */ = {isa = PBXBuildFile; fileRef = E36DE09B19F51588007585AF /* gstarting.png */; };
 		E387717619F73EAB00E17020 /* GstarCanshuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E387717519F73EAB00E17020 /* GstarCanshuViewController.m */; };
 		E3BB362319E7C0C20096131D /* GMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BB362219E7C0C20096131D /* GMAPI.m */; };
 		E3BB362719E7C1B20096131D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BB362619E7C1B20096131D /* QuartzCore.framework */; };
@@ -475,6 +461,30 @@
 		E3C3B8B919F2927E00C8AE5A /* GMapStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */; };
 		E3DD35C019F4850800FCB51F /* GOffLineMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DD35BF19F4850800FCB51F /* GOffLineMapViewController.m */; };
 		E3DD35C319F485C400FCB51F /* MAHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DD35C219F485C400FCB51F /* MAHeaderView.m */; };
+		E3E2EEB019F753930033CDBC /* gback160x98.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEA219F753930033CDBC /* gback160x98.png */; };
+		E3E2EEB219F753930033CDBC /* gbtndown.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEA419F753930033CDBC /* gbtndown.png */; };
+		E3E2EEB319F753930033CDBC /* gbtnup.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEA519F753930033CDBC /* gbtnup.png */; };
+		E3E2EEB419F753930033CDBC /* gfinish.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEA619F753930033CDBC /* gfinish.png */; };
+		E3E2EEB519F753930033CDBC /* ghaiba.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEA719F753930033CDBC /* ghaiba.png */; };
+		E3E2EEB619F753930033CDBC /* ghuifu.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEA819F753930033CDBC /* ghuifu.png */; };
+		E3E2EEB719F753930033CDBC /* gongli.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEA919F753930033CDBC /* gongli.png */; };
+		E3E2EEB819F753930033CDBC /* gspeed.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEAA19F753930033CDBC /* gspeed.png */; };
+		E3E2EEB919F753930033CDBC /* gstartime.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEAB19F753930033CDBC /* gstartime.png */; };
+		E3E2EEBA19F753930033CDBC /* gstarting.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEAC19F753930033CDBC /* gstarting.png */; };
+		E3E2EEBB19F753930033CDBC /* gtakephoto.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEAD19F753930033CDBC /* gtakephoto.png */; };
+		E3E2EEBC19F753930033CDBC /* gtimeout.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEAE19F753930033CDBC /* gtimeout.png */; };
+		E3E2EEBD19F753930033CDBC /* userPosition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEAF19F753930033CDBC /* userPosition@2x.png */; };
+		E3E2EEBF19F7541C0033CDBC /* gtime.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEBE19F7541C0033CDBC /* gtime.png */; };
+		E3E2EEC119F754870033CDBC /* gpodu.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEC019F754870033CDBC /* gpodu.png */; };
+		E3E2EEC319F754C40033CDBC /* gpeisu.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEC219F754C40033CDBC /* gpeisu.png */; };
+		E3E2EEC519F755130033CDBC /* gpashenglv.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEC419F755130033CDBC /* gpashenglv.png */; };
+		E3E2EEC819F755620033CDBC /* ghaibashang.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEC619F755620033CDBC /* ghaibashang.png */; };
+		E3E2EEC919F755620033CDBC /* ghaibaxia.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EEC719F755620033CDBC /* ghaibaxia.png */; };
+		E3E2EECC19F756070033CDBC /* gpingjunsudu.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EECA19F756070033CDBC /* gpingjunsudu.png */; };
+		E3E2EECD19F756070033CDBC /* gzuigaosudu.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E2EECB19F756070033CDBC /* gzuigaosudu.png */; };
+		E3E2EED019F767EA0033CDBC /* GyundongCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E2EECF19F767EA0033CDBC /* GyundongCustomView.m */; };
+		E3E2EED319F78B7D0033CDBC /* GyundongCanshuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E2EED219F78B7D0033CDBC /* GyundongCanshuModel.m */; };
+		E3F27BD319F836B600B91A26 /* gbpm.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F27BD219F836B600B91A26 /* gbpm.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1006,23 +1016,9 @@
 		E31F584B19F64EF60064959E /* Gmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gmap.m; sourceTree = "<group>"; };
 		E32A591B19ED04CE00142E3A /* ReGeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReGeocodeAnnotation.h; sourceTree = "<group>"; };
 		E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReGeocodeAnnotation.m; sourceTree = "<group>"; };
-		E32B927B19F60609007536D0 /* ghuifu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghuifu.png; sourceTree = "<group>"; };
 		E34451EE19E7D67000A3546A /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
 		E34451EF19E7D67000A3546A /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		E34451F219E7D6A400A3546A /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
-		E34C791119E813A000A5F4DE /* userPosition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userPosition@2x.png"; sourceTree = "<group>"; };
-		E36DE08519F4EEF6007585AF /* gback160x98.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gback160x98.png; sourceTree = "<group>"; };
-		E36DE08719F4EF76007585AF /* gfinish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gfinish.png; sourceTree = "<group>"; };
-		E36DE08919F4F013007585AF /* gtimeout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gtimeout.png; sourceTree = "<group>"; };
-		E36DE08B19F4F0B9007585AF /* gtakephoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gtakephoto.png; sourceTree = "<group>"; };
-		E36DE08D19F4FAB1007585AF /* gspeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gspeed.png; sourceTree = "<group>"; };
-		E36DE08F19F4FB2D007585AF /* gstartime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gstartime.png; sourceTree = "<group>"; };
-		E36DE09119F4FB92007585AF /* gongli.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gongli.png; sourceTree = "<group>"; };
-		E36DE09319F4FBDE007585AF /* ghaiba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghaiba.png; sourceTree = "<group>"; };
-		E36DE09519F4FC26007585AF /* gbtnup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbtnup.png; sourceTree = "<group>"; };
-		E36DE09619F4FC26007585AF /* gbtndown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbtndown.png; sourceTree = "<group>"; };
-		E36DE09919F4FCCC007585AF /* gbpm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbpm.png; sourceTree = "<group>"; };
-		E36DE09B19F51588007585AF /* gstarting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gstarting.png; sourceTree = "<group>"; };
 		E387717419F73EAB00E17020 /* GstarCanshuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GstarCanshuViewController.h; sourceTree = "<group>"; };
 		E387717519F73EAB00E17020 /* GstarCanshuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GstarCanshuViewController.m; sourceTree = "<group>"; };
 		E3BB362119E7C0C20096131D /* GMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAPI.h; sourceTree = "<group>"; };
@@ -1040,8 +1036,34 @@
 		E3C3B8B819F2927E00C8AE5A /* GMapStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMapStarViewController.m; sourceTree = "<group>"; };
 		E3DD35BE19F4850800FCB51F /* GOffLineMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOffLineMapViewController.h; sourceTree = "<group>"; };
 		E3DD35BF19F4850800FCB51F /* GOffLineMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOffLineMapViewController.m; sourceTree = "<group>"; };
-		E3DD35C119F485C400FCB51F /* MAHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAHeaderView.h; sourceTree = "<group>"; };
-		E3DD35C219F485C400FCB51F /* MAHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAHeaderView.m; sourceTree = "<group>"; };
+		E3DD35C119F485C400FCB51F /* MAHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MAHeaderView.h; path = ../GModel/MAHeaderView.h; sourceTree = "<group>"; };
+		E3DD35C219F485C400FCB51F /* MAHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MAHeaderView.m; path = ../GModel/MAHeaderView.m; sourceTree = "<group>"; };
+		E3E2EEA219F753930033CDBC /* gback160x98.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gback160x98.png; sourceTree = "<group>"; };
+		E3E2EEA419F753930033CDBC /* gbtndown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbtndown.png; sourceTree = "<group>"; };
+		E3E2EEA519F753930033CDBC /* gbtnup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbtnup.png; sourceTree = "<group>"; };
+		E3E2EEA619F753930033CDBC /* gfinish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gfinish.png; sourceTree = "<group>"; };
+		E3E2EEA719F753930033CDBC /* ghaiba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghaiba.png; sourceTree = "<group>"; };
+		E3E2EEA819F753930033CDBC /* ghuifu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghuifu.png; sourceTree = "<group>"; };
+		E3E2EEA919F753930033CDBC /* gongli.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gongli.png; sourceTree = "<group>"; };
+		E3E2EEAA19F753930033CDBC /* gspeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gspeed.png; sourceTree = "<group>"; };
+		E3E2EEAB19F753930033CDBC /* gstartime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gstartime.png; sourceTree = "<group>"; };
+		E3E2EEAC19F753930033CDBC /* gstarting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gstarting.png; sourceTree = "<group>"; };
+		E3E2EEAD19F753930033CDBC /* gtakephoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gtakephoto.png; sourceTree = "<group>"; };
+		E3E2EEAE19F753930033CDBC /* gtimeout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gtimeout.png; sourceTree = "<group>"; };
+		E3E2EEAF19F753930033CDBC /* userPosition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userPosition@2x.png"; sourceTree = "<group>"; };
+		E3E2EEBE19F7541C0033CDBC /* gtime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gtime.png; sourceTree = "<group>"; };
+		E3E2EEC019F754870033CDBC /* gpodu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpodu.png; sourceTree = "<group>"; };
+		E3E2EEC219F754C40033CDBC /* gpeisu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpeisu.png; sourceTree = "<group>"; };
+		E3E2EEC419F755130033CDBC /* gpashenglv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpashenglv.png; sourceTree = "<group>"; };
+		E3E2EEC619F755620033CDBC /* ghaibashang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghaibashang.png; sourceTree = "<group>"; };
+		E3E2EEC719F755620033CDBC /* ghaibaxia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghaibaxia.png; sourceTree = "<group>"; };
+		E3E2EECA19F756070033CDBC /* gpingjunsudu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpingjunsudu.png; sourceTree = "<group>"; };
+		E3E2EECB19F756070033CDBC /* gzuigaosudu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gzuigaosudu.png; sourceTree = "<group>"; };
+		E3E2EECE19F767EA0033CDBC /* GyundongCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GyundongCustomView.h; path = ../GModel/GyundongCustomView.h; sourceTree = "<group>"; };
+		E3E2EECF19F767EA0033CDBC /* GyundongCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GyundongCustomView.m; path = ../GModel/GyundongCustomView.m; sourceTree = "<group>"; };
+		E3E2EED119F78B7D0033CDBC /* GyundongCanshuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GyundongCanshuModel.h; sourceTree = "<group>"; };
+		E3E2EED219F78B7D0033CDBC /* GyundongCanshuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GyundongCanshuModel.m; sourceTree = "<group>"; };
+		E3F27BD219F836B600B91A26 /* gbpm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gbpm.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2382,28 +2404,15 @@
 		E34C791019E813A000A5F4DE /* GModel */ = {
 			isa = PBXGroup;
 			children = (
+				E3E2EEA119F753930033CDBC /* Gimages */,
 				13CFBACB19F6AEB0006B9684 /* GeocodeAnnotation.h */,
 				13CFBACC19F6AEB0006B9684 /* GeocodeAnnotation.m */,
-				E32B927B19F60609007536D0 /* ghuifu.png */,
-				E36DE09B19F51588007585AF /* gstarting.png */,
-				E36DE09919F4FCCC007585AF /* gbpm.png */,
-				E36DE09519F4FC26007585AF /* gbtnup.png */,
-				E36DE09619F4FC26007585AF /* gbtndown.png */,
-				E36DE09319F4FBDE007585AF /* ghaiba.png */,
-				E36DE09119F4FB92007585AF /* gongli.png */,
-				E36DE08F19F4FB2D007585AF /* gstartime.png */,
-				E36DE08B19F4F0B9007585AF /* gtakephoto.png */,
-				E36DE08D19F4FAB1007585AF /* gspeed.png */,
-				E36DE08919F4F013007585AF /* gtimeout.png */,
-				E36DE08719F4EF76007585AF /* gfinish.png */,
-				E36DE08519F4EEF6007585AF /* gback160x98.png */,
-				E3DD35C119F485C400FCB51F /* MAHeaderView.h */,
-				E3DD35C219F485C400FCB51F /* MAHeaderView.m */,
 				E32A591B19ED04CE00142E3A /* ReGeocodeAnnotation.h */,
 				E32A591C19ED04CE00142E3A /* ReGeocodeAnnotation.m */,
-				E34C791119E813A000A5F4DE /* userPosition@2x.png */,
 				E31F584A19F64EF60064959E /* Gmap.h */,
 				E31F584B19F64EF60064959E /* Gmap.m */,
+				E3E2EED119F78B7D0033CDBC /* GyundongCanshuModel.h */,
+				E3E2EED219F78B7D0033CDBC /* GyundongCanshuModel.m */,
 			);
 			path = GModel;
 			sourceTree = "<group>";
@@ -2411,6 +2420,7 @@
 		E3BB361F19E7C0700096131D /* GM */ = {
 			isa = PBXGroup;
 			children = (
+				E3F27BD119F8355100B91A26 /* GViews */,
 				E3C3B8B019F2802E00C8AE5A /* GControllers */,
 				E34C791019E813A000A5F4DE /* GModel */,
 				E3BB362019E7C0B60096131D /* Utils */,
@@ -2448,6 +2458,46 @@
 				E387717519F73EAB00E17020 /* GstarCanshuViewController.m */,
 			);
 			path = GControllers;
+			sourceTree = "<group>";
+		};
+		E3E2EEA119F753930033CDBC /* Gimages */ = {
+			isa = PBXGroup;
+			children = (
+				E3F27BD219F836B600B91A26 /* gbpm.png */,
+				E3E2EECA19F756070033CDBC /* gpingjunsudu.png */,
+				E3E2EECB19F756070033CDBC /* gzuigaosudu.png */,
+				E3E2EEC619F755620033CDBC /* ghaibashang.png */,
+				E3E2EEC719F755620033CDBC /* ghaibaxia.png */,
+				E3E2EEC419F755130033CDBC /* gpashenglv.png */,
+				E3E2EEC219F754C40033CDBC /* gpeisu.png */,
+				E3E2EEC019F754870033CDBC /* gpodu.png */,
+				E3E2EEBE19F7541C0033CDBC /* gtime.png */,
+				E3E2EEA219F753930033CDBC /* gback160x98.png */,
+				E3E2EEA419F753930033CDBC /* gbtndown.png */,
+				E3E2EEA519F753930033CDBC /* gbtnup.png */,
+				E3E2EEA619F753930033CDBC /* gfinish.png */,
+				E3E2EEA719F753930033CDBC /* ghaiba.png */,
+				E3E2EEA819F753930033CDBC /* ghuifu.png */,
+				E3E2EEA919F753930033CDBC /* gongli.png */,
+				E3E2EEAA19F753930033CDBC /* gspeed.png */,
+				E3E2EEAB19F753930033CDBC /* gstartime.png */,
+				E3E2EEAC19F753930033CDBC /* gstarting.png */,
+				E3E2EEAD19F753930033CDBC /* gtakephoto.png */,
+				E3E2EEAE19F753930033CDBC /* gtimeout.png */,
+				E3E2EEAF19F753930033CDBC /* userPosition@2x.png */,
+			);
+			path = Gimages;
+			sourceTree = "<group>";
+		};
+		E3F27BD119F8355100B91A26 /* GViews */ = {
+			isa = PBXGroup;
+			children = (
+				E3DD35C119F485C400FCB51F /* MAHeaderView.h */,
+				E3DD35C219F485C400FCB51F /* MAHeaderView.m */,
+				E3E2EECE19F767EA0033CDBC /* GyundongCustomView.h */,
+				E3E2EECF19F767EA0033CDBC /* GyundongCustomView.m */,
+			);
+			path = GViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2556,7 +2606,9 @@
 				19DAE9D119D311D300519D22 /* Expression_15@2x.png in Resources */,
 				19DAE9C719D311D300519D22 /* Halfquan30_30@2x.png in Resources */,
 				19DAEA2719D311D300519D22 /* wnacheng-button-kedian-100_58@2x.png in Resources */,
+				E3E2EEB219F753930033CDBC /* gbtndown.png in Resources */,
 				19DAEA5D19D311D300519D22 /* daohanglan_bg_640_88@2x.png in Resources */,
+				E3E2EEB019F753930033CDBC /* gback160x98.png in Resources */,
 				19DAE99C19D311D300519D22 /* 20130502_selected.png in Resources */,
 				19DAEA4319D311D300519D22 /* qi@2x.png in Resources */,
 				134BA69019D940AA00282D7D /* backButton@2x.png in Resources */,
@@ -2566,6 +2618,7 @@
 				19DAEA2619D311D300519D22 /* wnacheng-button-bukedian-100_58@2x.png in Resources */,
 				19DAEA6919D311D300519D22 /* mirco_icon_20@2x.png in Resources */,
 				19DAE9CD19D311D300519D22 /* Expression_11@2x.png in Resources */,
+				E3E2EEBB19F753930033CDBC /* gtakephoto.png in Resources */,
 				19DAE9B919D311D300519D22 /* pinglun-zhuanfa-down-24_24@2x.png in Resources */,
 				19DAE99919D311D300519D22 /* duihao-doun-46_46@2x.png in Resources */,
 				13D21C9119F4095C0015AAF2 /* 卡路里.png in Resources */,
@@ -2589,13 +2642,11 @@
 				19DAEA4919D311D300519D22 /* quxiao@2x.png in Resources */,
 				19DAEA4719D311D300519D22 /* tankuang@2x.png in Resources */,
 				19DAE98A19D311D300519D22 /* add_zan@2x.png in Resources */,
-				E36DE08819F4EF76007585AF /* gfinish.png in Resources */,
 				19DAEA1E19D311D300519D22 /* button1-down252_94@2x.png in Resources */,
 				13D21C9F19F4095C0015AAF2 /* 时速.png in Resources */,
 				19DAEA1D19D311D300519D22 /* xiangqing-xin-icon-24_24@2x.png in Resources */,
 				19DAEA8219D311D300519D22 /* unselected_found_image@2x.png in Resources */,
 				19DAE9C919D311D300519D22 /* loading640_1136@2x.png in Resources */,
-				E36DE09C19F51588007585AF /* gstarting.png in Resources */,
 				19DAEA4119D311D300519D22 /* jiaruluntan@2x.png in Resources */,
 				19DAE98F19D311D300519D22 /* fbMetongxunlu@2x.png in Resources */,
 				19DAE9B719D311D300519D22 /* pinglun-xin-down-24_24@2x.png in Resources */,
@@ -2615,6 +2666,7 @@
 				19DAEA5719D311D300519D22 /* BBS-kuang@2x.png in Resources */,
 				19DAE9FC19D311D300519D22 /* duihua1-66_82@2x.png in Resources */,
 				19DAE9EE19D311D300519D22 /* xiaoxi-46_40-xy510_404@2x.png in Resources */,
+				E3E2EEC319F754C40033CDBC /* gpeisu.png in Resources */,
 				19DAEA7619D311D300519D22 /* classification_big4@2x.png in Resources */,
 				19DAE9A819D311D300519D22 /* fbquanzan@2x.png in Resources */,
 				13BE658C19FB8390006242A8 /* icon120.png in Resources */,
@@ -2627,6 +2679,7 @@
 				13A2AA8519D7BAB3008D1B9F /* UMSCommentDetailController.xib in Resources */,
 				19DAEA2819D311D300519D22 /* yulan-button-bukedian-100_58@2x.png in Resources */,
 				19DAE9F219D311D300519D22 /* paizhao-button-556_88@2x.png in Resources */,
+				E3E2EEBD19F753930033CDBC /* userPosition@2x.png in Resources */,
 				19DAEA1519D311D300519D22 /* weixin-icon-94_94@2x.png in Resources */,
 				1929B3B919D41C3A0045B6B5 /* start@2x.png in Resources */,
 				13A2AA8619D7BAB3008D1B9F /* UMSCommentInputController.xib in Resources */,
@@ -2638,10 +2691,12 @@
 				13A2AA8819D7BAB3008D1B9F /* UMShareEditViewController.xib in Resources */,
 				19DAEA0E19D311D300519D22 /* xinfeng36_24@2x.png in Resources */,
 				137D9FBB19F25EC700B31100 /* 腾讯微博点击.png in Resources */,
+				E3E2EEBF19F7541C0033CDBC /* gtime.png in Resources */,
 				19DAEA1B19D311D300519D22 /* xiangqing-pinglun-icon-24_24@2x.png in Resources */,
 				19DAEA6219D311D300519D22 /* mirco_icon_14@2x.png in Resources */,
 				19DAE9D719D311D300519D22 /* Expression_20@2x.png in Resources */,
 				19DAEA1019D311D300519D22 /* yonghuming-icon-32_30@2x.png in Resources */,
+				E3E2EEBC19F753930033CDBC /* gtimeout.png in Resources */,
 				19DAE9E819D311D300519D22 /* bg-216_216@2x.png in Resources */,
 				19DAE9EC19D311D300519D22 /* qichu-46_48-xy84_614@2x.png in Resources */,
 				19DAE9DC19D311D300519D22 /* Expression_2@2x.png in Resources */,
@@ -2652,8 +2707,8 @@
 				137D9FC419F25EC700B31100 /* navigationBack@2x.png in Resources */,
 				19DAE9BB19D311D300519D22 /* pinglun596_10@2x.png in Resources */,
 				19DAEA6E19D311D300519D22 /* mirco_icon_5@2x.png in Resources */,
+				E3E2EEB919F753930033CDBC /* gstartime.png in Resources */,
 				19DAEA5819D311D300519D22 /* BBS-seach-kuang@2x.png in Resources */,
-				E36DE09019F4FB2D007585AF /* gstartime.png in Resources */,
 				19DAEA1919D311D300519D22 /* sousuo-bg-10_88@2x.png in Resources */,
 				19DAEA6419D311D300519D22 /* mirco_icon_16@2x.png in Resources */,
 				19DAE9C819D311D300519D22 /* loading320_480@2x.png in Resources */,
@@ -2680,19 +2735,20 @@
 				19DAEA8319D311D300519D22 /* unselected_message_icon@2x.png in Resources */,
 				19DAE9EA19D311D300519D22 /* FB-56_52-xy504_614@2x.png in Resources */,
 				19DAE81019D30C2D00519D22 /* Main.storyboard in Resources */,
+				E3E2EEB719F753930033CDBC /* gongli.png in Resources */,
 				19DAEA5219D311D300519D22 /* bbs_add_member_quan@2x.png in Resources */,
 				19DAE9EF19D311D300519D22 /* zuji-42_42-xy84_404@2x.png in Resources */,
 				19DAE9D419D311D300519D22 /* Expression_18@2x.png in Resources */,
 				19DAEA3C19D311D300519D22 /* sheying@2x.png in Resources */,
-				E36DE09219F4FB92007585AF /* gongli.png in Resources */,
 				19DAEA3D19D311D300519D22 /* shuxian@2x.png in Resources */,
 				19DAEA7A19D311D300519D22 /* classification_big8@2x.png in Resources */,
 				19DAE9E319D311D300519D22 /* Expression_9@2x.png in Resources */,
 				13D21C9519F4095C0015AAF2 /* 地图位置图标.png in Resources */,
+				E3E2EECC19F756070033CDBC /* gpingjunsudu.png in Resources */,
 				19DAE98E19D311D300519D22 /* fbMefb@2x.png in Resources */,
 				1929B3B619D41C3A0045B6B5 /* history@2x.png in Resources */,
+				E3F27BD319F836B600B91A26 /* gbpm.png in Resources */,
 				19DAE9D019D311D300519D22 /* Expression_14@2x.png in Resources */,
-				E36DE08619F4EEF6007585AF /* gback160x98.png in Resources */,
 				19DAEA1C19D311D300519D22 /* xiangqing-shurukuang-496_60@2x.png in Resources */,
 				19DAE9B219D311D300519D22 /* pinglun-bg2-up-216_76@2x.jpg in Resources */,
 				19DAEA6F19D311D300519D22 /* mirco_icon_6@2x.png in Resources */,
@@ -2700,7 +2756,6 @@
 				13A2AA8A19D7BAB3008D1B9F /* UMSLoginViewController.xib in Resources */,
 				19DAEA5A19D311D300519D22 /* seach@2x.png in Resources */,
 				19DAE9D519D311D300519D22 /* Expression_19@2x.png in Resources */,
-				E36DE08A19F4F013007585AF /* gtimeout.png in Resources */,
 				19DAEA2B19D311D300519D22 /* jiantou@2x.png in Resources */,
 				19DAE9B819D311D300519D22 /* pinglun-xin_up-24_24@2x.png in Resources */,
 				13D21C8E19F4095C0015AAF2 /* gps图标3格.png in Resources */,
@@ -2712,6 +2767,7 @@
 				1929B3B419D41C3A0045B6B5 /* bike@2x.png in Resources */,
 				19DAEA2519D311D300519D22 /* touming-bg-150_150@2x.png in Resources */,
 				134BA6AB19D9581200282D7D /* mine_road.png in Resources */,
+				E3E2EEBA19F753930033CDBC /* gstarting.png in Resources */,
 				19DAEA7819D311D300519D22 /* classification_big6@2x.png in Resources */,
 				13A1470919F77E0C00F8D442 /* SwitchCell.xib in Resources */,
 				19DAEA0319D311D300519D22 /* dibuxian-444_8@2x.png in Resources */,
@@ -2726,6 +2782,8 @@
 				19DAEA4419D311D300519D22 /* new@2x.png in Resources */,
 				137D9FBC19F25EC700B31100 /* more_recommend@2x.png in Resources */,
 				E34451F319E7D6A400A3546A /* AMap.bundle in Resources */,
+				E3E2EEB519F753930033CDBC /* ghaiba.png in Resources */,
+				E3E2EEC919F755620033CDBC /* ghaibaxia.png in Resources */,
 				19DAEA3319D311D300519D22 /* jiazai@2x.png in Resources */,
 				19DAE81519D30C2D00519D22 /* LaunchScreen.xib in Resources */,
 				19DAE9A219D311D300519D22 /* fanhui-daohanglan-20_38@2x.png in Resources */,
@@ -2737,18 +2795,19 @@
 				19DAE9A619D311D300519D22 /* FBCircle_picture_default_new_image@2x.png in Resources */,
 				134BA6A019D948E800282D7D /* MineCellTwo.xib in Resources */,
 				19DAEA2219D311D300519D22 /* shuru-446_60@2x.png in Resources */,
+				E3E2EEB819F753930033CDBC /* gspeed.png in Resources */,
 				137D9FE319F27A6500B31100 /* RoadProduceController.xib in Resources */,
 				19DAE9A519D311D300519D22 /* FBCircle_menu_background_image@2x.png in Resources */,
 				19DAE99219D311D300519D22 /* back1.png in Resources */,
 				137D9FBA19F25EC700B31100 /* 空间点击.png in Resources */,
 				19DAE99319D311D300519D22 /* back7.png in Resources */,
-				E36DE08E19F4FAB1007585AF /* gspeed.png in Resources */,
 				19DAE99A19D311D300519D22 /* fb_142_126@2x.png in Resources */,
 				19DAE98119D311D300519D22 /* add_flag@2x.png in Resources */,
 				19DAE9C119D311D300519D22 /* touxiang-150_150@2x.png in Resources */,
 				19DAEA6119D311D300519D22 /* mirco_icon_13@2x.png in Resources */,
 				13D21C8D19F4095C0015AAF2 /* gps图标2格.png in Resources */,
 				19DAEA0019D311D300519D22 /* tianjiahaoyou-36_36@2x.png in Resources */,
+				E3E2EEC519F755130033CDBC /* gpashenglv.png in Resources */,
 				137D9FBE19F25EC700B31100 /* more_help@2x.png in Resources */,
 				137D9FB819F25EC700B31100 /* 朋友圈点击.png in Resources */,
 				19DAEA2A19D311D300519D22 /* +@2x.png in Resources */,
@@ -2763,6 +2822,7 @@
 				13BE658B19FB8390006242A8 /* icon114.png in Resources */,
 				E36DE09819F4FC26007585AF /* gbtndown.png in Resources */,
 				13D21C9719F4095C0015AAF2 /* map_end@2x.png in Resources */,
+				E3E2EECD19F756070033CDBC /* gzuigaosudu.png in Resources */,
 				19DAE9EB19D311D300519D22 /* haoyou--48_44-xy298_404@2x.png in Resources */,
 				13A2AA8919D7BAB3008D1B9F /* UMShareEditViewControlleriPad.xib in Resources */,
 				19DAEA7019D311D300519D22 /* mirco_icon_7@2x.png in Resources */,
@@ -2785,8 +2845,11 @@
 				19DAEA5F19D311D300519D22 /* mirco_icon_11@2x.png in Resources */,
 				1929B3B519D41C3A0045B6B5 /* find@2x.png in Resources */,
 				19DAE98219D311D300519D22 /* add_jing@2x.png in Resources */,
+
+
 				13A1470419F75EE100F8D442 /* RoadInfoViewController.xib in Resources */,
 				E32B927C19F60609007536D0 /* ghuifu.png in Resources */,
+
 				19DAEA2019D311D300519D22 /* button2-down252_94@2x.png in Resources */,
 				19DAEA1619D311D300519D22 /* duihao-42_42@2x.png in Resources */,
 				137D9FC019F25EC700B31100 /* more_good@2x.png in Resources */,
@@ -2798,7 +2861,6 @@
 				19DAEA3019D311D300519D22 /* chahua@2x.png in Resources */,
 				19DAEA1219D311D300519D22 /* duanxin-icon-94_94@2x.png in Resources */,
 				19DAE81219D30C2D00519D22 /* Images.xcassets in Resources */,
-				E36DE09419F4FBDE007585AF /* ghaiba.png in Resources */,
 				19DAEA0119D311D300519D22 /* toujxiang-moren-94_94@2x.png in Resources */,
 				134BA6AA19D9581200282D7D /* mine_more@2x.png in Resources */,
 				19DAEA7F19D311D300519D22 /* selected_small_bbs_icon_image@2x.png in Resources */,
@@ -2829,6 +2891,7 @@
 				19DAE99019D311D300519D22 /* fbMeyijian@2x.png in Resources */,
 				1929B3B719D41C3A0045B6B5 /* mine@2x.png in Resources */,
 				19DAEA0219D311D300519D22 /* tuijianhaoyou-94_94@2x.png in Resources */,
+				E3E2EEB319F753930033CDBC /* gbtnup.png in Resources */,
 				19DAE9DB19D311D300519D22 /* Expression_24@2x.png in Resources */,
 				13D21C9B19F4095C0015AAF2 /* 地图陀螺仪点击图标.png in Resources */,
 				19DAEA2319D311D300519D22 /* bg-10_88@2x.png in Resources */,
@@ -2836,6 +2899,7 @@
 				19DAE9D819D311D300519D22 /* Expression_21@2x.png in Resources */,
 				137B0C4919F556C2001F3507 /* road_middle@2x.png in Resources */,
 				134BA69B19D9462900282D7D /* MineCellOne.xib in Resources */,
+				E3E2EEC119F754870033CDBC /* gpodu.png in Resources */,
 				19DAEA4619D311D300519D22 /* dele@2x.png in Resources */,
 				19DAE9C019D311D300519D22 /* tixiang-touxiang-44_44@2x.png in Resources */,
 				56442E1519F5621700BAE678 /* RankingTableViewCell.xib in Resources */,
@@ -2873,15 +2937,14 @@
 				19DAE9CC19D311D300519D22 /* Expression_10@2x.png in Resources */,
 				19DAE9DF19D311D300519D22 /* Expression_5@2x.png in Resources */,
 				19DAE9B419D311D300519D22 /* pinglun-icon-66_24@2x.png in Resources */,
-				E36DE08C19F4F0B9007585AF /* gtakephoto.png in Resources */,
 				19DAE99D19D311D300519D22 /* baocun40_48@2x.png in Resources */,
-				E34C791219E813A000A5F4DE /* userPosition@2x.png in Resources */,
 				19DAE99619D311D300519D22 /* Loginbutton528_88@2x.png in Resources */,
 				13D21CA419F4095C0015AAF2 /* 海拔下降.png in Resources */,
 				19DAEA7D19D311D300519D22 /* selected_message_icon@2x.png in Resources */,
 				13D21C9E19F4095C0015AAF2 /* 开始时间.png in Resources */,
 				137D9FBD19F25EC700B31100 /* 右侧向右箭头.png in Resources */,
 				19DAE9CF19D311D300519D22 /* Expression_13@2x.png in Resources */,
+				E3E2EEB419F753930033CDBC /* gfinish.png in Resources */,
 				13AC6BAD19D805D800E7FF7B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				137D9FC119F25EC700B31100 /* more_contact@2x.png in Resources */,
 				19DAEA3519D311D300519D22 /* right@2x.png in Resources */,
@@ -2898,17 +2961,17 @@
 				13D21C9419F4095C0015AAF2 /* 向下收缩.png in Resources */,
 				13D21C9819F4095C0015AAF2 /* 地图路书关闭.png in Resources */,
 				19DAEA3819D311D300519D22 /* gaizhuang@2x.png in Resources */,
-				E36DE09A19F4FCCC007585AF /* gbpm.png in Resources */,
 				13D21CA019F4095C0015AAF2 /* 时间.png in Resources */,
 				19DAEA5619D311D300519D22 /* BBS-kuang-up@2x.png in Resources */,
 				56442DFC19F552BB00BAE678 /* right_jiantou_image@2x.png in Resources */,
 				19DAEA6519D311D300519D22 /* mirco_icon_17@2x.png in Resources */,
 				19DAE9A119D311D300519D22 /* fabu-40_40@2x.png in Resources */,
-				E36DE09719F4FC26007585AF /* gbtnup.png in Resources */,
 				19DAE9F519D311D300519D22 /* dingwei-icon-30_36@2x.png in Resources */,
 				137D9FBF19F25EC700B31100 /* more_update@2x.png in Resources */,
 				19DAE9C519D311D300519D22 /* xiangqing-pinglun-icon-24_24@2x.png in Resources */,
 				13D21CA219F4095C0015AAF2 /* 海拔.png in Resources */,
+				E3E2EEC819F755620033CDBC /* ghaibashang.png in Resources */,
+				E3E2EEB619F753930033CDBC /* ghuifu.png in Resources */,
 				19DAEA4019D311D300519D22 /* join@2x.png in Resources */,
 				19DAEA7C19D311D300519D22 /* selected_found_image@2x.png in Resources */,
 				13D21C8C19F4095C0015AAF2 /* gps图标1格.png in Resources */,
@@ -3001,6 +3064,7 @@
 				56442E1419F5621700BAE678 /* RankingTableViewCell.m in Sources */,
 				56442E0719F5567300BAE678 /* ActivityTableViewCell.m in Sources */,
 				137D76F119F4BD9500DD29D7 /* MAPolyline+UN.m in Sources */,
+				E3E2EED319F78B7D0033CDBC /* GyundongCanshuModel.m in Sources */,
 				137D76E819F4BB5B00DD29D7 /* MJMember.m in Sources */,
 				137D76EB19F4BB5B00DD29D7 /* MJTypeEncoding.m in Sources */,
 				137D76ED19F4BB5B00DD29D7 /* NSObject+MJKeyValue.m in Sources */,
@@ -3008,6 +3072,7 @@
 				137D76E619F4BB5B00DD29D7 /* MJFoundation.m in Sources */,
 				137D76EC19F4BB5B00DD29D7 /* NSObject+MJCoding.m in Sources */,
 				137D76EE19F4BB5B00DD29D7 /* NSObject+MJMember.m in Sources */,
+				E3E2EED019F767EA0033CDBC /* GyundongCustomView.m in Sources */,
 				137D9FE719F290F800B31100 /* CommonUtility.m in Sources */,
 				137D76E419F4BB5B00DD29D7 /* MJArgument.m in Sources */,
 				13CFBAD619F6C36D006B9684 /* LRoadClass.m in Sources */,
@@ -3188,7 +3253,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 			};
@@ -3221,7 +3286,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 			};
