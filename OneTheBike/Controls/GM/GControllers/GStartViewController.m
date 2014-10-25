@@ -113,7 +113,7 @@
     splitTimerMin = 0;
     splitTimerSecond = 0;
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:(0.1)
+    timer = [NSTimer scheduledTimerWithTimeInterval:(1)
                                              target:self
                                            selector:@selector(taktCounter)
                                            userInfo:nil
