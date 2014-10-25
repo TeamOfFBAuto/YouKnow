@@ -42,7 +42,7 @@
 {
     [super viewWillAppear:animated];
     
-    NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
+    NSString *authKey = [LTools cacheForKey:USER_NAME];
     if (authKey.length > 0) {
         return;
     }
@@ -88,8 +88,6 @@
     [self.table reloadData];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeUser:) name:NOTIFICATION_CHANGE_USER object:nil];
-    
-    [LTools cache:@"1111" ForKey:USER_CUSTID];
     
 }
 
@@ -141,12 +139,12 @@
         if (response.responseCode == UMSResponseCodeSuccess) {
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatName];
             NSLog(@"username is %@, uid is %@, token is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken);
-            
+//            
             [LTools cache:snsAccount.iconURL ForKey:USER_HEAD_IMAGEURL];
             [LTools cache:snsAccount.userName ForKey:USER_NAME];
             [LTools cache:snsAccount.accessToken ForKey:USER_AUTHKEY_OHTER];
             
-            [weakSelf userInfoWithImage:snsAccount.iconURL name:snsAccount.userName];
+//            [weakSelf userInfoWithImage:snsAccount.iconURL name:snsAccount.userName];
             
             [weakSelf loginToServer:snsAccount.usid nickName:snsAccount.userName icon:snsAccount.iconURL];
             
@@ -157,32 +155,24 @@
 
 #pragma mark - 事件处理
 
-- (void)updateUserInfo
+- (void)updateUserInfoIcon:(NSString *)icon name:(NSString *)nickName custID:(NSString *)custId gold:(NSString *)gold
 {
     MineCellOne *cell = (MineCellOne *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
-    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:loginUser.nickName] placeholderImage:[UIImage imageNamed:@""]];
-    cell.nameLabel.text = loginUser.nickName;
+    NSString *image = [LTools cacheForKey:USER_HEAD_IMAGEURL];
     
-    cell.infoLabel.text = [NSString stringWithFormat:@"ID:%@ :%@",loginUser.custId,loginUser.gold];
+    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:image] placeholderImage:[UIImage imageNamed:@""]];
+    cell.nameLabel.text = nickName;
     
-    [LTools cache:loginUser.custId ForKey:USER_CUSTID];
+    cell.infoLabel.text = [NSString stringWithFormat:@"轨币:%@",gold];
+    
 }
 
-- (void)userInfoWithImage:(NSString *)imageUrl name:(NSString *)name
-{
-    MineCellOne *cell = (MineCellOne *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    
-    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@""]];
-    cell.nameLabel.text = name;
-    
-//    cell.infoLabel.text = [NSString stringWithFormat:@"%@ %@",];
-}
 
 //清空原先数据
 - (void)changeUser:(NSNotification *)notification
 {
-    [self userInfoWithImage:nil name:nil];
+    [self updateUserInfoIcon:nil name:nil custID:nil gold:nil];
 }
 
 #pragma mark - 数据解析
@@ -202,7 +192,15 @@
             NSDictionary *dic = [result objectForKey:@"custJson"];
             loginUser = [[UserInfoClass alloc]initWithDictionary:dic];
             
-            [self updateUserInfo];
+            
+            [LTools cache:loginUser.custId ForKey:USER_CUSTID];
+            
+//            [LTools cache:icon ForKey:USER_HEAD_IMAGEURL];
+//            [LTools cache:loginUser.nickName ForKey:USER_NAME];
+//            [LTools cache:loginUser ForKey:USER_AUTHKEY_OHTER];
+
+            
+            [self updateUserInfoIcon:loginUser.nickName name:loginUser.nickName custID:loginUser.custId gold:loginUser.gold];
             
         }
         
@@ -299,7 +297,7 @@
         cell.separatorInset = UIEdgeInsetsMake(7, 10, 10, 10);
         cell.backgroundColor = [UIColor clearColor];
         
-        NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
+        NSString *authKey = [LTools cacheForKey:USER_NAME];
         if (authKey.length > 0) {
             
             NSString *name = [LTools cacheForKey:USER_NAME];
@@ -307,6 +305,12 @@
             
             cell.nameLabel.text = name;
             [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
+        
+            NSString *image = [LTools cacheForKey:USER_HEAD_IMAGEURL];
+            
+            [self updateUserInfoIcon:image name:name custID:@"" gold:loginUser.gold];
+            
+            
         }else
         {
 //            [self login];

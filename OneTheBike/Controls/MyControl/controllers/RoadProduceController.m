@@ -110,8 +110,8 @@ enum{
     
     UIButton *settings=[[UIButton alloc]initWithFrame:CGRectMake(20,7.5,40,40)];
     [settings addTarget:self action:@selector(clickToSave:) forControlEvents:UIControlEventTouchUpInside];
-//    [settings setTitle:@"保存" forState:UIControlStateNormal];
-    [settings setImage:[UIImage imageNamed:@"road_save"] forState:UIControlStateNormal];
+    [settings setTitle:@"保存" forState:UIControlStateNormal];
+//    [settings setImage:[UIImage imageNamed:@"road_save"] forState:UIControlStateNormal];
     [settings.titleLabel setFont:[UIFont systemFontOfSize:12]];
     settings.layer.cornerRadius = 3.f;
 //    [settings setBackgroundColor:[UIColor colorWithHexString:@"bebebe"]];
@@ -123,7 +123,7 @@ enum{
     [self initMap];
     
     [self createTools];
-    
+
     middle_points_arr = [NSMutableArray array];//途经点 AMapGeoPoint
     polines_arr = [NSMutableArray array];//所有的规划线
     middleAnntations = [NSMutableArray array];//途经点 Annotation

@@ -162,7 +162,7 @@
     if (buttonIndex == 1) {
      
         NSLog(@"切换账号");
-        [LTools cache:@"" ForKey:USER_AUTHKEY_OHTER];
+        [LTools cache:@"" ForKey:USER_NAME];
         
         [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_CHANGE_USER object:nil];
         
