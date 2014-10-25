@@ -20,7 +20,6 @@
         sharedAccountManagerInstance.zoomLevel = 19;
         sharedAccountManagerInstance.visibleMapRect = MAMapRectMake(220880104, 101476980, 272496, 466656);
     });
-    sharedAccountManagerInstance.backgroundColor = [UIColor whiteColor];
     return sharedAccountManagerInstance;
 }
 

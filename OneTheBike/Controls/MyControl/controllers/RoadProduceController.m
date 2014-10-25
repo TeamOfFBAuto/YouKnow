@@ -298,6 +298,7 @@ enum{
     logoImageV.frame = CGRectMake(20, (search_back.height - 19)/2.0 , 20, 19);
     [search_back addSubview:logoImageV];
     
+    
     _searchField = [[UITextField alloc]initWithFrame:CGRectMake(logoImageV.right + 5, 0, 240, search_back.height)];
     _searchField.delegate = self;
     _searchField.returnKeyType = UIReturnKeySearch;

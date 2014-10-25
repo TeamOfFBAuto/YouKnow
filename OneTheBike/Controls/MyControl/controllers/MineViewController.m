@@ -78,6 +78,7 @@
     imagesArray = @[@"mine_road",@"mine_map",@"mine_share",@"mine_more"];
     titleArray = @[@"路书管理",@"离线地图",@"分享好友",@"更多"];
     
+    [self.table reloadData];
     
     NSString *authKey = [LTools cacheForKey:USER_AUTHKEY_OHTER];
     if (authKey.length > 0) {
@@ -144,7 +145,10 @@
             
             [weakSelf userInfoWithImage:snsAccount.iconURL name:snsAccount.userName];
             
+            [weakSelf loginToServer:snsAccount.usid pass:nil];
+            
             }
+        
     });
 }
 
@@ -161,6 +165,22 @@
 #pragma mark - 数据解析
 
 #pragma mark - 网络请求
+
+- (void)loginToServer:(NSString *)otherUserId pass:(NSString *)pass
+{
+    pass = @"12345";
+    NSString *url = [NSString stringWithFormat:BIKE_LOGIN,otherUserId,pass];
+    LTools *tool = [[LTools alloc]initWithUrl:url isPost:NO postData:nil];
+    [tool requestSpecialCompletion:^(NSDictionary *result, NSError *erro) {
+        
+        NSLog(@"result %@ erro %@",result,erro);
+        
+    } failBlock:^(NSDictionary *failDic, NSError *erro) {
+        
+        NSLog(@"failDic %@ erro %@",failDic,erro);
+        
+    }];
+}
 
 #pragma mark - 视图创建
 
