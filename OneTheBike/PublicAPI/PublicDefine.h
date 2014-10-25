@@ -39,4 +39,12 @@ alpha:(a)]
 #define BACK_IMAGE [UIImage imageNamed:@"backButton"]
 #define NAVIGATION_IMAGE [UIImage imageNamed:@"navigationBack"]
 
+//=========================接口
+
+#define BIKE_LOGIN @"http://182.254.242.58:8080/QiBa/QiBa/custAction_login.action?loginId=%@&password=%@"//登录
+
+
+
+
+
 #endif
